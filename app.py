@@ -8,7 +8,9 @@
 =============================================================================
 """
 
+import html as html_mod
 import streamlit as st
+import streamlit.components.v1 as components
 
 # ── Page Config ──────────────────────────────────────────────────────────
 st.set_page_config(
@@ -201,10 +203,17 @@ TRANSLATIONS = {
         "scene_mode": "Location Input",
         "scene_mode_preset": "Choose from List",
         "scene_mode_custom": "Describe / Type",
+        "scene_mode_place": "Real Place / Travel",
         "scene_custom_input": "Describe your location",
         "scene_custom_placeholder": "e.g. Tokyo street at night with neon signs and wet pavement",
         "attach_scene_photo": "I will attach scene/background reference photo",
         "attach_scene_note": "Prompt will instruct AI to use the attached background",
+        "place_landmark": "Landmark / Tourist Attraction",
+        "place_landmark_placeholder": "e.g. Eiffel Tower, Grand Palace, Shibuya Crossing",
+        "place_city": "City",
+        "place_city_placeholder": "e.g. Paris, Bangkok, Tokyo",
+        "place_country": "Country",
+        "place_country_placeholder": "e.g. France, Thailand, Japan",
         "location": "Location",
         "loc_studio": "Photography Studio",
         "loc_street": "Urban Street",
@@ -222,6 +231,13 @@ TRANSLATIONS = {
         "tod_night": "Nighttime",
         "tod_overcast": "Overcast / Cloudy",
         "tod_sunrise": "Sunrise",
+        "season": "Season",
+        "season_none": "Not specified",
+        "season_spring": "Spring",
+        "season_summer": "Summer",
+        "season_autumn": "Autumn / Fall",
+        "season_winter": "Winter",
+        "season_rainy": "Rainy Season",
         "lighting": "Lighting Style",
         "lit_natural": "Natural / Ambient",
         "lit_studio": "Studio Softbox",
@@ -469,10 +485,17 @@ TRANSLATIONS = {
         "scene_mode": "ระบุสถานที่",
         "scene_mode_preset": "เลือกจากรายการ",
         "scene_mode_custom": "พิมพ์อธิบายเอง",
+        "scene_mode_place": "สถานที่จริง / ท่องเที่ยว",
         "scene_custom_input": "อธิบายสถานที่ / ฉากหลัง",
         "scene_custom_placeholder": "เช่น ถนนในโตเกียวตอนกลางคืน มีป้ายนีออนและพื้นเปียกฝน",
         "attach_scene_photo": "จะแนบรูปฉาก/แบ็คกราวด์อ้างอิง",
         "attach_scene_note": "พรอมต์จะสั่งให้ AI ใช้ฉากหลังตามรูปที่แนบ",
+        "place_landmark": "สถานที่ท่องเที่ยว / แลนด์มาร์ค",
+        "place_landmark_placeholder": "เช่น หอไอเฟล, วัดพระแก้ว, แยกชิบูย่า",
+        "place_city": "เมือง",
+        "place_city_placeholder": "เช่น ปารีส, กรุงเทพ, โตเกียว",
+        "place_country": "ประเทศ",
+        "place_country_placeholder": "เช่น ฝรั่งเศส, ไทย, ญี่ปุ่น",
         "location": "สถานที่",
         "loc_studio": "สตูดิโอถ่ายภาพ",
         "loc_street": "ถนนในเมือง",
@@ -490,6 +513,13 @@ TRANSLATIONS = {
         "tod_night": "กลางคืน",
         "tod_overcast": "มีเมฆ / ครึ้มฟ้า",
         "tod_sunrise": "พระอาทิตย์ขึ้น",
+        "season": "ฤดูกาล",
+        "season_none": "ไม่ระบุ",
+        "season_spring": "ฤดูใบไม้ผลิ",
+        "season_summer": "ฤดูร้อน",
+        "season_autumn": "ฤดูใบไม้ร่วง",
+        "season_winter": "ฤดูหนาว",
+        "season_rainy": "ฤดูฝน",
         "lighting": "สไตล์แสง",
         "lit_natural": "แสงธรรมชาติ",
         "lit_studio": "ซอฟต์บ็อกซ์สตูดิโอ",
@@ -670,6 +700,12 @@ ENGLISH_VALUES = {
     "tod_night": "at nighttime with city lights",
     "tod_overcast": "under overcast cloudy sky with soft diffused light",
     "tod_sunrise": "at sunrise with warm morning light",
+    # Season
+    "season_none": "", "season_spring": "in spring with cherry blossoms and fresh greenery",
+    "season_summer": "in summer with bright warm sunshine",
+    "season_autumn": "in autumn with golden orange and red falling leaves",
+    "season_winter": "in winter with snow-covered scenery",
+    "season_rainy": "during rainy season with rain and wet atmosphere",
     # Lighting
     "lit_natural": "natural ambient lighting", "lit_studio": "professional studio softbox lighting",
     "lit_rim": "dramatic rim lighting from behind",
@@ -960,11 +996,14 @@ def main():
             st.markdown(f'<div class="ref-attached">📎 {t("attach_scene_note")}</div>', unsafe_allow_html=True)
 
         # Location mode
-        scene_mode_labels = [t("scene_mode_preset"), t("scene_mode_custom")]
+        scene_mode_labels = [t("scene_mode_preset"), t("scene_mode_custom"), t("scene_mode_place")]
         scene_mode = st.radio(t("scene_mode"), scene_mode_labels, index=0, horizontal=True, key="scene_mode_radio")
 
         lo_key = "loc_studio"
         scene_custom_text = ""
+        place_landmark = ""
+        place_city = ""
+        place_country = ""
 
         if scene_mode == scene_mode_labels[0]:
             lo_keys = ["loc_studio", "loc_street", "loc_cafe", "loc_beach",
@@ -972,13 +1011,27 @@ def main():
             lo_labels, _ = make_option(lo_keys)
             lo_sel = st.selectbox(t("location"), lo_labels)
             lo_key = lo_keys[lo_labels.index(lo_sel)]
-        else:
+        elif scene_mode == scene_mode_labels[1]:
             scene_custom_text = st.text_area(t("scene_custom_input"),
                                               placeholder=t("scene_custom_placeholder"),
                                               height=80, key="scene_custom_ta")
+        else:
+            col_pl1, col_pl2, col_pl3 = st.columns(3)
+            with col_pl1:
+                place_landmark = st.text_input(t("place_landmark"),
+                                               placeholder=t("place_landmark_placeholder"),
+                                               key="place_landmark_input")
+            with col_pl2:
+                place_city = st.text_input(t("place_city"),
+                                           placeholder=t("place_city_placeholder"),
+                                           key="place_city_input")
+            with col_pl3:
+                place_country = st.text_input(t("place_country"),
+                                              placeholder=t("place_country_placeholder"),
+                                              key="place_country_input")
 
         st.markdown("---")
-        col10, col11 = st.columns(2)
+        col10, col11, col_season = st.columns(3)
         with col10:
             td_keys = ["tod_golden", "tod_blue", "tod_noon", "tod_night", "tod_overcast", "tod_sunrise"]
             td_labels, _ = make_option(td_keys)
@@ -990,6 +1043,12 @@ def main():
             lt_labels, _ = make_option(lt_keys)
             lt_sel = st.selectbox(t("lighting"), lt_labels)
             lt_key = lt_keys[lt_labels.index(lt_sel)]
+        with col_season:
+            sn_keys = ["season_none", "season_spring", "season_summer",
+                        "season_autumn", "season_winter", "season_rainy"]
+            sn_labels, _ = make_option(sn_keys)
+            sn_sel = st.selectbox(t("season"), sn_labels)
+            sn_key = sn_keys[sn_labels.index(sn_sel)]
 
         st.markdown("---")
 
@@ -1095,9 +1154,23 @@ def main():
             env_loc = "in the location shown in the attached scene reference image"
         elif scene_custom_text.strip():
             env_loc = translate_to_english(scene_custom_text)
+        elif place_landmark or place_city or place_country:
+            place_parts = []
+            if place_landmark.strip():
+                place_parts.append(f"at {translate_to_english(place_landmark)}")
+            if place_city.strip():
+                place_parts.append(translate_to_english(place_city))
+            if place_country.strip():
+                place_parts.append(translate_to_english(place_country))
+            env_loc = ", ".join(place_parts)
         else:
             env_loc = eng(lo_key)
-        environment = f"{env_loc}, {eng(td_key)}"
+        season_text = eng(sn_key)
+        env_time = eng(td_key)
+        env_parts = [env_loc, env_time]
+        if season_text:
+            env_parts.append(season_text)
+        environment = ", ".join(env_parts)
 
         # Camera & Lighting
         camera_section = f"{eng(lt_key)}, {eng(sf_key)}, {eng(ca_key)}, {eng(dof_key)}"
@@ -1184,20 +1257,47 @@ def main():
         st.markdown(f"### 📋 {t('section_final')}")
         st.code(combined_prompt, language=None)
 
-        # Copy button
-        copy_js = f"""
-        <textarea id="prompt-text" style="position:absolute;left:-9999px">{combined_prompt}</textarea>
-        <button onclick="
-            var ta=document.getElementById('prompt-text');
-            ta.style.position='static'; ta.select(); document.execCommand('copy');
-            ta.style.position='absolute'; ta.style.left='-9999px';
-            this.innerText='✅ Copied!';
-            setTimeout(()=>this.innerText='📋 {t("copy_btn")}',2000);
-        " style="background:linear-gradient(135deg,#43e97b 0%,#38f9d7 100%);border:none;
+        # Copy button — use components.html so JS actually executes
+        safe_prompt = html_mod.escape(combined_prompt).replace("`", "\\`").replace("${", "\\${")
+        copy_label = t("copy_btn")
+        copy_html = f"""
+        <html><body style="margin:0;padding:0;background:transparent;">
+        <button id="copy-btn" style="
+            background:linear-gradient(135deg,#43e97b 0%,#38f9d7 100%);border:none;
             padding:12px 28px;border-radius:10px;font-size:1rem;font-weight:600;cursor:pointer;
-            color:#1a1a2e;min-height:48px;font-family:'Noto Sans Thai',sans-serif;">📋 {t("copy_btn")}</button>
+            color:#1a1a2e;min-height:48px;font-family:'Noto Sans Thai','Segoe UI',sans-serif;
+            transition:transform 0.15s,box-shadow 0.15s;"
+            onmouseover="this.style.transform='translateY(-1px)';this.style.boxShadow='0 4px 12px rgba(67,233,123,0.4)';"
+            onmouseout="this.style.transform='none';this.style.boxShadow='none';"
+            onclick="copyPrompt()">📋 {copy_label}</button>
+        <script>
+        function copyPrompt() {{
+            const text = `{safe_prompt}`;
+            const btn = document.getElementById('copy-btn');
+            if (navigator.clipboard && window.isSecureContext) {{
+                navigator.clipboard.writeText(text).then(() => {{
+                    btn.innerText = '✅ Copied!';
+                    setTimeout(() => btn.innerText = '📋 {copy_label}', 2000);
+                }}).catch(fallbackCopy);
+            }} else {{
+                fallbackCopy();
+            }}
+            function fallbackCopy() {{
+                const ta = document.createElement('textarea');
+                ta.value = text;
+                ta.style.position = 'fixed';
+                ta.style.left = '-9999px';
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                document.body.removeChild(ta);
+                btn.innerText = '✅ Copied!';
+                setTimeout(() => btn.innerText = '📋 {copy_label}', 2000);
+            }}
+        }}
+        </script></body></html>
         """
-        st.markdown(copy_js, unsafe_allow_html=True)
+        components.html(copy_html, height=60)
 
         # Negative prompt
         ed_neg = st.session_state.get("ed_negative", "")
