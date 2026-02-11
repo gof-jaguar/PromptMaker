@@ -41,12 +41,12 @@ TRANSLATIONS = {
         "ar_16_9": "16:9 (Landscape · YouTube)",
         "ar_9_16": "9:16 (Portrait · TikTok/Reels)",
         "ar_4_5": "4:5  (Portrait · Instagram)",
-        "ar_3_2": "3:2  (Classic Photo)",
-        "ar_4_3": "4:3  (Standard Photo)",
-        "ar_iphone_pro": "9:19.5 (iPhone 15/16 Pro Max Wallpaper)",
-        "ar_iphone": "9:19.5 (iPhone 15/16 Wallpaper)",
-        "ar_samsung_ultra": "9:21.7 (Samsung S24 Ultra Wallpaper)",
-        "ar_samsung": "9:19.5 (Samsung Galaxy S24 Wallpaper)",
+        "ar_3_2": "3:2  (Landscape · Classic Photo)",
+        "ar_2_3": "2:3  (Portrait · Classic Photo)",
+        "ar_4_3": "4:3  (Landscape · Standard Photo)",
+        "ar_3_4": "3:4  (Portrait · Standard Photo)",
+        "ar_iphone": "iPhone Wallpaper",
+        "ar_android": "Android Wallpaper",
 
         # Model Type
         "model_realistic": "Realistic Photography",
@@ -347,12 +347,12 @@ TRANSLATIONS = {
         "ar_16_9": "16:9 (แนวนอน · YouTube)",
         "ar_9_16": "9:16 (แนวตั้ง · TikTok/Reels)",
         "ar_4_5": "4:5  (แนวตั้ง · Instagram)",
-        "ar_3_2": "3:2  (ภาพถ่ายคลาสสิก)",
-        "ar_4_3": "4:3  (ภาพถ่ายมาตรฐาน)",
-        "ar_iphone_pro": "9:19.5 (วอลเปเปอร์ iPhone 15/16 Pro Max)",
-        "ar_iphone": "9:19.5 (วอลเปเปอร์ iPhone 15/16)",
-        "ar_samsung_ultra": "9:21.7 (วอลเปเปอร์ Samsung S24 Ultra)",
-        "ar_samsung": "9:19.5 (วอลเปเปอร์ Samsung Galaxy S24)",
+        "ar_3_2": "3:2  (แนวนอน · ภาพถ่ายคลาสสิก)",
+        "ar_2_3": "2:3  (แนวตั้ง · ภาพถ่ายคลาสสิก)",
+        "ar_4_3": "4:3  (แนวนอน · ภาพถ่ายมาตรฐาน)",
+        "ar_3_4": "3:4  (แนวตั้ง · ภาพถ่ายมาตรฐาน)",
+        "ar_iphone": "วอลเปเปอร์ iPhone",
+        "ar_android": "วอลเปเปอร์ Android",
 
         # Model Type
         "model_realistic": "ภาพถ่ายสมจริง",
@@ -804,9 +804,9 @@ ENGLISH_VALUES = {
     "qt_pro": "professional photography", "qt_award": "award-winning", "qt_magazine": "magazine quality",
     # Aspect Ratio
     "ar_1_1": "--ar 1:1", "ar_16_9": "--ar 16:9", "ar_9_16": "--ar 9:16", "ar_4_5": "--ar 4:5",
-    "ar_3_2": "--ar 3:2", "ar_4_3": "--ar 4:3",
-    "ar_iphone_pro": "--ar 1290:2796", "ar_iphone": "--ar 1179:2556",
-    "ar_samsung_ultra": "--ar 1440:3120", "ar_samsung": "--ar 1080:2340",
+    "ar_3_2": "--ar 3:2", "ar_2_3": "--ar 2:3",
+    "ar_4_3": "--ar 4:3", "ar_3_4": "--ar 3:4",
+    "ar_iphone": "--ar 1179:2556", "ar_android": "--ar 1080:2400",
 }
 
 
@@ -913,8 +913,9 @@ def main():
         st.session_state["lang"] = "en" if lang_choice == "English" else "th"
         st.divider()
 
-        ar_keys = ["ar_1_1", "ar_16_9", "ar_9_16", "ar_4_5", "ar_3_2", "ar_4_3",
-                   "ar_iphone_pro", "ar_iphone", "ar_samsung_ultra", "ar_samsung"]
+        ar_keys = ["ar_1_1", "ar_16_9", "ar_9_16", "ar_4_5",
+                   "ar_3_2", "ar_2_3", "ar_4_3", "ar_3_4",
+                   "ar_iphone", "ar_android"]
         ar_labels, _ = make_option(ar_keys)
         ar_idx = st.selectbox(t("aspect_ratio"), ar_labels, index=0)
         ar_selected_key = ar_keys[ar_labels.index(ar_idx)]
