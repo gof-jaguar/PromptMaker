@@ -41,6 +41,12 @@ TRANSLATIONS = {
         "ar_16_9": "16:9 (Landscape · YouTube)",
         "ar_9_16": "9:16 (Portrait · TikTok/Reels)",
         "ar_4_5": "4:5  (Portrait · Instagram)",
+        "ar_3_2": "3:2  (Classic Photo)",
+        "ar_4_3": "4:3  (Standard Photo)",
+        "ar_iphone_pro": "9:19.5 (iPhone 15/16 Pro Max Wallpaper)",
+        "ar_iphone": "9:19.5 (iPhone 15/16 Wallpaper)",
+        "ar_samsung_ultra": "9:21.7 (Samsung S24 Ultra Wallpaper)",
+        "ar_samsung": "9:19.5 (Samsung Galaxy S24 Wallpaper)",
 
         # Model Type
         "model_realistic": "Realistic Photography",
@@ -238,6 +244,10 @@ TRANSLATIONS = {
         "season_autumn": "Autumn / Fall",
         "season_winter": "Winter",
         "season_rainy": "Rainy Season",
+        "weather_effect": "Weather Effect",
+        "weather_rain": "Rain falling",
+        "weather_snow": "Snow falling",
+        "weather_leaves": "Red/autumn leaves falling",
         "lighting": "Lighting Style",
         "lit_natural": "Natural / Ambient",
         "lit_studio": "Studio Softbox",
@@ -246,6 +256,20 @@ TRANSLATIONS = {
         "lit_candle": "Candlelight / Warm",
         "lit_dramatic": "Dramatic Chiaroscuro",
         "lit_flat": "Flat / Even",
+
+        # ── Picture Style ──
+        "picture_style": "Picture Style / Filter",
+        "ps_none": "None (Default)",
+        "ps_dreamy": "Dreamy / Ethereal",
+        "ps_soft": "Soft / Gentle",
+        "ps_vivid": "Vivid / Saturated",
+        "ps_bw": "Black & White",
+        "ps_vintage": "Vintage / Retro Film",
+        "ps_cinematic": "Cinematic Color Grade",
+        "ps_moody": "Moody / Dark Tone",
+        "ps_pastel": "Pastel / Light Airy",
+        "ps_hdr": "HDR / High Contrast",
+        "ps_matte": "Matte Film Look",
 
         # ── Shot Framing (NEW) ──
         "shot_framing": "Shot Framing",
@@ -323,6 +347,12 @@ TRANSLATIONS = {
         "ar_16_9": "16:9 (แนวนอน · YouTube)",
         "ar_9_16": "9:16 (แนวตั้ง · TikTok/Reels)",
         "ar_4_5": "4:5  (แนวตั้ง · Instagram)",
+        "ar_3_2": "3:2  (ภาพถ่ายคลาสสิก)",
+        "ar_4_3": "4:3  (ภาพถ่ายมาตรฐาน)",
+        "ar_iphone_pro": "9:19.5 (วอลเปเปอร์ iPhone 15/16 Pro Max)",
+        "ar_iphone": "9:19.5 (วอลเปเปอร์ iPhone 15/16)",
+        "ar_samsung_ultra": "9:21.7 (วอลเปเปอร์ Samsung S24 Ultra)",
+        "ar_samsung": "9:19.5 (วอลเปเปอร์ Samsung Galaxy S24)",
 
         # Model Type
         "model_realistic": "ภาพถ่ายสมจริง",
@@ -520,6 +550,10 @@ TRANSLATIONS = {
         "season_autumn": "ฤดูใบไม้ร่วง",
         "season_winter": "ฤดูหนาว",
         "season_rainy": "ฤดูฝน",
+        "weather_effect": "เอฟเฟกต์สภาพอากาศ",
+        "weather_rain": "ฝนกำลังตก",
+        "weather_snow": "หิมะกำลังตก",
+        "weather_leaves": "ใบไม้แดง/ใบไม้ร่วงกำลังร่วง",
         "lighting": "สไตล์แสง",
         "lit_natural": "แสงธรรมชาติ",
         "lit_studio": "ซอฟต์บ็อกซ์สตูดิโอ",
@@ -528,6 +562,20 @@ TRANSLATIONS = {
         "lit_candle": "แสงเทียน / อบอุ่น",
         "lit_dramatic": "ดราม่า เคียโรสกูโร",
         "lit_flat": "แสงเรียบ / สม่ำเสมอ",
+
+        # ── Picture Style ──
+        "picture_style": "สไตล์ภาพ / ฟิลเตอร์",
+        "ps_none": "ไม่ระบุ (ค่าเริ่มต้น)",
+        "ps_dreamy": "ฝันหวาน / อีเธอเรียล",
+        "ps_soft": "นุ่มนวล / อ่อนโยน",
+        "ps_vivid": "สดใส / อิ่มสี",
+        "ps_bw": "ขาวดำ",
+        "ps_vintage": "วินเทจ / ฟิล์มย้อนยุค",
+        "ps_cinematic": "ซีนีมาติก / โทนภาพยนตร์",
+        "ps_moody": "มู้ดดี้ / โทนมืด",
+        "ps_pastel": "พาสเทล / โปร่งเบา",
+        "ps_hdr": "HDR / คอนทราสต์สูง",
+        "ps_matte": "แมตต์ / ฟิล์มลุค",
 
         # ── Shot Framing ──
         "shot_framing": "ระยะภาพ / เฟรมมิ่ง",
@@ -713,6 +761,17 @@ ENGLISH_VALUES = {
     "lit_candle": "warm candlelight illumination",
     "lit_dramatic": "dramatic chiaroscuro lighting with deep shadows",
     "lit_flat": "flat even lighting",
+    # Picture Style
+    "ps_none": "", "ps_dreamy": "dreamy ethereal atmosphere with soft glow and hazy light",
+    "ps_soft": "soft gentle tones with smooth gradients and muted colors",
+    "ps_vivid": "vivid highly saturated colors with rich contrast",
+    "ps_bw": "black and white monochrome photography with rich tonal range",
+    "ps_vintage": "vintage retro film look with warm faded tones and slight grain",
+    "ps_cinematic": "cinematic color grading with teal and orange tones",
+    "ps_moody": "moody dark atmospheric tones with deep shadows",
+    "ps_pastel": "pastel light airy color palette with soft delicate hues",
+    "ps_hdr": "HDR high dynamic range with vivid detail in highlights and shadows",
+    "ps_matte": "matte film finish with reduced contrast and desaturated highlights",
     # Shot Framing
     "sf_extreme_cu": "extreme close-up of face only",
     "sf_closeup": "close-up portrait shot showing head and shoulders",
@@ -745,6 +804,9 @@ ENGLISH_VALUES = {
     "qt_pro": "professional photography", "qt_award": "award-winning", "qt_magazine": "magazine quality",
     # Aspect Ratio
     "ar_1_1": "--ar 1:1", "ar_16_9": "--ar 16:9", "ar_9_16": "--ar 9:16", "ar_4_5": "--ar 4:5",
+    "ar_3_2": "--ar 3:2", "ar_4_3": "--ar 4:3",
+    "ar_iphone_pro": "--ar 1290:2796", "ar_iphone": "--ar 1179:2556",
+    "ar_samsung_ultra": "--ar 1440:3120", "ar_samsung": "--ar 1080:2340",
 }
 
 
@@ -851,7 +913,8 @@ def main():
         st.session_state["lang"] = "en" if lang_choice == "English" else "th"
         st.divider()
 
-        ar_keys = ["ar_1_1", "ar_16_9", "ar_9_16", "ar_4_5"]
+        ar_keys = ["ar_1_1", "ar_16_9", "ar_9_16", "ar_4_5", "ar_3_2", "ar_4_3",
+                   "ar_iphone_pro", "ar_iphone", "ar_samsung_ultra", "ar_samsung"]
         ar_labels, _ = make_option(ar_keys)
         ar_idx = st.selectbox(t("aspect_ratio"), ar_labels, index=0)
         ar_selected_key = ar_keys[ar_labels.index(ar_idx)]
@@ -1031,7 +1094,7 @@ def main():
                                               key="place_country_input")
 
         st.markdown("---")
-        col10, col11, col_season = st.columns(3)
+        col10, col11, col_season, col_ps = st.columns(4)
         with col10:
             td_keys = ["tod_golden", "tod_blue", "tod_noon", "tod_night", "tod_overcast", "tod_sunrise"]
             td_labels, _ = make_option(td_keys)
@@ -1049,6 +1112,16 @@ def main():
             sn_labels, _ = make_option(sn_keys)
             sn_sel = st.selectbox(t("season"), sn_labels)
             sn_key = sn_keys[sn_labels.index(sn_sel)]
+            weather_rain = st.checkbox(t("weather_rain"), key="weather_rain_cb")
+            weather_snow = st.checkbox(t("weather_snow"), key="weather_snow_cb")
+            weather_leaves = st.checkbox(t("weather_leaves"), key="weather_leaves_cb")
+        with col_ps:
+            ps_keys = ["ps_none", "ps_dreamy", "ps_soft", "ps_vivid", "ps_bw",
+                        "ps_vintage", "ps_cinematic", "ps_moody", "ps_pastel",
+                        "ps_hdr", "ps_matte"]
+            ps_labels, _ = make_option(ps_keys)
+            ps_sel = st.selectbox(t("picture_style"), ps_labels)
+            ps_key = ps_keys[ps_labels.index(ps_sel)]
 
         st.markdown("---")
 
@@ -1166,14 +1239,28 @@ def main():
         else:
             env_loc = eng(lo_key)
         season_text = eng(sn_key)
+        weather_parts = []
+        if weather_rain:
+            weather_parts.append("with rain falling from the sky")
+        if weather_snow:
+            weather_parts.append("with snow gently falling")
+        if weather_leaves:
+            weather_parts.append("with red and golden autumn leaves falling through the air")
+        weather_text = ", ".join(weather_parts)
         env_time = eng(td_key)
         env_parts = [env_loc, env_time]
         if season_text:
             env_parts.append(season_text)
+        if weather_text:
+            env_parts.append(weather_text)
         environment = ", ".join(env_parts)
 
-        # Camera & Lighting
-        camera_section = f"{eng(lt_key)}, {eng(sf_key)}, {eng(ca_key)}, {eng(dof_key)}"
+        # Camera & Lighting + Picture Style
+        camera_parts = [eng(lt_key), eng(sf_key), eng(ca_key), eng(dof_key)]
+        ps_text = eng(ps_key)
+        if ps_text:
+            camera_parts.append(ps_text)
+        camera_section = ", ".join(camera_parts)
 
         # Custom
         custom_eng = translate_to_english(custom_text) if custom_text.strip() else ""
