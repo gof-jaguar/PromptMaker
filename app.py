@@ -62,11 +62,14 @@ TRANSLATIONS = {
         "gender_male": "Male",
         "gender_nb": "Non-binary",
         "age_group": "Age Group",
-        "age_child": "Child (5-12)",
-        "age_teen": "Teenager (13-19)",
-        "age_young": "Young Adult (20-30)",
-        "age_mid": "Middle-aged (31-50)",
-        "age_senior": "Senior (50+)",
+        "age_5_9": "Child (5-9)",
+        "age_10_14": "Preteen (10-14)",
+        "age_15_19": "Teenager (15-19)",
+        "age_20_25": "Young Adult (20-25)",
+        "age_26_35": "Adult (26-35)",
+        "age_36_45": "Mature (36-45)",
+        "age_46_60": "Middle-aged (46-60)",
+        "age_60plus": "Senior (60+)",
         "ethnicity": "Ethnicity",
         "eth_asian": "East-Asian",
         "eth_se_asian": "Southeast-Asian",
@@ -166,6 +169,32 @@ TRANSLATIONS = {
         "fs_y2k": "Y2K / 2000s Revival",
         "fs_old_money": "Old Money / Quiet Luxury",
         "fs_grunge": "Grunge / 90s",
+        "top_garment": "Top",
+        "top_tshirt": "T-Shirt",
+        "top_crop": "Crop Top",
+        "top_blouse": "Blouse",
+        "top_button_shirt": "Button-up Shirt",
+        "top_tank": "Tank Top",
+        "top_sweater": "Sweater",
+        "top_hoodie": "Hoodie",
+        "top_polo": "Polo Shirt",
+        "top_turtleneck": "Turtleneck",
+        "top_off_shoulder": "Off-shoulder Top",
+        "top_camisole": "Camisole",
+        "top_cardigan": "Cardigan",
+        "bottom_garment": "Bottom",
+        "bot_jeans": "Jeans",
+        "bot_mini_skirt": "Mini Skirt",
+        "bot_maxi_skirt": "Maxi Skirt",
+        "bot_pleated_skirt": "Pleated Skirt",
+        "bot_shorts": "Shorts",
+        "bot_wide_leg": "Wide-leg Pants",
+        "bot_cargo": "Cargo Pants",
+        "bot_leggings": "Leggings",
+        "bot_pencil_skirt": "Pencil Skirt",
+        "bot_a_line": "A-line Skirt",
+        "bot_sweatpants": "Sweatpants",
+        "bot_trousers": "Tailored Trousers",
         "attach_outfit_photo": "I will attach outfit reference photo",
         "attach_outfit_note": "Prompt will instruct AI to recreate the attached outfit",
         "fabric": "Fabric / Material",
@@ -178,30 +207,46 @@ TRANSLATIONS = {
         "fab_wool": "Wool Knit",
         "fab_sheer": "Sheer / Translucent",
         "color_palette": "Color Palette",
+        "col_red": "Red",
+        "col_pink": "Pink",
+        "col_orange": "Orange",
+        "col_yellow": "Yellow & Gold",
+        "col_green": "Green",
+        "col_blue": "Blue",
+        "col_purple": "Purple & Lavender",
+        "col_white": "White & Cream",
+        "col_black": "All Black",
+        "col_beige": "Beige & Nude",
+        "col_pastel": "Pastel",
+        "col_mono": "Monochrome",
+        "col_earthy": "Earthy & Brown",
         "col_warm": "Warm Tones (red, orange, gold)",
         "col_cool": "Cool Tones (blue, teal, silver)",
-        "col_pastel": "Pastels",
-        "col_mono": "Monochrome / Black & White",
-        "col_earthy": "Earthy / Natural",
-        "col_vibrant": "Vibrant / Neon",
+        "col_vibrant": "Vibrant & Neon",
 
         # ── Accessories (checkboxes) ──
         "accessories": "Accessories (select all that apply)",
         "acc_glasses": "Prescription Glasses",
         "acc_sunglasses": "Sunglasses",
         "acc_earrings": "Earrings",
-        "acc_necklace": "Necklace / Pendant",
+        "acc_necklace": "Necklace",
+        "acc_pendant": "Pendant",
         "acc_choker": "Choker",
-        "acc_bracelet": "Bracelet / Bangle",
+        "acc_bracelet": "Bracelet",
+        "acc_bangle": "Bangle",
         "acc_watch": "Watch",
-        "acc_ring": "Ring(s)",
-        "acc_hat": "Hat / Cap",
-        "acc_beanie": "Beanie / Knit Cap",
-        "acc_headband": "Headband / Hair Clip",
-        "acc_scarf": "Scarf / Shawl",
-        "acc_tie": "Necktie / Bow Tie",
+        "acc_ring": "Ring",
+        "acc_hat": "Hat",
+        "acc_cap": "Cap",
+        "acc_beanie": "Beanie",
+        "acc_headband": "Headband",
+        "acc_hair_clip": "Hair Clip",
+        "acc_scarf": "Scarf",
+        "acc_shawl": "Shawl",
+        "acc_necktie": "Necktie",
+        "acc_bowtie": "Bow Tie",
         "acc_belt": "Belt",
-        "acc_bag": "Handbag / Purse",
+        "acc_bag": "Handbag",
         "acc_backpack": "Backpack",
 
         # ── Scene ──
@@ -309,6 +354,16 @@ TRANSLATIONS = {
         "pose_hand_hair": "Hand in Hair",
         "pose_looking_away": "Looking Away",
         "pose_dynamic": "Dynamic / Action Pose",
+        "pose_crouch": "Crouching",
+        "pose_twirl": "Twirling",
+        "pose_over_shoulder": "Looking Over Shoulder",
+        "pose_run": "Running",
+        "pose_jump": "Jumping",
+        "pose_lying": "Lying Down",
+        "pose_hand_chin": "Hand on Chin",
+        "pose_hands_pocket": "Hands in Pockets",
+        "pose_arms_up": "Arms Above Head",
+        "pose_back_camera": "Back to Camera",
 
         # ── Advanced ──
         "exp_advanced": "Advanced & Technical",
@@ -368,11 +423,14 @@ TRANSLATIONS = {
         "gender_male": "ชาย",
         "gender_nb": "ไม่ระบุเพศ",
         "age_group": "กลุ่มอายุ",
-        "age_child": "เด็ก (5-12)",
-        "age_teen": "วัยรุ่น (13-19)",
-        "age_young": "วัยหนุ่มสาว (20-30)",
-        "age_mid": "วัยกลางคน (31-50)",
-        "age_senior": "ผู้อาวุโส (50+)",
+        "age_5_9": "เด็ก (5-9)",
+        "age_10_14": "เด็กโต (10-14)",
+        "age_15_19": "วัยรุ่น (15-19)",
+        "age_20_25": "วัยหนุ่มสาว (20-25)",
+        "age_26_35": "ผู้ใหญ่ (26-35)",
+        "age_36_45": "วัยกลางคน (36-45)",
+        "age_46_60": "วัยกลางคนปลาย (46-60)",
+        "age_60plus": "ผู้อาวุโส (60+)",
         "ethnicity": "เชื้อชาติ",
         "eth_asian": "เอเชียตะวันออก",
         "eth_se_asian": "เอเชียตะวันออกเฉียงใต้",
@@ -472,6 +530,32 @@ TRANSLATIONS = {
         "fs_y2k": "Y2K / ยุค 2000",
         "fs_old_money": "Old Money / หรูเงียบๆ",
         "fs_grunge": "กรันจ์ / ยุค 90",
+        "top_garment": "เสื้อ",
+        "top_tshirt": "เสื้อยืด",
+        "top_crop": "ครอปท็อป",
+        "top_blouse": "เสื้อเบลาส์",
+        "top_button_shirt": "เสื้อเชิ้ต",
+        "top_tank": "เสื้อกล้าม",
+        "top_sweater": "เสื้อสเวตเตอร์",
+        "top_hoodie": "เสื้อฮู้ด",
+        "top_polo": "เสื้อโปโล",
+        "top_turtleneck": "เสื้อคอเต่า",
+        "top_off_shoulder": "เสื้อเปิดไหล่",
+        "top_camisole": "เสื้อสายเดี่ยว",
+        "top_cardigan": "เสื้อคาร์ดิแกน",
+        "bottom_garment": "ท่อนล่าง",
+        "bot_jeans": "กางเกงยีนส์",
+        "bot_mini_skirt": "กระโปรงสั้น",
+        "bot_maxi_skirt": "กระโปรงยาว",
+        "bot_pleated_skirt": "กระโปรงพลีท",
+        "bot_shorts": "กางเกงขาสั้น",
+        "bot_wide_leg": "กางเกงขาบาน",
+        "bot_cargo": "กางเกงคาร์โก้",
+        "bot_leggings": "เลกกิ้ง",
+        "bot_pencil_skirt": "กระโปรงทรงดินสอ",
+        "bot_a_line": "กระโปรงทรงเอ",
+        "bot_sweatpants": "กางเกงวอร์ม",
+        "bot_trousers": "กางเกงสแล็ค",
         "attach_outfit_photo": "จะแนบรูปชุดอ้างอิง",
         "attach_outfit_note": "พรอมต์จะสั่งให้ AI สร้างชุดตามรูปที่แนบ",
         "fabric": "ผ้า / วัสดุ",
@@ -484,28 +568,44 @@ TRANSLATIONS = {
         "fab_wool": "ผ้าขนสัตว์ถัก",
         "fab_sheer": "ผ้าบาง / โปร่ง",
         "color_palette": "โทนสี",
+        "col_red": "แดง",
+        "col_pink": "ชมพู",
+        "col_orange": "ส้ม",
+        "col_yellow": "เหลืองและทอง",
+        "col_green": "เขียว",
+        "col_blue": "น้ำเงิน",
+        "col_purple": "ม่วงและลาเวนเดอร์",
+        "col_white": "ขาวและครีม",
+        "col_black": "ดำล้วน",
+        "col_beige": "เบจและนู้ด",
+        "col_pastel": "พาสเทล",
+        "col_mono": "โมโนโครม",
+        "col_earthy": "โทนดินและน้ำตาล",
         "col_warm": "โทนอุ่น (แดง, ส้ม, ทอง)",
         "col_cool": "โทนเย็น (น้ำเงิน, เขียวอมฟ้า, เงิน)",
-        "col_pastel": "พาสเทล",
-        "col_mono": "ขาวดำ / โมโนโครม",
-        "col_earthy": "โทนดิน / ธรรมชาติ",
-        "col_vibrant": "สดใส / นีออน",
+        "col_vibrant": "สดใสและนีออน",
 
         # ── Accessories ──
         "accessories": "เครื่องประดับ (เลือกได้หลายอย่าง)",
         "acc_glasses": "แว่นสายตา",
         "acc_sunglasses": "แว่นกันแดด",
         "acc_earrings": "ต่างหู",
-        "acc_necklace": "สร้อยคอ / จี้",
+        "acc_necklace": "สร้อยคอ",
+        "acc_pendant": "จี้",
         "acc_choker": "โชคเกอร์",
-        "acc_bracelet": "กำไล / สร้อยข้อมือ",
+        "acc_bracelet": "สร้อยข้อมือ",
+        "acc_bangle": "กำไล",
         "acc_watch": "นาฬิกา",
         "acc_ring": "แหวน",
-        "acc_hat": "หมวก / แก๊ป",
-        "acc_beanie": "หมวกบีนนี่ / ไหมพรม",
-        "acc_headband": "ที่คาดผม / กิ๊บ",
-        "acc_scarf": "ผ้าพันคอ / ผ้าคลุมไหล่",
-        "acc_tie": "เนคไท / โบว์ไท",
+        "acc_hat": "หมวก",
+        "acc_cap": "แก๊ป",
+        "acc_beanie": "หมวกบีนนี่",
+        "acc_headband": "ที่คาดผม",
+        "acc_hair_clip": "กิ๊บติดผม",
+        "acc_scarf": "ผ้าพันคอ",
+        "acc_shawl": "ผ้าคลุมไหล่",
+        "acc_necktie": "เนคไท",
+        "acc_bowtie": "โบว์ไท",
         "acc_belt": "เข็มขัด",
         "acc_bag": "กระเป๋าถือ",
         "acc_backpack": "เป้สะพายหลัง",
@@ -615,6 +715,16 @@ TRANSLATIONS = {
         "pose_hand_hair": "มือจับผม",
         "pose_looking_away": "มองไปทางอื่น",
         "pose_dynamic": "ท่าไดนามิก / แอคชั่น",
+        "pose_crouch": "นั่งยอง",
+        "pose_twirl": "หมุนตัว",
+        "pose_over_shoulder": "เหลียวมองข้ามไหล่",
+        "pose_run": "วิ่ง",
+        "pose_jump": "กระโดด",
+        "pose_lying": "นอน",
+        "pose_hand_chin": "มือจับคาง",
+        "pose_hands_pocket": "มือในกระเป๋า",
+        "pose_arms_up": "ยกแขนเหนือศีรษะ",
+        "pose_back_camera": "หันหลังให้กล้อง",
 
         # ── Advanced ──
         "exp_advanced": "ขั้นสูงและเทคนิค",
@@ -647,9 +757,10 @@ ENGLISH_VALUES = {
     # Gender
     "gender_female": "Female", "gender_male": "Male", "gender_nb": "Non-binary person",
     # Age
-    "age_child": "child (5-12 years old)", "age_teen": "teenager (13-19 years old)",
-    "age_young": "young adult (20-30 years old)", "age_mid": "middle-aged adult (31-50 years old)",
-    "age_senior": "senior (50+ years old)",
+    "age_5_9": "child (5-9 years old)", "age_10_14": "preteen (10-14 years old)",
+    "age_15_19": "teenager (15-19 years old)", "age_20_25": "young adult (20-25 years old)",
+    "age_26_35": "adult (26-35 years old)", "age_36_45": "mature adult (36-45 years old)",
+    "age_46_60": "middle-aged adult (46-60 years old)", "age_60plus": "senior (60+ years old)",
     # Ethnicity
     "eth_asian": "East-Asian", "eth_se_asian": "Southeast-Asian",
     "eth_south_asian": "South-Asian", "eth_european": "European Caucasian",
@@ -709,25 +820,52 @@ ENGLISH_VALUES = {
     "fab_denim": "denim", "fab_leather": "leather",
     "fab_lace": "lace fabric", "fab_satin": "satin fabric",
     "fab_wool": "wool knit", "fab_sheer": "sheer translucent fabric",
+    # Top Garment
+    "top_tshirt": "wearing a t-shirt", "top_crop": "wearing a crop top",
+    "top_blouse": "wearing a blouse", "top_button_shirt": "wearing a button-up shirt",
+    "top_tank": "wearing a tank top", "top_sweater": "wearing a sweater",
+    "top_hoodie": "wearing a hoodie", "top_polo": "wearing a polo shirt",
+    "top_turtleneck": "wearing a turtleneck", "top_off_shoulder": "wearing an off-shoulder top",
+    "top_camisole": "wearing a camisole", "top_cardigan": "wearing a cardigan",
+    # Bottom Garment
+    "bot_jeans": "wearing jeans", "bot_mini_skirt": "wearing a mini skirt",
+    "bot_maxi_skirt": "wearing a maxi skirt", "bot_pleated_skirt": "wearing a pleated skirt",
+    "bot_shorts": "wearing shorts", "bot_wide_leg": "wearing wide-leg pants",
+    "bot_cargo": "wearing cargo pants", "bot_leggings": "wearing leggings",
+    "bot_pencil_skirt": "wearing a pencil skirt", "bot_a_line": "wearing an A-line skirt",
+    "bot_sweatpants": "wearing sweatpants", "bot_trousers": "wearing tailored trousers",
     # Color Palette
+    "col_red": "red color tones", "col_pink": "pink color tones",
+    "col_orange": "orange color tones", "col_yellow": "yellow and gold color tones",
+    "col_green": "green color tones", "col_blue": "blue color tones",
+    "col_purple": "purple and lavender color tones",
+    "col_white": "white and cream color tones", "col_black": "all black color tones",
+    "col_beige": "beige and nude color tones", "col_pastel": "pastel colors",
+    "col_mono": "monochrome black and white",
+    "col_earthy": "earthy brown and natural tones",
     "col_warm": "warm color tones of red orange and gold",
     "col_cool": "cool color tones of blue teal and silver",
-    "col_pastel": "pastel colors", "col_mono": "monochrome black and white",
-    "col_earthy": "earthy natural tones", "col_vibrant": "vibrant neon colors",
+    "col_vibrant": "vibrant neon colors",
     # Accessories (each is a standalone phrase)
     "acc_glasses": "wearing prescription glasses",
     "acc_sunglasses": "wearing stylish sunglasses",
     "acc_earrings": "wearing earrings",
-    "acc_necklace": "wearing a necklace with pendant",
+    "acc_necklace": "wearing a necklace",
+    "acc_pendant": "wearing a pendant",
     "acc_choker": "wearing a choker",
-    "acc_bracelet": "wearing bracelets",
+    "acc_bracelet": "wearing a bracelet",
+    "acc_bangle": "wearing a bangle",
     "acc_watch": "wearing a wristwatch",
-    "acc_ring": "wearing rings",
+    "acc_ring": "wearing a ring",
     "acc_hat": "wearing a hat",
-    "acc_beanie": "wearing a knit beanie",
-    "acc_headband": "wearing a headband with hair clips",
+    "acc_cap": "wearing a cap",
+    "acc_beanie": "wearing a beanie",
+    "acc_headband": "wearing a headband",
+    "acc_hair_clip": "wearing a hair clip",
     "acc_scarf": "wearing a scarf",
-    "acc_tie": "wearing a necktie",
+    "acc_shawl": "wearing a shawl",
+    "acc_necktie": "wearing a necktie",
+    "acc_bowtie": "wearing a bow tie",
     "acc_belt": "wearing a belt",
     "acc_bag": "carrying a handbag",
     "acc_backpack": "carrying a backpack",
@@ -796,6 +934,13 @@ ENGLISH_VALUES = {
     "pose_walk": "walking naturally", "pose_lean": "leaning against a wall",
     "pose_cross_arms": "with arms crossed", "pose_hand_hair": "with hand running through hair",
     "pose_looking_away": "looking away from camera", "pose_dynamic": "in a dynamic action pose",
+    "pose_crouch": "crouching down", "pose_twirl": "twirling with movement in clothing",
+    "pose_over_shoulder": "looking back over shoulder", "pose_run": "running in motion",
+    "pose_jump": "jumping in the air", "pose_lying": "lying down relaxed",
+    "pose_hand_chin": "resting chin on hand thoughtfully",
+    "pose_hands_pocket": "with hands in pockets casually",
+    "pose_arms_up": "with arms raised above head",
+    "pose_back_camera": "facing away from camera showing back",
     # Model Type
     "model_realistic": "Photorealistic", "model_anime": "Anime illustration style",
     "model_3d": "3D rendered CGI",
@@ -948,7 +1093,8 @@ def main():
             gd_sel = st.selectbox(t("gender"), gd_labels)
             gd_key = gd_keys[gd_labels.index(gd_sel)]
         with col2:
-            ag_keys = ["age_young", "age_teen", "age_child", "age_mid", "age_senior"]
+            ag_keys = ["age_20_25", "age_5_9", "age_10_14", "age_15_19",
+                        "age_26_35", "age_36_45", "age_46_60", "age_60plus"]
             ag_labels, _ = make_option(ag_keys)
             ag_sel = st.selectbox(t("age_group"), ag_labels)
             ag_key = ag_keys[ag_labels.index(ag_sel)]
@@ -1016,6 +1162,25 @@ def main():
         fs_selected_keys = [fs_keys[fs_labels.index(lbl)] for lbl in fs_selected_labels]
 
         st.markdown("---")
+
+        # ── Top & Bottom garment selectors ──
+        col_top, col_bot = st.columns(2)
+        with col_top:
+            top_keys = ["top_tshirt", "top_crop", "top_blouse", "top_button_shirt",
+                         "top_tank", "top_sweater", "top_hoodie", "top_polo",
+                         "top_turtleneck", "top_off_shoulder", "top_camisole", "top_cardigan"]
+            top_labels, _ = make_option(top_keys)
+            top_sel = st.selectbox(t("top_garment"), top_labels)
+            top_key = top_keys[top_labels.index(top_sel)]
+        with col_bot:
+            bot_keys = ["bot_jeans", "bot_mini_skirt", "bot_maxi_skirt", "bot_pleated_skirt",
+                         "bot_shorts", "bot_wide_leg", "bot_cargo", "bot_leggings",
+                         "bot_pencil_skirt", "bot_a_line", "bot_sweatpants", "bot_trousers"]
+            bot_labels, _ = make_option(bot_keys)
+            bot_sel = st.selectbox(t("bottom_garment"), bot_labels)
+            bot_key = bot_keys[bot_labels.index(bot_sel)]
+
+        st.markdown("---")
         outfit_text = st.text_input(t("outfit_input"), placeholder=t("outfit_placeholder"))
 
         # Outfit reference checkbox
@@ -1032,7 +1197,10 @@ def main():
             fb_sel = st.selectbox(t("fabric"), fb_labels)
             fb_key = fb_keys[fb_labels.index(fb_sel)]
         with col9:
-            cp_keys = ["col_warm", "col_cool", "col_pastel", "col_mono", "col_earthy", "col_vibrant"]
+            cp_keys = ["col_red", "col_pink", "col_orange", "col_yellow",
+                        "col_green", "col_blue", "col_purple", "col_white",
+                        "col_black", "col_beige", "col_pastel", "col_mono",
+                        "col_earthy", "col_warm", "col_cool", "col_vibrant"]
             cp_labels, _ = make_option(cp_keys)
             cp_sel = st.selectbox(t("color_palette"), cp_labels)
             cp_key = cp_keys[cp_labels.index(cp_sel)]
@@ -1040,9 +1208,11 @@ def main():
         # ── Accessories: individual checkboxes ──
         st.markdown(f"**{t('accessories')}**")
         acc_keys = ["acc_glasses", "acc_sunglasses", "acc_earrings", "acc_necklace",
-                     "acc_choker", "acc_bracelet", "acc_watch", "acc_ring",
-                     "acc_hat", "acc_beanie", "acc_headband", "acc_scarf",
-                     "acc_tie", "acc_belt", "acc_bag", "acc_backpack"]
+                     "acc_pendant", "acc_choker", "acc_bracelet", "acc_bangle",
+                     "acc_watch", "acc_ring", "acc_hat", "acc_cap",
+                     "acc_beanie", "acc_headband", "acc_hair_clip", "acc_scarf",
+                     "acc_shawl", "acc_necktie", "acc_bowtie", "acc_belt",
+                     "acc_bag", "acc_backpack"]
         acc_cols = st.columns(4)
         acc_selected = []
         for i, ak in enumerate(acc_keys):
@@ -1149,7 +1319,10 @@ def main():
             dof_key = dof_keys[dof_labels.index(dof_sel)]
         with col15:
             po_keys = ["pose_stand", "pose_sit", "pose_walk", "pose_lean",
-                        "pose_cross_arms", "pose_hand_hair", "pose_looking_away", "pose_dynamic"]
+                        "pose_cross_arms", "pose_hand_hair", "pose_looking_away", "pose_dynamic",
+                        "pose_crouch", "pose_twirl", "pose_over_shoulder", "pose_run",
+                        "pose_jump", "pose_lying", "pose_hand_chin", "pose_hands_pocket",
+                        "pose_arms_up", "pose_back_camera"]
             po_labels, _ = make_option(po_keys)
             po_sel = st.selectbox(t("pose"), po_labels)
             po_key = po_keys[po_labels.index(po_sel)]
@@ -1208,6 +1381,8 @@ def main():
             v = eng(fk)
             if v:
                 outfit_parts.append(v)
+        outfit_parts.append(eng(top_key))
+        outfit_parts.append(eng(bot_key))
         if outfit_text.strip():
             outfit_parts.append(f"wearing {translate_to_english(outfit_text)}")
         if attach_outfit:
