@@ -81,16 +81,33 @@ TRANSLATIONS = {
         "eth_mixed": "Mixed / Ambiguous",
         "skin_detail": "Ultra-realistic Skin Texture",
         "hair_style": "Hair Style",
+        # Women's hairstyles
         "hair_long": "Long Flowing",
-        "hair_short": "Short",
+        "hair_straight": "Straight Long",
+        "hair_loose_waves": "Loose Waves",
         "hair_curly": "Curly",
         "hair_wavy": "Wavy",
-        "hair_ponytail": "Ponytail",
-        "hair_bun": "Bun",
-        "hair_braids": "Braids",
-        "hair_twintails": "Twin Tails",
         "hair_bob": "Bob Cut",
+        "hair_lob": "Long Bob / Lob",
         "hair_pixie": "Pixie Cut",
+        "hair_ponytail": "Ponytail",
+        "hair_high_ponytail": "High Ponytail",
+        "hair_bun": "Bun",
+        "hair_messy_bun": "Messy Bun",
+        "hair_braids": "Braids",
+        "hair_loose_braid": "Loose Braid",
+        "hair_twin_braids": "Twin Braids",
+        "hair_twintails": "Twin Tails",
+        "hair_half_up": "Half Up Half Down",
+        "hair_side_swept": "Side Swept",
+        # Men's hairstyles
+        "hair_short": "Short",
+        "hair_undercut": "Undercut",
+        "hair_slick_back": "Slicked Back",
+        "hair_crew_cut": "Crew Cut",
+        "hair_pompadour": "Pompadour",
+        "hair_man_bun": "Man Bun",
+        "hair_fade": "Fade",
         "hair_bald": "Bald / Shaved",
         "hair_color": "Hair Color",
         "hc_black": "Black",
@@ -108,13 +125,28 @@ TRANSLATIONS = {
         "hc_green": "Green",
         "hc_ombre": "Ombre (dark to light)",
         "hc_highlights": "Highlights / Streaks",
+        "bangs": "Bangs",
+        "bangs_none": "None",
+        "bangs_straight": "Straight Bangs",
+        "bangs_side": "Side Bangs",
+        "bangs_curtain": "Curtain Bangs",
+        "bangs_wispy": "Wispy Bangs",
+        "bangs_micro": "Micro Bangs",
         "expression": "Facial Expression",
         "expr_smile": "Gentle Smile",
-        "expr_serious": "Serious / Stoic",
         "expr_laugh": "Laughing",
-        "expr_pensive": "Pensive / Thoughtful",
         "expr_confident": "Confident",
+        "expr_serious": "Serious / Stoic",
         "expr_neutral": "Neutral",
+        "expr_pensive": "Pensive / Thoughtful",
+        "expr_shy": "Shy / Bashful",
+        "expr_surprised": "Surprised",
+        "expr_sad": "Sad / Melancholic",
+        "expr_angry": "Angry / Fierce",
+        "expr_dreamy": "Dreamy",
+        "expr_playful": "Playful",
+        "expr_sultry": "Sultry",
+        "expr_peaceful": "Peaceful / Serene",
 
         # ── Body Type ──
         "body_type": "Body Type",
@@ -226,28 +258,38 @@ TRANSLATIONS = {
 
         # ── Accessories (checkboxes) ──
         "accessories": "Accessories (select all that apply)",
+        "acc_group_head": "Head Accessories",
+        "acc_group_body": "Body / Jewelry",
+        "acc_group_carried": "Carried Items",
+        "acc_beanie": "Beanie",
+        "acc_beret": "Beret",
+        "acc_cap": "Cap",
         "acc_glasses": "Prescription Glasses",
+        "acc_hair_clip": "Hair Clip",
+        "acc_hat": "Hat",
+        "acc_headband": "Headband",
         "acc_sunglasses": "Sunglasses",
+        "acc_tiara": "Tiara / Crown",
+        "acc_bangle": "Bangle",
+        "acc_belt": "Belt",
+        "acc_bowtie": "Bow Tie",
+        "acc_bracelet": "Bracelet",
+        "acc_brooch": "Brooch",
+        "acc_choker": "Choker",
         "acc_earrings": "Earrings",
+        "acc_necktie": "Necktie",
         "acc_necklace": "Necklace",
         "acc_pendant": "Pendant",
-        "acc_choker": "Choker",
-        "acc_bracelet": "Bracelet",
-        "acc_bangle": "Bangle",
-        "acc_watch": "Watch",
         "acc_ring": "Ring",
-        "acc_hat": "Hat",
-        "acc_cap": "Cap",
-        "acc_beanie": "Beanie",
-        "acc_headband": "Headband",
-        "acc_hair_clip": "Hair Clip",
         "acc_scarf": "Scarf",
         "acc_shawl": "Shawl",
-        "acc_necktie": "Necktie",
-        "acc_bowtie": "Bow Tie",
-        "acc_belt": "Belt",
-        "acc_bag": "Handbag",
+        "acc_suspenders": "Suspenders",
+        "acc_watch": "Watch",
         "acc_backpack": "Backpack",
+        "acc_bag": "Handbag",
+        "acc_bouquet": "Flower Bouquet",
+        "acc_clutch": "Clutch Bag",
+        "acc_umbrella": "Umbrella",
 
         # ── Scene ──
         "exp_scene": "Scene & Lighting",
@@ -442,16 +484,33 @@ TRANSLATIONS = {
         "eth_mixed": "เชื้อชาติผสม",
         "skin_detail": "ผิวหนังสมจริงสุดๆ (รูขุมขน, กระ)",
         "hair_style": "ทรงผม",
+        # ทรงผมผู้หญิง
         "hair_long": "ยาวสลวย",
-        "hair_short": "สั้น",
+        "hair_straight": "ยาวตรง",
+        "hair_loose_waves": "ลอนหลวม",
         "hair_curly": "หยิก",
         "hair_wavy": "หยักศก",
-        "hair_ponytail": "หางม้า",
-        "hair_bun": "มวยผม",
-        "hair_braids": "ถักเปีย",
-        "hair_twintails": "มัดสองข้าง",
         "hair_bob": "บ็อบ",
+        "hair_lob": "ลองบ็อบ",
         "hair_pixie": "พิกซี่",
+        "hair_ponytail": "หางม้า",
+        "hair_high_ponytail": "หางม้าสูง",
+        "hair_bun": "มวยผม",
+        "hair_messy_bun": "มวยผมหลวม",
+        "hair_braids": "ถักเปีย",
+        "hair_loose_braid": "ถักเปียหลวม",
+        "hair_twin_braids": "ถักเปียสองข้าง",
+        "hair_twintails": "มัดสองข้าง",
+        "hair_half_up": "มัดครึ่ง",
+        "hair_side_swept": "ปัดข้าง",
+        # ทรงผมผู้ชาย
+        "hair_short": "สั้น",
+        "hair_undercut": "อันเดอร์คัท",
+        "hair_slick_back": "เสยไปด้านหลัง",
+        "hair_crew_cut": "ทรงนักเรียน",
+        "hair_pompadour": "พอมปาดัวร์",
+        "hair_man_bun": "มัดจุก",
+        "hair_fade": "เฟด",
         "hair_bald": "โล้น / โกนผม",
         "hair_color": "สีผม",
         "hc_black": "ดำ",
@@ -469,13 +528,28 @@ TRANSLATIONS = {
         "hc_green": "เขียว",
         "hc_ombre": "ออมเบร (เข้มไล่อ่อน)",
         "hc_highlights": "ไฮไลท์ / ทำเส้น",
+        "bangs": "หน้าม้า",
+        "bangs_none": "ไม่มี",
+        "bangs_straight": "หน้าม้าตรง",
+        "bangs_side": "หน้าม้าปัดข้าง",
+        "bangs_curtain": "หน้าม้าม่าน",
+        "bangs_wispy": "หน้าม้าบาง",
+        "bangs_micro": "หน้าม้าสั้น",
         "expression": "สีหน้า / อารมณ์",
         "expr_smile": "ยิ้มอ่อน",
-        "expr_serious": "จริงจัง / เข้มขรึม",
         "expr_laugh": "หัวเราะ",
-        "expr_pensive": "ครุ่นคิด",
         "expr_confident": "มั่นใจ",
+        "expr_serious": "จริงจัง / เข้มขรึม",
         "expr_neutral": "เฉยๆ / ปกติ",
+        "expr_pensive": "ครุ่นคิด",
+        "expr_shy": "เขินอาย",
+        "expr_surprised": "ตกใจ / ประหลาดใจ",
+        "expr_sad": "เศร้า",
+        "expr_angry": "โกรธ / ดุ",
+        "expr_dreamy": "เหม่อฝัน",
+        "expr_playful": "ขี้เล่น / ซุกซน",
+        "expr_sultry": "เย้ายวน",
+        "expr_peaceful": "สงบ / เยือกเย็น",
 
         # ── Body Type ──
         "body_type": "รูปร่าง",
@@ -587,28 +661,38 @@ TRANSLATIONS = {
 
         # ── Accessories ──
         "accessories": "เครื่องประดับ (เลือกได้หลายอย่าง)",
+        "acc_group_head": "เครื่องประดับศีรษะ",
+        "acc_group_body": "เครื่องประดับร่างกาย / เครื่องเพชร",
+        "acc_group_carried": "ของที่ถือ",
+        "acc_beanie": "หมวกบีนนี่",
+        "acc_beret": "หมวกเบเร่ต์",
+        "acc_cap": "แก๊ป",
         "acc_glasses": "แว่นสายตา",
+        "acc_hair_clip": "กิ๊บติดผม",
+        "acc_hat": "หมวก",
+        "acc_headband": "ที่คาดผม",
         "acc_sunglasses": "แว่นกันแดด",
+        "acc_tiara": "มงกุฎ / เทียร่า",
+        "acc_bangle": "กำไล",
+        "acc_belt": "เข็มขัด",
+        "acc_bowtie": "โบว์ไท",
+        "acc_bracelet": "สร้อยข้อมือ",
+        "acc_brooch": "เข็มกลัด",
+        "acc_choker": "โชคเกอร์",
         "acc_earrings": "ต่างหู",
+        "acc_necktie": "เนคไท",
         "acc_necklace": "สร้อยคอ",
         "acc_pendant": "จี้",
-        "acc_choker": "โชคเกอร์",
-        "acc_bracelet": "สร้อยข้อมือ",
-        "acc_bangle": "กำไล",
-        "acc_watch": "นาฬิกา",
         "acc_ring": "แหวน",
-        "acc_hat": "หมวก",
-        "acc_cap": "แก๊ป",
-        "acc_beanie": "หมวกบีนนี่",
-        "acc_headband": "ที่คาดผม",
-        "acc_hair_clip": "กิ๊บติดผม",
         "acc_scarf": "ผ้าพันคอ",
         "acc_shawl": "ผ้าคลุมไหล่",
-        "acc_necktie": "เนคไท",
-        "acc_bowtie": "โบว์ไท",
-        "acc_belt": "เข็มขัด",
-        "acc_bag": "กระเป๋าถือ",
+        "acc_suspenders": "สายเอี๊ยม",
+        "acc_watch": "นาฬิกา",
         "acc_backpack": "เป้สะพายหลัง",
+        "acc_bag": "กระเป๋าถือ",
+        "acc_bouquet": "ช่อดอกไม้",
+        "acc_clutch": "กระเป๋าคลัตช์",
+        "acc_umbrella": "ร่ม",
 
         # ── Scene ──
         "exp_scene": "ฉากและแสง",
@@ -766,13 +850,21 @@ ENGLISH_VALUES = {
     "eth_south_asian": "South-Asian", "eth_european": "European Caucasian",
     "eth_african": "African", "eth_latin": "Latin American",
     "eth_middle_east": "Middle-Eastern", "eth_mixed": "mixed-race",
-    # Hair Style
-    "hair_long": "long flowing hair", "hair_short": "short hair",
-    "hair_curly": "curly hair", "hair_wavy": "wavy hair",
-    "hair_ponytail": "ponytail", "hair_bun": "hair bun",
-    "hair_braids": "braids", "hair_twintails": "twin tails",
-    "hair_bob": "bob cut", "hair_pixie": "pixie cut",
-    "hair_bald": "bald head",
+    # Hair Style — Women's
+    "hair_long": "long flowing hair", "hair_straight": "long straight hair",
+    "hair_loose_waves": "long loose wavy hair", "hair_curly": "curly hair",
+    "hair_wavy": "wavy hair", "hair_bob": "bob cut",
+    "hair_lob": "long bob lob hairstyle", "hair_pixie": "pixie cut",
+    "hair_ponytail": "ponytail", "hair_high_ponytail": "high ponytail",
+    "hair_bun": "hair bun", "hair_messy_bun": "messy bun",
+    "hair_braids": "braids", "hair_loose_braid": "loose braid",
+    "hair_twin_braids": "twin braids", "hair_twintails": "twin tails",
+    "hair_half_up": "half up half down hairstyle", "hair_side_swept": "side swept hair",
+    # Hair Style — Men's
+    "hair_short": "short hair", "hair_undercut": "undercut hairstyle",
+    "hair_slick_back": "slicked back hair", "hair_crew_cut": "crew cut",
+    "hair_pompadour": "pompadour hairstyle", "hair_man_bun": "man bun",
+    "hair_fade": "fade haircut", "hair_bald": "bald head",
     # Hair Color
     "hc_black": "black hair", "hc_dark_brown": "dark brown hair",
     "hc_light_brown": "light brown hair", "hc_blonde": "blonde hair",
@@ -782,10 +874,18 @@ ENGLISH_VALUES = {
     "hc_pink": "pink hair", "hc_purple": "purple lavender hair",
     "hc_green": "green hair", "hc_ombre": "ombre hair transitioning dark to light",
     "hc_highlights": "hair with highlights and streaks",
+    # Bangs
+    "bangs_none": "", "bangs_straight": "with straight bangs",
+    "bangs_side": "with side-swept bangs", "bangs_curtain": "with curtain bangs",
+    "bangs_wispy": "with wispy bangs", "bangs_micro": "with micro bangs",
     # Expression
-    "expr_smile": "gentle smile", "expr_serious": "serious stoic expression",
-    "expr_laugh": "laughing joyfully", "expr_pensive": "pensive thoughtful expression",
-    "expr_confident": "confident expression", "expr_neutral": "neutral expression",
+    "expr_smile": "gentle smile", "expr_laugh": "laughing joyfully",
+    "expr_confident": "confident expression", "expr_serious": "serious stoic expression",
+    "expr_neutral": "neutral expression", "expr_pensive": "pensive thoughtful expression",
+    "expr_shy": "shy bashful expression", "expr_surprised": "surprised expression",
+    "expr_sad": "sad melancholic expression", "expr_angry": "angry fierce expression",
+    "expr_dreamy": "dreamy wistful expression", "expr_playful": "playful mischievous expression",
+    "expr_sultry": "sultry seductive expression", "expr_peaceful": "peaceful serene expression",
     # Body Type
     "bt_slim": "slim slender body", "bt_athletic": "athletic fit toned body",
     "bt_curvy": "curvy body with feminine proportions", "bt_petite": "petite small body frame",
@@ -846,29 +946,38 @@ ENGLISH_VALUES = {
     "col_warm": "warm color tones of red orange and gold",
     "col_cool": "cool color tones of blue teal and silver",
     "col_vibrant": "vibrant neon colors",
-    # Accessories (each is a standalone phrase)
+    # Accessories — Head
+    "acc_beanie": "wearing a beanie",
+    "acc_beret": "wearing a beret",
+    "acc_cap": "wearing a cap",
     "acc_glasses": "wearing prescription glasses",
+    "acc_hair_clip": "wearing a hair clip",
+    "acc_hat": "wearing a hat",
+    "acc_headband": "wearing a headband",
     "acc_sunglasses": "wearing stylish sunglasses",
+    "acc_tiara": "wearing a tiara",
+    # Accessories — Body / Jewelry
+    "acc_bangle": "wearing a bangle",
+    "acc_belt": "wearing a belt",
+    "acc_bowtie": "wearing a bow tie",
+    "acc_bracelet": "wearing a bracelet",
+    "acc_brooch": "wearing a brooch",
+    "acc_choker": "wearing a choker",
     "acc_earrings": "wearing earrings",
+    "acc_necktie": "wearing a necktie",
     "acc_necklace": "wearing a necklace",
     "acc_pendant": "wearing a pendant",
-    "acc_choker": "wearing a choker",
-    "acc_bracelet": "wearing a bracelet",
-    "acc_bangle": "wearing a bangle",
-    "acc_watch": "wearing a wristwatch",
     "acc_ring": "wearing a ring",
-    "acc_hat": "wearing a hat",
-    "acc_cap": "wearing a cap",
-    "acc_beanie": "wearing a beanie",
-    "acc_headband": "wearing a headband",
-    "acc_hair_clip": "wearing a hair clip",
     "acc_scarf": "wearing a scarf",
     "acc_shawl": "wearing a shawl",
-    "acc_necktie": "wearing a necktie",
-    "acc_bowtie": "wearing a bow tie",
-    "acc_belt": "wearing a belt",
-    "acc_bag": "carrying a handbag",
+    "acc_suspenders": "wearing suspenders",
+    "acc_watch": "wearing a wristwatch",
+    # Accessories — Carried Items
     "acc_backpack": "carrying a backpack",
+    "acc_bag": "carrying a handbag",
+    "acc_bouquet": "holding a flower bouquet",
+    "acc_clutch": "carrying a clutch bag",
+    "acc_umbrella": "holding an umbrella",
     # Location
     "loc_studio": "in a professional photography studio with seamless backdrop",
     "loc_street": "on an urban city street with buildings",
@@ -889,9 +998,9 @@ ENGLISH_VALUES = {
     # Season
     "season_none": "", "season_spring": "in spring with cherry blossoms and fresh greenery",
     "season_summer": "in summer with bright warm sunshine",
-    "season_autumn": "in autumn with golden orange and red falling leaves",
-    "season_winter": "in winter with snow-covered scenery",
-    "season_rainy": "during rainy season with rain and wet atmosphere",
+    "season_autumn": "in autumn with warm-toned foliage background",
+    "season_winter": "in winter with cold crisp atmosphere",
+    "season_rainy": "during rainy season with overcast wet atmosphere",
     # Lighting
     "lit_natural": "natural ambient lighting", "lit_studio": "professional studio softbox lighting",
     "lit_rim": "dramatic rim lighting from behind",
@@ -1107,14 +1216,21 @@ def main():
 
         col4, col5 = st.columns(2)
         with col4:
-            hr_keys = ["hair_long", "hair_short", "hair_curly", "hair_wavy",
-                        "hair_ponytail", "hair_bun", "hair_braids", "hair_twintails",
-                        "hair_bob", "hair_pixie", "hair_bald"]
+            hr_keys = [
+                # Women's hairstyles
+                "hair_long", "hair_straight", "hair_loose_waves",
+                "hair_curly", "hair_wavy", "hair_bob", "hair_lob", "hair_pixie",
+                "hair_ponytail", "hair_high_ponytail", "hair_bun", "hair_messy_bun",
+                "hair_braids", "hair_loose_braid", "hair_twin_braids", "hair_twintails",
+                "hair_half_up", "hair_side_swept",
+                # Men's hairstyles
+                "hair_short", "hair_undercut", "hair_slick_back", "hair_crew_cut",
+                "hair_pompadour", "hair_man_bun", "hair_fade", "hair_bald",
+            ]
             hr_labels, _ = make_option(hr_keys)
             hr_sel = st.selectbox(t("hair_style"), hr_labels)
             hr_key = hr_keys[hr_labels.index(hr_sel)]
         with col5:
-            # ── NEW: Hair Color ──
             hc_keys = ["hc_black", "hc_dark_brown", "hc_light_brown", "hc_blonde",
                         "hc_platinum", "hc_red", "hc_ginger", "hc_silver", "hc_white",
                         "hc_blue", "hc_pink", "hc_purple", "hc_green",
@@ -1123,13 +1239,23 @@ def main():
             hc_sel = st.selectbox(t("hair_color"), hc_labels)
             hc_key = hc_keys[hc_labels.index(hc_sel)]
 
-        col6, col7 = st.columns(2)
-        with col6:
-            ex_keys = ["expr_smile", "expr_serious", "expr_laugh",
-                        "expr_pensive", "expr_confident", "expr_neutral"]
+        col_bn, col_ex = st.columns(2)
+        with col_bn:
+            bn_keys = ["bangs_none", "bangs_straight", "bangs_side",
+                        "bangs_curtain", "bangs_wispy", "bangs_micro"]
+            bn_labels, _ = make_option(bn_keys)
+            bn_sel = st.selectbox(t("bangs"), bn_labels)
+            bn_key = bn_keys[bn_labels.index(bn_sel)]
+        with col_ex:
+            ex_keys = ["expr_smile", "expr_laugh", "expr_confident",
+                        "expr_serious", "expr_neutral", "expr_pensive",
+                        "expr_shy", "expr_surprised", "expr_sad", "expr_angry",
+                        "expr_dreamy", "expr_playful", "expr_sultry", "expr_peaceful"]
             ex_labels, _ = make_option(ex_keys)
             ex_sel = st.selectbox(t("expression"), ex_labels)
             ex_key = ex_keys[ex_labels.index(ex_sel)]
+
+        col7, _ = st.columns(2)
         with col7:
             skin_check = st.checkbox(t("skin_detail"))
 
@@ -1205,18 +1331,38 @@ def main():
             cp_sel = st.selectbox(t("color_palette"), cp_labels)
             cp_key = cp_keys[cp_labels.index(cp_sel)]
 
-        # ── Accessories: individual checkboxes ──
+        # ── Accessories: grouped checkboxes ──
         st.markdown(f"**{t('accessories')}**")
-        acc_keys = ["acc_glasses", "acc_sunglasses", "acc_earrings", "acc_necklace",
-                     "acc_pendant", "acc_choker", "acc_bracelet", "acc_bangle",
-                     "acc_watch", "acc_ring", "acc_hat", "acc_cap",
-                     "acc_beanie", "acc_headband", "acc_hair_clip", "acc_scarf",
-                     "acc_shawl", "acc_necktie", "acc_bowtie", "acc_belt",
-                     "acc_bag", "acc_backpack"]
-        acc_cols = st.columns(4)
         acc_selected = []
-        for i, ak in enumerate(acc_keys):
-            with acc_cols[i % 4]:
+
+        acc_head_keys = ["acc_beanie", "acc_beret", "acc_cap", "acc_glasses",
+                         "acc_hair_clip", "acc_hat", "acc_headband",
+                         "acc_sunglasses", "acc_tiara"]
+        acc_body_keys = ["acc_bangle", "acc_belt", "acc_bowtie", "acc_bracelet",
+                         "acc_brooch", "acc_choker", "acc_earrings", "acc_necktie",
+                         "acc_necklace", "acc_pendant", "acc_ring", "acc_scarf",
+                         "acc_shawl", "acc_suspenders", "acc_watch"]
+        acc_carried_keys = ["acc_backpack", "acc_bag", "acc_bouquet",
+                            "acc_clutch", "acc_umbrella"]
+
+        st.caption(t("acc_group_head"))
+        head_cols = st.columns(4)
+        for i, ak in enumerate(acc_head_keys):
+            with head_cols[i % 4]:
+                if st.checkbox(t(ak), key=f"acc_{ak}"):
+                    acc_selected.append(ak)
+
+        st.caption(t("acc_group_body"))
+        body_cols = st.columns(4)
+        for i, ak in enumerate(acc_body_keys):
+            with body_cols[i % 4]:
+                if st.checkbox(t(ak), key=f"acc_{ak}"):
+                    acc_selected.append(ak)
+
+        st.caption(t("acc_group_carried"))
+        carried_cols = st.columns(4)
+        for i, ak in enumerate(acc_carried_keys):
+            with carried_cols[i % 4]:
                 if st.checkbox(t(ak), key=f"acc_{ak}"):
                     acc_selected.append(ak)
 
@@ -1362,15 +1508,16 @@ def main():
         technical = ", ".join(specs)
 
         # Subject (with body type + appearance)
+        bangs_text = eng(bn_key)
+        bangs_part = f", {bangs_text}" if bangs_text else ""
         if attach_subject:
-            subject = (f"a person matching the provided reference photo exactly, "
-                       f"same face and identity, {eng(bt_key)}, {eng(ap_key)}, "
-                       f"with {eng(hr_key)}, {eng(hc_key)}, "
+            subject = (f"a photo of the uploaded person, {eng(bt_key)}, {eng(ap_key)}, "
+                       f"with {eng(hr_key)}, {eng(hc_key)}{bangs_part}, "
                        f"and {eng(ex_key)}")
         else:
             subject = (f"a {eng(ag_key)} {eng(et_key)} {eng(gd_key)}, "
                        f"{eng(bt_key)}, {eng(ap_key)}, "
-                       f"with {eng(hr_key)}, {eng(hc_key)}, "
+                       f"with {eng(hr_key)}, {eng(hc_key)}{bangs_part}, "
                        f"and {eng(ex_key)}")
         if skin_check:
             subject += ", with ultra-realistic skin texture showing pores and fine details"
