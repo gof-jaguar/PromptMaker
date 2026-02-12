@@ -386,6 +386,15 @@ TRANSLATIONS = {
         "dof_tiltshift": "Tilt-shift (miniature effect)",
         "dof_soft": "Soft / Dreamy Glow",
 
+        # ── Composition ──
+        "composition": "Composition",
+        "comp_center": "Center (Default)",
+        "comp_rot_left": "Rule of Thirds — Left",
+        "comp_rot_right": "Rule of Thirds — Right",
+        "comp_golden": "Golden Ratio",
+        "comp_negative_space": "Negative Space",
+        "comp_symmetry": "Symmetrical",
+
         # ── Pose ──
         "pose": "Action / Pose",
         "pose_stand": "Standing",
@@ -789,6 +798,15 @@ TRANSLATIONS = {
         "dof_tiltshift": "Tilt-shift (เหมือนโมเดลจิ๋ว)",
         "dof_soft": "นุ่มนวล / เรืองแสง (Dreamy)",
 
+        # ── Composition ──
+        "composition": "การจัดองค์ประกอบ",
+        "comp_center": "ตรงกลาง (ค่าเริ่มต้น)",
+        "comp_rot_left": "กฎสามส่วน — ซ้าย",
+        "comp_rot_right": "กฎสามส่วน — ขวา",
+        "comp_golden": "สัดส่วนทอง (Golden Ratio)",
+        "comp_negative_space": "เว้นพื้นที่ว่าง (Negative Space)",
+        "comp_symmetry": "สมมาตร (Symmetrical)",
+
         # ── Pose ──
         "pose": "ท่าโพส / แอคชั่น",
         "pose_stand": "ยืน",
@@ -1038,6 +1056,13 @@ ENGLISH_VALUES = {
     "dof_shallow": "very shallow depth of field at f/1.2 with heavy creamy bokeh and dreamy atmosphere",
     "dof_tiltshift": "tilt-shift effect creating miniature model appearance",
     "dof_soft": "soft dreamy glow with gentle diffusion",
+    # Composition
+    "comp_center": "",
+    "comp_rot_left": "rule of thirds composition with subject positioned on the left third of the frame",
+    "comp_rot_right": "rule of thirds composition with subject positioned on the right third of the frame",
+    "comp_golden": "golden ratio composition with subject at the golden spiral focal point",
+    "comp_negative_space": "composed with generous negative space around the subject",
+    "comp_symmetry": "symmetrical composition with subject centered along the axis of symmetry",
     # Pose
     "pose_stand": "standing elegantly", "pose_sit": "sitting comfortably",
     "pose_walk": "walking naturally", "pose_lean": "leaning against a wall",
@@ -1457,13 +1482,19 @@ def main():
             ca_sel = st.selectbox(t("camera_angle"), ca_labels)
             ca_key = ca_keys[ca_labels.index(ca_sel)]
 
-        col14, col15 = st.columns(2)
+        col14, col15, col16 = st.columns(3)
         with col14:
             dof_keys = ["dof_sharp", "dof_portrait", "dof_shallow", "dof_tiltshift", "dof_soft"]
             dof_labels, _ = make_option(dof_keys)
             dof_sel = st.selectbox(t("dof"), dof_labels, index=1)
             dof_key = dof_keys[dof_labels.index(dof_sel)]
         with col15:
+            cmp_keys = ["comp_center", "comp_rot_left", "comp_rot_right",
+                         "comp_golden", "comp_negative_space", "comp_symmetry"]
+            cmp_labels, _ = make_option(cmp_keys)
+            cmp_sel = st.selectbox(t("composition"), cmp_labels)
+            cmp_key = cmp_keys[cmp_labels.index(cmp_sel)]
+        with col16:
             po_keys = ["pose_stand", "pose_sit", "pose_walk", "pose_lean",
                         "pose_cross_arms", "pose_hand_hair", "pose_looking_away", "pose_dynamic",
                         "pose_crouch", "pose_twirl", "pose_over_shoulder", "pose_run",
@@ -1578,8 +1609,11 @@ def main():
             env_parts.append(weather_text)
         environment = ", ".join(env_parts)
 
-        # Camera & Lighting + Picture Style
+        # Camera & Lighting + Picture Style + Composition
         camera_parts = [eng(lt_key), eng(sf_key), eng(ca_key), eng(dof_key)]
+        cmp_text = eng(cmp_key)
+        if cmp_text:
+            camera_parts.append(cmp_text)
         ps_text = eng(ps_key)
         if ps_text:
             camera_parts.append(ps_text)
