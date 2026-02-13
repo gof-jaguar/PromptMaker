@@ -9,6 +9,7 @@
 """
 
 import html as html_mod
+import json
 import streamlit as st
 import streamlit.components.v1 as components
 
@@ -167,6 +168,9 @@ TRANSLATIONS = {
         "app_sweet": "Sweet / Innocent",
         "app_fierce": "Fierce / Bold",
         "app_natural": "Natural / Fresh-faced",
+        "app_kpop": "K-pop Idol",
+        "app_jpop": "J-pop Idol",
+        "app_cpop": "C-pop Star",
 
         # ── Section Labels (editable output) ──
         "section_technical": "Technical / Quality",
@@ -395,26 +399,35 @@ TRANSLATIONS = {
         "comp_negative_space": "Negative Space",
         "comp_symmetry": "Symmetrical",
 
-        # ── Pose ──
+        # ── Pose ── (sorted A-Z)
         "pose": "Action / Pose",
-        "pose_stand": "Standing",
-        "pose_sit": "Sitting",
-        "pose_walk": "Walking",
-        "pose_lean": "Leaning Against Wall",
+        "pose_arms_up": "Arms Above Head",
         "pose_cross_arms": "Arms Crossed",
-        "pose_hand_hair": "Hand in Hair",
-        "pose_looking_away": "Looking Away",
-        "pose_dynamic": "Dynamic / Action Pose",
+        "pose_back_camera": "Back to Camera",
+        "pose_blow_kiss": "Blowing a Kiss",
+        "pose_cross_leg": "Cross-legged Sitting",
         "pose_crouch": "Crouching",
-        "pose_twirl": "Twirling",
-        "pose_over_shoulder": "Looking Over Shoulder",
-        "pose_run": "Running",
-        "pose_jump": "Jumping",
-        "pose_lying": "Lying Down",
+        "pose_dynamic": "Dynamic / Action Pose",
+        "pose_hand_hair": "Hand in Hair",
         "pose_hand_chin": "Hand on Chin",
         "pose_hands_pocket": "Hands in Pockets",
-        "pose_arms_up": "Arms Above Head",
-        "pose_back_camera": "Back to Camera",
+        "pose_heart_hands": "Heart Hands",
+        "pose_jump": "Jumping",
+        "pose_kneel": "Kneeling",
+        "pose_lean": "Leaning Against Wall",
+        "pose_looking_away": "Looking Away",
+        "pose_over_shoulder": "Looking Over Shoulder",
+        "pose_lying": "Lying Down",
+        "pose_mini_heart": "Mini Heart",
+        "pose_run": "Running",
+        "pose_s_curve": "S-Curve Standing",
+        "pose_sit": "Sitting",
+        "pose_stand": "Standing",
+        "pose_twirl": "Twirling",
+        "pose_w_sit": "W-Sitting",
+        "pose_walk": "Walking",
+        "pose_wink": "Winking",
+        "look_camera": "Looking at camera",
 
         # ── Advanced ──
         "exp_advanced": "Advanced & Technical",
@@ -579,6 +592,9 @@ TRANSLATIONS = {
         "app_sweet": "หวาน / ใสซื่อ",
         "app_fierce": "ดุดัน / เข้มขรึม",
         "app_natural": "ธรรมชาติ / สดใส",
+        "app_kpop": "ไอดอล K-pop",
+        "app_jpop": "ไอดอล J-pop",
+        "app_cpop": "ดาราจีน / C-pop",
 
         # ── Section Labels (editable output) ──
         "section_technical": "เทคนิค / คุณภาพ",
@@ -807,26 +823,35 @@ TRANSLATIONS = {
         "comp_negative_space": "เว้นพื้นที่ว่าง (Negative Space)",
         "comp_symmetry": "สมมาตร (Symmetrical)",
 
-        # ── Pose ──
+        # ── Pose ── (sorted A-Z)
         "pose": "ท่าโพส / แอคชั่น",
-        "pose_stand": "ยืน",
-        "pose_sit": "นั่ง",
-        "pose_walk": "เดิน",
-        "pose_lean": "พิงกำแพง",
+        "pose_arms_up": "ยกแขนเหนือศีรษะ",
         "pose_cross_arms": "กอดอก",
-        "pose_hand_hair": "มือจับผม",
-        "pose_looking_away": "มองไปทางอื่น",
-        "pose_dynamic": "ท่าไดนามิก / แอคชั่น",
+        "pose_back_camera": "หันหลังให้กล้อง",
+        "pose_blow_kiss": "ส่งจูบ",
+        "pose_cross_leg": "นั่งไขว่ห้าง",
         "pose_crouch": "นั่งยอง",
-        "pose_twirl": "หมุนตัว",
-        "pose_over_shoulder": "เหลียวมองข้ามไหล่",
-        "pose_run": "วิ่ง",
-        "pose_jump": "กระโดด",
-        "pose_lying": "นอน",
+        "pose_dynamic": "ท่าไดนามิก / แอคชั่น",
+        "pose_hand_hair": "มือจับผม",
         "pose_hand_chin": "มือจับคาง",
         "pose_hands_pocket": "มือในกระเป๋า",
-        "pose_arms_up": "ยกแขนเหนือศีรษะ",
-        "pose_back_camera": "หันหลังให้กล้อง",
+        "pose_heart_hands": "ทำมือรูปหัวใจ",
+        "pose_jump": "กระโดด",
+        "pose_kneel": "คุกเข่า",
+        "pose_lean": "พิงกำแพง",
+        "pose_looking_away": "มองไปทางอื่น",
+        "pose_over_shoulder": "เหลียวมองข้ามไหล่",
+        "pose_lying": "นอน",
+        "pose_mini_heart": "มินิฮาร์ท",
+        "pose_run": "วิ่ง",
+        "pose_s_curve": "ยืนโพสตัว S",
+        "pose_sit": "นั่ง",
+        "pose_stand": "ยืน",
+        "pose_twirl": "หมุนตัว",
+        "pose_w_sit": "นั่งขารูป W",
+        "pose_walk": "เดิน",
+        "pose_wink": "วิ้งก์ตา",
+        "look_camera": "หันมองกล้อง",
 
         # ── Advanced ──
         "exp_advanced": "ขั้นสูงและเทคนิค",
@@ -917,6 +942,9 @@ ENGLISH_VALUES = {
     "app_sweet": "sweet innocent youthful features",
     "app_fierce": "fierce bold intense striking features",
     "app_natural": "natural fresh-faced dewy skin look",
+    "app_kpop": "youthful K-pop idol look with flawless porcelain skin, soft dewy makeup, and delicate features",
+    "app_jpop": "cute J-pop idol look with soft round features, big expressive eyes, and light natural makeup",
+    "app_cpop": "elegant C-pop star look with refined features, luminous glass skin, and graceful beauty",
     # Fashion Presets
     "fs_streetwear": "streetwear urban fashion with oversized hoodie and sneakers",
     "fs_korean": "Korean K-fashion style with clean modern silhouette",
@@ -1063,18 +1091,33 @@ ENGLISH_VALUES = {
     "comp_golden": "golden ratio composition with subject at the golden spiral focal point",
     "comp_negative_space": "composed with generous negative space around the subject",
     "comp_symmetry": "symmetrical composition with subject centered along the axis of symmetry",
-    # Pose
-    "pose_stand": "standing elegantly", "pose_sit": "sitting comfortably",
-    "pose_walk": "walking naturally", "pose_lean": "leaning against a wall",
-    "pose_cross_arms": "with arms crossed", "pose_hand_hair": "with hand running through hair",
-    "pose_looking_away": "looking away from camera", "pose_dynamic": "in a dynamic action pose",
-    "pose_crouch": "crouching down", "pose_twirl": "twirling with movement in clothing",
-    "pose_over_shoulder": "looking back over shoulder", "pose_run": "running in motion",
-    "pose_jump": "jumping in the air", "pose_lying": "lying down relaxed",
+    # Pose (sorted A-Z)
+    "pose_arms_up": "with arms raised above head",
+    "pose_cross_arms": "with arms crossed",
+    "pose_back_camera": "facing away from camera showing back",
+    "pose_blow_kiss": "blowing a kiss toward the camera",
+    "pose_cross_leg": "sitting with legs crossed elegantly",
+    "pose_crouch": "crouching down",
+    "pose_dynamic": "in a dynamic action pose",
+    "pose_hand_hair": "with hand running through hair",
     "pose_hand_chin": "resting chin on hand thoughtfully",
     "pose_hands_pocket": "with hands in pockets casually",
-    "pose_arms_up": "with arms raised above head",
-    "pose_back_camera": "facing away from camera showing back",
+    "pose_heart_hands": "making a heart shape with both hands toward the camera",
+    "pose_jump": "jumping in the air",
+    "pose_kneel": "kneeling on the ground",
+    "pose_lean": "leaning against a wall",
+    "pose_looking_away": "looking away from camera",
+    "pose_over_shoulder": "looking back over shoulder",
+    "pose_lying": "lying down relaxed",
+    "pose_mini_heart": "making a mini heart gesture with thumb and index finger",
+    "pose_run": "running in motion",
+    "pose_s_curve": "standing in an S-curve pose with weight on one hip",
+    "pose_sit": "sitting comfortably",
+    "pose_stand": "standing elegantly",
+    "pose_twirl": "twirling with movement in clothing",
+    "pose_w_sit": "sitting in a W-sit position with legs folded to the sides",
+    "pose_walk": "walking naturally",
+    "pose_wink": "winking playfully at the camera",
     # Model Type
     "model_realistic": "Photorealistic", "model_anime": "Anime illustration style",
     "model_3d": "3D rendered CGI",
@@ -1293,7 +1336,8 @@ def main():
             bt_key = bt_keys[bt_labels.index(bt_sel)]
         with col_ap:
             ap_keys = ["app_cute", "app_beautiful", "app_handsome", "app_cool",
-                        "app_elegant", "app_sweet", "app_fierce", "app_natural"]
+                        "app_elegant", "app_sweet", "app_fierce", "app_natural",
+                        "app_kpop", "app_jpop", "app_cpop"]
             ap_labels, _ = make_option(ap_keys)
             ap_sel = st.selectbox(t("appearance"), ap_labels)
             ap_key = ap_keys[ap_labels.index(ap_sel)]
@@ -1495,14 +1539,18 @@ def main():
             cmp_sel = st.selectbox(t("composition"), cmp_labels)
             cmp_key = cmp_keys[cmp_labels.index(cmp_sel)]
         with col16:
-            po_keys = ["pose_stand", "pose_sit", "pose_walk", "pose_lean",
-                        "pose_cross_arms", "pose_hand_hair", "pose_looking_away", "pose_dynamic",
-                        "pose_crouch", "pose_twirl", "pose_over_shoulder", "pose_run",
-                        "pose_jump", "pose_lying", "pose_hand_chin", "pose_hands_pocket",
-                        "pose_arms_up", "pose_back_camera"]
+            po_keys = ["pose_arms_up", "pose_cross_arms", "pose_back_camera",
+                        "pose_blow_kiss", "pose_cross_leg", "pose_crouch",
+                        "pose_dynamic", "pose_hand_hair", "pose_hand_chin",
+                        "pose_hands_pocket", "pose_heart_hands", "pose_jump",
+                        "pose_kneel", "pose_lean", "pose_looking_away",
+                        "pose_over_shoulder", "pose_lying", "pose_mini_heart",
+                        "pose_run", "pose_s_curve", "pose_sit", "pose_stand",
+                        "pose_twirl", "pose_w_sit", "pose_walk", "pose_wink"]
             po_labels, _ = make_option(po_keys)
             po_sel = st.selectbox(t("pose"), po_labels)
             po_key = po_keys[po_labels.index(po_sel)]
+        look_at_camera = st.checkbox(t("look_camera"))
 
     # ══════════════════════════════════════════════════════════════════════
     #  EXPANDER 4 — Advanced
@@ -1575,6 +1623,8 @@ def main():
 
         # Pose
         pose = eng(po_key)
+        if look_at_camera:
+            pose += ", looking directly at the camera with engaging eye contact"
 
         # Environment
         if attach_scene:
@@ -1702,7 +1752,8 @@ def main():
         st.code(combined_prompt, language=None)
 
         # Copy button — use components.html so JS actually executes
-        safe_prompt = html_mod.escape(combined_prompt).replace("`", "\\`").replace("${", "\\${")
+        # Use json.dumps for proper JS string escaping (html.escape breaks apostrophes in <script>)
+        safe_prompt = json.dumps(combined_prompt).replace("</", "<\\/")
         copy_label = t("copy_btn")
         copy_html = f"""
         <html><body style="margin:0;padding:0;background:transparent;">
@@ -1716,7 +1767,7 @@ def main():
             onclick="copyPrompt()">📋 {copy_label}</button>
         <script>
         function copyPrompt() {{
-            const text = `{safe_prompt}`;
+            const text = {safe_prompt};
             const btn = document.getElementById('copy-btn');
             if (navigator.clipboard && window.isSecureContext) {{
                 navigator.clipboard.writeText(text).then(() => {{
