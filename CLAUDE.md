@@ -14,9 +14,9 @@ Deployed on Streamlit Cloud — pushing to `main` on GitHub auto-deploys to http
 
 ## Architecture
 
-Single-file Streamlit app (`app.py`, ~1770 lines) structured in 6 sequential sections:
+Single-file Streamlit app (`app.py`, ~1835 lines) structured in 6 sequential sections:
 
-1. **TRANSLATIONS** — Bilingual dictionary (EN/TH) with 373 keys. Every UI string goes through `t(key)` helper.
+1. **TRANSLATIONS** — Bilingual dictionary (EN/TH) with 387 keys. Every UI string goes through `t(key)` helper.
 2. **ENGLISH_VALUES** — Maps option keys to English prompt text for AI output (e.g. `"hair_long"` → `"long flowing hair"`). Dropdown/selectbox options that affect the generated prompt need entries here.
 3. **HELPERS** — `t()` for translation, `eng()` for prompt values, `make_option()` for selectbox pairs, `translate_to_english()` for Thai→English with a mini dictionary.
 4. **CSS** — Injected via `st.markdown(unsafe_allow_html=True)`. Responsive breakpoints at 768px (mobile) and 1400px (desktop). Uses Noto Sans Thai font.
@@ -51,21 +51,29 @@ Single-file Streamlit app (`app.py`, ~1770 lines) structured in 6 sequential sec
 
 **Picture style:** Dropdown in the Scene & Lighting expander with styles like dreamy, cinematic, B&W, etc. Appended to the camera/lighting section in the generated prompt.
 
-**Outfit top/bottom garments:** Two selectboxes (Top and Bottom) in the Outfit expander between fashion presets and free-text input. Values are appended to `outfit_parts` in the generate block via `eng(top_key)` and `eng(bot_key)`.
+**Outfit top/bottom garments with independent fabric & color:** Two columns (Top and Bottom) each with their own garment selector, fabric selector, and color selector. In the generate block, each garment gets its own fabric and color description: `wearing a crop top made of silk fabric in white and cream color tones, wearing jeans made of denim in blue color tones`.
 
 **Hair styles grouping:** Hair styles are ordered women's first (18 styles), then men's (8 styles) in both TRANSLATIONS and the UI `hr_keys` list. Comments in the code mark the grouping boundaries.
 
 **Bangs selectbox:** Independent of hairstyle — users can combine any hairstyle with any bangs type (none, straight, side, curtain, wispy, micro). In the generate block, bangs text is inserted between hair color and expression: `with {hair}, {color}, {bangs}, and {expression}`. When "None" is selected, the bangs part is omitted entirely.
 
-**Copy button:** Uses `streamlit.components.v1.html()` (not `st.markdown`) because Streamlit strips JS event handlers from markdown. Uses `navigator.clipboard.writeText()` with `execCommand('copy')` fallback. Prompt text is escaped via `html.escape()`.
+**Appearance / Vibe options:** Includes general looks (cute, beautiful, cool, etc.) plus idol-specific looks: K-pop Idol, J-pop Idol, and C-pop Star, each with tailored prompt descriptions for skin, makeup, and feature characteristics.
+
+**Poses (26 total, A-Z sorted):** Includes standard poses plus idol/cute poses: heart hands, mini heart, S-curve standing, W-sitting, cross-legged sitting, blowing a kiss, kneeling, winking.
+
+**Look-at-camera checkbox:** Independent of pose — appends `"looking directly at the camera with engaging eye contact"` to any selected pose. Located below the pose selectbox.
+
+**Copy button:** Uses `streamlit.components.v1.html()` (not `st.markdown`) because Streamlit strips JS event handlers from markdown. Uses `navigator.clipboard.writeText()` with `execCommand('copy')` fallback. Prompt text is escaped via `json.dumps()` for proper JS string escaping inside `<script>` tags (not `html.escape()`, which breaks apostrophes in values like "bird's eye view").
+
+**Sorting convention:** All selectbox/multiselect option lists are sorted A-Z by their English label. This applies to: fashion presets, top garments, bottom garments, fabric, color palette, poses, and appearance options.
 
 ## Prompt Generation Sections
 
 The generate block builds these sections (in order), each stored as an editable `st.text_area`:
 1. **Technical** — model type + quality tags
 2. **Subject** — gender, age, ethnicity, body type, appearance, hair, hair color, bangs, expression
-3. **Outfit** — fashion presets + top/bottom garments + free text + fabric + color palette + accessories
-4. **Pose** — selected pose
+3. **Outfit** — fashion presets + top garment (with fabric & color) + bottom garment (with fabric & color) + free text + accessories
+4. **Pose** — selected pose + optional look-at-camera
 5. **Environment** — location + time of day + season + weather effects
 6. **Camera & Lighting** — lighting style + shot framing + camera angle + DOF + composition + picture style
 7. **Custom** — free-text additions
