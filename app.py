@@ -190,75 +190,82 @@ TRANSLATIONS = {
         "outfit_placeholder": "e.g. Japanese school uniform with red ribbon",
         "fashion_presets": "Fashion Styles (optional, multi-select)",
         "fashion_presets_help": "Select styles to blend, or skip and describe your own below",
-        "fs_streetwear": "Streetwear / Urban",
-        "fs_korean": "Korean Fashion (K-Style)",
-        "fs_japanese": "Japanese Harajuku",
-        "fs_minimalist": "Minimalist / Clean",
-        "fs_bohemian": "Bohemian / Boho",
-        "fs_vintage": "Vintage / Retro",
-        "fs_gothic": "Gothic / Dark",
-        "fs_preppy": "Preppy / Academic",
+        # Fashion presets (A-Z)
         "fs_athleisure": "Athleisure / Sporty",
-        "fs_elegant": "Elegant / Formal",
+        "fs_bohemian": "Bohemian / Boho",
         "fs_cottagecore": "Cottagecore / Pastoral",
         "fs_cyberpunk": "Cyberpunk / Techwear",
-        "fs_y2k": "Y2K / 2000s Revival",
-        "fs_old_money": "Old Money / Quiet Luxury",
+        "fs_elegant": "Elegant / Formal",
+        "fs_gothic": "Gothic / Dark",
         "fs_grunge": "Grunge / 90s",
+        "fs_japanese": "Japanese Harajuku",
+        "fs_korean": "Korean Fashion (K-Style)",
+        "fs_minimalist": "Minimalist / Clean",
+        "fs_old_money": "Old Money / Quiet Luxury",
+        "fs_preppy": "Preppy / Academic",
+        "fs_streetwear": "Streetwear / Urban",
+        "fs_vintage": "Vintage / Retro",
+        "fs_y2k": "Y2K / 2000s Revival",
+        # Top garments (A-Z)
         "top_garment": "Top",
-        "top_tshirt": "T-Shirt",
-        "top_crop": "Crop Top",
         "top_blouse": "Blouse",
         "top_button_shirt": "Button-up Shirt",
-        "top_tank": "Tank Top",
-        "top_sweater": "Sweater",
-        "top_hoodie": "Hoodie",
-        "top_polo": "Polo Shirt",
-        "top_turtleneck": "Turtleneck",
-        "top_off_shoulder": "Off-shoulder Top",
         "top_camisole": "Camisole",
         "top_cardigan": "Cardigan",
+        "top_crop": "Crop Top",
+        "top_hoodie": "Hoodie",
+        "top_off_shoulder": "Off-shoulder Top",
+        "top_polo": "Polo Shirt",
+        "top_sweater": "Sweater",
+        "top_tank": "Tank Top",
+        "top_tshirt": "T-Shirt",
+        "top_turtleneck": "Turtleneck",
+        # Bottom garments (A-Z)
         "bottom_garment": "Bottom",
+        "bot_a_line": "A-line Skirt",
+        "bot_cargo": "Cargo Pants",
         "bot_jeans": "Jeans",
-        "bot_mini_skirt": "Mini Skirt",
+        "bot_leggings": "Leggings",
         "bot_maxi_skirt": "Maxi Skirt",
+        "bot_mini_skirt": "Mini Skirt",
+        "bot_pencil_skirt": "Pencil Skirt",
         "bot_pleated_skirt": "Pleated Skirt",
         "bot_shorts": "Shorts",
-        "bot_wide_leg": "Wide-leg Pants",
-        "bot_cargo": "Cargo Pants",
-        "bot_leggings": "Leggings",
-        "bot_pencil_skirt": "Pencil Skirt",
-        "bot_a_line": "A-line Skirt",
         "bot_sweatpants": "Sweatpants",
         "bot_trousers": "Tailored Trousers",
+        "bot_wide_leg": "Wide-leg Pants",
         "attach_outfit_photo": "I will attach outfit reference photo",
         "attach_outfit_note": "Prompt will instruct AI to recreate the attached outfit",
-        "fabric": "Fabric / Material",
+        # Fabric (A-Z) — separate for top & bottom
+        "top_fabric": "Top Fabric",
+        "bot_fabric": "Bottom Fabric",
         "fab_cotton": "Cotton",
-        "fab_silk": "Silk",
         "fab_denim": "Denim",
-        "fab_leather": "Leather",
         "fab_lace": "Lace",
+        "fab_leather": "Leather",
         "fab_satin": "Satin",
-        "fab_wool": "Wool Knit",
         "fab_sheer": "Sheer / Translucent",
-        "color_palette": "Color Palette",
-        "col_red": "Red",
-        "col_pink": "Pink",
-        "col_orange": "Orange",
-        "col_yellow": "Yellow & Gold",
-        "col_green": "Green",
-        "col_blue": "Blue",
-        "col_purple": "Purple & Lavender",
-        "col_white": "White & Cream",
+        "fab_silk": "Silk",
+        "fab_wool": "Wool Knit",
+        # Color palette (A-Z) — separate for top & bottom
+        "top_color": "Top Color",
+        "bot_color": "Bottom Color",
         "col_black": "All Black",
         "col_beige": "Beige & Nude",
-        "col_pastel": "Pastel",
-        "col_mono": "Monochrome",
-        "col_earthy": "Earthy & Brown",
-        "col_warm": "Warm Tones (red, orange, gold)",
+        "col_blue": "Blue",
         "col_cool": "Cool Tones (blue, teal, silver)",
+        "col_earthy": "Earthy & Brown",
+        "col_green": "Green",
+        "col_mono": "Monochrome",
+        "col_orange": "Orange",
+        "col_pastel": "Pastel",
+        "col_pink": "Pink",
+        "col_purple": "Purple & Lavender",
+        "col_red": "Red",
         "col_vibrant": "Vibrant & Neon",
+        "col_warm": "Warm Tones (red, orange, gold)",
+        "col_white": "White & Cream",
+        "col_yellow": "Yellow & Gold",
 
         # ── Accessories (checkboxes) ──
         "accessories": "Accessories (select all that apply)",
@@ -614,75 +621,82 @@ TRANSLATIONS = {
         "outfit_placeholder": "เช่น ชุดนักเรียนญี่ปุ่นผูกโบว์สีแดง",
         "fashion_presets": "สไตล์แฟชั่น (เลือกได้หลายอัน)",
         "fashion_presets_help": "เลือกสไตล์ผสมกันได้ หรือข้ามไปอธิบายเองด้านล่าง",
-        "fs_streetwear": "สตรีทแวร์ / อเบอร์แบน",
-        "fs_korean": "แฟชั่นเกาหลี (K-Style)",
-        "fs_japanese": "ฮาราจูกุ ญี่ปุ่น",
-        "fs_minimalist": "มินิมอล / สะอาดตา",
-        "fs_bohemian": "โบฮีเมียน / โบโฮ",
-        "fs_vintage": "วินเทจ / เรโทร",
-        "fs_gothic": "โกธิค / ดาร์ค",
-        "fs_preppy": "เพรปปี้ / นักเรียนอินเตอร์",
+        # Fashion presets (A-Z)
         "fs_athleisure": "แอธเลเชอร์ / สปอร์ต",
-        "fs_elegant": "เอเลแกนท์ / ทางการ",
+        "fs_bohemian": "โบฮีเมียน / โบโฮ",
         "fs_cottagecore": "คอตเทจคอร์ / ชนบท",
         "fs_cyberpunk": "ไซเบอร์พังก์ / เทคแวร์",
-        "fs_y2k": "Y2K / ยุค 2000",
-        "fs_old_money": "Old Money / หรูเงียบๆ",
+        "fs_elegant": "เอเลแกนท์ / ทางการ",
+        "fs_gothic": "โกธิค / ดาร์ค",
         "fs_grunge": "กรันจ์ / ยุค 90",
+        "fs_japanese": "ฮาราจูกุ ญี่ปุ่น",
+        "fs_korean": "แฟชั่นเกาหลี (K-Style)",
+        "fs_minimalist": "มินิมอล / สะอาดตา",
+        "fs_old_money": "Old Money / หรูเงียบๆ",
+        "fs_preppy": "เพรปปี้ / นักเรียนอินเตอร์",
+        "fs_streetwear": "สตรีทแวร์ / อเบอร์แบน",
+        "fs_vintage": "วินเทจ / เรโทร",
+        "fs_y2k": "Y2K / ยุค 2000",
+        # Top garments (A-Z)
         "top_garment": "เสื้อ",
-        "top_tshirt": "เสื้อยืด",
-        "top_crop": "ครอปท็อป",
         "top_blouse": "เสื้อเบลาส์",
         "top_button_shirt": "เสื้อเชิ้ต",
-        "top_tank": "เสื้อกล้าม",
-        "top_sweater": "เสื้อสเวตเตอร์",
-        "top_hoodie": "เสื้อฮู้ด",
-        "top_polo": "เสื้อโปโล",
-        "top_turtleneck": "เสื้อคอเต่า",
-        "top_off_shoulder": "เสื้อเปิดไหล่",
         "top_camisole": "เสื้อสายเดี่ยว",
         "top_cardigan": "เสื้อคาร์ดิแกน",
+        "top_crop": "ครอปท็อป",
+        "top_hoodie": "เสื้อฮู้ด",
+        "top_off_shoulder": "เสื้อเปิดไหล่",
+        "top_polo": "เสื้อโปโล",
+        "top_sweater": "เสื้อสเวตเตอร์",
+        "top_tank": "เสื้อกล้าม",
+        "top_tshirt": "เสื้อยืด",
+        "top_turtleneck": "เสื้อคอเต่า",
+        # Bottom garments (A-Z)
         "bottom_garment": "ท่อนล่าง",
+        "bot_a_line": "กระโปรงทรงเอ",
+        "bot_cargo": "กางเกงคาร์โก้",
         "bot_jeans": "กางเกงยีนส์",
-        "bot_mini_skirt": "กระโปรงสั้น",
+        "bot_leggings": "เลกกิ้ง",
         "bot_maxi_skirt": "กระโปรงยาว",
+        "bot_mini_skirt": "กระโปรงสั้น",
+        "bot_pencil_skirt": "กระโปรงทรงดินสอ",
         "bot_pleated_skirt": "กระโปรงพลีท",
         "bot_shorts": "กางเกงขาสั้น",
-        "bot_wide_leg": "กางเกงขาบาน",
-        "bot_cargo": "กางเกงคาร์โก้",
-        "bot_leggings": "เลกกิ้ง",
-        "bot_pencil_skirt": "กระโปรงทรงดินสอ",
-        "bot_a_line": "กระโปรงทรงเอ",
         "bot_sweatpants": "กางเกงวอร์ม",
         "bot_trousers": "กางเกงสแล็ค",
+        "bot_wide_leg": "กางเกงขาบาน",
         "attach_outfit_photo": "จะแนบรูปชุดอ้างอิง",
         "attach_outfit_note": "พรอมต์จะสั่งให้ AI สร้างชุดตามรูปที่แนบ",
-        "fabric": "ผ้า / วัสดุ",
+        # Fabric (A-Z) — separate for top & bottom
+        "top_fabric": "ผ้าเสื้อ",
+        "bot_fabric": "ผ้าท่อนล่าง",
         "fab_cotton": "ผ้าฝ้าย",
-        "fab_silk": "ผ้าไหม",
         "fab_denim": "ผ้ายีนส์",
-        "fab_leather": "หนัง",
         "fab_lace": "ลูกไม้",
+        "fab_leather": "หนัง",
         "fab_satin": "ผ้าซาติน",
-        "fab_wool": "ผ้าขนสัตว์ถัก",
         "fab_sheer": "ผ้าบาง / โปร่ง",
-        "color_palette": "โทนสี",
-        "col_red": "แดง",
-        "col_pink": "ชมพู",
-        "col_orange": "ส้ม",
-        "col_yellow": "เหลืองและทอง",
-        "col_green": "เขียว",
-        "col_blue": "น้ำเงิน",
-        "col_purple": "ม่วงและลาเวนเดอร์",
-        "col_white": "ขาวและครีม",
+        "fab_silk": "ผ้าไหม",
+        "fab_wool": "ผ้าขนสัตว์ถัก",
+        # Color palette (A-Z) — separate for top & bottom
+        "top_color": "สีเสื้อ",
+        "bot_color": "สีท่อนล่าง",
         "col_black": "ดำล้วน",
         "col_beige": "เบจและนู้ด",
-        "col_pastel": "พาสเทล",
-        "col_mono": "โมโนโครม",
-        "col_earthy": "โทนดินและน้ำตาล",
-        "col_warm": "โทนอุ่น (แดง, ส้ม, ทอง)",
+        "col_blue": "น้ำเงิน",
         "col_cool": "โทนเย็น (น้ำเงิน, เขียวอมฟ้า, เงิน)",
+        "col_earthy": "โทนดินและน้ำตาล",
+        "col_green": "เขียว",
+        "col_mono": "โมโนโครม",
+        "col_orange": "ส้ม",
+        "col_pastel": "พาสเทล",
+        "col_pink": "ชมพู",
+        "col_purple": "ม่วงและลาเวนเดอร์",
+        "col_red": "แดง",
         "col_vibrant": "สดใสและนีออน",
+        "col_warm": "โทนอุ่น (แดง, ส้ม, ทอง)",
+        "col_white": "ขาวและครีม",
+        "col_yellow": "เหลืองและทอง",
 
         # ── Accessories ──
         "accessories": "เครื่องประดับ (เลือกได้หลายอย่าง)",
@@ -1346,11 +1360,11 @@ def main():
     #  EXPANDER 2 — Outfit & Style
     # ══════════════════════════════════════════════════════════════════════
     with st.expander(f"👗  {t('exp_outfit')}", expanded=True):
-        # Fashion presets
-        fs_keys = ["fs_streetwear", "fs_korean", "fs_japanese", "fs_minimalist",
-                    "fs_bohemian", "fs_vintage", "fs_gothic", "fs_preppy",
-                    "fs_athleisure", "fs_elegant", "fs_cottagecore", "fs_cyberpunk",
-                    "fs_y2k", "fs_old_money", "fs_grunge"]
+        # Fashion presets (A-Z)
+        fs_keys = ["fs_athleisure", "fs_bohemian", "fs_cottagecore", "fs_cyberpunk",
+                    "fs_elegant", "fs_gothic", "fs_grunge", "fs_japanese",
+                    "fs_korean", "fs_minimalist", "fs_old_money", "fs_preppy",
+                    "fs_streetwear", "fs_vintage", "fs_y2k"]
         fs_labels = [t(k) for k in fs_keys]
         fs_selected_labels = st.multiselect(t("fashion_presets"), fs_labels, default=[],
                                              help=t("fashion_presets_help"), key="fashion_multi")
@@ -1358,22 +1372,44 @@ def main():
 
         st.markdown("---")
 
-        # ── Top & Bottom garment selectors ──
+        # ── Fabric & Color key lists (shared, A-Z) ──
+        fb_keys = ["fab_cotton", "fab_denim", "fab_lace", "fab_leather",
+                    "fab_satin", "fab_sheer", "fab_silk", "fab_wool"]
+        cp_keys = ["col_black", "col_beige", "col_blue", "col_cool",
+                    "col_earthy", "col_green", "col_mono", "col_orange",
+                    "col_pastel", "col_pink", "col_purple", "col_red",
+                    "col_vibrant", "col_warm", "col_white", "col_yellow"]
+
+        # ── Top: garment + fabric + color ──
         col_top, col_bot = st.columns(2)
         with col_top:
-            top_keys = ["top_tshirt", "top_crop", "top_blouse", "top_button_shirt",
-                         "top_tank", "top_sweater", "top_hoodie", "top_polo",
-                         "top_turtleneck", "top_off_shoulder", "top_camisole", "top_cardigan"]
+            top_keys = ["top_blouse", "top_button_shirt", "top_camisole", "top_cardigan",
+                         "top_crop", "top_hoodie", "top_off_shoulder", "top_polo",
+                         "top_sweater", "top_tank", "top_tshirt", "top_turtleneck"]
             top_labels, _ = make_option(top_keys)
             top_sel = st.selectbox(t("top_garment"), top_labels)
             top_key = top_keys[top_labels.index(top_sel)]
+            top_fb_labels, _ = make_option(fb_keys)
+            top_fb_sel = st.selectbox(t("top_fabric"), top_fb_labels, key="top_fabric_sel")
+            top_fb_key = fb_keys[top_fb_labels.index(top_fb_sel)]
+            top_cp_labels, _ = make_option(cp_keys)
+            top_cp_sel = st.selectbox(t("top_color"), top_cp_labels, key="top_color_sel")
+            top_cp_key = cp_keys[top_cp_labels.index(top_cp_sel)]
+        # ── Bottom: garment + fabric + color ──
         with col_bot:
-            bot_keys = ["bot_jeans", "bot_mini_skirt", "bot_maxi_skirt", "bot_pleated_skirt",
-                         "bot_shorts", "bot_wide_leg", "bot_cargo", "bot_leggings",
-                         "bot_pencil_skirt", "bot_a_line", "bot_sweatpants", "bot_trousers"]
+            bot_keys = ["bot_a_line", "bot_cargo", "bot_jeans", "bot_leggings",
+                         "bot_maxi_skirt", "bot_mini_skirt", "bot_pencil_skirt",
+                         "bot_pleated_skirt", "bot_shorts", "bot_sweatpants",
+                         "bot_trousers", "bot_wide_leg"]
             bot_labels, _ = make_option(bot_keys)
             bot_sel = st.selectbox(t("bottom_garment"), bot_labels)
             bot_key = bot_keys[bot_labels.index(bot_sel)]
+            bot_fb_labels, _ = make_option(fb_keys)
+            bot_fb_sel = st.selectbox(t("bot_fabric"), bot_fb_labels, key="bot_fabric_sel")
+            bot_fb_key = fb_keys[bot_fb_labels.index(bot_fb_sel)]
+            bot_cp_labels, _ = make_option(cp_keys)
+            bot_cp_sel = st.selectbox(t("bot_color"), bot_cp_labels, key="bot_color_sel")
+            bot_cp_key = cp_keys[bot_cp_labels.index(bot_cp_sel)]
 
         st.markdown("---")
         outfit_text = st.text_input(t("outfit_input"), placeholder=t("outfit_placeholder"))
@@ -1382,23 +1418,6 @@ def main():
         attach_outfit = st.checkbox(t("attach_outfit_photo"), key="attach_outfit")
         if attach_outfit:
             st.markdown(f'<div class="ref-attached">📎 {t("attach_outfit_note")}</div>', unsafe_allow_html=True)
-
-        st.markdown("---")
-        col8, col9 = st.columns(2)
-        with col8:
-            fb_keys = ["fab_cotton", "fab_silk", "fab_denim", "fab_leather",
-                        "fab_lace", "fab_satin", "fab_wool", "fab_sheer"]
-            fb_labels, _ = make_option(fb_keys)
-            fb_sel = st.selectbox(t("fabric"), fb_labels)
-            fb_key = fb_keys[fb_labels.index(fb_sel)]
-        with col9:
-            cp_keys = ["col_red", "col_pink", "col_orange", "col_yellow",
-                        "col_green", "col_blue", "col_purple", "col_white",
-                        "col_black", "col_beige", "col_pastel", "col_mono",
-                        "col_earthy", "col_warm", "col_cool", "col_vibrant"]
-            cp_labels, _ = make_option(cp_keys)
-            cp_sel = st.selectbox(t("color_palette"), cp_labels)
-            cp_key = cp_keys[cp_labels.index(cp_sel)]
 
         # ── Accessories: grouped checkboxes ──
         st.markdown(f"**{t('accessories')}**")
@@ -1601,20 +1620,18 @@ def main():
         if skin_check:
             subject += ", with ultra-realistic skin texture showing pores and fine details"
 
-        # Outfit
+        # Outfit (top & bottom each with their own fabric + color)
         outfit_parts = []
         for fk in fs_selected_keys:
             v = eng(fk)
             if v:
                 outfit_parts.append(v)
-        outfit_parts.append(eng(top_key))
-        outfit_parts.append(eng(bot_key))
+        outfit_parts.append(f"{eng(top_key)} made of {eng(top_fb_key)} in {eng(top_cp_key)}")
+        outfit_parts.append(f"{eng(bot_key)} made of {eng(bot_fb_key)} in {eng(bot_cp_key)}")
         if outfit_text.strip():
             outfit_parts.append(f"wearing {translate_to_english(outfit_text)}")
         if attach_outfit:
             outfit_parts.append("wearing the outfit shown in the attached outfit reference image")
-        outfit_parts.append(f"made of {eng(fb_key)}")
-        outfit_parts.append(f"in {eng(cp_key)}")
         for ak in acc_selected:
             v = eng(ak)
             if v:
