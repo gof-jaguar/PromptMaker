@@ -10,6 +10,7 @@
 
 import html as html_mod
 import json
+import random
 import streamlit as st
 import streamlit.components.v1 as components
 
@@ -36,6 +37,15 @@ TRANSLATIONS = {
         "copy_btn": "Copy to Clipboard",
         "result_header": "Generated Prompt",
         "no_prompt_yet": "Click **Generate Prompt** to see your result here.",
+        "target_platform": "Target AI Platform",
+        "platform_universal": "Universal (Gemini · Imagen)",
+        "platform_midjourney": "Midjourney",
+        "platform_sd": "Stable Diffusion / SDXL",
+        "random_btn": "Random Look",
+        "download_btn": "Download .txt",
+        "history_header": "Prompt History (last 10)",
+        "chars_label": "characters",
+        "words_label": "words",
 
         # Aspect Ratio
         "ar_1_1": "1:1  (Square · Instagram)",
@@ -467,6 +477,15 @@ TRANSLATIONS = {
         "copy_btn": "คัดลอก",
         "result_header": "พรอมต์ที่สร้างแล้ว",
         "no_prompt_yet": "กด **สร้างพรอมต์** เพื่อดูผลลัพธ์",
+        "target_platform": "แพลตฟอร์ม AI เป้าหมาย",
+        "platform_universal": "ทั่วไป (Gemini · Imagen)",
+        "platform_midjourney": "Midjourney",
+        "platform_sd": "Stable Diffusion / SDXL",
+        "random_btn": "สุ่มลุค",
+        "download_btn": "ดาวน์โหลด .txt",
+        "history_header": "ประวัติพรอมต์ (10 ล่าสุด)",
+        "chars_label": "ตัวอักษร",
+        "words_label": "คำ",
 
         # Aspect Ratio
         "ar_1_1": "1:1  (สี่เหลี่ยม · Instagram)",
@@ -1200,6 +1219,111 @@ def translate_to_english(text: str) -> str:
 
 
 # ═══════════════════════════════════════════════════════════════════════════
+#  3.5 OPTION KEY LISTS + RANDOMIZER
+# ═══════════════════════════════════════════════════════════════════════════
+
+# Raw ratio per aspect key — formatted per target platform at generate time
+AR_RATIOS = {
+    "ar_1_1": "1:1", "ar_16_9": "16:9", "ar_9_16": "9:16", "ar_4_5": "4:5",
+    "ar_3_2": "3:2", "ar_2_3": "2:3", "ar_4_3": "4:3", "ar_3_4": "3:4",
+    "ar_iphone": "1179:2556", "ar_android": "1080:2400",
+}
+
+HR_KEYS = [
+    # Women's hairstyles
+    "hair_long", "hair_straight", "hair_loose_waves",
+    "hair_curly", "hair_wavy", "hair_bob", "hair_lob", "hair_pixie",
+    "hair_ponytail", "hair_high_ponytail", "hair_bun", "hair_messy_bun",
+    "hair_braids", "hair_loose_braid", "hair_twin_braids", "hair_twintails",
+    "hair_half_up", "hair_side_swept",
+    # Men's hairstyles
+    "hair_short", "hair_undercut", "hair_slick_back", "hair_crew_cut",
+    "hair_pompadour", "hair_man_bun", "hair_fade", "hair_bald",
+]
+HC_KEYS = ["hc_black", "hc_dark_brown", "hc_light_brown", "hc_blonde",
+           "hc_platinum", "hc_red", "hc_ginger", "hc_silver", "hc_white",
+           "hc_blue", "hc_pink", "hc_purple", "hc_green",
+           "hc_ombre", "hc_highlights"]
+BN_KEYS = ["bangs_none", "bangs_straight", "bangs_side",
+           "bangs_curtain", "bangs_wispy", "bangs_micro"]
+EX_KEYS = ["expr_smile", "expr_laugh", "expr_confident",
+           "expr_serious", "expr_neutral", "expr_pensive",
+           "expr_shy", "expr_surprised", "expr_sad", "expr_angry",
+           "expr_dreamy", "expr_playful", "expr_sultry", "expr_peaceful"]
+BT_KEYS = ["bt_slim", "bt_athletic", "bt_curvy", "bt_petite",
+           "bt_tall", "bt_average"]
+AP_KEYS = ["app_cute", "app_beautiful", "app_handsome", "app_cool",
+           "app_elegant", "app_sweet", "app_fierce", "app_natural",
+           "app_kpop", "app_jpop", "app_cpop"]
+FS_KEYS = ["fs_athleisure", "fs_bohemian", "fs_cottagecore", "fs_cyberpunk",
+           "fs_elegant", "fs_gothic", "fs_grunge", "fs_japanese",
+           "fs_korean", "fs_minimalist", "fs_old_money", "fs_preppy",
+           "fs_streetwear", "fs_vintage", "fs_y2k"]
+FB_KEYS = ["fab_cotton", "fab_denim", "fab_lace", "fab_leather",
+           "fab_satin", "fab_sheer", "fab_silk", "fab_wool"]
+CP_KEYS = ["col_black", "col_beige", "col_blue", "col_cool",
+           "col_earthy", "col_green", "col_mono", "col_orange",
+           "col_pastel", "col_pink", "col_purple", "col_red",
+           "col_vibrant", "col_warm", "col_white", "col_yellow"]
+TOP_KEYS = ["top_blouse", "top_button_shirt", "top_camisole", "top_cardigan",
+            "top_crop", "top_hoodie", "top_off_shoulder", "top_polo",
+            "top_sweater", "top_tank", "top_tshirt", "top_turtleneck"]
+BOT_KEYS = ["bot_a_line", "bot_cargo", "bot_jeans", "bot_leggings",
+            "bot_maxi_skirt", "bot_mini_skirt", "bot_pencil_skirt",
+            "bot_pleated_skirt", "bot_shorts", "bot_sweatpants",
+            "bot_trousers", "bot_wide_leg"]
+LO_KEYS = ["loc_studio", "loc_street", "loc_cafe", "loc_beach",
+           "loc_forest", "loc_rooftop", "loc_room", "loc_temple", "loc_garden"]
+TD_KEYS = ["tod_golden", "tod_blue", "tod_noon", "tod_night", "tod_overcast", "tod_sunrise"]
+LT_KEYS = ["lit_natural", "lit_studio", "lit_rim", "lit_neon",
+           "lit_candle", "lit_dramatic", "lit_flat"]
+SN_KEYS = ["season_none", "season_spring", "season_summer",
+           "season_autumn", "season_winter", "season_rainy"]
+PS_KEYS = ["ps_none", "ps_dreamy", "ps_soft", "ps_vivid", "ps_bw",
+           "ps_vintage", "ps_cinematic", "ps_moody", "ps_pastel",
+           "ps_hdr", "ps_matte"]
+SF_KEYS = ["sf_extreme_cu", "sf_closeup", "sf_medium_cu", "sf_medium",
+           "sf_medium_full", "sf_full", "sf_wide"]
+CA_KEYS = ["cam_eye", "cam_low", "cam_high", "cam_3q",
+           "cam_dutch", "cam_over_shoulder", "cam_bird"]
+DOF_KEYS = ["dof_sharp", "dof_portrait", "dof_shallow", "dof_tiltshift", "dof_soft"]
+CMP_KEYS = ["comp_center", "comp_rot_left", "comp_rot_right",
+            "comp_golden", "comp_negative_space", "comp_symmetry"]
+PO_KEYS = ["pose_arms_up", "pose_cross_arms", "pose_back_camera",
+           "pose_blow_kiss", "pose_cross_leg", "pose_crouch",
+           "pose_dynamic", "pose_hand_hair", "pose_hand_chin",
+           "pose_hands_pocket", "pose_heart_hands", "pose_jump",
+           "pose_kneel", "pose_lean", "pose_looking_away",
+           "pose_over_shoulder", "pose_lying", "pose_mini_heart",
+           "pose_run", "pose_s_curve", "pose_sit", "pose_stand",
+           "pose_twirl", "pose_w_sit", "pose_walk", "pose_wink"]
+
+# Widget key → option key list, for the Random Look button.
+# Identity fields (gender, age, ethnicity) are deliberately NOT randomized.
+RANDOM_WIDGETS = {
+    "w_hair": HR_KEYS, "w_hair_color": HC_KEYS, "w_bangs": BN_KEYS,
+    "w_expr": EX_KEYS, "w_body": BT_KEYS, "w_appearance": AP_KEYS,
+    "w_top": TOP_KEYS, "top_fabric_sel": FB_KEYS, "top_color_sel": CP_KEYS,
+    "w_bottom": BOT_KEYS, "bot_fabric_sel": FB_KEYS, "bot_color_sel": CP_KEYS,
+    "w_location": LO_KEYS, "w_tod": TD_KEYS, "w_lighting": LT_KEYS,
+    "w_season": SN_KEYS, "w_pstyle": PS_KEYS, "w_framing": SF_KEYS,
+    "w_angle": CA_KEYS, "w_dof": DOF_KEYS, "w_comp": CMP_KEYS, "w_pose": PO_KEYS,
+}
+
+# Widgets whose stored value is a translated label — must be reset when the
+# UI language changes, otherwise the stale label is no longer a valid option.
+LANG_DEPENDENT_WIDGETS = list(RANDOM_WIDGETS) + ["fashion_multi"]
+
+
+def randomize_look():
+    """Pick a random label for every style widget, then auto-generate."""
+    for widget_key, option_keys in RANDOM_WIDGETS.items():
+        st.session_state[widget_key] = t(random.choice(option_keys))
+    st.session_state["fashion_multi"] = [t(k) for k in random.sample(FS_KEYS, random.randint(0, 2))]
+    st.session_state["force_generate"] = True
+
+
+# ═══════════════════════════════════════════════════════════════════════════
 #  4. CSS
 # ═══════════════════════════════════════════════════════════════════════════
 
@@ -1247,6 +1371,12 @@ def main():
         st.markdown("### Settings")
         lang_choice = st.radio("Language / ภาษา", ["English", "ภาษาไทย"], index=0, horizontal=True)
         st.session_state["lang"] = "en" if lang_choice == "English" else "th"
+        # Widget state stores translated labels — clear it when the language
+        # changes so stale labels can't collide with the new option lists
+        if st.session_state.get("_prev_lang") not in (None, st.session_state["lang"]):
+            for wk in LANG_DEPENDENT_WIDGETS:
+                st.session_state.pop(wk, None)
+        st.session_state["_prev_lang"] = st.session_state["lang"]
         st.divider()
 
         ar_keys = ["ar_1_1", "ar_16_9", "ar_9_16", "ar_4_5",
@@ -1261,8 +1391,13 @@ def main():
         mt_idx = st.selectbox(t("model_type"), mt_labels, index=0)
         mt_selected_key = mt_keys[mt_labels.index(mt_idx)]
 
+        pf_keys = ["platform_universal", "platform_midjourney", "platform_sd"]
+        pf_labels, _ = make_option(pf_keys)
+        pf_sel = st.selectbox(t("target_platform"), pf_labels, index=0)
+        pf_selected_key = pf_keys[pf_labels.index(pf_sel)]
+
         st.divider()
-        st.caption("v4.0 — AI Prompt Generator")
+        st.caption("v4.1 — AI Prompt Generator")
 
     # ── Header ───────────────────────────────────────────────────────────
     st.markdown(f"## {t('app_title')}")
@@ -1298,44 +1433,23 @@ def main():
 
         col4, col5 = st.columns(2)
         with col4:
-            hr_keys = [
-                # Women's hairstyles
-                "hair_long", "hair_straight", "hair_loose_waves",
-                "hair_curly", "hair_wavy", "hair_bob", "hair_lob", "hair_pixie",
-                "hair_ponytail", "hair_high_ponytail", "hair_bun", "hair_messy_bun",
-                "hair_braids", "hair_loose_braid", "hair_twin_braids", "hair_twintails",
-                "hair_half_up", "hair_side_swept",
-                # Men's hairstyles
-                "hair_short", "hair_undercut", "hair_slick_back", "hair_crew_cut",
-                "hair_pompadour", "hair_man_bun", "hair_fade", "hair_bald",
-            ]
-            hr_labels, _ = make_option(hr_keys)
-            hr_sel = st.selectbox(t("hair_style"), hr_labels)
-            hr_key = hr_keys[hr_labels.index(hr_sel)]
+            hr_labels, _ = make_option(HR_KEYS)
+            hr_sel = st.selectbox(t("hair_style"), hr_labels, key="w_hair")
+            hr_key = HR_KEYS[hr_labels.index(hr_sel)]
         with col5:
-            hc_keys = ["hc_black", "hc_dark_brown", "hc_light_brown", "hc_blonde",
-                        "hc_platinum", "hc_red", "hc_ginger", "hc_silver", "hc_white",
-                        "hc_blue", "hc_pink", "hc_purple", "hc_green",
-                        "hc_ombre", "hc_highlights"]
-            hc_labels, _ = make_option(hc_keys)
-            hc_sel = st.selectbox(t("hair_color"), hc_labels)
-            hc_key = hc_keys[hc_labels.index(hc_sel)]
+            hc_labels, _ = make_option(HC_KEYS)
+            hc_sel = st.selectbox(t("hair_color"), hc_labels, key="w_hair_color")
+            hc_key = HC_KEYS[hc_labels.index(hc_sel)]
 
         col_bn, col_ex = st.columns(2)
         with col_bn:
-            bn_keys = ["bangs_none", "bangs_straight", "bangs_side",
-                        "bangs_curtain", "bangs_wispy", "bangs_micro"]
-            bn_labels, _ = make_option(bn_keys)
-            bn_sel = st.selectbox(t("bangs"), bn_labels)
-            bn_key = bn_keys[bn_labels.index(bn_sel)]
+            bn_labels, _ = make_option(BN_KEYS)
+            bn_sel = st.selectbox(t("bangs"), bn_labels, key="w_bangs")
+            bn_key = BN_KEYS[bn_labels.index(bn_sel)]
         with col_ex:
-            ex_keys = ["expr_smile", "expr_laugh", "expr_confident",
-                        "expr_serious", "expr_neutral", "expr_pensive",
-                        "expr_shy", "expr_surprised", "expr_sad", "expr_angry",
-                        "expr_dreamy", "expr_playful", "expr_sultry", "expr_peaceful"]
-            ex_labels, _ = make_option(ex_keys)
-            ex_sel = st.selectbox(t("expression"), ex_labels)
-            ex_key = ex_keys[ex_labels.index(ex_sel)]
+            ex_labels, _ = make_option(EX_KEYS)
+            ex_sel = st.selectbox(t("expression"), ex_labels, key="w_expr")
+            ex_key = EX_KEYS[ex_labels.index(ex_sel)]
 
         col7, _ = st.columns(2)
         with col7:
@@ -1343,73 +1457,49 @@ def main():
 
         col_bt, col_ap = st.columns(2)
         with col_bt:
-            bt_keys = ["bt_slim", "bt_athletic", "bt_curvy", "bt_petite",
-                        "bt_tall", "bt_average"]
-            bt_labels, _ = make_option(bt_keys)
-            bt_sel = st.selectbox(t("body_type"), bt_labels)
-            bt_key = bt_keys[bt_labels.index(bt_sel)]
+            bt_labels, _ = make_option(BT_KEYS)
+            bt_sel = st.selectbox(t("body_type"), bt_labels, key="w_body")
+            bt_key = BT_KEYS[bt_labels.index(bt_sel)]
         with col_ap:
-            ap_keys = ["app_cute", "app_beautiful", "app_handsome", "app_cool",
-                        "app_elegant", "app_sweet", "app_fierce", "app_natural",
-                        "app_kpop", "app_jpop", "app_cpop"]
-            ap_labels, _ = make_option(ap_keys)
-            ap_sel = st.selectbox(t("appearance"), ap_labels)
-            ap_key = ap_keys[ap_labels.index(ap_sel)]
+            ap_labels, _ = make_option(AP_KEYS)
+            ap_sel = st.selectbox(t("appearance"), ap_labels, key="w_appearance")
+            ap_key = AP_KEYS[ap_labels.index(ap_sel)]
 
     # ══════════════════════════════════════════════════════════════════════
     #  EXPANDER 2 — Outfit & Style
     # ══════════════════════════════════════════════════════════════════════
     with st.expander(f"👗  {t('exp_outfit')}", expanded=True):
         # Fashion presets (A-Z)
-        fs_keys = ["fs_athleisure", "fs_bohemian", "fs_cottagecore", "fs_cyberpunk",
-                    "fs_elegant", "fs_gothic", "fs_grunge", "fs_japanese",
-                    "fs_korean", "fs_minimalist", "fs_old_money", "fs_preppy",
-                    "fs_streetwear", "fs_vintage", "fs_y2k"]
-        fs_labels = [t(k) for k in fs_keys]
+        fs_labels = [t(k) for k in FS_KEYS]
         fs_selected_labels = st.multiselect(t("fashion_presets"), fs_labels, default=[],
                                              help=t("fashion_presets_help"), key="fashion_multi")
-        fs_selected_keys = [fs_keys[fs_labels.index(lbl)] for lbl in fs_selected_labels]
+        fs_selected_keys = [FS_KEYS[fs_labels.index(lbl)] for lbl in fs_selected_labels]
 
         st.markdown("---")
-
-        # ── Fabric & Color key lists (shared, A-Z) ──
-        fb_keys = ["fab_cotton", "fab_denim", "fab_lace", "fab_leather",
-                    "fab_satin", "fab_sheer", "fab_silk", "fab_wool"]
-        cp_keys = ["col_black", "col_beige", "col_blue", "col_cool",
-                    "col_earthy", "col_green", "col_mono", "col_orange",
-                    "col_pastel", "col_pink", "col_purple", "col_red",
-                    "col_vibrant", "col_warm", "col_white", "col_yellow"]
 
         # ── Top: garment + fabric + color ──
         col_top, col_bot = st.columns(2)
         with col_top:
-            top_keys = ["top_blouse", "top_button_shirt", "top_camisole", "top_cardigan",
-                         "top_crop", "top_hoodie", "top_off_shoulder", "top_polo",
-                         "top_sweater", "top_tank", "top_tshirt", "top_turtleneck"]
-            top_labels, _ = make_option(top_keys)
-            top_sel = st.selectbox(t("top_garment"), top_labels)
-            top_key = top_keys[top_labels.index(top_sel)]
-            top_fb_labels, _ = make_option(fb_keys)
+            top_labels, _ = make_option(TOP_KEYS)
+            top_sel = st.selectbox(t("top_garment"), top_labels, key="w_top")
+            top_key = TOP_KEYS[top_labels.index(top_sel)]
+            top_fb_labels, _ = make_option(FB_KEYS)
             top_fb_sel = st.selectbox(t("top_fabric"), top_fb_labels, key="top_fabric_sel")
-            top_fb_key = fb_keys[top_fb_labels.index(top_fb_sel)]
-            top_cp_labels, _ = make_option(cp_keys)
+            top_fb_key = FB_KEYS[top_fb_labels.index(top_fb_sel)]
+            top_cp_labels, _ = make_option(CP_KEYS)
             top_cp_sel = st.selectbox(t("top_color"), top_cp_labels, key="top_color_sel")
-            top_cp_key = cp_keys[top_cp_labels.index(top_cp_sel)]
+            top_cp_key = CP_KEYS[top_cp_labels.index(top_cp_sel)]
         # ── Bottom: garment + fabric + color ──
         with col_bot:
-            bot_keys = ["bot_a_line", "bot_cargo", "bot_jeans", "bot_leggings",
-                         "bot_maxi_skirt", "bot_mini_skirt", "bot_pencil_skirt",
-                         "bot_pleated_skirt", "bot_shorts", "bot_sweatpants",
-                         "bot_trousers", "bot_wide_leg"]
-            bot_labels, _ = make_option(bot_keys)
-            bot_sel = st.selectbox(t("bottom_garment"), bot_labels)
-            bot_key = bot_keys[bot_labels.index(bot_sel)]
-            bot_fb_labels, _ = make_option(fb_keys)
+            bot_labels, _ = make_option(BOT_KEYS)
+            bot_sel = st.selectbox(t("bottom_garment"), bot_labels, key="w_bottom")
+            bot_key = BOT_KEYS[bot_labels.index(bot_sel)]
+            bot_fb_labels, _ = make_option(FB_KEYS)
             bot_fb_sel = st.selectbox(t("bot_fabric"), bot_fb_labels, key="bot_fabric_sel")
-            bot_fb_key = fb_keys[bot_fb_labels.index(bot_fb_sel)]
-            bot_cp_labels, _ = make_option(cp_keys)
+            bot_fb_key = FB_KEYS[bot_fb_labels.index(bot_fb_sel)]
+            bot_cp_labels, _ = make_option(CP_KEYS)
             bot_cp_sel = st.selectbox(t("bot_color"), bot_cp_labels, key="bot_color_sel")
-            bot_cp_key = cp_keys[bot_cp_labels.index(bot_cp_sel)]
+            bot_cp_key = CP_KEYS[bot_cp_labels.index(bot_cp_sel)]
 
         st.markdown("---")
         outfit_text = st.text_input(t("outfit_input"), placeholder=t("outfit_placeholder"))
@@ -1474,11 +1564,9 @@ def main():
         place_country = ""
 
         if scene_mode == scene_mode_labels[0]:
-            lo_keys = ["loc_studio", "loc_street", "loc_cafe", "loc_beach",
-                        "loc_forest", "loc_rooftop", "loc_room", "loc_temple", "loc_garden"]
-            lo_labels, _ = make_option(lo_keys)
-            lo_sel = st.selectbox(t("location"), lo_labels)
-            lo_key = lo_keys[lo_labels.index(lo_sel)]
+            lo_labels, _ = make_option(LO_KEYS)
+            lo_sel = st.selectbox(t("location"), lo_labels, key="w_location")
+            lo_key = LO_KEYS[lo_labels.index(lo_sel)]
         elif scene_mode == scene_mode_labels[1]:
             scene_custom_text = st.text_area(t("scene_custom_input"),
                                               placeholder=t("scene_custom_placeholder"),
@@ -1501,74 +1589,51 @@ def main():
         st.markdown("---")
         col10, col11, col_season, col_ps = st.columns(4)
         with col10:
-            td_keys = ["tod_golden", "tod_blue", "tod_noon", "tod_night", "tod_overcast", "tod_sunrise"]
-            td_labels, _ = make_option(td_keys)
-            td_sel = st.selectbox(t("time_of_day"), td_labels)
-            td_key = td_keys[td_labels.index(td_sel)]
+            td_labels, _ = make_option(TD_KEYS)
+            td_sel = st.selectbox(t("time_of_day"), td_labels, key="w_tod")
+            td_key = TD_KEYS[td_labels.index(td_sel)]
         with col11:
-            lt_keys = ["lit_natural", "lit_studio", "lit_rim", "lit_neon",
-                        "lit_candle", "lit_dramatic", "lit_flat"]
-            lt_labels, _ = make_option(lt_keys)
-            lt_sel = st.selectbox(t("lighting"), lt_labels)
-            lt_key = lt_keys[lt_labels.index(lt_sel)]
+            lt_labels, _ = make_option(LT_KEYS)
+            lt_sel = st.selectbox(t("lighting"), lt_labels, key="w_lighting")
+            lt_key = LT_KEYS[lt_labels.index(lt_sel)]
         with col_season:
-            sn_keys = ["season_none", "season_spring", "season_summer",
-                        "season_autumn", "season_winter", "season_rainy"]
-            sn_labels, _ = make_option(sn_keys)
-            sn_sel = st.selectbox(t("season"), sn_labels)
-            sn_key = sn_keys[sn_labels.index(sn_sel)]
+            sn_labels, _ = make_option(SN_KEYS)
+            sn_sel = st.selectbox(t("season"), sn_labels, key="w_season")
+            sn_key = SN_KEYS[sn_labels.index(sn_sel)]
             weather_rain = st.checkbox(t("weather_rain"), key="weather_rain_cb")
             weather_snow = st.checkbox(t("weather_snow"), key="weather_snow_cb")
             weather_leaves = st.checkbox(t("weather_leaves"), key="weather_leaves_cb")
         with col_ps:
-            ps_keys = ["ps_none", "ps_dreamy", "ps_soft", "ps_vivid", "ps_bw",
-                        "ps_vintage", "ps_cinematic", "ps_moody", "ps_pastel",
-                        "ps_hdr", "ps_matte"]
-            ps_labels, _ = make_option(ps_keys)
-            ps_sel = st.selectbox(t("picture_style"), ps_labels)
-            ps_key = ps_keys[ps_labels.index(ps_sel)]
+            ps_labels, _ = make_option(PS_KEYS)
+            ps_sel = st.selectbox(t("picture_style"), ps_labels, key="w_pstyle")
+            ps_key = PS_KEYS[ps_labels.index(ps_sel)]
 
         st.markdown("---")
 
         # ── Shot Framing + Camera Angle + DOF ──
         col12, col13 = st.columns(2)
         with col12:
-            sf_keys = ["sf_extreme_cu", "sf_closeup", "sf_medium_cu", "sf_medium",
-                        "sf_medium_full", "sf_full", "sf_wide"]
-            sf_labels, _ = make_option(sf_keys)
-            sf_sel = st.selectbox(t("shot_framing"), sf_labels, index=1)
-            sf_key = sf_keys[sf_labels.index(sf_sel)]
+            sf_labels, _ = make_option(SF_KEYS)
+            sf_sel = st.selectbox(t("shot_framing"), sf_labels, index=1, key="w_framing")
+            sf_key = SF_KEYS[sf_labels.index(sf_sel)]
         with col13:
-            ca_keys = ["cam_eye", "cam_low", "cam_high", "cam_3q",
-                        "cam_dutch", "cam_over_shoulder", "cam_bird"]
-            ca_labels, _ = make_option(ca_keys)
-            ca_sel = st.selectbox(t("camera_angle"), ca_labels)
-            ca_key = ca_keys[ca_labels.index(ca_sel)]
+            ca_labels, _ = make_option(CA_KEYS)
+            ca_sel = st.selectbox(t("camera_angle"), ca_labels, key="w_angle")
+            ca_key = CA_KEYS[ca_labels.index(ca_sel)]
 
         col14, col15, col16 = st.columns(3)
         with col14:
-            dof_keys = ["dof_sharp", "dof_portrait", "dof_shallow", "dof_tiltshift", "dof_soft"]
-            dof_labels, _ = make_option(dof_keys)
-            dof_sel = st.selectbox(t("dof"), dof_labels, index=1)
-            dof_key = dof_keys[dof_labels.index(dof_sel)]
+            dof_labels, _ = make_option(DOF_KEYS)
+            dof_sel = st.selectbox(t("dof"), dof_labels, index=1, key="w_dof")
+            dof_key = DOF_KEYS[dof_labels.index(dof_sel)]
         with col15:
-            cmp_keys = ["comp_center", "comp_rot_left", "comp_rot_right",
-                         "comp_golden", "comp_negative_space", "comp_symmetry"]
-            cmp_labels, _ = make_option(cmp_keys)
-            cmp_sel = st.selectbox(t("composition"), cmp_labels)
-            cmp_key = cmp_keys[cmp_labels.index(cmp_sel)]
+            cmp_labels, _ = make_option(CMP_KEYS)
+            cmp_sel = st.selectbox(t("composition"), cmp_labels, key="w_comp")
+            cmp_key = CMP_KEYS[cmp_labels.index(cmp_sel)]
         with col16:
-            po_keys = ["pose_arms_up", "pose_cross_arms", "pose_back_camera",
-                        "pose_blow_kiss", "pose_cross_leg", "pose_crouch",
-                        "pose_dynamic", "pose_hand_hair", "pose_hand_chin",
-                        "pose_hands_pocket", "pose_heart_hands", "pose_jump",
-                        "pose_kneel", "pose_lean", "pose_looking_away",
-                        "pose_over_shoulder", "pose_lying", "pose_mini_heart",
-                        "pose_run", "pose_s_curve", "pose_sit", "pose_stand",
-                        "pose_twirl", "pose_w_sit", "pose_walk", "pose_wink"]
-            po_labels, _ = make_option(po_keys)
-            po_sel = st.selectbox(t("pose"), po_labels)
-            po_key = po_keys[po_labels.index(po_sel)]
+            po_labels, _ = make_option(PO_KEYS)
+            po_sel = st.selectbox(t("pose"), po_labels, key="w_pose")
+            po_key = PO_KEYS[po_labels.index(po_sel)]
         look_at_camera = st.checkbox(t("look_camera"))
 
     # ══════════════════════════════════════════════════════════════════════
@@ -1590,9 +1655,14 @@ def main():
     #  6. GENERATE
     # ══════════════════════════════════════════════════════════════════════
     st.markdown("")
-    gen_col, _ = st.columns([1, 2])
+    gen_col, rand_col, _ = st.columns([1, 1, 1])
     with gen_col:
         generate_clicked = st.button(f"🚀  {t('generate_btn')}", type="primary", use_container_width=True)
+    with rand_col:
+        st.button(f"🎲  {t('random_btn')}", on_click=randomize_look, use_container_width=True)
+    # Random Look callback sets new widget values, then requests a generate
+    if st.session_state.pop("force_generate", False):
+        generate_clicked = True
 
     st.markdown("---")
     st.markdown(f"### {t('result_header')}")
@@ -1701,6 +1771,13 @@ def main():
         if attach_scene:
             ref_notes.append(t("ref_note_scene"))
 
+        # Aspect ratio formatted for the target platform
+        ratio = AR_RATIOS[ar_selected_key]
+        if pf_selected_key == "platform_midjourney":
+            ar_val = f"--ar {ratio}"
+        else:
+            ar_val = f"in {ratio} aspect ratio"
+
         # ── Store each section in session_state (using widget keys) ──
         st.session_state["ta_technical"] = technical
         st.session_state["ta_subject"] = subject
@@ -1710,9 +1787,21 @@ def main():
         st.session_state["ta_camera"] = camera_section
         st.session_state["ta_custom"] = custom_eng
         st.session_state["ed_negative"] = negative_eng
-        st.session_state["sec_ar"] = eng(ar_selected_key)
+        st.session_state["sec_ar"] = ar_val
+        st.session_state["sec_platform"] = pf_selected_key
         st.session_state["ref_notes"] = ref_notes
         st.session_state["prompt_generated"] = True
+
+        # ── Prompt history (last 10 generated prompts) ──
+        history_parts = [technical, subject, outfit, pose, environment, camera_section]
+        if custom_eng.strip():
+            history_parts.append(custom_eng)
+        history_parts.append(ar_val)
+        history_entry = ", ".join(p.strip() for p in history_parts if p.strip())
+        history = st.session_state.get("prompt_history", [])
+        if not history or history[0] != history_entry:
+            history.insert(0, history_entry)
+        st.session_state["prompt_history"] = history[:10]
 
     # ── Display: Editable Sections ────────────────────────────────────────
     if st.session_state.get("prompt_generated"):
@@ -1757,16 +1846,22 @@ def main():
 
         # ── Combine all sections into final prompt ──
         ar_val = st.session_state.get("sec_ar", "")
+        platform_key = st.session_state.get("sec_platform", "platform_universal")
+        ed_neg = st.session_state.get("ed_negative", "").strip()
         all_parts = [ed_tech, ed_subj, ed_outfit, ed_pose, ed_env, ed_cam]
         if ed_custom.strip():
             all_parts.append(ed_custom)
         if ar_val:
             all_parts.append(ar_val)
         combined_prompt = ", ".join(s.strip() for s in all_parts if s.strip())
+        # Midjourney takes the negative prompt inline via --no
+        if platform_key == "platform_midjourney" and ed_neg:
+            combined_prompt += f" --no {ed_neg}"
 
         st.markdown("---")
         st.markdown(f"### 📋 {t('section_final')}")
         st.code(combined_prompt, language=None)
+        st.caption(f"{len(combined_prompt)} {t('chars_label')} · {len(combined_prompt.split())} {t('words_label')}")
 
         # Copy button — use components.html so JS actually executes
         # Use json.dumps for proper JS string escaping (html.escape breaks apostrophes in <script>)
@@ -1809,11 +1904,18 @@ def main():
         }}
         </script></body></html>
         """
-        components.html(copy_html, height=60)
+        copy_col, dl_col = st.columns([1, 1])
+        with copy_col:
+            components.html(copy_html, height=60)
+        with dl_col:
+            dl_text = combined_prompt
+            if ed_neg and platform_key != "platform_midjourney":
+                dl_text += f"\n\nNegative prompt:\n{ed_neg}"
+            st.download_button(f"💾 {t('download_btn')}", dl_text,
+                               file_name="prompt.txt", mime="text/plain")
 
-        # Negative prompt
-        ed_neg = st.session_state.get("ed_negative", "")
-        if ed_neg:
+        # Negative prompt (already embedded via --no for Midjourney)
+        if ed_neg and platform_key != "platform_midjourney":
             st.markdown("")
             st.markdown(f"**{t('section_negative')}:**")
             st.code(ed_neg, language=None)
@@ -1828,6 +1930,14 @@ def main():
                 st.markdown(f"- {note}")
     else:
         st.info(t("no_prompt_yet"))
+
+    # ── Prompt history ────────────────────────────────────────────────────
+    history = st.session_state.get("prompt_history", [])
+    if history:
+        st.markdown("---")
+        with st.expander(f"🕘 {t('history_header')}", expanded=False):
+            for item in history:
+                st.code(item, language=None)
 
 
 if __name__ == "__main__":

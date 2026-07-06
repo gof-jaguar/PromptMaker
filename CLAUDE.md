@@ -14,21 +14,22 @@ Deployed on Streamlit Cloud — pushing to `main` on GitHub auto-deploys to http
 
 ## Architecture
 
-Single-file Streamlit app (`app.py`, ~1835 lines) structured in 6 sequential sections:
+Single-file Streamlit app (`app.py`, ~1945 lines) structured in sequential sections:
 
-1. **TRANSLATIONS** — Bilingual dictionary (EN/TH) with 387 keys. Every UI string goes through `t(key)` helper.
+1. **TRANSLATIONS** — Bilingual dictionary (EN/TH) with 396 keys. Every UI string goes through `t(key)` helper.
 2. **ENGLISH_VALUES** — Maps option keys to English prompt text for AI output (e.g. `"hair_long"` → `"long flowing hair"`). Dropdown/selectbox options that affect the generated prompt need entries here.
 3. **HELPERS** — `t()` for translation, `eng()` for prompt values, `make_option()` for selectbox pairs, `translate_to_english()` for Thai→English with a mini dictionary.
+3.5. **OPTION KEY LISTS + RANDOMIZER** — Module-level `*_KEYS` constants (single source of truth for every selectbox's option keys), `AR_RATIOS` (raw ratio strings per aspect key), `RANDOM_WIDGETS` (widget key → option list map), and `randomize_look()` callback.
 4. **CSS** — Injected via `st.markdown(unsafe_allow_html=True)`. Responsive breakpoints at 768px (mobile) and 1400px (desktop). Uses Noto Sans Thai font.
-5. **MAIN UI** — 4 expanders (Subject, Outfit, Scene, Advanced) + sidebar (language, aspect ratio, model type).
-6. **GENERATE + OUTPUT** — Builds 7 prompt sections, stores in `st.session_state` with `ta_*` keys for editable text areas, combines into final prompt.
+5. **MAIN UI** — 4 expanders (Subject, Outfit, Scene, Advanced) + sidebar (language, aspect ratio, model type, target platform).
+6. **GENERATE + OUTPUT** — Builds 7 prompt sections, stores in `st.session_state` with `ta_*` keys for editable text areas, combines into final prompt. Also records each generated prompt into `st.session_state["prompt_history"]` (last 10, shown in an expander at the bottom).
 
 ## Key Patterns
 
 **Adding a new dropdown/selectbox option** (e.g. a new hair style):
 1. Add key to `TRANSLATIONS["en"]` and `TRANSLATIONS["th"]`
 2. Add English prompt text to `ENGLISH_VALUES`
-3. Add key to the relevant `*_keys` list in the UI section
+3. Add key to the relevant module-level `*_KEYS` constant (e.g. `HR_KEYS`) — the UI and the Random Look button both read from these
 4. If it affects prompt generation, update the corresponding section in the generate block
 
 **Adding a new checkbox option** (e.g. a new accessory or weather effect):
@@ -63,6 +64,16 @@ Single-file Streamlit app (`app.py`, ~1835 lines) structured in 6 sequential sec
 
 **Look-at-camera checkbox:** Independent of pose — appends `"looking directly at the camera with engaging eye contact"` to any selected pose. Located below the pose selectbox.
 
+**Target AI Platform (sidebar):** Universal (Gemini · Imagen) / Midjourney / Stable Diffusion. Controls output formatting at generate time: Midjourney gets `--ar {ratio}` and the negative prompt is appended inline as `--no {negative}` (no separate negative block shown); other platforms get plain-English `in {ratio} aspect ratio` and the negative prompt shown separately. Raw ratios live in `AR_RATIOS`.
+
+**Random Look button (🎲):** Next to Generate. Its `on_click=randomize_look` callback assigns a random translated label to every style widget key in `RANDOM_WIDGETS` (identity fields — gender, age, ethnicity — are deliberately not randomized), picks 0–2 random fashion presets, and sets `force_generate=True` so the prompt is generated in the same rerun.
+
+**Language-switch state clearing:** Keyed selectboxes store the *translated label* in session state. When the language radio changes, all keys in `LANG_DEPENDENT_WIDGETS` are popped so stale labels can't collide with the new option lists (this resets those widgets to defaults, same as pre-keyed behavior).
+
+**Prompt history:** Each Generate prepends the combined prompt to `st.session_state["prompt_history"]` (consecutive duplicates skipped, capped at 10). Rendered in a `🕘` expander at the bottom via `st.code` (which has a built-in copy icon).
+
+**Download button:** `st.download_button` next to the copy button saves the combined prompt (plus negative prompt for non-Midjourney platforms) as `prompt.txt`. A character/word count caption is shown under the final prompt.
+
 **Copy button:** Uses `streamlit.components.v1.html()` (not `st.markdown`) because Streamlit strips JS event handlers from markdown. Uses `navigator.clipboard.writeText()` with `execCommand('copy')` fallback. Prompt text is escaped via `json.dumps()` for proper JS string escaping inside `<script>` tags (not `html.escape()`, which breaks apostrophes in values like "bird's eye view").
 
 **Sorting convention:** All selectbox/multiselect option lists are sorted A-Z by their English label. This applies to: fashion presets, top garments, bottom garments, fabric, color palette, poses, and appearance options.
@@ -78,7 +89,7 @@ The generate block builds these sections (in order), each stored as an editable 
 6. **Camera & Lighting** — lighting style + shot framing + camera angle + DOF + composition + picture style
 7. **Custom** — free-text additions
 
-Plus aspect ratio appended at the end and negative prompt shown separately.
+Plus aspect ratio appended at the end (formatted per target platform) and negative prompt shown separately (or embedded via `--no` for Midjourney).
 
 ## Bilingual Conventions
 
