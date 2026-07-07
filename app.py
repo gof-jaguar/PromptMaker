@@ -111,6 +111,10 @@ TRANSLATIONS = {
         "ns_duo": "Duo (2 people)",
         "ns_trio": "Trio (3 people)",
         "ns_group": "Group (5 people)",
+        "person_2": "Person 2 — distinct look",
+        "person_3": "Person 3 — distinct look",
+        "multi_person_hint": "💡 Give each person a different hairstyle, hair color and expression below so the AI can tell them apart.",
+        "group_hint": "💡 Group shots describe the central person in detail; the others are prompted to have naturally varied looks.",
         # Makeup styles (None first, then A-Z)
         "makeup": "Makeup Style",
         "mu_none": "— None —",
@@ -260,23 +264,35 @@ TRANSLATIONS = {
         "outfit_clash_hint": "💡 A fashion style is selected — leave Top/Bottom on “None” to let the style define the outfit, or clear the style to build your own.",
         # Fashion presets (A-Z)
         "fs_athleisure": "Athleisure / Sporty",
+        "fs_barbiecore": "Barbiecore / All Pink",
         "fs_bohemian": "Bohemian / Boho",
         "fs_office": "Business Casual / Office",
         "fs_casual": "Casual / Everyday",
+        "fs_clean_girl": "Clean Girl",
         "fs_coquette": "Coquette / Balletcore",
         "fs_cottagecore": "Cottagecore / Pastoral",
         "fs_cyberpunk": "Cyberpunk / Techwear",
+        "fs_dark_academia": "Dark Academia",
+        "fs_egirl": "E-girl / E-boy",
         "fs_elegant": "Elegant / Formal",
+        "fs_gorpcore": "Gorpcore / Outdoor",
         "fs_gothic": "Gothic / Dark",
         "fs_grunge": "Grunge / 90s",
         "fs_japanese": "Japanese Harajuku",
         "fs_korean": "Korean Fashion (K-Style)",
+        "fs_light_academia": "Light Academia",
         "fs_minimalist": "Minimalist / Clean",
+        "fs_mob_wife": "Mob Wife / Fur Glam",
         "fs_old_money": "Old Money / Quiet Luxury",
+        "fs_parisian": "Parisian Chic",
         "fs_preppy": "Preppy / Academic",
         "fs_resort": "Resort / Vacation",
+        "fs_rockstar": "Rockstar / Band",
+        "fs_skater": "Skater",
         "fs_streetwear": "Streetwear / Urban",
+        "fs_thai": "Thai Traditional",
         "fs_vintage": "Vintage / Retro",
+        "fs_western": "Western / Cowboy",
         "fs_y2k": "Y2K / 2000s Revival",
         # Top garments (A-Z)
         "top_garment": "Top",
@@ -353,20 +369,32 @@ TRANSLATIONS = {
         "bot_color": "Bottom Color",
         "col_none": "— Not specified —",
         "col_black": "All Black",
+        "col_baby_blue": "Baby Blue",
         "col_beige": "Beige & Nude",
         "col_blue": "Blue",
+        "col_brown": "Brown & Chocolate",
         "col_burgundy": "Burgundy & Wine",
+        "col_colorblock": "Colorblock (bold mix)",
         "col_cool": "Cool Tones (blue, teal, silver)",
+        "col_coral": "Coral",
         "col_earthy": "Earthy & Brown",
+        "col_gold": "Gold Metallic",
         "col_green": "Green",
+        "col_hot_pink": "Hot Pink",
+        "col_khaki": "Khaki & Olive",
+        "col_lilac": "Lilac",
+        "col_mint": "Mint Green",
         "col_mono": "Monochrome",
         "col_navy": "Navy",
         "col_orange": "Orange",
         "col_pastel": "Pastel",
+        "col_peach": "Peach",
         "col_pink": "Pink",
         "col_purple": "Purple & Lavender",
         "col_red": "Red",
         "col_sage": "Sage Green",
+        "col_silver": "Silver Metallic",
+        "col_teal": "Teal",
         "col_vibrant": "Vibrant & Neon",
         "col_warm": "Warm Tones (red, orange, gold)",
         "col_white": "White & Cream",
@@ -491,6 +519,14 @@ TRANSLATIONS = {
         "lit_candle": "Candlelight / Warm",
         "lit_dramatic": "Dramatic Chiaroscuro",
         "lit_flash": "Direct Flash (Trendy)",
+        "lit_backlit": "Golden Backlight / Halo",
+        "lit_dappled": "Dappled Light (through leaves)",
+        "lit_blinds": "Window Blinds Shadows",
+        "lit_gel": "Color Gel (red/blue duotone)",
+        "lit_spotlight": "Stage Spotlight",
+        "lit_moonlight": "Moonlight",
+        "lit_bonfire": "Campfire Glow",
+        "lit_godrays": "Volumetric God Rays",
 
         # ── Picture Style ──
         "picture_style": "Picture Style / Filter",
@@ -505,6 +541,16 @@ TRANSLATIONS = {
         "ps_pastel": "Pastel / Light Airy",
         "ps_hdr": "HDR / High Contrast",
         "ps_matte": "Matte Film Look",
+        "ps_commercial": "Clean Commercial",
+        "ps_editorial": "Editorial Magazine",
+        "ps_documentary": "Documentary / Street",
+        "ps_polaroid": "Polaroid Instant",
+        "ps_digicam": "Y2K Digicam Flash",
+        "ps_fantasy": "Ethereal Fantasy",
+        "ps_fairytale": "Dark Fairytale",
+        "ps_cyber": "Cyberpunk Neon",
+        "ps_vaporwave": "Vaporwave / Retrowave",
+        "ps_surreal": "Dreamcore Surreal",
 
         # ── Shot Framing (NEW) ──
         "shot_framing": "Shot Framing",
@@ -562,6 +608,8 @@ TRANSLATIONS = {
 
         # ── Pose ── (sorted A-Z)
         "pose": "Action / Pose",
+        "pose_fix_jacket": "Adjusting Jacket / Collar",
+        "pose_adjust_glasses": "Adjusting Sunglasses",
         "pose_arms_up": "Arms Above Head",
         "pose_cross_arms": "Arms Crossed",
         "pose_arms_open": "Arms Open Wide",
@@ -575,10 +623,13 @@ TRANSLATIONS = {
         "pose_dynamic": "Dynamic / Action Pose",
         "pose_editorial": "Editorial Model Pose",
         "pose_elegant": "Elegant Graceful Pose",
+        "pose_finger_heart": "Finger Heart (Korean)",
+        "pose_hair_flip": "Hair Flip",
         "pose_hand_hair": "Hand in Hair",
         "pose_hand_chin": "Hand on Chin",
         "pose_hand_hip": "Hand on Hip",
         "pose_hands_back": "Hands Behind Back",
+        "pose_arms_behind_head": "Hands Behind Head",
         "pose_cheek_hands": "Hands Framing Face",
         "pose_hands_pocket": "Hands in Pockets",
         "pose_head_tilt": "Head Tilt (Cute)",
@@ -588,24 +639,34 @@ TRANSLATIONS = {
         "pose_jump": "Jumping",
         "pose_kneel": "Kneeling",
         "pose_lean": "Leaning Against Wall",
+        "pose_railing": "Leaning on Railing",
         "pose_lean_forward": "Leaning Toward Camera",
         "pose_looking_away": "Looking Away",
+        "pose_look_back_walk": "Looking Back While Walking",
         "pose_over_shoulder": "Looking Over Shoulder",
         "pose_look_up": "Looking Up (Dreamy)",
         "pose_lying": "Lying Down",
         "pose_mini_heart": "Mini Heart",
+        "pose_mirror_selfie": "Mirror Selfie",
         "pose_peace": "Peace Sign",
+        "pose_peek_fingers": "Peeking Through Fingers",
+        "pose_reach_camera": "Reaching Toward Camera",
         "pose_run": "Running",
         "pose_runway": "Runway Walk",
         "pose_s_curve": "S-Curve Standing",
+        "pose_shield_sun": "Shielding Eyes from Sun",
         "pose_sit": "Sitting",
         "pose_sit_stairs": "Sitting on Stairs",
+        "pose_legs_extended": "Sitting, Legs Extended",
         "pose_stand": "Standing",
+        "pose_squat": "Streetwear Squat",
         "pose_stretch": "Stretching Gracefully",
+        "pose_hold_hat": "Touching Hat Brim",
         "pose_hair_tuck": "Tucking Hair Behind Ear",
         "pose_twirl": "Twirling",
         "pose_w_sit": "W-Sitting",
         "pose_walk": "Walking",
+        "pose_walk_away": "Walking Away (Candid)",
         "pose_wink": "Winking",
         "look_camera": "Looking at camera",
 
@@ -720,6 +781,10 @@ TRANSLATIONS = {
         "ns_duo": "คู่ (2 คน)",
         "ns_trio": "3 คน",
         "ns_group": "กลุ่ม (5 คน)",
+        "person_2": "คนที่ 2 — ลุคเฉพาะตัว",
+        "person_3": "คนที่ 3 — ลุคเฉพาะตัว",
+        "multi_person_hint": "💡 เลือกทรงผม สีผม และสีหน้าให้แต่ละคนต่างกันด้านล่าง เพื่อให้ AI แยกแต่ละคนออกจากกันได้",
+        "group_hint": "💡 พรอมต์แบบกลุ่มจะบรรยายคนตรงกลางอย่างละเอียด ส่วนคนอื่นๆ จะถูกสั่งให้มีลุคหลากหลายตามธรรมชาติ",
         # Makeup styles (None first, then A-Z)
         "makeup": "สไตล์เมคอัพ",
         "mu_none": "— ไม่ระบุ —",
@@ -869,23 +934,35 @@ TRANSLATIONS = {
         "outfit_clash_hint": "💡 เลือกสไตล์แฟชั่นแล้ว — แนะนำให้ปล่อยเสื้อ/ท่อนล่างเป็น “ไม่ระบุ” เพื่อให้สไตล์กำหนดชุดเอง หรือล้างสไตล์ออกแล้วจัดชุดเองก็ได้",
         # Fashion presets (A-Z)
         "fs_athleisure": "แอธเลเชอร์ / สปอร์ต",
+        "fs_barbiecore": "บาร์บี้คอร์ / ชมพูทั้งลุค",
         "fs_bohemian": "โบฮีเมียน / โบโฮ",
         "fs_office": "ออฟฟิศ / ทางการกึ่งลำลอง",
         "fs_casual": "แคชชวล / ลุคทุกวัน",
+        "fs_clean_girl": "คลีนเกิร์ล",
         "fs_coquette": "โคเค็ตต์ / บัลเล่ต์คอร์",
         "fs_cottagecore": "คอตเทจคอร์ / ชนบท",
         "fs_cyberpunk": "ไซเบอร์พังก์ / เทคแวร์",
+        "fs_dark_academia": "ดาร์กอะคาเดเมีย",
+        "fs_egirl": "อีเกิร์ล / อีบอย",
         "fs_elegant": "เอเลแกนท์ / ทางการ",
+        "fs_gorpcore": "กอร์ปคอร์ / สายเอาท์ดอร์",
         "fs_gothic": "โกธิค / ดาร์ค",
         "fs_grunge": "กรันจ์ / ยุค 90",
         "fs_japanese": "ฮาราจูกุ ญี่ปุ่น",
         "fs_korean": "แฟชั่นเกาหลี (K-Style)",
+        "fs_light_academia": "ไลท์อะคาเดเมีย",
         "fs_minimalist": "มินิมอล / สะอาดตา",
+        "fs_mob_wife": "ม็อบไวฟ์ / เฟอร์หรู",
         "fs_old_money": "Old Money / หรูเงียบๆ",
+        "fs_parisian": "ปารีเซียงชิค",
         "fs_preppy": "เพรปปี้ / นักเรียนอินเตอร์",
         "fs_resort": "รีสอร์ต / วันหยุดพักร้อน",
+        "fs_rockstar": "ร็อคสตาร์ / สายวงดนตรี",
+        "fs_skater": "สเก็ตเตอร์",
         "fs_streetwear": "สตรีทแวร์ / อเบอร์แบน",
+        "fs_thai": "ชุดไทยประยุกต์",
         "fs_vintage": "วินเทจ / เรโทร",
+        "fs_western": "เวสเทิร์น / คาวบอย",
         "fs_y2k": "Y2K / ยุค 2000",
         # Top garments (A-Z)
         "top_garment": "เสื้อ",
@@ -962,20 +1039,32 @@ TRANSLATIONS = {
         "bot_color": "สีท่อนล่าง",
         "col_none": "— ไม่ระบุ —",
         "col_black": "ดำล้วน",
+        "col_baby_blue": "ฟ้าอ่อน",
         "col_beige": "เบจและนู้ด",
         "col_blue": "น้ำเงิน",
+        "col_brown": "น้ำตาลช็อกโกแลต",
         "col_burgundy": "เบอร์กันดีและแดงไวน์",
+        "col_colorblock": "คัลเลอร์บล็อก (สีตัดกัน)",
         "col_cool": "โทนเย็น (น้ำเงิน, เขียวอมฟ้า, เงิน)",
+        "col_coral": "ส้มปะการัง",
         "col_earthy": "โทนดินและน้ำตาล",
+        "col_gold": "ทองเมทัลลิก",
         "col_green": "เขียว",
+        "col_hot_pink": "ชมพูช็อกกิ้งพิงก์",
+        "col_khaki": "กากีและเขียวมะกอก",
+        "col_lilac": "ม่วงไลแลค",
+        "col_mint": "เขียวมิ้นต์",
         "col_mono": "โมโนโครม",
         "col_navy": "กรมท่า",
         "col_orange": "ส้ม",
         "col_pastel": "พาสเทล",
+        "col_peach": "พีช",
         "col_pink": "ชมพู",
         "col_purple": "ม่วงและลาเวนเดอร์",
         "col_red": "แดง",
         "col_sage": "เขียวเสจ",
+        "col_silver": "เงินเมทัลลิก",
+        "col_teal": "เขียวนกเป็ดน้ำ (Teal)",
         "col_vibrant": "สดใสและนีออน",
         "col_warm": "โทนอุ่น (แดง, ส้ม, ทอง)",
         "col_white": "ขาวและครีม",
@@ -1100,6 +1189,14 @@ TRANSLATIONS = {
         "lit_candle": "แสงเทียน / อบอุ่น",
         "lit_dramatic": "ดราม่า เคียโรสกูโร",
         "lit_flash": "แฟลชตรง (สไตล์เทรนดี้)",
+        "lit_backlit": "ย้อนแสงทอง / ฮาโล",
+        "lit_dappled": "แสงลอดใบไม้",
+        "lit_blinds": "เงามู่ลี่พาดผ่าน",
+        "lit_gel": "ไฟเจลสี (แดง/น้ำเงิน)",
+        "lit_spotlight": "สปอตไลท์เวที",
+        "lit_moonlight": "แสงจันทร์",
+        "lit_bonfire": "แสงกองไฟ",
+        "lit_godrays": "ลำแสงทะลุเมฆ (God Rays)",
 
         # ── Picture Style ──
         "picture_style": "สไตล์ภาพ / ฟิลเตอร์",
@@ -1114,6 +1211,16 @@ TRANSLATIONS = {
         "ps_pastel": "พาสเทล / โปร่งเบา",
         "ps_hdr": "HDR / คอนทราสต์สูง",
         "ps_matte": "แมตต์ / ฟิล์มลุค",
+        "ps_commercial": "คอมเมอร์เชียลสว่างสะอาด",
+        "ps_editorial": "เอดิทอเรียลนิตยสาร",
+        "ps_documentary": "สารคดี / สตรีท",
+        "ps_polaroid": "โพลารอยด์",
+        "ps_digicam": "กล้องดิจิตอล Y2K (แฟลชแรง)",
+        "ps_fantasy": "แฟนตาซีเรืองแสง",
+        "ps_fairytale": "เทพนิยายด้านมืด",
+        "ps_cyber": "ไซเบอร์พังก์นีออน",
+        "ps_vaporwave": "เวเปอร์เวฟ / เรโทรเวฟ",
+        "ps_surreal": "ดรีมคอร์เหนือจริง",
 
         # ── Shot Framing ──
         "shot_framing": "ระยะภาพ / เฟรมมิ่ง",
@@ -1171,6 +1278,8 @@ TRANSLATIONS = {
 
         # ── Pose ── (sorted A-Z)
         "pose": "ท่าโพส / แอคชั่น",
+        "pose_fix_jacket": "จัดปกเสื้อ / แจ็คเก็ต",
+        "pose_adjust_glasses": "จัดแว่นกันแดด",
         "pose_arms_up": "ยกแขนเหนือศีรษะ",
         "pose_cross_arms": "กอดอก",
         "pose_arms_open": "กางแขนกว้าง",
@@ -1184,10 +1293,13 @@ TRANSLATIONS = {
         "pose_dynamic": "ท่าไดนามิก / แอคชั่น",
         "pose_editorial": "ท่าแบบนิตยสารแฟชั่น",
         "pose_elegant": "ท่าสง่างาม",
+        "pose_finger_heart": "ฟิงเกอร์ฮาร์ท (เกาหลี)",
+        "pose_hair_flip": "สะบัดผม",
         "pose_hand_hair": "มือจับผม",
         "pose_hand_chin": "มือจับคาง",
         "pose_hand_hip": "มือเท้าเอวข้างเดียว",
         "pose_hands_back": "มือไขว้หลัง",
+        "pose_arms_behind_head": "มือประสานหลังศีรษะ",
         "pose_cheek_hands": "มือเท้าแก้ม",
         "pose_hands_pocket": "มือในกระเป๋า",
         "pose_head_tilt": "เอียงหัวน่ารัก",
@@ -1197,24 +1309,34 @@ TRANSLATIONS = {
         "pose_jump": "กระโดด",
         "pose_kneel": "คุกเข่า",
         "pose_lean": "พิงกำแพง",
+        "pose_railing": "พิงราวระเบียง",
         "pose_lean_forward": "โน้มตัวเข้าหากล้อง",
         "pose_looking_away": "มองไปทางอื่น",
+        "pose_look_back_walk": "เดินแล้วหันกลับมามอง",
         "pose_over_shoulder": "เหลียวมองข้ามไหล่",
         "pose_look_up": "แหงนมองขึ้น (ชวนฝัน)",
         "pose_lying": "นอน",
         "pose_mini_heart": "มินิฮาร์ท",
+        "pose_mirror_selfie": "เซลฟี่หน้ากระจก",
         "pose_peace": "ชูสองนิ้ว",
+        "pose_peek_fingers": "แอบมองผ่านนิ้ว",
+        "pose_reach_camera": "ยื่นมือเข้าหากล้อง (Follow Me)",
         "pose_run": "วิ่ง",
         "pose_runway": "เดินแบบรันเวย์",
         "pose_s_curve": "ยืนโพสตัว S",
+        "pose_shield_sun": "ยกมือบังแดด",
         "pose_sit": "นั่ง",
         "pose_sit_stairs": "นั่งบนบันได",
+        "pose_legs_extended": "นั่งเหยียดขา",
         "pose_stand": "ยืน",
+        "pose_squat": "นั่งยองสไตล์สตรีท",
         "pose_stretch": "ท่ายืดตัวสวยงาม",
+        "pose_hold_hat": "จับปีกหมวก",
         "pose_hair_tuck": "เกี่ยวผมหลังหู",
         "pose_twirl": "หมุนตัว",
         "pose_w_sit": "นั่งขารูป W",
         "pose_walk": "เดิน",
+        "pose_walk_away": "เดินหันหลัง (แคนดิด)",
         "pose_wink": "วิ้งก์ตา",
         "look_camera": "หันมองกล้อง",
 
@@ -1377,6 +1499,18 @@ ENGLISH_VALUES = {
     "fs_coquette": "coquette balletcore fashion with ribbons, bows and soft feminine details",
     "fs_office": "polished business casual office fashion",
     "fs_resort": "breezy resort vacation fashion with light summer fabrics",
+    "fs_barbiecore": "Barbiecore fashion in head-to-toe pink with playful glamour",
+    "fs_clean_girl": "clean girl aesthetic with slicked-back hair, minimal gold jewelry and effortless basics",
+    "fs_dark_academia": "dark academia fashion with tweed blazer, turtleneck and vintage scholarly details",
+    "fs_egirl": "e-girl alternative fashion with layered chains, striped sleeves and bold eyeliner",
+    "fs_gorpcore": "gorpcore outdoor fashion with technical fleece, puffer vest and hiking details",
+    "fs_light_academia": "light academia fashion in cream and beige with soft scholarly elegance",
+    "fs_mob_wife": "mob wife aesthetic with faux fur coat, gold jewelry and bold sunglasses",
+    "fs_parisian": "effortless Parisian chic with breton stripes, trench coat and timeless elegance",
+    "fs_rockstar": "rockstar fashion with leather jacket, band tee and studded details",
+    "fs_skater": "skater style with baggy pants, graphic tee and skate shoes",
+    "fs_thai": "elegant Thai traditional dress with silk fabric and gold accents",
+    "fs_western": "western cowboy fashion with denim, boots and fringe details",
     # Fabric
     "fab_none": "",
     "fab_cotton": "cotton fabric", "fab_silk": "silk fabric",
@@ -1440,6 +1574,18 @@ ENGLISH_VALUES = {
     "col_burgundy": "burgundy and wine color tones",
     "col_navy": "navy blue color tones",
     "col_sage": "sage green color tones",
+    "col_baby_blue": "soft baby blue color tones",
+    "col_brown": "brown and chocolate color tones",
+    "col_colorblock": "a bold colorblock combination of contrasting colors",
+    "col_coral": "coral color tones",
+    "col_gold": "shimmering gold metallic tones",
+    "col_hot_pink": "vibrant hot pink color tones",
+    "col_khaki": "khaki and olive green color tones",
+    "col_lilac": "soft lilac color tones",
+    "col_mint": "fresh mint green color tones",
+    "col_peach": "soft peach color tones",
+    "col_silver": "shimmering silver metallic tones",
+    "col_teal": "deep teal color tones",
     # Accessories — Head
     "acc_beanie": "wearing a beanie",
     "acc_beret": "wearing a beret",
@@ -1534,6 +1680,14 @@ ENGLISH_VALUES = {
     "lit_candle": "warm candlelight illumination",
     "lit_dramatic": "dramatic chiaroscuro lighting with deep shadows",
     "lit_flash": "direct on-camera flash photography look",
+    "lit_backlit": "golden backlighting creating a glowing halo around the subject",
+    "lit_dappled": "dappled sunlight filtering through leaves",
+    "lit_blinds": "dramatic shadow stripes from window blinds falling across the scene",
+    "lit_gel": "cinematic red and blue color gel lighting in duotone",
+    "lit_spotlight": "a single dramatic stage spotlight from above",
+    "lit_moonlight": "soft cool moonlight illumination",
+    "lit_bonfire": "warm flickering campfire glow",
+    "lit_godrays": "volumetric god rays streaming through the atmosphere",
     # Picture Style
     "ps_none": "", "ps_dreamy": "dreamy ethereal atmosphere with soft glow and hazy light",
     "ps_soft": "soft gentle tones with smooth gradients and muted colors",
@@ -1545,6 +1699,16 @@ ENGLISH_VALUES = {
     "ps_pastel": "pastel light airy color palette with soft delicate hues",
     "ps_hdr": "HDR high dynamic range with vivid detail in highlights and shadows",
     "ps_matte": "matte film finish with reduced contrast and desaturated highlights",
+    "ps_commercial": "clean bright commercial photography style with crisp neutral tones",
+    "ps_editorial": "high-end editorial magazine aesthetic with refined color grading",
+    "ps_documentary": "authentic documentary street photography style capturing natural imperfect moments",
+    "ps_polaroid": "instant polaroid photo look with soft faded colors",
+    "ps_digicam": "early-2000s digicam aesthetic with harsh flash and slight overexposure",
+    "ps_fantasy": "ethereal fantasy atmosphere with magical glowing particles and soft iridescent light",
+    "ps_fairytale": "dark fairytale mood with mysterious enchanted atmosphere",
+    "ps_cyber": "cyberpunk aesthetic with saturated neon glow and futuristic haze",
+    "ps_vaporwave": "vaporwave retrowave aesthetic with pink-purple gradients and 80s glow",
+    "ps_surreal": "surreal dreamcore atmosphere with an uncanny dreamlike quality",
     # Shot Framing
     "sf_extreme_cu": "extreme close-up of face only",
     "sf_closeup": "close-up portrait shot showing head and shoulders",
@@ -1620,6 +1784,21 @@ ENGLISH_VALUES = {
     "pose_w_sit": "sitting in a W-sit position with legs folded to the sides",
     "pose_walk": "walking naturally",
     "pose_wink": "winking playfully at the camera",
+    "pose_fix_jacket": "adjusting jacket collar with a confident look",
+    "pose_adjust_glasses": "stylishly adjusting sunglasses",
+    "pose_finger_heart": "making a cute Korean finger heart gesture",
+    "pose_hair_flip": "flipping hair dramatically in motion",
+    "pose_arms_behind_head": "with hands clasped behind head, relaxed",
+    "pose_railing": "leaning casually on a railing",
+    "pose_look_back_walk": "walking away and glancing back over shoulder at the camera",
+    "pose_mirror_selfie": "taking a mirror selfie with a smartphone",
+    "pose_peek_fingers": "peeking playfully through fingers held near the eyes",
+    "pose_reach_camera": "reaching one hand out toward the camera, follow-me style",
+    "pose_shield_sun": "raising one hand to shield eyes from the sun",
+    "pose_legs_extended": "sitting on the ground with legs extended, leaning back on hands",
+    "pose_squat": "posing in a low streetwear squat",
+    "pose_hold_hat": "touching the brim of a hat stylishly",
+    "pose_walk_away": "walking away from the camera candidly",
     "pose_arms_open": "with arms open wide in a joyful welcoming gesture",
     "pose_candid": "captured candidly in natural unposed movement",
     "pose_chin_up": "with chin tilted up in a confident poised stance",
@@ -1775,18 +1954,24 @@ AP_KEYS = ["app_beautiful", "app_cpop", "app_charming", "app_chic",
            "app_jpop", "app_kpop", "app_natural", "app_sweet", "app_youthful"]
 MU_KEYS = ["mu_none", "mu_red_lip", "mu_douyin", "mu_glam", "mu_gradient",
            "mu_dewy", "mu_natural", "mu_no_makeup", "mu_smoky", "mu_soft_matte"]
-FS_KEYS = ["fs_athleisure", "fs_bohemian", "fs_office", "fs_casual",
-           "fs_coquette", "fs_cottagecore", "fs_cyberpunk",
-           "fs_elegant", "fs_gothic", "fs_grunge", "fs_japanese",
-           "fs_korean", "fs_minimalist", "fs_old_money", "fs_preppy",
-           "fs_resort", "fs_streetwear", "fs_vintage", "fs_y2k"]
+FS_KEYS = ["fs_athleisure", "fs_barbiecore", "fs_bohemian", "fs_office",
+           "fs_casual", "fs_clean_girl", "fs_coquette", "fs_cottagecore",
+           "fs_cyberpunk", "fs_dark_academia", "fs_egirl", "fs_elegant",
+           "fs_gorpcore", "fs_gothic", "fs_grunge", "fs_japanese",
+           "fs_korean", "fs_light_academia", "fs_minimalist", "fs_mob_wife",
+           "fs_old_money", "fs_parisian", "fs_preppy", "fs_resort",
+           "fs_rockstar", "fs_skater", "fs_streetwear", "fs_thai",
+           "fs_vintage", "fs_western", "fs_y2k"]
 FB_KEYS = ["fab_none", "fab_chiffon", "fab_cotton", "fab_denim", "fab_lace",
            "fab_leather", "fab_linen", "fab_satin", "fab_sheer",
            "fab_silk", "fab_tweed", "fab_velvet", "fab_wool"]
-CP_KEYS = ["col_none", "col_black", "col_beige", "col_blue", "col_burgundy", "col_cool",
-           "col_earthy", "col_green", "col_mono", "col_navy", "col_orange",
-           "col_pastel", "col_pink", "col_purple", "col_red", "col_sage",
-           "col_vibrant", "col_warm", "col_white", "col_yellow"]
+CP_KEYS = ["col_none", "col_black", "col_baby_blue", "col_beige", "col_blue",
+           "col_brown", "col_burgundy", "col_colorblock", "col_cool",
+           "col_coral", "col_earthy", "col_gold", "col_green", "col_hot_pink",
+           "col_khaki", "col_lilac", "col_mint", "col_mono", "col_navy",
+           "col_orange", "col_pastel", "col_peach", "col_pink", "col_purple",
+           "col_red", "col_sage", "col_silver", "col_teal", "col_vibrant",
+           "col_warm", "col_white", "col_yellow"]
 TOP_KEYS = ["top_none", "top_blazer", "top_blouse", "top_button_shirt", "top_camisole",
             "top_cardigan", "top_corset", "top_crop", "top_denim_jacket",
             "top_halter", "top_hoodie", "top_off_shoulder", "top_puff_sleeve",
@@ -1811,12 +1996,16 @@ LO_KEYS = ["loc_studio", "loc_airport", "loc_amusement", "loc_aquarium",
            "loc_waterfall"]
 TD_KEYS = ["tod_golden", "tod_blue", "tod_noon", "tod_night", "tod_overcast", "tod_sunrise"]
 LT_KEYS = ["lit_natural", "lit_window", "lit_studio", "lit_rim",
-           "lit_neon", "lit_fairy", "lit_candle", "lit_dramatic", "lit_flash"]
+           "lit_neon", "lit_fairy", "lit_candle", "lit_dramatic", "lit_flash",
+           "lit_backlit", "lit_dappled", "lit_blinds", "lit_gel",
+           "lit_spotlight", "lit_moonlight", "lit_bonfire", "lit_godrays"]
 SN_KEYS = ["season_none", "season_spring", "season_summer",
            "season_autumn", "season_winter", "season_rainy"]
 PS_KEYS = ["ps_none", "ps_dreamy", "ps_soft", "ps_vivid", "ps_bw",
            "ps_vintage", "ps_cinematic", "ps_moody", "ps_pastel",
-           "ps_hdr", "ps_matte"]
+           "ps_hdr", "ps_matte", "ps_commercial", "ps_editorial",
+           "ps_documentary", "ps_polaroid", "ps_digicam", "ps_fantasy",
+           "ps_fairytale", "ps_cyber", "ps_vaporwave", "ps_surreal"]
 SF_KEYS = ["sf_extreme_cu", "sf_closeup", "sf_medium_cu", "sf_medium",
            "sf_cowboy", "sf_medium_full", "sf_full", "sf_wide"]
 CA_KEYS = ["cam_eye", "cam_low", "cam_worm", "cam_ground", "cam_high",
@@ -1829,21 +2018,26 @@ CMP_KEYS = ["comp_center", "comp_rot_left", "comp_rot_right",
             "comp_golden", "comp_leading", "comp_framed",
             "comp_negative_space", "comp_symmetry", "comp_diagonal",
             "comp_fill", "comp_reflection", "comp_depth"]
-PO_KEYS = ["pose_arms_up", "pose_cross_arms", "pose_arms_open",
-           "pose_back_camera", "pose_blow_kiss", "pose_candid",
-           "pose_chin_up", "pose_cross_leg", "pose_crouch",
-           "pose_dance", "pose_dynamic", "pose_editorial",
-           "pose_elegant", "pose_hand_hair", "pose_hand_chin",
-           "pose_hand_hip", "pose_hands_back", "pose_cheek_hands",
+PO_KEYS = ["pose_fix_jacket", "pose_adjust_glasses", "pose_arms_up",
+           "pose_cross_arms", "pose_arms_open", "pose_back_camera",
+           "pose_blow_kiss", "pose_candid", "pose_chin_up",
+           "pose_cross_leg", "pose_crouch", "pose_dance",
+           "pose_dynamic", "pose_editorial", "pose_elegant",
+           "pose_finger_heart", "pose_hair_flip", "pose_hand_hair",
+           "pose_hand_chin", "pose_hand_hip", "pose_hands_back",
+           "pose_arms_behind_head", "pose_cheek_hands",
            "pose_hands_pocket", "pose_head_tilt", "pose_heart_hands",
            "pose_high_fashion", "pose_hug_knees", "pose_jump",
-           "pose_kneel", "pose_lean", "pose_lean_forward",
-           "pose_looking_away", "pose_over_shoulder", "pose_look_up",
-           "pose_lying", "pose_mini_heart", "pose_peace",
-           "pose_run", "pose_runway", "pose_s_curve", "pose_sit",
-           "pose_sit_stairs", "pose_stand", "pose_stretch",
+           "pose_kneel", "pose_lean", "pose_railing", "pose_lean_forward",
+           "pose_looking_away", "pose_look_back_walk",
+           "pose_over_shoulder", "pose_look_up", "pose_lying",
+           "pose_mini_heart", "pose_mirror_selfie", "pose_peace",
+           "pose_peek_fingers", "pose_reach_camera", "pose_run",
+           "pose_runway", "pose_s_curve", "pose_shield_sun", "pose_sit",
+           "pose_sit_stairs", "pose_legs_extended", "pose_stand",
+           "pose_squat", "pose_stretch", "pose_hold_hat",
            "pose_hair_tuck", "pose_twirl", "pose_w_sit",
-           "pose_walk", "pose_wink"]
+           "pose_walk", "pose_walk_away", "pose_wink"]
 
 # Widget key → option key list, for the Random Look button.
 # Identity fields (gender, age, ethnicity) are deliberately NOT randomized.
@@ -1873,7 +2067,12 @@ LANG_DEPENDENT_WIDGETS = list(RANDOM_WIDGETS) + [
     "fashion_multi", "w_gender", "w_age", "w_eth", "w_hair",
     "w_top", "top_fabric_sel", "top_color_sel",
     "w_bottom", "bot_fabric_sel", "bot_color_sel", "w_shoes",
+    "w_hair_p2", "w_hair_color_p2", "w_expr_p2",
+    "w_hair_p3", "w_hair_color_p3", "w_expr_p3",
 ]
+
+# Per-person hairstyle widgets — all depend on the gender's hair pool
+HAIR_WIDGET_KEYS = ("w_hair", "w_hair_p2", "w_hair_p3")
 
 # Widget key → option key list, for saving/loading a look as JSON.
 # Presets store option KEYS (language-independent), not translated labels.
@@ -1885,6 +2084,8 @@ PRESET_WIDGETS = {
     "w_top": TOP_KEYS, "top_fabric_sel": FB_KEYS, "top_color_sel": CP_KEYS,
     "w_bottom": BOT_KEYS, "bot_fabric_sel": FB_KEYS, "bot_color_sel": CP_KEYS,
     "w_shoes": SH_KEYS,
+    "w_hair_p2": HR_KEYS, "w_hair_color_p2": HC_KEYS, "w_expr_p2": EX_KEYS,
+    "w_hair_p3": HR_KEYS, "w_hair_color_p3": HC_KEYS, "w_expr_p3": EX_KEYS,
     "w_location": LO_KEYS, "w_tod": TD_KEYS, "w_lighting": LT_KEYS,
     "w_season": SN_KEYS, "w_pstyle": PS_KEYS, "w_framing": SF_KEYS,
     "w_angle": CA_KEYS, "w_dof": DOF_KEYS, "w_comp": CMP_KEYS, "w_pose": PO_KEYS,
@@ -1892,8 +2093,9 @@ PRESET_WIDGETS = {
 
 
 def reset_hair_on_gender_change():
-    """The hairstyle option list depends on gender — drop the stale selection."""
-    st.session_state.pop("w_hair", None)
+    """The hairstyle option lists depend on gender — drop stale selections."""
+    for wk in HAIR_WIDGET_KEYS:
+        st.session_state.pop(wk, None)
 
 
 def randomize_look():
@@ -1909,6 +2111,11 @@ def randomize_look():
     else:
         hair_pool = HR_KEYS_WOMEN
     st.session_state["w_hair"] = t(random.choice(hair_pool))
+    # Extra persons (only visible for duo/trio) get distinct random looks too
+    for suffix in ("_p2", "_p3"):
+        st.session_state[f"w_hair{suffix}"] = t(random.choice(hair_pool))
+        st.session_state[f"w_hair_color{suffix}"] = t(random.choice(HC_KEYS))
+        st.session_state[f"w_expr{suffix}"] = t(random.choice(EX_KEYS))
     # Outfit: either a fashion style OR explicit garments, never both
     if random.random() < 0.5:
         st.session_state["fashion_multi"] = [t(k) for k in random.sample(FS_KEYS, random.randint(1, 2))]
@@ -1957,13 +2164,13 @@ def apply_look_preset():
         val = data.get(widget_key)
         if not isinstance(val, str) or val not in option_keys:
             continue
-        # Hairstyle must exist in the pool of the (possibly new) gender
-        if widget_key == "w_hair":
+        # Hairstyles must exist in the pool of the (possibly new) gender
+        if widget_key in HAIR_WIDGET_KEYS:
             gd_label = st.session_state.get("w_gender", t("gender_female"))
             pool = HR_KEYS_MEN if gd_label == t("gender_male") else (
                 HR_KEYS if gd_label == t("gender_nb") else HR_KEYS_WOMEN)
             if val not in pool:
-                st.session_state.pop("w_hair", None)
+                st.session_state.pop(widget_key, None)
                 continue
         st.session_state[widget_key] = t(val)
     fs = data.get("fashion_multi", [])
@@ -2079,7 +2286,7 @@ def main():
             mj_seed = st.text_input(t("mj_seed"), value="")
 
         st.divider()
-        st.caption("v5.2 — AI Prompt Generator")
+        st.caption("v5.3 — AI Prompt Generator")
 
     # ── Header ───────────────────────────────────────────────────────────
     st.markdown(
@@ -2142,6 +2349,40 @@ def main():
             ns_labels, _ = make_option(NS_KEYS)
             ns_sel = st.selectbox(t("num_subjects"), ns_labels)
             ns_key = NS_KEYS[ns_labels.index(ns_sel)]
+
+        # Per-person looks so a duo/trio doesn't come out as identical clones.
+        # Person 1 uses the main selectors above; each extra person gets their
+        # own hair / hair color / expression (different defaults on purpose).
+        extra_person_keys = []
+        if ns_key in ("ns_duo", "ns_trio"):
+            st.caption(t("multi_person_hint"))
+            for pi in range(2, 3 if ns_key == "ns_duo" else 4):
+                st.markdown(f"**{t(f'person_{pi}')}**")
+                pc1, pc2, pc3 = st.columns(3)
+                with pc1:
+                    p_hr_labels, _ = make_option(hr_options)
+                    p_hr_sel = st.selectbox(
+                        t("hair_style"), p_hr_labels,
+                        index=min(3 * (pi - 1), len(hr_options) - 1),
+                        key=f"w_hair_p{pi}")
+                    p_hr_key = hr_options[p_hr_labels.index(p_hr_sel)]
+                with pc2:
+                    p_hc_labels, _ = make_option(HC_KEYS)
+                    p_hc_sel = st.selectbox(
+                        t("hair_color"), p_hc_labels,
+                        index=min(6 * (pi - 1), len(HC_KEYS) - 1),
+                        key=f"w_hair_color_p{pi}")
+                    p_hc_key = HC_KEYS[p_hc_labels.index(p_hc_sel)]
+                with pc3:
+                    p_ex_labels, _ = make_option(EX_KEYS)
+                    p_ex_sel = st.selectbox(
+                        t("expression"), p_ex_labels,
+                        index=min(1 + 9 * (pi - 2), len(EX_KEYS) - 1),
+                        key=f"w_expr_p{pi}")
+                    p_ex_key = EX_KEYS[p_ex_labels.index(p_ex_sel)]
+                extra_person_keys.append((p_hr_key, p_hc_key, p_ex_key))
+        elif ns_key == "ns_group":
+            st.caption(t("group_hint"))
 
         col7, _ = st.columns(2)
         with col7:
@@ -2430,11 +2671,22 @@ def main():
                        f"{eng(bt_key)}, {eng(ap_key)}, "
                        f"with {eng(hr_key)}, {eng(hc_key)}{bangs_part}, "
                        f"and {eng(ex_key)}{makeup_part}")
-        else:
-            shared_with = "both with" if ns_key == "ns_duo" else "all with"
+        elif ns_key in ("ns_duo", "ns_trio"):
+            # Distinct per-person descriptions so the AI can tell them apart
+            ordinals = ["second", "third"]
+            person_descs = [f"the first with {eng(hr_key)}, {eng(hc_key)}{bangs_part}, "
+                            f"and {eng(ex_key)}{makeup_part}"]
+            for i, (p_hr, p_hc, p_ex) in enumerate(extra_person_keys):
+                person_descs.append(f"the {ordinals[i]} with {eng(p_hr)}, "
+                                    f"{eng(p_hc)}, and {eng(p_ex)}")
             subject = (f"{eng(ns_key)} {eng(ag_key)} {eng(et_key)} {eng(gd_key)}s, "
                        f"{eng(bt_key)}, {eng(ap_key)}, "
-                       f"{shared_with} {eng(hr_key)}, {eng(hc_key)}{bangs_part}, "
+                       + "; ".join(person_descs))
+        else:  # group — detail the central person, vary the rest
+            subject = (f"{eng(ns_key)} {eng(ag_key)} {eng(et_key)} {eng(gd_key)}s, "
+                       f"{eng(bt_key)}, {eng(ap_key)}, "
+                       f"each person with a clearly distinct hairstyle, outfit variation and expression, "
+                       f"the central person with {eng(hr_key)}, {eng(hc_key)}{bangs_part}, "
                        f"and {eng(ex_key)}{makeup_part}")
         if skin_check:
             subject += ", with ultra-realistic skin texture showing pores and fine details"

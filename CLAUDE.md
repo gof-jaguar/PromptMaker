@@ -14,9 +14,9 @@ Deployed on Streamlit Cloud — pushing to `main` on GitHub auto-deploys to http
 
 ## Architecture
 
-Single-file Streamlit app (`app.py`, ~2710 lines) structured in sequential sections:
+Single-file Streamlit app (`app.py`, ~2960 lines) structured in sequential sections:
 
-1. **TRANSLATIONS** — Bilingual dictionary (EN/TH) with 563 keys. Every UI string goes through `t(key)` helper.
+1. **TRANSLATIONS** — Bilingual dictionary (EN/TH) with 624 keys. Every UI string goes through `t(key)` helper.
 2. **ENGLISH_VALUES** — Maps option keys to English prompt text for AI output (e.g. `"hair_long"` → `"long flowing hair"`). Dropdown/selectbox options that affect the generated prompt need entries here.
 3. **HELPERS** — `t()` for translation, `eng()` for prompt values, `make_option()` for selectbox pairs, `translate_to_english()` for Thai→English with a mini dictionary.
 3.5. **OPTION KEY LISTS + RANDOMIZER** — Module-level `*_KEYS` constants (single source of truth for every selectbox's option keys, including `MT_KEYS` model types, `LENS_KEYS`, `GD_KEYS`/`AG_KEYS`/`ET_KEYS` identity lists, `MU_KEYS` makeup, `NS_KEYS` people count, `SH_KEYS` footwear), `PHOTO_MODEL_KEYS` (photographic model types that get the lens spec), `AR_RATIOS` (raw ratio strings per aspect key), `RANDOM_WIDGETS` (widget key → option list map), `SCENE_RANDOM_WIDGETS` (scene/camera subset), `PRESET_WIDGETS` (save/load field map), and the `randomize_look()`, `randomize_scene()`, `apply_look_preset()`, `reset_hair_on_gender_change()` callbacks.
@@ -50,7 +50,9 @@ Single-file Streamlit app (`app.py`, ~2710 lines) structured in sequential secti
 
 **Makeup style (10, Subject expander):** `MU_KEYS`, None-first; K-beauty options (dewy glow, gradient lips), Douyin C-beauty, glam, smoky, red lip, no-makeup look. Appended to the subject section after the expression.
 
-**Number of People (Subject expander):** `NS_KEYS` — solo (default, "a {…}"), duo/trio/group phrasing (`two/three/a group of five {…} {gender}s, … both/all with {hair}…`). Ignored when the subject reference photo checkbox is on. Deliberately not randomized.
+**Number of People (Subject expander):** `NS_KEYS` — solo (default, "a {…}"), duo/trio/group. Ignored when the subject reference photo checkbox is on. Deliberately not randomized.
+
+**Per-person looks (duo/trio):** When duo or trio is selected, extra "Person 2/3" rows render with their own hair / hair color / expression selectboxes (keys `w_hair_p2`, `w_hair_color_p2`, `w_expr_p2`, `_p3` variants; staggered default indexes so people differ out of the box). Person 1 uses the main subject selectors. The prompt reads `two {…} {gender}s, {body}, {vibe}, the first with …; the second with …`. Group (5) instead details the central person and instructs "each person with a clearly distinct hairstyle, outfit variation and expression". `HAIR_WIDGET_KEYS` lists all hairstyle widgets — gender changes and preset loads validate/reset each against the gender's hair pool; Random Look also randomizes the p2/p3 widgets.
 
 **Footwear (11, Outfit expander):** `SH_KEYS`, None-first, A-Z. Appended to the outfit section after the garments. Random Look picks footwear only in its garment-led branch.
 
@@ -60,7 +62,11 @@ Single-file Streamlit app (`app.py`, ~2710 lines) structured in sequential secti
 
 **Weather effects:** Three checkboxes (rain, snow, autumn leaves) under the Season selector. These append weather text to the environment section during prompt generation.
 
-**Picture style:** Dropdown in the Scene & Lighting expander with styles like dreamy, cinematic, B&W, etc. Appended to the camera/lighting section in the generated prompt.
+**Lighting (17):** Realistic (natural, window, studio, rim, flash, backlight halo, dappled leaves, window-blinds shadows, moonlight, campfire) and stylized (neon, fairy lights, candlelight, chiaroscuro, red/blue color gel, stage spotlight, volumetric god rays).
+
+**Picture style (21):** Realistic looks (clean commercial, editorial magazine, documentary/street, polaroid, Y2K digicam, HDR, matte, vintage film, B&W) and imaginative looks (dreamy, ethereal fantasy, dark fairytale, cyberpunk neon, vaporwave/retrowave, dreamcore surreal, moody, pastel, cinematic grade). Appended to the camera/lighting section in the generated prompt.
+
+**Fashion styles (31) and colors (32):** Fashion presets include trend aesthetics (Barbiecore, Clean Girl, Dark/Light Academia, E-girl, Gorpcore, Mob Wife, Parisian Chic, Rockstar, Skater, Western, Thai Traditional). The color palette (col_none first, then A-Z) covers metallics (gold, silver), trend shades (hot pink, lilac, mint, peach, coral, baby blue, teal, khaki, brown) and a colorblock option.
 
 **Outfit top/bottom garments with independent fabric & color:** Two columns (Top and Bottom) each with their own garment selector, fabric selector, and color selector. Garments default to a "None (let fashion style decide)" first option (`top_none`/`bot_none`, empty `ENGLISH_VALUES`) so fashion presets alone can define the outfit without clashing; fabric & color selectboxes are only rendered when a garment is chosen, and fabric/color also have "Not specified" first options (`fab_none`/`col_none`). If both a fashion preset and an explicit garment are set, a hint caption (`outfit_clash_hint`) warns about possible clashes. In the generate block, each non-None garment gets its own fabric and color description (each part omitted when unset): `wearing a crop top made of silk fabric in white and cream color tones, wearing jeans made of denim in blue color tones`.
 
@@ -74,7 +80,7 @@ Single-file Streamlit app (`app.py`, ~2710 lines) structured in sequential secti
 
 **Appearance / Vibe options (16, A-Z):** Includes general looks (cute, beautiful, cool, charming, chic, doll-like, girl-next-door, youthful, etc.) plus idol-specific looks: K-pop Idol, J-pop Idol, and C-pop Star, each with tailored prompt descriptions for skin, makeup, and feature characteristics.
 
-**Poses (45 total, A-Z sorted):** Standard poses, idol/cute poses (heart hands, mini heart, peace sign, hands framing face, hugging knees, winking, etc.), and model/editorial poses: runway walk, high-fashion stance, editorial model pose, elegant graceful pose, hand on hip, chin up, head tilt, candid motion, dancing, stretching, sitting on stairs, leaning toward camera, looking up.
+**Poses (60 total, A-Z sorted):** Standard poses, idol/cute poses (heart hands, mini heart, finger heart, peace sign, winking, etc.), model/editorial poses (runway walk, high-fashion stance, editorial pose, hand on hip, chin up), and social-media/Instagram poses: mirror selfie, hair flip, looking back while walking, walking away candid, shielding eyes from sun, leaning on railing, streetwear squat, peeking through fingers, reaching toward camera, adjusting sunglasses/jacket, touching hat brim, sitting with legs extended, hands behind head.
 
 **Locations (34, `loc_studio` first then A-Z):** Includes airport, aquarium, art gallery, bridge, castle, desert, European old town, grand staircase, gym, lakeside pier, luxury hotel lobby, mountain viewpoint, neon alley, rice field, snowy landscape, subway, university campus, waterfall alongside the original 16.
 
