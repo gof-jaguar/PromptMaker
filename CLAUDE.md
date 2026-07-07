@@ -14,12 +14,12 @@ Deployed on Streamlit Cloud — pushing to `main` on GitHub auto-deploys to http
 
 ## Architecture
 
-Single-file Streamlit app (`app.py`, ~1945 lines) structured in sequential sections:
+Single-file Streamlit app (`app.py`, ~2210 lines) structured in sequential sections:
 
-1. **TRANSLATIONS** — Bilingual dictionary (EN/TH) with 396 keys. Every UI string goes through `t(key)` helper.
+1. **TRANSLATIONS** — Bilingual dictionary (EN/TH) with 471 keys. Every UI string goes through `t(key)` helper.
 2. **ENGLISH_VALUES** — Maps option keys to English prompt text for AI output (e.g. `"hair_long"` → `"long flowing hair"`). Dropdown/selectbox options that affect the generated prompt need entries here.
 3. **HELPERS** — `t()` for translation, `eng()` for prompt values, `make_option()` for selectbox pairs, `translate_to_english()` for Thai→English with a mini dictionary.
-3.5. **OPTION KEY LISTS + RANDOMIZER** — Module-level `*_KEYS` constants (single source of truth for every selectbox's option keys), `AR_RATIOS` (raw ratio strings per aspect key), `RANDOM_WIDGETS` (widget key → option list map), and `randomize_look()` callback.
+3.5. **OPTION KEY LISTS + RANDOMIZER** — Module-level `*_KEYS` constants (single source of truth for every selectbox's option keys, including `MT_KEYS` for model types), `PHOTO_MODEL_KEYS` (photographic model types that get the "shot on 35mm lens" spec), `AR_RATIOS` (raw ratio strings per aspect key), `RANDOM_WIDGETS` (widget key → option list map), and `randomize_look()` callback.
 4. **CSS** — Injected via `st.markdown(unsafe_allow_html=True)`. Responsive breakpoints at 768px (mobile) and 1400px (desktop). Uses Noto Sans Thai font.
 5. **MAIN UI** — 4 expanders (Subject, Outfit, Scene, Advanced) + sidebar (language, aspect ratio, model type, target platform).
 6. **GENERATE + OUTPUT** — Builds 7 prompt sections, stores in `st.session_state` with `ta_*` keys for editable text areas, combines into final prompt. Also records each generated prompt into `st.session_state["prompt_history"]` (last 10, shown in an expander at the bottom).
@@ -44,7 +44,9 @@ Single-file Streamlit app (`app.py`, ~1945 lines) structured in sequential secti
 
 **Thai text handling:** `translate_to_english()` detects Thai characters (Unicode `\u0e00`–`\u0e7f`), applies a ~50-entry mini dictionary for common fashion/location terms, and wraps any remaining Thai in parentheses.
 
-**Reference photos:** No file upload — checkboxes toggle prompt instructions like "matching the provided reference photo exactly" and show reminder notes in the output.
+**Reference photos:** No file upload — checkboxes toggle prompt instructions (e.g. "the exact same person as in the attached reference photo, preserving their facial identity and features precisely") and show reminder notes in the output. Three checkboxes: subject (face/person), outfit, scene.
+
+**Model types (9, sidebar):** Realistic Photography, Cinematic Film Still, Analog Film Photo, Fashion Editorial, Anime, Digital Painting, Watercolor, Comic/Manga, 3D Render. Only the four photographic types (in `PHOTO_MODEL_KEYS`) get the "shot on 35mm lens" spec appended to the Technical section.
 
 **Scene location modes:** Three radio options — preset list, free-text description, or real place/travel (landmark + city + country fields). The real place mode builds location strings like `"at Eiffel Tower, Paris, France"`.
 
@@ -54,13 +56,17 @@ Single-file Streamlit app (`app.py`, ~1945 lines) structured in sequential secti
 
 **Outfit top/bottom garments with independent fabric & color:** Two columns (Top and Bottom) each with their own garment selector, fabric selector, and color selector. In the generate block, each garment gets its own fabric and color description: `wearing a crop top made of silk fabric in white and cream color tones, wearing jeans made of denim in blue color tones`.
 
-**Hair styles grouping:** Hair styles are ordered women's first (18 styles), then men's (8 styles) in both TRANSLATIONS and the UI `hr_keys` list. Comments in the code mark the grouping boundaries.
+**Hair styles grouping:** Hair styles are ordered women's first (23 styles, incl. trendy cuts: wolf cut, hush cut, hime cut, layered, space buns, french braid), then men's (10 styles, incl. buzz cut, Korean middle part, textured crop) in both TRANSLATIONS and `HR_KEYS`. Comments in the code mark the grouping boundaries.
 
-**Bangs selectbox:** Independent of hairstyle — users can combine any hairstyle with any bangs type (none, straight, side, curtain, wispy, micro). In the generate block, bangs text is inserted between hair color and expression: `with {hair}, {color}, {bangs}, and {expression}`. When "None" is selected, the bangs part is omitted entirely.
+**Hair colors (19):** Ordered dark→light→fashion colors, incl. popular shades: blue black, ash brown, milk tea brown, honey blonde, burgundy/cherry, rose gold.
 
-**Appearance / Vibe options:** Includes general looks (cute, beautiful, cool, etc.) plus idol-specific looks: K-pop Idol, J-pop Idol, and C-pop Star, each with tailored prompt descriptions for skin, makeup, and feature characteristics.
+**Bangs selectbox:** Independent of hairstyle — users can combine any hairstyle with any bangs type (none, straight, see-through, side, curtain, wispy, micro, hime sidelocks). In the generate block, bangs text is inserted between hair color and expression: `with {hair}, {color}, {bangs}, and {expression}`. When "None" is selected, the bangs part is omitted entirely.
 
-**Poses (26 total, A-Z sorted):** Includes standard poses plus idol/cute poses: heart hands, mini heart, S-curve standing, W-sitting, cross-legged sitting, blowing a kiss, kneeling, winking.
+**Expressions (19):** Ordered cheerful→neutral→moody, incl. charming/cute options: bright beaming smile, giggling, soft gaze, doe eyes, cute pout, smirk.
+
+**Appearance / Vibe options (16, A-Z):** Includes general looks (cute, beautiful, cool, charming, chic, doll-like, girl-next-door, youthful, etc.) plus idol-specific looks: K-pop Idol, J-pop Idol, and C-pop Star, each with tailored prompt descriptions for skin, makeup, and feature characteristics.
+
+**Poses (31 total, A-Z sorted):** Includes standard poses plus idol/cute poses: heart hands, mini heart, peace sign, hands framing face, hands behind back, hugging knees, tucking hair behind ear, S-curve standing, W-sitting, cross-legged sitting, blowing a kiss, kneeling, winking.
 
 **Look-at-camera checkbox:** Independent of pose — appends `"looking directly at the camera with engaging eye contact"` to any selected pose. Located below the pose selectbox.
 
@@ -81,7 +87,7 @@ Single-file Streamlit app (`app.py`, ~1945 lines) structured in sequential secti
 ## Prompt Generation Sections
 
 The generate block builds these sections (in order), each stored as an editable `st.text_area`:
-1. **Technical** — model type + quality tags
+1. **Technical** — model type + "shot on 35mm lens" (photographic model types only) + quality tags
 2. **Subject** — gender, age, ethnicity, body type, appearance, hair, hair color, bangs, expression
 3. **Outfit** — fashion presets + top garment (with fabric & color) + bottom garment (with fabric & color) + free text + accessories
 4. **Pose** — selected pose + optional look-at-camera

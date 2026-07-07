@@ -2,7 +2,7 @@
 =============================================================================
  Advanced AI Image Prompt Generator — Bilingual (Thai / English)
  Responsive design: iPhone · Android · iPad · Mac · PC
- v4.0 — Body Type, Appearance/Vibe, Editable Prompt Sections
+ v5.0 — More styles: model types, hair, expressions, outfits, scenes, poses
 =============================================================================
  Run    : streamlit run app.py
 =============================================================================
@@ -61,7 +61,13 @@ TRANSLATIONS = {
 
         # Model Type
         "model_realistic": "Realistic Photography",
+        "model_cinematic": "Cinematic Film Still",
+        "model_film": "Analog Film Photo",
+        "model_fashion": "Fashion Editorial",
         "model_anime": "Anime / Illustration",
+        "model_digital_painting": "Digital Painting",
+        "model_watercolor": "Watercolor Painting",
+        "model_comic": "Comic / Manga",
         "model_3d": "3D Render / CGI",
 
         # ── Subject ──
@@ -98,6 +104,10 @@ TRANSLATIONS = {
         "hair_loose_waves": "Loose Waves",
         "hair_curly": "Curly",
         "hair_wavy": "Wavy",
+        "hair_layered": "Layered",
+        "hair_wolf_cut": "Wolf Cut",
+        "hair_hush_cut": "Hush Cut",
+        "hair_hime": "Hime Cut",
         "hair_bob": "Bob Cut",
         "hair_lob": "Long Bob / Lob",
         "hair_pixie": "Pixie Cut",
@@ -105,82 +115,103 @@ TRANSLATIONS = {
         "hair_high_ponytail": "High Ponytail",
         "hair_bun": "Bun",
         "hair_messy_bun": "Messy Bun",
+        "hair_space_buns": "Space Buns",
         "hair_braids": "Braids",
-        "hair_loose_braid": "Loose Braid",
+        "hair_french_braid": "French Braid",
         "hair_twin_braids": "Twin Braids",
         "hair_twintails": "Twin Tails",
         "hair_half_up": "Half Up Half Down",
         "hair_side_swept": "Side Swept",
         # Men's hairstyles
         "hair_short": "Short",
-        "hair_undercut": "Undercut",
-        "hair_slick_back": "Slicked Back",
+        "hair_buzz": "Buzz Cut",
         "hair_crew_cut": "Crew Cut",
-        "hair_pompadour": "Pompadour",
-        "hair_man_bun": "Man Bun",
+        "hair_middle_part": "Middle Part (Comma)",
+        "hair_textured_crop": "Textured Crop",
+        "hair_undercut": "Undercut",
         "hair_fade": "Fade",
+        "hair_slick_back": "Slicked Back",
+        "hair_man_bun": "Man Bun",
         "hair_bald": "Bald / Shaved",
         "hair_color": "Hair Color",
         "hc_black": "Black",
+        "hc_blue_black": "Blue Black",
         "hc_dark_brown": "Dark Brown",
+        "hc_ash_brown": "Ash Brown",
+        "hc_milk_tea": "Milk Tea Brown",
         "hc_light_brown": "Light Brown",
+        "hc_honey_blonde": "Honey Blonde",
         "hc_blonde": "Blonde",
         "hc_platinum": "Platinum Blonde",
         "hc_red": "Red / Auburn",
-        "hc_ginger": "Ginger",
-        "hc_silver": "Silver / Gray",
-        "hc_white": "White",
-        "hc_blue": "Blue",
+        "hc_burgundy": "Burgundy / Cherry Red",
+        "hc_rose_gold": "Rose Gold",
         "hc_pink": "Pink",
         "hc_purple": "Purple / Lavender",
-        "hc_green": "Green",
+        "hc_blue": "Blue",
+        "hc_silver": "Silver / Gray",
+        "hc_white": "White",
         "hc_ombre": "Ombre (dark to light)",
         "hc_highlights": "Highlights / Streaks",
         "bangs": "Bangs",
         "bangs_none": "None",
         "bangs_straight": "Straight Bangs",
+        "bangs_see_through": "See-through Bangs",
         "bangs_side": "Side Bangs",
         "bangs_curtain": "Curtain Bangs",
         "bangs_wispy": "Wispy Bangs",
         "bangs_micro": "Micro Bangs",
+        "bangs_hime": "Hime Sidelocks",
         "expression": "Facial Expression",
         "expr_smile": "Gentle Smile",
+        "expr_bright_smile": "Bright Beaming Smile",
         "expr_laugh": "Laughing",
+        "expr_giggle": "Giggling",
+        "expr_soft_gaze": "Soft Gentle Gaze",
+        "expr_doe_eyes": "Innocent Doe Eyes",
+        "expr_pout": "Cute Pout",
+        "expr_playful": "Playful",
+        "expr_shy": "Shy / Bashful",
         "expr_confident": "Confident",
-        "expr_serious": "Serious / Stoic",
+        "expr_smirk": "Smirk",
+        "expr_dreamy": "Dreamy",
+        "expr_peaceful": "Peaceful / Serene",
         "expr_neutral": "Neutral",
         "expr_pensive": "Pensive / Thoughtful",
-        "expr_shy": "Shy / Bashful",
+        "expr_serious": "Serious / Stoic",
         "expr_surprised": "Surprised",
         "expr_sad": "Sad / Melancholic",
-        "expr_angry": "Angry / Fierce",
-        "expr_dreamy": "Dreamy",
-        "expr_playful": "Playful",
         "expr_sultry": "Sultry",
-        "expr_peaceful": "Peaceful / Serene",
 
         # ── Body Type ──
         "body_type": "Body Type",
         "bt_slim": "Slim / Slender",
-        "bt_athletic": "Athletic / Fit",
-        "bt_curvy": "Curvy",
         "bt_petite": "Petite",
+        "bt_lean": "Lean / Toned",
+        "bt_athletic": "Athletic / Fit",
+        "bt_hourglass": "Hourglass",
+        "bt_curvy": "Curvy",
         "bt_tall": "Tall / Model-like",
         "bt_average": "Average",
 
-        # ── Appearance / Vibe ──
+        # ── Appearance / Vibe ── (A-Z)
         "appearance": "Appearance / Vibe",
-        "app_cute": "Cute / Adorable",
         "app_beautiful": "Beautiful / Gorgeous",
-        "app_handsome": "Handsome / Charming",
-        "app_cool": "Cool / Edgy",
-        "app_elegant": "Elegant / Sophisticated",
-        "app_sweet": "Sweet / Innocent",
-        "app_fierce": "Fierce / Bold",
-        "app_natural": "Natural / Fresh-faced",
-        "app_kpop": "K-pop Idol",
-        "app_jpop": "J-pop Idol",
         "app_cpop": "C-pop Star",
+        "app_charming": "Charming / Lovely",
+        "app_chic": "Chic / Classy",
+        "app_cool": "Cool / Edgy",
+        "app_cute": "Cute / Adorable",
+        "app_doll": "Doll-like",
+        "app_elegant": "Elegant / Sophisticated",
+        "app_fierce": "Fierce / Bold",
+        "app_girl_next_door": "Girl-next-door",
+        "app_handsome": "Handsome / Charming",
+        "app_jpop": "J-pop Idol",
+        "app_kpop": "K-pop Idol",
+        "app_natural": "Natural / Fresh-faced",
+        "app_sweet": "Sweet / Innocent",
+        "app_youthful": "Youthful / Glowing",
 
         # ── Section Labels (editable output) ──
         "section_technical": "Technical / Quality",
@@ -203,6 +234,9 @@ TRANSLATIONS = {
         # Fashion presets (A-Z)
         "fs_athleisure": "Athleisure / Sporty",
         "fs_bohemian": "Bohemian / Boho",
+        "fs_office": "Business Casual / Office",
+        "fs_casual": "Casual / Everyday",
+        "fs_coquette": "Coquette / Balletcore",
         "fs_cottagecore": "Cottagecore / Pastoral",
         "fs_cyberpunk": "Cyberpunk / Techwear",
         "fs_elegant": "Elegant / Formal",
@@ -213,20 +247,26 @@ TRANSLATIONS = {
         "fs_minimalist": "Minimalist / Clean",
         "fs_old_money": "Old Money / Quiet Luxury",
         "fs_preppy": "Preppy / Academic",
+        "fs_resort": "Resort / Vacation",
         "fs_streetwear": "Streetwear / Urban",
         "fs_vintage": "Vintage / Retro",
         "fs_y2k": "Y2K / 2000s Revival",
         # Top garments (A-Z)
         "top_garment": "Top",
+        "top_blazer": "Blazer",
         "top_blouse": "Blouse",
         "top_button_shirt": "Button-up Shirt",
         "top_camisole": "Camisole",
         "top_cardigan": "Cardigan",
+        "top_corset": "Corset Top",
         "top_crop": "Crop Top",
+        "top_denim_jacket": "Denim Jacket",
+        "top_halter": "Halter Top",
         "top_hoodie": "Hoodie",
         "top_off_shoulder": "Off-shoulder Top",
-        "top_polo": "Polo Shirt",
+        "top_puff_sleeve": "Puff-sleeve Blouse",
         "top_sweater": "Sweater",
+        "top_sweatshirt": "Sweatshirt",
         "top_tank": "Tank Top",
         "top_tshirt": "T-Shirt",
         "top_turtleneck": "Turtleneck",
@@ -234,28 +274,36 @@ TRANSLATIONS = {
         "bottom_garment": "Bottom",
         "bot_a_line": "A-line Skirt",
         "bot_cargo": "Cargo Pants",
+        "bot_denim_shorts": "Denim Shorts",
         "bot_jeans": "Jeans",
         "bot_leggings": "Leggings",
         "bot_maxi_skirt": "Maxi Skirt",
         "bot_mini_skirt": "Mini Skirt",
+        "bot_overalls": "Overalls",
         "bot_pencil_skirt": "Pencil Skirt",
         "bot_pleated_skirt": "Pleated Skirt",
+        "bot_slip_skirt": "Satin Slip Skirt",
         "bot_shorts": "Shorts",
         "bot_sweatpants": "Sweatpants",
         "bot_trousers": "Tailored Trousers",
+        "bot_tennis_skirt": "Tennis Skirt",
         "bot_wide_leg": "Wide-leg Pants",
         "attach_outfit_photo": "I will attach outfit reference photo",
         "attach_outfit_note": "Prompt will instruct AI to recreate the attached outfit",
         # Fabric (A-Z) — separate for top & bottom
         "top_fabric": "Top Fabric",
         "bot_fabric": "Bottom Fabric",
+        "fab_chiffon": "Chiffon",
         "fab_cotton": "Cotton",
         "fab_denim": "Denim",
         "fab_lace": "Lace",
         "fab_leather": "Leather",
+        "fab_linen": "Linen",
         "fab_satin": "Satin",
         "fab_sheer": "Sheer / Translucent",
         "fab_silk": "Silk",
+        "fab_tweed": "Tweed",
+        "fab_velvet": "Velvet",
         "fab_wool": "Wool Knit",
         # Color palette (A-Z) — separate for top & bottom
         "top_color": "Top Color",
@@ -263,15 +311,18 @@ TRANSLATIONS = {
         "col_black": "All Black",
         "col_beige": "Beige & Nude",
         "col_blue": "Blue",
+        "col_burgundy": "Burgundy & Wine",
         "col_cool": "Cool Tones (blue, teal, silver)",
         "col_earthy": "Earthy & Brown",
         "col_green": "Green",
         "col_mono": "Monochrome",
+        "col_navy": "Navy",
         "col_orange": "Orange",
         "col_pastel": "Pastel",
         "col_pink": "Pink",
         "col_purple": "Purple & Lavender",
         "col_red": "Red",
+        "col_sage": "Sage Green",
         "col_vibrant": "Vibrant & Neon",
         "col_warm": "Warm Tones (red, orange, gold)",
         "col_white": "White & Cream",
@@ -284,32 +335,37 @@ TRANSLATIONS = {
         "acc_group_carried": "Carried Items",
         "acc_beanie": "Beanie",
         "acc_beret": "Beret",
+        "acc_bucket_hat": "Bucket Hat",
         "acc_cap": "Cap",
         "acc_glasses": "Prescription Glasses",
         "acc_hair_clip": "Hair Clip",
+        "acc_ribbon": "Hair Ribbon Bow",
         "acc_hat": "Hat",
         "acc_headband": "Headband",
+        "acc_scrunchie": "Scrunchie",
         "acc_sunglasses": "Sunglasses",
         "acc_tiara": "Tiara / Crown",
-        "acc_bangle": "Bangle",
+        "acc_anklet": "Anklet",
         "acc_belt": "Belt",
         "acc_bowtie": "Bow Tie",
         "acc_bracelet": "Bracelet",
-        "acc_brooch": "Brooch",
         "acc_choker": "Choker",
         "acc_earrings": "Earrings",
-        "acc_necktie": "Necktie",
         "acc_necklace": "Necklace",
-        "acc_pendant": "Pendant",
+        "acc_necktie": "Necktie",
         "acc_ring": "Ring",
         "acc_scarf": "Scarf",
-        "acc_shawl": "Shawl",
-        "acc_suspenders": "Suspenders",
         "acc_watch": "Watch",
         "acc_backpack": "Backpack",
-        "acc_bag": "Handbag",
-        "acc_bouquet": "Flower Bouquet",
+        "acc_book": "Book",
+        "acc_camera": "Film Camera",
         "acc_clutch": "Clutch Bag",
+        "acc_crossbody": "Crossbody Bag",
+        "acc_bouquet": "Flower Bouquet",
+        "acc_bag": "Handbag",
+        "acc_coffee": "Iced Coffee Cup",
+        "acc_phone": "Smartphone",
+        "acc_tote": "Tote Bag",
         "acc_umbrella": "Umbrella",
 
         # ── Scene ──
@@ -330,14 +386,21 @@ TRANSLATIONS = {
         "place_country_placeholder": "e.g. France, Thailand, Japan",
         "location": "Location",
         "loc_studio": "Photography Studio",
-        "loc_street": "Urban Street",
-        "loc_cafe": "Coffee Shop / Café",
+        "loc_amusement": "Amusement Park",
         "loc_beach": "Beach / Seaside",
+        "loc_cafe": "Coffee Shop / Café",
+        "loc_flower_field": "Flower Field",
         "loc_forest": "Forest / Nature",
-        "loc_rooftop": "Rooftop / Cityscape",
-        "loc_room": "Indoor Room / Bedroom",
-        "loc_temple": "Temple / Historic",
         "loc_garden": "Garden / Park",
+        "loc_room": "Indoor Room / Bedroom",
+        "loc_library": "Library / Bookstore",
+        "loc_night_market": "Night Market",
+        "loc_pool": "Poolside",
+        "loc_rooftop": "Rooftop / Cityscape",
+        "loc_shopping": "Shopping Street",
+        "loc_street": "Urban Street",
+        "loc_temple": "Temple / Historic",
+        "loc_train": "Train Station",
         "time_of_day": "Time of Day",
         "tod_golden": "Golden Hour (Sunset)",
         "tod_blue": "Blue Hour (Twilight)",
@@ -358,12 +421,14 @@ TRANSLATIONS = {
         "weather_leaves": "Red/autumn leaves falling",
         "lighting": "Lighting Style",
         "lit_natural": "Natural / Ambient",
+        "lit_window": "Soft Window Light",
         "lit_studio": "Studio Softbox",
         "lit_rim": "Rim / Backlit",
         "lit_neon": "Neon / Cyberpunk",
+        "lit_fairy": "Fairy / String Lights",
         "lit_candle": "Candlelight / Warm",
         "lit_dramatic": "Dramatic Chiaroscuro",
-        "lit_flat": "Flat / Even",
+        "lit_flash": "Direct Flash (Trendy)",
 
         # ── Picture Style ──
         "picture_style": "Picture Style / Filter",
@@ -385,6 +450,7 @@ TRANSLATIONS = {
         "sf_closeup": "Close-up (head & shoulders)",
         "sf_medium_cu": "Medium Close-up (chest up)",
         "sf_medium": "Medium Shot (waist up)",
+        "sf_cowboy": "Cowboy Shot (mid-thigh up)",
         "sf_medium_full": "Medium Full (knees up)",
         "sf_full": "Full Body",
         "sf_wide": "Wide Shot (full body + environment)",
@@ -395,6 +461,8 @@ TRANSLATIONS = {
         "cam_low": "Low Angle (heroic)",
         "cam_high": "High Angle (overhead)",
         "cam_3q": "3/4 View",
+        "cam_profile": "Side Profile",
+        "cam_selfie": "Selfie Angle",
         "cam_dutch": "Dutch Angle (tilted)",
         "cam_over_shoulder": "Over the Shoulder",
         "cam_bird": "Bird's Eye View",
@@ -413,6 +481,8 @@ TRANSLATIONS = {
         "comp_rot_left": "Rule of Thirds — Left",
         "comp_rot_right": "Rule of Thirds — Right",
         "comp_golden": "Golden Ratio",
+        "comp_leading": "Leading Lines",
+        "comp_framed": "Framed / Doorway",
         "comp_negative_space": "Negative Space",
         "comp_symmetry": "Symmetrical",
 
@@ -427,8 +497,11 @@ TRANSLATIONS = {
         "pose_dynamic": "Dynamic / Action Pose",
         "pose_hand_hair": "Hand in Hair",
         "pose_hand_chin": "Hand on Chin",
+        "pose_hands_back": "Hands Behind Back",
+        "pose_cheek_hands": "Hands Framing Face",
         "pose_hands_pocket": "Hands in Pockets",
         "pose_heart_hands": "Heart Hands",
+        "pose_hug_knees": "Hugging Knees",
         "pose_jump": "Jumping",
         "pose_kneel": "Kneeling",
         "pose_lean": "Leaning Against Wall",
@@ -436,10 +509,12 @@ TRANSLATIONS = {
         "pose_over_shoulder": "Looking Over Shoulder",
         "pose_lying": "Lying Down",
         "pose_mini_heart": "Mini Heart",
+        "pose_peace": "Peace Sign",
         "pose_run": "Running",
         "pose_s_curve": "S-Curve Standing",
         "pose_sit": "Sitting",
         "pose_stand": "Standing",
+        "pose_hair_tuck": "Tucking Hair Behind Ear",
         "pose_twirl": "Twirling",
         "pose_w_sit": "W-Sitting",
         "pose_walk": "Walking",
@@ -501,7 +576,13 @@ TRANSLATIONS = {
 
         # Model Type
         "model_realistic": "ภาพถ่ายสมจริง",
+        "model_cinematic": "ภาพนิ่งสไตล์ภาพยนตร์",
+        "model_film": "ภาพถ่ายฟิล์มอนาล็อก",
+        "model_fashion": "แฟชั่นเอดิทอเรียล",
         "model_anime": "อนิเมะ / ภาพวาด",
+        "model_digital_painting": "ดิจิทัลเพนต์ติ้ง",
+        "model_watercolor": "ภาพวาดสีน้ำ",
+        "model_comic": "การ์ตูน / มังงะ",
         "model_3d": "3D เรนเดอร์ / CGI",
 
         # ── Subject ──
@@ -538,6 +619,10 @@ TRANSLATIONS = {
         "hair_loose_waves": "ลอนหลวม",
         "hair_curly": "หยิก",
         "hair_wavy": "หยักศก",
+        "hair_layered": "ซอยเลเยอร์",
+        "hair_wolf_cut": "วูล์ฟคัท",
+        "hair_hush_cut": "ฮัชคัท",
+        "hair_hime": "ฮิเมะคัท",
         "hair_bob": "บ็อบ",
         "hair_lob": "ลองบ็อบ",
         "hair_pixie": "พิกซี่",
@@ -545,82 +630,103 @@ TRANSLATIONS = {
         "hair_high_ponytail": "หางม้าสูง",
         "hair_bun": "มวยผม",
         "hair_messy_bun": "มวยผมหลวม",
+        "hair_space_buns": "มวยผมสองข้าง",
         "hair_braids": "ถักเปีย",
-        "hair_loose_braid": "ถักเปียหลวม",
+        "hair_french_braid": "เปียเฟรนช์",
         "hair_twin_braids": "ถักเปียสองข้าง",
         "hair_twintails": "มัดสองข้าง",
         "hair_half_up": "มัดครึ่ง",
         "hair_side_swept": "ปัดข้าง",
         # ทรงผมผู้ชาย
         "hair_short": "สั้น",
-        "hair_undercut": "อันเดอร์คัท",
-        "hair_slick_back": "เสยไปด้านหลัง",
+        "hair_buzz": "บัซคัท / เกรียน",
         "hair_crew_cut": "ทรงนักเรียน",
-        "hair_pompadour": "พอมปาดัวร์",
-        "hair_man_bun": "มัดจุก",
+        "hair_middle_part": "แสกกลาง (คอมม่าแฮร์)",
+        "hair_textured_crop": "ครอปเท็กซ์เจอร์",
+        "hair_undercut": "อันเดอร์คัท",
         "hair_fade": "เฟด",
+        "hair_slick_back": "เสยไปด้านหลัง",
+        "hair_man_bun": "มัดจุก",
         "hair_bald": "โล้น / โกนผม",
         "hair_color": "สีผม",
         "hc_black": "ดำ",
+        "hc_blue_black": "ดำอมน้ำเงิน",
         "hc_dark_brown": "น้ำตาลเข้ม",
+        "hc_ash_brown": "น้ำตาลหม่น (แอชบราวน์)",
+        "hc_milk_tea": "น้ำตาลชานม",
         "hc_light_brown": "น้ำตาลอ่อน",
+        "hc_honey_blonde": "บลอนด์น้ำผึ้ง",
         "hc_blonde": "บลอนด์",
         "hc_platinum": "บลอนด์แพลตินั่ม",
         "hc_red": "แดง / ออเบิร์น",
-        "hc_ginger": "จินเจอร์",
-        "hc_silver": "เงิน / เทา",
-        "hc_white": "ขาว",
-        "hc_blue": "น้ำเงิน",
+        "hc_burgundy": "แดงเบอร์กันดี / เชอร์รี่",
+        "hc_rose_gold": "โรสโกลด์",
         "hc_pink": "ชมพู",
         "hc_purple": "ม่วง / ลาเวนเดอร์",
-        "hc_green": "เขียว",
+        "hc_blue": "น้ำเงิน",
+        "hc_silver": "เงิน / เทา",
+        "hc_white": "ขาว",
         "hc_ombre": "ออมเบร (เข้มไล่อ่อน)",
         "hc_highlights": "ไฮไลท์ / ทำเส้น",
         "bangs": "หน้าม้า",
         "bangs_none": "ไม่มี",
         "bangs_straight": "หน้าม้าตรง",
+        "bangs_see_through": "หน้าม้าซีทรู",
         "bangs_side": "หน้าม้าปัดข้าง",
         "bangs_curtain": "หน้าม้าม่าน",
         "bangs_wispy": "หน้าม้าบาง",
         "bangs_micro": "หน้าม้าสั้น",
+        "bangs_hime": "หน้าม้าฮิเมะ (ไซด์ล็อค)",
         "expression": "สีหน้า / อารมณ์",
         "expr_smile": "ยิ้มอ่อน",
+        "expr_bright_smile": "ยิ้มสดใสเปล่งประกาย",
         "expr_laugh": "หัวเราะ",
+        "expr_giggle": "ยิ้มคิกคัก",
+        "expr_soft_gaze": "สายตาอ่อนโยน",
+        "expr_doe_eyes": "ตากลมใสไร้เดียงสา",
+        "expr_pout": "ทำปากยื่นน่ารัก",
+        "expr_playful": "ขี้เล่น / ซุกซน",
+        "expr_shy": "เขินอาย",
         "expr_confident": "มั่นใจ",
-        "expr_serious": "จริงจัง / เข้มขรึม",
+        "expr_smirk": "ยิ้มมุมปาก",
+        "expr_dreamy": "เหม่อฝัน",
+        "expr_peaceful": "สงบ / เยือกเย็น",
         "expr_neutral": "เฉยๆ / ปกติ",
         "expr_pensive": "ครุ่นคิด",
-        "expr_shy": "เขินอาย",
+        "expr_serious": "จริงจัง / เข้มขรึม",
         "expr_surprised": "ตกใจ / ประหลาดใจ",
         "expr_sad": "เศร้า",
-        "expr_angry": "โกรธ / ดุ",
-        "expr_dreamy": "เหม่อฝัน",
-        "expr_playful": "ขี้เล่น / ซุกซน",
         "expr_sultry": "เย้ายวน",
-        "expr_peaceful": "สงบ / เยือกเย็น",
 
         # ── Body Type ──
         "body_type": "รูปร่าง",
         "bt_slim": "ผอมเพรียว",
-        "bt_athletic": "กล้ามเนื้อ / ฟิต",
-        "bt_curvy": "หุ่นโค้งเว้า",
         "bt_petite": "ตัวเล็กกะทัดรัด",
+        "bt_lean": "ผอมกระชับ / เฟิร์ม",
+        "bt_athletic": "กล้ามเนื้อ / ฟิต",
+        "bt_hourglass": "หุ่นนาฬิกาทราย",
+        "bt_curvy": "หุ่นโค้งเว้า",
         "bt_tall": "สูง / หุ่นนางแบบ",
         "bt_average": "ปกติทั่วไป",
 
-        # ── Appearance / Vibe ──
+        # ── Appearance / Vibe ── (A-Z ตามภาษาอังกฤษ)
         "appearance": "ลุค / ไวบ์ภาพรวม",
-        "app_cute": "น่ารัก / คิ้วท์",
         "app_beautiful": "สวยงาม / สวยหรู",
-        "app_handsome": "หล่อ / มีเสน่ห์",
-        "app_cool": "เท่ / คูล",
-        "app_elegant": "สง่างาม / ดูแพง",
-        "app_sweet": "หวาน / ใสซื่อ",
-        "app_fierce": "ดุดัน / เข้มขรึม",
-        "app_natural": "ธรรมชาติ / สดใส",
-        "app_kpop": "ไอดอล K-pop",
-        "app_jpop": "ไอดอล J-pop",
         "app_cpop": "ดาราจีน / C-pop",
+        "app_charming": "มีเสน่ห์ / น่าหลงใหล",
+        "app_chic": "ชิค / คลาสซี่",
+        "app_cool": "เท่ / คูล",
+        "app_cute": "น่ารัก / คิ้วท์",
+        "app_doll": "หน้าตุ๊กตา",
+        "app_elegant": "สง่างาม / ดูแพง",
+        "app_fierce": "ดุดัน / เข้มขรึม",
+        "app_girl_next_door": "สาวข้างบ้าน / เฟรนด์ลี่",
+        "app_handsome": "หล่อ / มีเสน่ห์",
+        "app_jpop": "ไอดอล J-pop",
+        "app_kpop": "ไอดอล K-pop",
+        "app_natural": "ธรรมชาติ / สดใส",
+        "app_sweet": "หวาน / ใสซื่อ",
+        "app_youthful": "อ่อนเยาว์ / ผิวโกลว์",
 
         # ── Section Labels (editable output) ──
         "section_technical": "เทคนิค / คุณภาพ",
@@ -643,6 +749,9 @@ TRANSLATIONS = {
         # Fashion presets (A-Z)
         "fs_athleisure": "แอธเลเชอร์ / สปอร์ต",
         "fs_bohemian": "โบฮีเมียน / โบโฮ",
+        "fs_office": "ออฟฟิศ / ทางการกึ่งลำลอง",
+        "fs_casual": "แคชชวล / ลุคทุกวัน",
+        "fs_coquette": "โคเค็ตต์ / บัลเล่ต์คอร์",
         "fs_cottagecore": "คอตเทจคอร์ / ชนบท",
         "fs_cyberpunk": "ไซเบอร์พังก์ / เทคแวร์",
         "fs_elegant": "เอเลแกนท์ / ทางการ",
@@ -653,20 +762,26 @@ TRANSLATIONS = {
         "fs_minimalist": "มินิมอล / สะอาดตา",
         "fs_old_money": "Old Money / หรูเงียบๆ",
         "fs_preppy": "เพรปปี้ / นักเรียนอินเตอร์",
+        "fs_resort": "รีสอร์ต / วันหยุดพักร้อน",
         "fs_streetwear": "สตรีทแวร์ / อเบอร์แบน",
         "fs_vintage": "วินเทจ / เรโทร",
         "fs_y2k": "Y2K / ยุค 2000",
         # Top garments (A-Z)
         "top_garment": "เสื้อ",
+        "top_blazer": "เสื้อเบลเซอร์",
         "top_blouse": "เสื้อเบลาส์",
         "top_button_shirt": "เสื้อเชิ้ต",
         "top_camisole": "เสื้อสายเดี่ยว",
         "top_cardigan": "เสื้อคาร์ดิแกน",
+        "top_corset": "เสื้อคอร์เซ็ต",
         "top_crop": "ครอปท็อป",
+        "top_denim_jacket": "แจ็คเก็ตยีนส์",
+        "top_halter": "เสื้อคล้องคอ",
         "top_hoodie": "เสื้อฮู้ด",
         "top_off_shoulder": "เสื้อเปิดไหล่",
-        "top_polo": "เสื้อโปโล",
+        "top_puff_sleeve": "เสื้อแขนพอง",
         "top_sweater": "เสื้อสเวตเตอร์",
+        "top_sweatshirt": "เสื้อสเวตเชิ้ต",
         "top_tank": "เสื้อกล้าม",
         "top_tshirt": "เสื้อยืด",
         "top_turtleneck": "เสื้อคอเต่า",
@@ -674,28 +789,36 @@ TRANSLATIONS = {
         "bottom_garment": "ท่อนล่าง",
         "bot_a_line": "กระโปรงทรงเอ",
         "bot_cargo": "กางเกงคาร์โก้",
+        "bot_denim_shorts": "กางเกงยีนส์ขาสั้น",
         "bot_jeans": "กางเกงยีนส์",
         "bot_leggings": "เลกกิ้ง",
         "bot_maxi_skirt": "กระโปรงยาว",
         "bot_mini_skirt": "กระโปรงสั้น",
+        "bot_overalls": "ชุดเอี๊ยม",
         "bot_pencil_skirt": "กระโปรงทรงดินสอ",
         "bot_pleated_skirt": "กระโปรงพลีท",
+        "bot_slip_skirt": "กระโปรงซาตินสลิป",
         "bot_shorts": "กางเกงขาสั้น",
         "bot_sweatpants": "กางเกงวอร์ม",
         "bot_trousers": "กางเกงสแล็ค",
+        "bot_tennis_skirt": "กระโปรงเทนนิส",
         "bot_wide_leg": "กางเกงขาบาน",
         "attach_outfit_photo": "จะแนบรูปชุดอ้างอิง",
         "attach_outfit_note": "พรอมต์จะสั่งให้ AI สร้างชุดตามรูปที่แนบ",
         # Fabric (A-Z) — separate for top & bottom
         "top_fabric": "ผ้าเสื้อ",
         "bot_fabric": "ผ้าท่อนล่าง",
+        "fab_chiffon": "ผ้าชีฟอง",
         "fab_cotton": "ผ้าฝ้าย",
         "fab_denim": "ผ้ายีนส์",
         "fab_lace": "ลูกไม้",
         "fab_leather": "หนัง",
+        "fab_linen": "ผ้าลินิน",
         "fab_satin": "ผ้าซาติน",
         "fab_sheer": "ผ้าบาง / โปร่ง",
         "fab_silk": "ผ้าไหม",
+        "fab_tweed": "ผ้าทวีด",
+        "fab_velvet": "ผ้ากำมะหยี่",
         "fab_wool": "ผ้าขนสัตว์ถัก",
         # Color palette (A-Z) — separate for top & bottom
         "top_color": "สีเสื้อ",
@@ -703,15 +826,18 @@ TRANSLATIONS = {
         "col_black": "ดำล้วน",
         "col_beige": "เบจและนู้ด",
         "col_blue": "น้ำเงิน",
+        "col_burgundy": "เบอร์กันดีและแดงไวน์",
         "col_cool": "โทนเย็น (น้ำเงิน, เขียวอมฟ้า, เงิน)",
         "col_earthy": "โทนดินและน้ำตาล",
         "col_green": "เขียว",
         "col_mono": "โมโนโครม",
+        "col_navy": "กรมท่า",
         "col_orange": "ส้ม",
         "col_pastel": "พาสเทล",
         "col_pink": "ชมพู",
         "col_purple": "ม่วงและลาเวนเดอร์",
         "col_red": "แดง",
+        "col_sage": "เขียวเสจ",
         "col_vibrant": "สดใสและนีออน",
         "col_warm": "โทนอุ่น (แดง, ส้ม, ทอง)",
         "col_white": "ขาวและครีม",
@@ -724,32 +850,37 @@ TRANSLATIONS = {
         "acc_group_carried": "ของที่ถือ",
         "acc_beanie": "หมวกบีนนี่",
         "acc_beret": "หมวกเบเร่ต์",
+        "acc_bucket_hat": "หมวกบักเก็ต",
         "acc_cap": "แก๊ป",
         "acc_glasses": "แว่นสายตา",
         "acc_hair_clip": "กิ๊บติดผม",
+        "acc_ribbon": "โบว์ผูกผม",
         "acc_hat": "หมวก",
         "acc_headband": "ที่คาดผม",
+        "acc_scrunchie": "ยางมัดผมสครันชี่",
         "acc_sunglasses": "แว่นกันแดด",
         "acc_tiara": "มงกุฎ / เทียร่า",
-        "acc_bangle": "กำไล",
+        "acc_anklet": "กำไลข้อเท้า",
         "acc_belt": "เข็มขัด",
         "acc_bowtie": "โบว์ไท",
         "acc_bracelet": "สร้อยข้อมือ",
-        "acc_brooch": "เข็มกลัด",
         "acc_choker": "โชคเกอร์",
         "acc_earrings": "ต่างหู",
-        "acc_necktie": "เนคไท",
         "acc_necklace": "สร้อยคอ",
-        "acc_pendant": "จี้",
+        "acc_necktie": "เนคไท",
         "acc_ring": "แหวน",
         "acc_scarf": "ผ้าพันคอ",
-        "acc_shawl": "ผ้าคลุมไหล่",
-        "acc_suspenders": "สายเอี๊ยม",
         "acc_watch": "นาฬิกา",
         "acc_backpack": "เป้สะพายหลัง",
-        "acc_bag": "กระเป๋าถือ",
-        "acc_bouquet": "ช่อดอกไม้",
+        "acc_book": "หนังสือ",
+        "acc_camera": "กล้องฟิล์ม",
         "acc_clutch": "กระเป๋าคลัตช์",
+        "acc_crossbody": "กระเป๋าสะพายข้าง",
+        "acc_bouquet": "ช่อดอกไม้",
+        "acc_bag": "กระเป๋าถือ",
+        "acc_coffee": "แก้วกาแฟเย็น",
+        "acc_phone": "สมาร์ทโฟน",
+        "acc_tote": "กระเป๋าโท้ต",
         "acc_umbrella": "ร่ม",
 
         # ── Scene ──
@@ -770,14 +901,21 @@ TRANSLATIONS = {
         "place_country_placeholder": "เช่น ฝรั่งเศส, ไทย, ญี่ปุ่น",
         "location": "สถานที่",
         "loc_studio": "สตูดิโอถ่ายภาพ",
-        "loc_street": "ถนนในเมือง",
-        "loc_cafe": "ร้านกาแฟ / คาเฟ่",
+        "loc_amusement": "สวนสนุก",
         "loc_beach": "ชายหาด / ทะเล",
+        "loc_cafe": "ร้านกาแฟ / คาเฟ่",
+        "loc_flower_field": "ทุ่งดอกไม้",
         "loc_forest": "ป่า / ธรรมชาติ",
-        "loc_rooftop": "ดาดฟ้า / วิวเมือง",
-        "loc_room": "ห้อง / ห้องนอน",
-        "loc_temple": "วัด / สถานที่ประวัติศาสตร์",
         "loc_garden": "สวน / สวนสาธารณะ",
+        "loc_room": "ห้อง / ห้องนอน",
+        "loc_library": "ห้องสมุด / ร้านหนังสือ",
+        "loc_night_market": "ตลาดกลางคืน",
+        "loc_pool": "ริมสระว่ายน้ำ",
+        "loc_rooftop": "ดาดฟ้า / วิวเมือง",
+        "loc_shopping": "ถนนช้อปปิ้ง",
+        "loc_street": "ถนนในเมือง",
+        "loc_temple": "วัด / สถานที่ประวัติศาสตร์",
+        "loc_train": "สถานีรถไฟ",
         "time_of_day": "ช่วงเวลา",
         "tod_golden": "ชั่วโมงทอง (พระอาทิตย์ตก)",
         "tod_blue": "ชั่วโมงฟ้า (สนธยา)",
@@ -798,12 +936,14 @@ TRANSLATIONS = {
         "weather_leaves": "ใบไม้แดง/ใบไม้ร่วงกำลังร่วง",
         "lighting": "สไตล์แสง",
         "lit_natural": "แสงธรรมชาติ",
+        "lit_window": "แสงหน้าต่างนุ่มนวล",
         "lit_studio": "ซอฟต์บ็อกซ์สตูดิโอ",
         "lit_rim": "แสงขอบ / แบ็คไลท์",
         "lit_neon": "นีออน / ไซเบอร์พังก์",
+        "lit_fairy": "ไฟแฟรี่ / ไฟราว",
         "lit_candle": "แสงเทียน / อบอุ่น",
         "lit_dramatic": "ดราม่า เคียโรสกูโร",
-        "lit_flat": "แสงเรียบ / สม่ำเสมอ",
+        "lit_flash": "แฟลชตรง (สไตล์เทรนดี้)",
 
         # ── Picture Style ──
         "picture_style": "สไตล์ภาพ / ฟิลเตอร์",
@@ -825,6 +965,7 @@ TRANSLATIONS = {
         "sf_closeup": "โคลสอัพ (ศีรษะและไหล่)",
         "sf_medium_cu": "มีเดียมโคลสอัพ (หน้าอกขึ้นไป)",
         "sf_medium": "ภาพครึ่งตัว (เอวขึ้นไป)",
+        "sf_cowboy": "คาวบอยช็อต (ต้นขาขึ้นไป)",
         "sf_medium_full": "ภาพเกือบเต็มตัว (เข่าขึ้นไป)",
         "sf_full": "ภาพเต็มตัว",
         "sf_wide": "ภาพกว้าง (เต็มตัว + สิ่งแวดล้อม)",
@@ -835,6 +976,8 @@ TRANSLATIONS = {
         "cam_low": "มุมต่ำ (ดูยิ่งใหญ่)",
         "cam_high": "มุมสูง (มองลง)",
         "cam_3q": "มุม 3/4",
+        "cam_profile": "มุมด้านข้าง (โปรไฟล์)",
+        "cam_selfie": "มุมเซลฟี่",
         "cam_dutch": "มุมเอียง (Dutch Angle)",
         "cam_over_shoulder": "มองข้ามไหล่",
         "cam_bird": "มุมมองจากบน (Bird's Eye)",
@@ -853,6 +996,8 @@ TRANSLATIONS = {
         "comp_rot_left": "กฎสามส่วน — ซ้าย",
         "comp_rot_right": "กฎสามส่วน — ขวา",
         "comp_golden": "สัดส่วนทอง (Golden Ratio)",
+        "comp_leading": "เส้นนำสายตา",
+        "comp_framed": "กรอบภาพธรรมชาติ / ประตู",
         "comp_negative_space": "เว้นพื้นที่ว่าง (Negative Space)",
         "comp_symmetry": "สมมาตร (Symmetrical)",
 
@@ -867,8 +1012,11 @@ TRANSLATIONS = {
         "pose_dynamic": "ท่าไดนามิก / แอคชั่น",
         "pose_hand_hair": "มือจับผม",
         "pose_hand_chin": "มือจับคาง",
+        "pose_hands_back": "มือไขว้หลัง",
+        "pose_cheek_hands": "มือเท้าแก้ม",
         "pose_hands_pocket": "มือในกระเป๋า",
         "pose_heart_hands": "ทำมือรูปหัวใจ",
+        "pose_hug_knees": "นั่งกอดเข่า",
         "pose_jump": "กระโดด",
         "pose_kneel": "คุกเข่า",
         "pose_lean": "พิงกำแพง",
@@ -876,10 +1024,12 @@ TRANSLATIONS = {
         "pose_over_shoulder": "เหลียวมองข้ามไหล่",
         "pose_lying": "นอน",
         "pose_mini_heart": "มินิฮาร์ท",
+        "pose_peace": "ชูสองนิ้ว",
         "pose_run": "วิ่ง",
         "pose_s_curve": "ยืนโพสตัว S",
         "pose_sit": "นั่ง",
         "pose_stand": "ยืน",
+        "pose_hair_tuck": "เกี่ยวผมหลังหู",
         "pose_twirl": "หมุนตัว",
         "pose_w_sit": "นั่งขารูป W",
         "pose_walk": "เดิน",
@@ -929,52 +1079,80 @@ ENGLISH_VALUES = {
     # Hair Style — Women's
     "hair_long": "long flowing hair", "hair_straight": "long straight hair",
     "hair_loose_waves": "long loose wavy hair", "hair_curly": "curly hair",
-    "hair_wavy": "wavy hair", "hair_bob": "bob cut",
+    "hair_wavy": "wavy hair",
+    "hair_layered": "layered haircut with soft face-framing layers",
+    "hair_wolf_cut": "trendy wolf cut with shaggy layers",
+    "hair_hush_cut": "Korean hush cut with soft airy layers",
+    "hair_hime": "Japanese hime cut with straight sidelocks",
+    "hair_bob": "bob cut",
     "hair_lob": "long bob lob hairstyle", "hair_pixie": "pixie cut",
     "hair_ponytail": "ponytail", "hair_high_ponytail": "high ponytail",
     "hair_bun": "hair bun", "hair_messy_bun": "messy bun",
-    "hair_braids": "braids", "hair_loose_braid": "loose braid",
+    "hair_space_buns": "cute space buns",
+    "hair_braids": "braids", "hair_french_braid": "french braid",
     "hair_twin_braids": "twin braids", "hair_twintails": "twin tails",
     "hair_half_up": "half up half down hairstyle", "hair_side_swept": "side swept hair",
     # Hair Style — Men's
-    "hair_short": "short hair", "hair_undercut": "undercut hairstyle",
-    "hair_slick_back": "slicked back hair", "hair_crew_cut": "crew cut",
-    "hair_pompadour": "pompadour hairstyle", "hair_man_bun": "man bun",
-    "hair_fade": "fade haircut", "hair_bald": "bald head",
+    "hair_short": "short hair", "hair_buzz": "buzz cut",
+    "hair_crew_cut": "crew cut",
+    "hair_middle_part": "Korean middle-part comma hair",
+    "hair_textured_crop": "textured crop haircut with messy fringe",
+    "hair_undercut": "undercut hairstyle",
+    "hair_fade": "fade haircut", "hair_slick_back": "slicked back hair",
+    "hair_man_bun": "man bun", "hair_bald": "bald head",
     # Hair Color
-    "hc_black": "black hair", "hc_dark_brown": "dark brown hair",
-    "hc_light_brown": "light brown hair", "hc_blonde": "blonde hair",
+    "hc_black": "black hair", "hc_blue_black": "blue-black hair",
+    "hc_dark_brown": "dark brown hair", "hc_ash_brown": "ash brown hair",
+    "hc_milk_tea": "milk tea brown hair", "hc_light_brown": "light brown hair",
+    "hc_honey_blonde": "honey blonde hair", "hc_blonde": "blonde hair",
     "hc_platinum": "platinum blonde hair", "hc_red": "red auburn hair",
-    "hc_ginger": "ginger hair", "hc_silver": "silver gray hair",
-    "hc_white": "white hair", "hc_blue": "blue hair",
+    "hc_burgundy": "burgundy cherry red hair", "hc_rose_gold": "rose gold hair",
     "hc_pink": "pink hair", "hc_purple": "purple lavender hair",
-    "hc_green": "green hair", "hc_ombre": "ombre hair transitioning dark to light",
+    "hc_blue": "blue hair", "hc_silver": "silver gray hair",
+    "hc_white": "white hair",
+    "hc_ombre": "ombre hair transitioning dark to light",
     "hc_highlights": "hair with highlights and streaks",
     # Bangs
     "bangs_none": "", "bangs_straight": "with straight bangs",
+    "bangs_see_through": "with Korean see-through bangs",
     "bangs_side": "with side-swept bangs", "bangs_curtain": "with curtain bangs",
     "bangs_wispy": "with wispy bangs", "bangs_micro": "with micro bangs",
+    "bangs_hime": "with hime-cut sidelocks framing the face",
     # Expression
-    "expr_smile": "gentle smile", "expr_laugh": "laughing joyfully",
+    "expr_smile": "gentle smile",
+    "expr_bright_smile": "bright beaming smile with sparkling eyes",
+    "expr_laugh": "laughing joyfully",
+    "expr_giggle": "giggling cutely with hand near mouth",
+    "expr_soft_gaze": "soft gentle gaze with warm eyes",
+    "expr_doe_eyes": "wide innocent doe eyes",
+    "expr_pout": "cute playful pout",
     "expr_confident": "confident expression", "expr_serious": "serious stoic expression",
+    "expr_smirk": "confident charming smirk",
     "expr_neutral": "neutral expression", "expr_pensive": "pensive thoughtful expression",
     "expr_shy": "shy bashful expression", "expr_surprised": "surprised expression",
-    "expr_sad": "sad melancholic expression", "expr_angry": "angry fierce expression",
+    "expr_sad": "sad melancholic expression",
     "expr_dreamy": "dreamy wistful expression", "expr_playful": "playful mischievous expression",
     "expr_sultry": "sultry seductive expression", "expr_peaceful": "peaceful serene expression",
     # Body Type
-    "bt_slim": "slim slender body", "bt_athletic": "athletic fit toned body",
-    "bt_curvy": "curvy body with feminine proportions", "bt_petite": "petite small body frame",
+    "bt_slim": "slim slender body", "bt_petite": "petite small body frame",
+    "bt_lean": "lean toned body", "bt_athletic": "athletic fit toned body",
+    "bt_hourglass": "hourglass figure with balanced proportions",
+    "bt_curvy": "curvy body with feminine proportions",
     "bt_tall": "tall model-like body proportions", "bt_average": "average body build",
     # Appearance / Vibe
-    "app_cute": "cute adorable baby-faced features",
     "app_beautiful": "beautiful gorgeous striking features",
-    "app_handsome": "handsome chiseled jawline and sharp features",
+    "app_charming": "charming lovely aura with a warm captivating presence",
+    "app_chic": "chic classy polished look with effortless style",
     "app_cool": "cool edgy sharp features with confident attitude",
+    "app_cute": "cute adorable baby-faced features",
+    "app_doll": "doll-like delicate features with porcelain skin and long lashes",
     "app_elegant": "elegant sophisticated refined features",
-    "app_sweet": "sweet innocent youthful features",
     "app_fierce": "fierce bold intense striking features",
+    "app_girl_next_door": "approachable girl-next-door charm with a warm friendly smile",
+    "app_handsome": "handsome chiseled jawline and sharp features",
     "app_natural": "natural fresh-faced dewy skin look",
+    "app_sweet": "sweet innocent youthful features",
+    "app_youthful": "youthful glowing look with radiant luminous skin",
     "app_kpop": "youthful K-pop idol look with flawless porcelain skin, soft dewy makeup, and delicate features",
     "app_jpop": "cute J-pop idol look with soft round features, big expressive eyes, and light natural makeup",
     "app_cpop": "elegant C-pop star look with refined features, luminous glass skin, and graceful beauty",
@@ -994,18 +1172,27 @@ ENGLISH_VALUES = {
     "fs_y2k": "Y2K 2000s fashion with low-rise pants and butterfly clips",
     "fs_old_money": "old money quiet luxury fashion with cashmere and understated elegance",
     "fs_grunge": "90s grunge fashion with flannel shirt and ripped jeans",
+    "fs_casual": "casual everyday fashion with a comfortable relaxed fit",
+    "fs_coquette": "coquette balletcore fashion with ribbons, bows and soft feminine details",
+    "fs_office": "polished business casual office fashion",
+    "fs_resort": "breezy resort vacation fashion with light summer fabrics",
     # Fabric
     "fab_cotton": "cotton fabric", "fab_silk": "silk fabric",
     "fab_denim": "denim", "fab_leather": "leather",
     "fab_lace": "lace fabric", "fab_satin": "satin fabric",
     "fab_wool": "wool knit", "fab_sheer": "sheer translucent fabric",
+    "fab_chiffon": "chiffon fabric", "fab_linen": "linen fabric",
+    "fab_tweed": "tweed fabric", "fab_velvet": "velvet fabric",
     # Top Garment
     "top_tshirt": "wearing a t-shirt", "top_crop": "wearing a crop top",
     "top_blouse": "wearing a blouse", "top_button_shirt": "wearing a button-up shirt",
     "top_tank": "wearing a tank top", "top_sweater": "wearing a sweater",
-    "top_hoodie": "wearing a hoodie", "top_polo": "wearing a polo shirt",
+    "top_hoodie": "wearing a hoodie",
     "top_turtleneck": "wearing a turtleneck", "top_off_shoulder": "wearing an off-shoulder top",
     "top_camisole": "wearing a camisole", "top_cardigan": "wearing a cardigan",
+    "top_blazer": "wearing a tailored blazer", "top_corset": "wearing a corset top",
+    "top_denim_jacket": "wearing a denim jacket", "top_halter": "wearing a halter top",
+    "top_puff_sleeve": "wearing a puff-sleeve blouse", "top_sweatshirt": "wearing a sweatshirt",
     # Bottom Garment
     "bot_jeans": "wearing jeans", "bot_mini_skirt": "wearing a mini skirt",
     "bot_maxi_skirt": "wearing a maxi skirt", "bot_pleated_skirt": "wearing a pleated skirt",
@@ -1013,6 +1200,8 @@ ENGLISH_VALUES = {
     "bot_cargo": "wearing cargo pants", "bot_leggings": "wearing leggings",
     "bot_pencil_skirt": "wearing a pencil skirt", "bot_a_line": "wearing an A-line skirt",
     "bot_sweatpants": "wearing sweatpants", "bot_trousers": "wearing tailored trousers",
+    "bot_denim_shorts": "wearing denim shorts", "bot_overalls": "wearing overalls",
+    "bot_slip_skirt": "wearing a satin slip skirt", "bot_tennis_skirt": "wearing a pleated tennis skirt",
     # Color Palette
     "col_red": "red color tones", "col_pink": "pink color tones",
     "col_orange": "orange color tones", "col_yellow": "yellow and gold color tones",
@@ -1025,37 +1214,45 @@ ENGLISH_VALUES = {
     "col_warm": "warm color tones of red orange and gold",
     "col_cool": "cool color tones of blue teal and silver",
     "col_vibrant": "vibrant neon colors",
+    "col_burgundy": "burgundy and wine color tones",
+    "col_navy": "navy blue color tones",
+    "col_sage": "sage green color tones",
     # Accessories — Head
     "acc_beanie": "wearing a beanie",
     "acc_beret": "wearing a beret",
+    "acc_bucket_hat": "wearing a bucket hat",
     "acc_cap": "wearing a cap",
     "acc_glasses": "wearing prescription glasses",
     "acc_hair_clip": "wearing a hair clip",
+    "acc_ribbon": "wearing a ribbon bow in hair",
     "acc_hat": "wearing a hat",
     "acc_headband": "wearing a headband",
+    "acc_scrunchie": "wearing a scrunchie",
     "acc_sunglasses": "wearing stylish sunglasses",
     "acc_tiara": "wearing a tiara",
     # Accessories — Body / Jewelry
-    "acc_bangle": "wearing a bangle",
+    "acc_anklet": "wearing an anklet",
     "acc_belt": "wearing a belt",
     "acc_bowtie": "wearing a bow tie",
     "acc_bracelet": "wearing a bracelet",
-    "acc_brooch": "wearing a brooch",
     "acc_choker": "wearing a choker",
     "acc_earrings": "wearing earrings",
-    "acc_necktie": "wearing a necktie",
     "acc_necklace": "wearing a necklace",
-    "acc_pendant": "wearing a pendant",
+    "acc_necktie": "wearing a necktie",
     "acc_ring": "wearing a ring",
     "acc_scarf": "wearing a scarf",
-    "acc_shawl": "wearing a shawl",
-    "acc_suspenders": "wearing suspenders",
     "acc_watch": "wearing a wristwatch",
     # Accessories — Carried Items
     "acc_backpack": "carrying a backpack",
-    "acc_bag": "carrying a handbag",
-    "acc_bouquet": "holding a flower bouquet",
+    "acc_book": "holding a book",
+    "acc_camera": "holding a vintage film camera",
     "acc_clutch": "carrying a clutch bag",
+    "acc_crossbody": "wearing a crossbody bag",
+    "acc_bouquet": "holding a flower bouquet",
+    "acc_bag": "carrying a handbag",
+    "acc_coffee": "holding an iced coffee cup",
+    "acc_phone": "holding a smartphone",
+    "acc_tote": "carrying a tote bag",
     "acc_umbrella": "holding an umbrella",
     # Location
     "loc_studio": "in a professional photography studio with seamless backdrop",
@@ -1067,6 +1264,13 @@ ENGLISH_VALUES = {
     "loc_room": "in a stylish modern indoor room",
     "loc_temple": "at an ancient temple with historic architecture",
     "loc_garden": "in a beautiful garden with flowers and greenery",
+    "loc_amusement": "at a colorful amusement park with a ferris wheel in the background",
+    "loc_flower_field": "in a blooming flower field stretching to the horizon",
+    "loc_library": "in a cozy library surrounded by tall bookshelves",
+    "loc_night_market": "at a vibrant night market with glowing street food stalls",
+    "loc_pool": "at a luxurious poolside with clear blue water",
+    "loc_shopping": "on a lively shopping street with stylish storefronts",
+    "loc_train": "at a scenic train station platform",
     # Time of Day
     "tod_golden": "during golden hour with warm sunset light",
     "tod_blue": "during blue hour twilight",
@@ -1082,11 +1286,13 @@ ENGLISH_VALUES = {
     "season_rainy": "during rainy season with overcast wet atmosphere",
     # Lighting
     "lit_natural": "natural ambient lighting", "lit_studio": "professional studio softbox lighting",
+    "lit_window": "soft natural window light",
     "lit_rim": "dramatic rim lighting from behind",
     "lit_neon": "colorful neon lights with cyberpunk atmosphere",
+    "lit_fairy": "warm glowing fairy string lights",
     "lit_candle": "warm candlelight illumination",
     "lit_dramatic": "dramatic chiaroscuro lighting with deep shadows",
-    "lit_flat": "flat even lighting",
+    "lit_flash": "direct on-camera flash photography look",
     # Picture Style
     "ps_none": "", "ps_dreamy": "dreamy ethereal atmosphere with soft glow and hazy light",
     "ps_soft": "soft gentle tones with smooth gradients and muted colors",
@@ -1103,13 +1309,16 @@ ENGLISH_VALUES = {
     "sf_closeup": "close-up portrait shot showing head and shoulders",
     "sf_medium_cu": "medium close-up from chest up",
     "sf_medium": "medium shot from waist up",
+    "sf_cowboy": "cowboy shot from mid-thigh up",
     "sf_medium_full": "medium full shot from knees up",
     "sf_full": "full body shot",
     "sf_wide": "wide shot showing full body and surrounding environment",
     # Camera Angle
     "cam_eye": "shot at eye level", "cam_low": "shot from low angle looking up",
     "cam_high": "shot from high angle looking down",
-    "cam_3q": "three-quarter view", "cam_dutch": "dutch angle tilted composition",
+    "cam_3q": "three-quarter view", "cam_profile": "side profile view",
+    "cam_selfie": "selfie angle shot from arm's length slightly above eye level",
+    "cam_dutch": "dutch angle tilted composition",
     "cam_over_shoulder": "over-the-shoulder shot", "cam_bird": "bird's eye view from directly above",
     # Depth of Field
     "dof_sharp": "deep focus with everything sharp",
@@ -1122,6 +1331,8 @@ ENGLISH_VALUES = {
     "comp_rot_left": "rule of thirds composition with subject positioned on the left third of the frame",
     "comp_rot_right": "rule of thirds composition with subject positioned on the right third of the frame",
     "comp_golden": "golden ratio composition with subject at the golden spiral focal point",
+    "comp_leading": "composition with leading lines drawing the eye toward the subject",
+    "comp_framed": "subject framed through a natural foreground frame like a doorway or foliage",
     "comp_negative_space": "composed with generous negative space around the subject",
     "comp_symmetry": "symmetrical composition with subject centered along the axis of symmetry",
     # Pose (sorted A-Z)
@@ -1134,8 +1345,11 @@ ENGLISH_VALUES = {
     "pose_dynamic": "in a dynamic action pose",
     "pose_hand_hair": "with hand running through hair",
     "pose_hand_chin": "resting chin on hand thoughtfully",
+    "pose_hands_back": "standing sweetly with hands clasped behind back",
+    "pose_cheek_hands": "with both hands framing the face cutely",
     "pose_hands_pocket": "with hands in pockets casually",
     "pose_heart_hands": "making a heart shape with both hands toward the camera",
+    "pose_hug_knees": "sitting hugging knees to chest",
     "pose_jump": "jumping in the air",
     "pose_kneel": "kneeling on the ground",
     "pose_lean": "leaning against a wall",
@@ -1143,16 +1357,25 @@ ENGLISH_VALUES = {
     "pose_over_shoulder": "looking back over shoulder",
     "pose_lying": "lying down relaxed",
     "pose_mini_heart": "making a mini heart gesture with thumb and index finger",
+    "pose_peace": "flashing a cute peace sign",
     "pose_run": "running in motion",
     "pose_s_curve": "standing in an S-curve pose with weight on one hip",
     "pose_sit": "sitting comfortably",
     "pose_stand": "standing elegantly",
+    "pose_hair_tuck": "gently tucking hair behind ear",
     "pose_twirl": "twirling with movement in clothing",
     "pose_w_sit": "sitting in a W-sit position with legs folded to the sides",
     "pose_walk": "walking naturally",
     "pose_wink": "winking playfully at the camera",
     # Model Type
-    "model_realistic": "Photorealistic", "model_anime": "Anime illustration style",
+    "model_realistic": "Photorealistic",
+    "model_cinematic": "cinematic film still with movie-quality production",
+    "model_film": "analog film photograph with natural grain, Kodak Portra 400",
+    "model_fashion": "high-fashion editorial photography",
+    "model_anime": "Anime illustration style",
+    "model_digital_painting": "detailed digital painting artwork",
+    "model_watercolor": "soft watercolor painting with delicate brush strokes",
+    "model_comic": "comic manga style illustration with clean line art",
     "model_3d": "3D rendered CGI",
     # Quality
     "qt_8k": "8K UHD", "qt_detail": "highly detailed", "qt_sharp": "sharp focus",
@@ -1229,74 +1452,95 @@ AR_RATIOS = {
     "ar_iphone": "1179:2556", "ar_android": "1080:2400",
 }
 
+MT_KEYS = ["model_realistic", "model_cinematic", "model_film", "model_fashion",
+           "model_anime", "model_digital_painting", "model_watercolor",
+           "model_comic", "model_3d"]
+# Model types that are photographic — these get the "shot on 35mm lens" spec
+PHOTO_MODEL_KEYS = {"model_realistic", "model_cinematic", "model_film", "model_fashion"}
 HR_KEYS = [
     # Women's hairstyles
     "hair_long", "hair_straight", "hair_loose_waves",
-    "hair_curly", "hair_wavy", "hair_bob", "hair_lob", "hair_pixie",
+    "hair_curly", "hair_wavy", "hair_layered", "hair_wolf_cut",
+    "hair_hush_cut", "hair_hime", "hair_bob", "hair_lob", "hair_pixie",
     "hair_ponytail", "hair_high_ponytail", "hair_bun", "hair_messy_bun",
-    "hair_braids", "hair_loose_braid", "hair_twin_braids", "hair_twintails",
+    "hair_space_buns", "hair_braids", "hair_french_braid",
+    "hair_twin_braids", "hair_twintails",
     "hair_half_up", "hair_side_swept",
     # Men's hairstyles
-    "hair_short", "hair_undercut", "hair_slick_back", "hair_crew_cut",
-    "hair_pompadour", "hair_man_bun", "hair_fade", "hair_bald",
+    "hair_short", "hair_buzz", "hair_crew_cut", "hair_middle_part",
+    "hair_textured_crop", "hair_undercut", "hair_fade", "hair_slick_back",
+    "hair_man_bun", "hair_bald",
 ]
-HC_KEYS = ["hc_black", "hc_dark_brown", "hc_light_brown", "hc_blonde",
-           "hc_platinum", "hc_red", "hc_ginger", "hc_silver", "hc_white",
-           "hc_blue", "hc_pink", "hc_purple", "hc_green",
+HC_KEYS = ["hc_black", "hc_blue_black", "hc_dark_brown", "hc_ash_brown",
+           "hc_milk_tea", "hc_light_brown", "hc_honey_blonde", "hc_blonde",
+           "hc_platinum", "hc_red", "hc_burgundy", "hc_rose_gold",
+           "hc_pink", "hc_purple", "hc_blue", "hc_silver", "hc_white",
            "hc_ombre", "hc_highlights"]
-BN_KEYS = ["bangs_none", "bangs_straight", "bangs_side",
-           "bangs_curtain", "bangs_wispy", "bangs_micro"]
-EX_KEYS = ["expr_smile", "expr_laugh", "expr_confident",
-           "expr_serious", "expr_neutral", "expr_pensive",
-           "expr_shy", "expr_surprised", "expr_sad", "expr_angry",
-           "expr_dreamy", "expr_playful", "expr_sultry", "expr_peaceful"]
-BT_KEYS = ["bt_slim", "bt_athletic", "bt_curvy", "bt_petite",
-           "bt_tall", "bt_average"]
-AP_KEYS = ["app_cute", "app_beautiful", "app_handsome", "app_cool",
-           "app_elegant", "app_sweet", "app_fierce", "app_natural",
-           "app_kpop", "app_jpop", "app_cpop"]
-FS_KEYS = ["fs_athleisure", "fs_bohemian", "fs_cottagecore", "fs_cyberpunk",
+BN_KEYS = ["bangs_none", "bangs_straight", "bangs_see_through", "bangs_side",
+           "bangs_curtain", "bangs_wispy", "bangs_micro", "bangs_hime"]
+EX_KEYS = ["expr_smile", "expr_bright_smile", "expr_laugh", "expr_giggle",
+           "expr_soft_gaze", "expr_doe_eyes", "expr_pout", "expr_playful",
+           "expr_shy", "expr_confident", "expr_smirk", "expr_dreamy",
+           "expr_peaceful", "expr_neutral", "expr_pensive",
+           "expr_serious", "expr_surprised", "expr_sad", "expr_sultry"]
+BT_KEYS = ["bt_slim", "bt_petite", "bt_lean", "bt_athletic",
+           "bt_hourglass", "bt_curvy", "bt_tall", "bt_average"]
+AP_KEYS = ["app_beautiful", "app_cpop", "app_charming", "app_chic",
+           "app_cool", "app_cute", "app_doll", "app_elegant",
+           "app_fierce", "app_girl_next_door", "app_handsome",
+           "app_jpop", "app_kpop", "app_natural", "app_sweet", "app_youthful"]
+FS_KEYS = ["fs_athleisure", "fs_bohemian", "fs_office", "fs_casual",
+           "fs_coquette", "fs_cottagecore", "fs_cyberpunk",
            "fs_elegant", "fs_gothic", "fs_grunge", "fs_japanese",
            "fs_korean", "fs_minimalist", "fs_old_money", "fs_preppy",
-           "fs_streetwear", "fs_vintage", "fs_y2k"]
-FB_KEYS = ["fab_cotton", "fab_denim", "fab_lace", "fab_leather",
-           "fab_satin", "fab_sheer", "fab_silk", "fab_wool"]
-CP_KEYS = ["col_black", "col_beige", "col_blue", "col_cool",
-           "col_earthy", "col_green", "col_mono", "col_orange",
-           "col_pastel", "col_pink", "col_purple", "col_red",
+           "fs_resort", "fs_streetwear", "fs_vintage", "fs_y2k"]
+FB_KEYS = ["fab_chiffon", "fab_cotton", "fab_denim", "fab_lace",
+           "fab_leather", "fab_linen", "fab_satin", "fab_sheer",
+           "fab_silk", "fab_tweed", "fab_velvet", "fab_wool"]
+CP_KEYS = ["col_black", "col_beige", "col_blue", "col_burgundy", "col_cool",
+           "col_earthy", "col_green", "col_mono", "col_navy", "col_orange",
+           "col_pastel", "col_pink", "col_purple", "col_red", "col_sage",
            "col_vibrant", "col_warm", "col_white", "col_yellow"]
-TOP_KEYS = ["top_blouse", "top_button_shirt", "top_camisole", "top_cardigan",
-            "top_crop", "top_hoodie", "top_off_shoulder", "top_polo",
-            "top_sweater", "top_tank", "top_tshirt", "top_turtleneck"]
-BOT_KEYS = ["bot_a_line", "bot_cargo", "bot_jeans", "bot_leggings",
-            "bot_maxi_skirt", "bot_mini_skirt", "bot_pencil_skirt",
-            "bot_pleated_skirt", "bot_shorts", "bot_sweatpants",
-            "bot_trousers", "bot_wide_leg"]
-LO_KEYS = ["loc_studio", "loc_street", "loc_cafe", "loc_beach",
-           "loc_forest", "loc_rooftop", "loc_room", "loc_temple", "loc_garden"]
+TOP_KEYS = ["top_blazer", "top_blouse", "top_button_shirt", "top_camisole",
+            "top_cardigan", "top_corset", "top_crop", "top_denim_jacket",
+            "top_halter", "top_hoodie", "top_off_shoulder", "top_puff_sleeve",
+            "top_sweater", "top_sweatshirt", "top_tank", "top_tshirt",
+            "top_turtleneck"]
+BOT_KEYS = ["bot_a_line", "bot_cargo", "bot_denim_shorts", "bot_jeans",
+            "bot_leggings", "bot_maxi_skirt", "bot_mini_skirt", "bot_overalls",
+            "bot_pencil_skirt", "bot_pleated_skirt", "bot_slip_skirt",
+            "bot_shorts", "bot_sweatpants", "bot_trousers",
+            "bot_tennis_skirt", "bot_wide_leg"]
+LO_KEYS = ["loc_studio", "loc_amusement", "loc_beach", "loc_cafe",
+           "loc_flower_field", "loc_forest", "loc_garden", "loc_room",
+           "loc_library", "loc_night_market", "loc_pool", "loc_rooftop",
+           "loc_shopping", "loc_street", "loc_temple", "loc_train"]
 TD_KEYS = ["tod_golden", "tod_blue", "tod_noon", "tod_night", "tod_overcast", "tod_sunrise"]
-LT_KEYS = ["lit_natural", "lit_studio", "lit_rim", "lit_neon",
-           "lit_candle", "lit_dramatic", "lit_flat"]
+LT_KEYS = ["lit_natural", "lit_window", "lit_studio", "lit_rim",
+           "lit_neon", "lit_fairy", "lit_candle", "lit_dramatic", "lit_flash"]
 SN_KEYS = ["season_none", "season_spring", "season_summer",
            "season_autumn", "season_winter", "season_rainy"]
 PS_KEYS = ["ps_none", "ps_dreamy", "ps_soft", "ps_vivid", "ps_bw",
            "ps_vintage", "ps_cinematic", "ps_moody", "ps_pastel",
            "ps_hdr", "ps_matte"]
 SF_KEYS = ["sf_extreme_cu", "sf_closeup", "sf_medium_cu", "sf_medium",
-           "sf_medium_full", "sf_full", "sf_wide"]
-CA_KEYS = ["cam_eye", "cam_low", "cam_high", "cam_3q",
-           "cam_dutch", "cam_over_shoulder", "cam_bird"]
+           "sf_cowboy", "sf_medium_full", "sf_full", "sf_wide"]
+CA_KEYS = ["cam_eye", "cam_low", "cam_high", "cam_3q", "cam_profile",
+           "cam_selfie", "cam_dutch", "cam_over_shoulder", "cam_bird"]
 DOF_KEYS = ["dof_sharp", "dof_portrait", "dof_shallow", "dof_tiltshift", "dof_soft"]
 CMP_KEYS = ["comp_center", "comp_rot_left", "comp_rot_right",
-            "comp_golden", "comp_negative_space", "comp_symmetry"]
+            "comp_golden", "comp_leading", "comp_framed",
+            "comp_negative_space", "comp_symmetry"]
 PO_KEYS = ["pose_arms_up", "pose_cross_arms", "pose_back_camera",
            "pose_blow_kiss", "pose_cross_leg", "pose_crouch",
            "pose_dynamic", "pose_hand_hair", "pose_hand_chin",
-           "pose_hands_pocket", "pose_heart_hands", "pose_jump",
+           "pose_hands_back", "pose_cheek_hands", "pose_hands_pocket",
+           "pose_heart_hands", "pose_hug_knees", "pose_jump",
            "pose_kneel", "pose_lean", "pose_looking_away",
            "pose_over_shoulder", "pose_lying", "pose_mini_heart",
-           "pose_run", "pose_s_curve", "pose_sit", "pose_stand",
-           "pose_twirl", "pose_w_sit", "pose_walk", "pose_wink"]
+           "pose_peace", "pose_run", "pose_s_curve", "pose_sit",
+           "pose_stand", "pose_hair_tuck", "pose_twirl", "pose_w_sit",
+           "pose_walk", "pose_wink"]
 
 # Widget key → option key list, for the Random Look button.
 # Identity fields (gender, age, ethnicity) are deliberately NOT randomized.
@@ -1338,10 +1582,28 @@ html, body, [class*="css"] {
     .stSelectbox > div > div { min-height: 44px !important; }
     [data-testid="column"] { width: 100% !important; flex: 1 1 100% !important; }
     .block-container { padding: 1rem 0.75rem !important; }
+    .app-header h1 { font-size: 1.5rem !important; }
 }
 @media (min-width: 1400px) {
     .block-container { max-width: 1200px !important; margin: 0 auto !important; }
 }
+/* App header */
+.app-header { padding: 0.25rem 0 0.75rem 0; }
+.app-header h1 {
+    margin: 0; font-size: 2rem; font-weight: 700; line-height: 1.25;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.app-header p { margin: 0.25rem 0 0 0; opacity: 0.65; font-size: 0.95rem; }
+/* Expander cards */
+div[data-testid="stExpander"] {
+    border: 1px solid rgba(102, 126, 234, 0.25) !important;
+    border-radius: 14px !important;
+    box-shadow: 0 1px 6px rgba(30, 30, 60, 0.06);
+    margin-bottom: 0.6rem;
+}
+div[data-testid="stExpander"] summary { font-weight: 600; }
 div[data-testid="stButton"] > button[kind="primary"] {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
     color: white !important; font-weight: 600 !important; border: none !important;
@@ -1352,7 +1614,7 @@ div[data-testid="stButton"] > button[kind="primary"]:hover {
     box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4) !important;
 }
 .ref-attached { background: linear-gradient(135deg, #e0f7fa 0%, #e8f5e9 100%);
-    border-left: 4px solid #00897b; padding: 10px 14px; border-radius: 8px; margin: 8px 0; font-size: 0.9rem; }
+    border-left: 4px solid #00897b; padding: 10px 14px; border-radius: 8px; margin: 8px 0; font-size: 0.9rem; color: #1a1a2e; }
 .stMultiSelect [data-baseweb="tag"] {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important; border-radius: 20px !important; }
 </style>
@@ -1386,10 +1648,9 @@ def main():
         ar_idx = st.selectbox(t("aspect_ratio"), ar_labels, index=0)
         ar_selected_key = ar_keys[ar_labels.index(ar_idx)]
 
-        mt_keys = ["model_realistic", "model_anime", "model_3d"]
-        mt_labels, _ = make_option(mt_keys)
+        mt_labels, _ = make_option(MT_KEYS)
         mt_idx = st.selectbox(t("model_type"), mt_labels, index=0)
-        mt_selected_key = mt_keys[mt_labels.index(mt_idx)]
+        mt_selected_key = MT_KEYS[mt_labels.index(mt_idx)]
 
         pf_keys = ["platform_universal", "platform_midjourney", "platform_sd"]
         pf_labels, _ = make_option(pf_keys)
@@ -1397,11 +1658,14 @@ def main():
         pf_selected_key = pf_keys[pf_labels.index(pf_sel)]
 
         st.divider()
-        st.caption("v4.1 — AI Prompt Generator")
+        st.caption("v5.0 — AI Prompt Generator")
 
     # ── Header ───────────────────────────────────────────────────────────
-    st.markdown(f"## {t('app_title')}")
-    st.caption(t("app_subtitle"))
+    st.markdown(
+        f'<div class="app-header"><h1>🎨 {t("app_title")}</h1>'
+        f'<p>{t("app_subtitle")}</p></div>',
+        unsafe_allow_html=True,
+    )
 
     # ══════════════════════════════════════════════════════════════════════
     #  EXPANDER 1 — Subject
@@ -1513,15 +1777,15 @@ def main():
         st.markdown(f"**{t('accessories')}**")
         acc_selected = []
 
-        acc_head_keys = ["acc_beanie", "acc_beret", "acc_cap", "acc_glasses",
-                         "acc_hair_clip", "acc_hat", "acc_headband",
-                         "acc_sunglasses", "acc_tiara"]
-        acc_body_keys = ["acc_bangle", "acc_belt", "acc_bowtie", "acc_bracelet",
-                         "acc_brooch", "acc_choker", "acc_earrings", "acc_necktie",
-                         "acc_necklace", "acc_pendant", "acc_ring", "acc_scarf",
-                         "acc_shawl", "acc_suspenders", "acc_watch"]
-        acc_carried_keys = ["acc_backpack", "acc_bag", "acc_bouquet",
-                            "acc_clutch", "acc_umbrella"]
+        acc_head_keys = ["acc_beanie", "acc_beret", "acc_bucket_hat", "acc_cap",
+                         "acc_glasses", "acc_hair_clip", "acc_ribbon", "acc_hat",
+                         "acc_headband", "acc_scrunchie", "acc_sunglasses", "acc_tiara"]
+        acc_body_keys = ["acc_anklet", "acc_belt", "acc_bowtie", "acc_bracelet",
+                         "acc_choker", "acc_earrings", "acc_necklace", "acc_necktie",
+                         "acc_ring", "acc_scarf", "acc_watch"]
+        acc_carried_keys = ["acc_backpack", "acc_book", "acc_camera", "acc_clutch",
+                            "acc_crossbody", "acc_bouquet", "acc_bag", "acc_coffee",
+                            "acc_phone", "acc_tote", "acc_umbrella"]
 
         st.caption(t("acc_group_head"))
         head_cols = st.columns(4)
@@ -1669,8 +1933,10 @@ def main():
 
     if generate_clicked:
         # ── Build each section ──
-        # Technical
-        specs = [eng(mt_selected_key), "shot on 35mm lens"]
+        # Technical — lens spec only makes sense for photographic model types
+        specs = [eng(mt_selected_key)]
+        if mt_selected_key in PHOTO_MODEL_KEYS:
+            specs.append("shot on 35mm lens")
         for qk in qt_selected:
             specs.append(eng(qk))
         technical = ", ".join(specs)
@@ -1679,7 +1945,9 @@ def main():
         bangs_text = eng(bn_key)
         bangs_part = f", {bangs_text}" if bangs_text else ""
         if attach_subject:
-            subject = (f"a photo of the uploaded person, {eng(bt_key)}, {eng(ap_key)}, "
+            subject = (f"a photo of the exact same person as in the attached reference photo, "
+                       f"preserving their facial identity and features precisely, "
+                       f"{eng(bt_key)}, {eng(ap_key)}, "
                        f"with {eng(hr_key)}, {eng(hc_key)}{bangs_part}, "
                        f"and {eng(ex_key)}")
         else:
@@ -1701,7 +1969,7 @@ def main():
         if outfit_text.strip():
             outfit_parts.append(f"wearing {translate_to_english(outfit_text)}")
         if attach_outfit:
-            outfit_parts.append("wearing the outfit shown in the attached outfit reference image")
+            outfit_parts.append("wearing the exact outfit shown in the attached outfit reference image, matching its design, colors and details")
         for ak in acc_selected:
             v = eng(ak)
             if v:
@@ -1715,7 +1983,7 @@ def main():
 
         # Environment
         if attach_scene:
-            env_loc = "in the location shown in the attached scene reference image"
+            env_loc = "in the exact location shown in the attached scene reference image, matching its background and atmosphere"
         elif scene_custom_text.strip():
             env_loc = translate_to_english(scene_custom_text)
         elif place_landmark or place_city or place_country:
