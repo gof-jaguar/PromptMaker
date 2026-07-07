@@ -14,12 +14,12 @@ Deployed on Streamlit Cloud — pushing to `main` on GitHub auto-deploys to http
 
 ## Architecture
 
-Single-file Streamlit app (`app.py`, ~2440 lines) structured in sequential sections:
+Single-file Streamlit app (`app.py`, ~2710 lines) structured in sequential sections:
 
-1. **TRANSLATIONS** — Bilingual dictionary (EN/TH) with 520 keys. Every UI string goes through `t(key)` helper.
+1. **TRANSLATIONS** — Bilingual dictionary (EN/TH) with 563 keys. Every UI string goes through `t(key)` helper.
 2. **ENGLISH_VALUES** — Maps option keys to English prompt text for AI output (e.g. `"hair_long"` → `"long flowing hair"`). Dropdown/selectbox options that affect the generated prompt need entries here.
 3. **HELPERS** — `t()` for translation, `eng()` for prompt values, `make_option()` for selectbox pairs, `translate_to_english()` for Thai→English with a mini dictionary.
-3.5. **OPTION KEY LISTS + RANDOMIZER** — Module-level `*_KEYS` constants (single source of truth for every selectbox's option keys, including `MT_KEYS` for model types), `PHOTO_MODEL_KEYS` (photographic model types that get the "shot on 35mm lens" spec), `AR_RATIOS` (raw ratio strings per aspect key), `RANDOM_WIDGETS` (widget key → option list map), and `randomize_look()` callback.
+3.5. **OPTION KEY LISTS + RANDOMIZER** — Module-level `*_KEYS` constants (single source of truth for every selectbox's option keys, including `MT_KEYS` model types, `LENS_KEYS`, `GD_KEYS`/`AG_KEYS`/`ET_KEYS` identity lists, `MU_KEYS` makeup, `NS_KEYS` people count, `SH_KEYS` footwear), `PHOTO_MODEL_KEYS` (photographic model types that get the lens spec), `AR_RATIOS` (raw ratio strings per aspect key), `RANDOM_WIDGETS` (widget key → option list map), `SCENE_RANDOM_WIDGETS` (scene/camera subset), `PRESET_WIDGETS` (save/load field map), and the `randomize_look()`, `randomize_scene()`, `apply_look_preset()`, `reset_hair_on_gender_change()` callbacks.
 4. **CSS** — Injected via `st.markdown(unsafe_allow_html=True)`. Responsive breakpoints at 768px (mobile) and 1400px (desktop). Uses Noto Sans Thai font.
 5. **MAIN UI** — 4 expanders (Subject, Outfit, Scene, Advanced) + sidebar (language, aspect ratio, model type, target platform).
 6. **GENERATE + OUTPUT** — Builds 7 prompt sections, stores in `st.session_state` with `ta_*` keys for editable text areas, combines into final prompt. Also records each generated prompt into `st.session_state["prompt_history"]` (last 10, shown in an expander at the bottom).
@@ -46,7 +46,15 @@ Single-file Streamlit app (`app.py`, ~2440 lines) structured in sequential secti
 
 **Reference photos:** No file upload — checkboxes toggle prompt instructions (e.g. "the exact same person as in the attached reference photo, preserving their facial identity and features precisely") and show reminder notes in the output. Three checkboxes: subject (face/person), outfit, scene.
 
-**Model types (9, sidebar):** Realistic Photography, Cinematic Film Still, Analog Film Photo, Fashion Editorial, Anime, Digital Painting, Watercolor, Comic/Manga, 3D Render. Only the four photographic types (in `PHOTO_MODEL_KEYS`) get the "shot on 35mm lens" spec appended to the Technical section.
+**Model types (9, sidebar):** Realistic Photography, Cinematic Film Still, Analog Film Photo, Fashion Editorial, Anime, Digital Painting, Watercolor, Comic/Manga, 3D Render. Only the four photographic types (in `PHOTO_MODEL_KEYS`) get a lens spec appended to the Technical section; the lens selectbox (24/35/50/85/135mm, default 35mm, `LENS_KEYS`) only renders for those types.
+
+**Makeup style (10, Subject expander):** `MU_KEYS`, None-first; K-beauty options (dewy glow, gradient lips), Douyin C-beauty, glam, smoky, red lip, no-makeup look. Appended to the subject section after the expression.
+
+**Number of People (Subject expander):** `NS_KEYS` — solo (default, "a {…}"), duo/trio/group phrasing (`two/three/a group of five {…} {gender}s, … both/all with {hair}…`). Ignored when the subject reference photo checkbox is on. Deliberately not randomized.
+
+**Footwear (11, Outfit expander):** `SH_KEYS`, None-first, A-Z. Appended to the outfit section after the garments. Random Look picks footwear only in its garment-led branch.
+
+**Midjourney stylize/seed (sidebar):** When Target Platform is Midjourney, a `--stylize` number input (0–1000, default 100, only emitted when ≠ 100) and optional `--seed` text input (emitted only if digits) appear; both are appended to the `--ar` parameter block.
 
 **Scene location modes:** Three radio options — preset list, free-text description, or real place/travel (landmark + city + country fields). The real place mode builds location strings like `"at Eiffel Tower, Paris, France"`.
 
@@ -77,6 +85,10 @@ Single-file Streamlit app (`app.py`, ~2440 lines) structured in sequential secti
 **Target AI Platform (sidebar):** Universal (Gemini · Imagen) / Midjourney / Stable Diffusion. Controls output formatting at generate time: Midjourney gets `--ar {ratio}` and the negative prompt is appended inline as `--no {negative}` (no separate negative block shown); other platforms get plain-English `in {ratio} aspect ratio` and the negative prompt shown separately. Raw ratios live in `AR_RATIOS`.
 
 **Random Look button (🎲):** Next to Generate. Its `on_click=randomize_look` callback assigns a random translated label to every style widget key in `RANDOM_WIDGETS` (identity fields — gender, age, ethnicity — are deliberately not randomized), then handles two special cases: hair is drawn from the pool matching the current gender, and the outfit is randomized as either 1–2 fashion presets (garments set to None) **or** explicit top/bottom garments with fabric & color (presets cleared) — never both. Sets `force_generate=True` so the prompt is generated in the same rerun.
+
+**Random Scene button (🎬):** Third button in the row. `randomize_scene()` randomizes only the widgets in `SCENE_RANDOM_WIDGETS` (location, time, lighting, season, picture style, framing, angle, DOF, composition) — subject, outfit and pose stay fixed, for consistent-character variations. Also auto-generates.
+
+**Save / Load Look (Advanced expander):** `st.download_button` exports the current selections as `look.json` mapping widget keys → *option keys* (language-independent, via `PRESET_WIDGETS`). Loading = paste JSON into a text area + "Apply Look" button whose `apply_look_preset()` callback validates each key against its option list (hair additionally against the gender's pool), sets widget labels via `t()`, and auto-generates. Invalid JSON sets `preset_status` = "error" which renders an `st.error`.
 
 **Language-switch state clearing:** Keyed selectboxes store the *translated label* in session state. When the language radio changes, all keys in `LANG_DEPENDENT_WIDGETS` are popped so stale labels can't collide with the new option lists (this resets those widgets to defaults, same as pre-keyed behavior).
 

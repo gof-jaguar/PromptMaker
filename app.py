@@ -42,6 +42,15 @@ TRANSLATIONS = {
         "platform_midjourney": "Midjourney",
         "platform_sd": "Stable Diffusion / SDXL",
         "random_btn": "Random Look",
+        "random_scene_btn": "Random Scene",
+        "lens": "Lens (photo modes only)",
+        "lens_24": "24mm (wide / environmental)",
+        "lens_35": "35mm (classic)",
+        "lens_50": "50mm (standard)",
+        "lens_85": "85mm (portrait)",
+        "lens_135": "135mm (telephoto)",
+        "mj_stylize": "Stylize (--stylize)",
+        "mj_seed": "Seed (--seed, optional)",
         "download_btn": "Download .txt",
         "history_header": "Prompt History (last 10)",
         "chars_label": "characters",
@@ -97,6 +106,23 @@ TRANSLATIONS = {
         "eth_middle_east": "Middle-Eastern",
         "eth_mixed": "Mixed / Ambiguous",
         "skin_detail": "Ultra-realistic Skin Texture",
+        "num_subjects": "Number of People",
+        "ns_solo": "Solo (1 person)",
+        "ns_duo": "Duo (2 people)",
+        "ns_trio": "Trio (3 people)",
+        "ns_group": "Group (5 people)",
+        # Makeup styles (None first, then A-Z)
+        "makeup": "Makeup Style",
+        "mu_none": "— None —",
+        "mu_red_lip": "Classic Red Lip",
+        "mu_douyin": "Douyin / C-beauty",
+        "mu_glam": "Full Glam",
+        "mu_gradient": "Gradient Lips (Korean)",
+        "mu_dewy": "Korean Dewy Glow",
+        "mu_natural": "Natural / Light",
+        "mu_no_makeup": "No-Makeup Look",
+        "mu_smoky": "Smoky Eyes",
+        "mu_soft_matte": "Soft Matte",
         "hair_style": "Hair Style",
         # Women's hairstyles
         "hair_long": "Long Flowing",
@@ -291,6 +317,19 @@ TRANSLATIONS = {
         "bot_trousers": "Tailored Trousers",
         "bot_tennis_skirt": "Tennis Skirt",
         "bot_wide_leg": "Wide-leg Pants",
+        # Footwear (None first, then A-Z)
+        "footwear": "Footwear",
+        "sh_none": "— None —",
+        "sh_ankle_boots": "Ankle Boots",
+        "sh_ballet": "Ballet Flats",
+        "sh_combat": "Combat Boots",
+        "sh_heels": "High Heels",
+        "sh_knee_boots": "Knee-high Boots",
+        "sh_loafers": "Loafers",
+        "sh_mary_janes": "Mary Janes",
+        "sh_platform": "Platform Shoes",
+        "sh_sandals": "Sandals",
+        "sh_sneakers": "Sneakers",
         "attach_outfit_photo": "I will attach outfit reference photo",
         "attach_outfit_note": "Prompt will instruct AI to recreate the attached outfit",
         # Fabric (A-Z) — separate for top & bottom
@@ -572,6 +611,12 @@ TRANSLATIONS = {
 
         # ── Advanced ──
         "exp_advanced": "Advanced & Technical",
+        "save_load_header": "Save / Load Look",
+        "save_look": "Save Look (JSON)",
+        "load_look": "Apply Look",
+        "load_look_paste": "Load a saved look — paste its JSON here",
+        "preset_loaded": "Look applied!",
+        "preset_invalid": "Could not read that look — paste the exact JSON saved from “Save Look”.",
         "custom_prompt": "Custom additions (free text)",
         "custom_placeholder": "e.g. cinematic color grading, lens flare, film grain",
         "negative_prompt": "Negative Prompt (things to avoid)",
@@ -606,6 +651,15 @@ TRANSLATIONS = {
         "platform_midjourney": "Midjourney",
         "platform_sd": "Stable Diffusion / SDXL",
         "random_btn": "สุ่มลุค",
+        "random_scene_btn": "สุ่มฉาก",
+        "lens": "เลนส์ (เฉพาะโหมดภาพถ่าย)",
+        "lens_24": "24มม. (มุมกว้าง / เห็นสภาพแวดล้อม)",
+        "lens_35": "35มม. (คลาสสิก)",
+        "lens_50": "50มม. (มาตรฐาน)",
+        "lens_85": "85มม. (พอร์ตเทรต)",
+        "lens_135": "135มม. (เทเลโฟโต้)",
+        "mj_stylize": "Stylize (--stylize)",
+        "mj_seed": "Seed (--seed ใส่หรือไม่ก็ได้)",
         "download_btn": "ดาวน์โหลด .txt",
         "history_header": "ประวัติพรอมต์ (10 ล่าสุด)",
         "chars_label": "ตัวอักษร",
@@ -661,6 +715,23 @@ TRANSLATIONS = {
         "eth_middle_east": "ตะวันออกกลาง",
         "eth_mixed": "เชื้อชาติผสม",
         "skin_detail": "ผิวหนังสมจริงสุดๆ (รูขุมขน, กระ)",
+        "num_subjects": "จำนวนคน",
+        "ns_solo": "เดี่ยว (1 คน)",
+        "ns_duo": "คู่ (2 คน)",
+        "ns_trio": "3 คน",
+        "ns_group": "กลุ่ม (5 คน)",
+        # Makeup styles (None first, then A-Z)
+        "makeup": "สไตล์เมคอัพ",
+        "mu_none": "— ไม่ระบุ —",
+        "mu_red_lip": "ลิปแดงคลาสสิก",
+        "mu_douyin": "โต่วอิน / C-beauty",
+        "mu_glam": "ฟูลแกลม",
+        "mu_gradient": "ปากไล่สี (เกาหลี)",
+        "mu_dewy": "ผิวโกลว์ฉ่ำแบบเกาหลี",
+        "mu_natural": "ธรรมชาติ / บางเบา",
+        "mu_no_makeup": "ลุคหน้าสด",
+        "mu_smoky": "ตาสโมคกี้",
+        "mu_soft_matte": "แมตต์เนื้อนุ่ม",
         "hair_style": "ทรงผม",
         # ทรงผมผู้หญิง
         "hair_long": "ยาวสลวย",
@@ -855,6 +926,19 @@ TRANSLATIONS = {
         "bot_trousers": "กางเกงสแล็ค",
         "bot_tennis_skirt": "กระโปรงเทนนิส",
         "bot_wide_leg": "กางเกงขาบาน",
+        # Footwear (None first, then A-Z)
+        "footwear": "รองเท้า",
+        "sh_none": "— ไม่ระบุ —",
+        "sh_ankle_boots": "บูทหุ้มข้อ",
+        "sh_ballet": "บัลเล่ต์แฟลต",
+        "sh_combat": "บูทคอมแบท",
+        "sh_heels": "ส้นสูง",
+        "sh_knee_boots": "บูทยาวถึงเข่า",
+        "sh_loafers": "โลฟเฟอร์",
+        "sh_mary_janes": "แมรี่เจน",
+        "sh_platform": "ส้นตึก",
+        "sh_sandals": "รองเท้ารัดส้น",
+        "sh_sneakers": "รองเท้าผ้าใบ",
         "attach_outfit_photo": "จะแนบรูปชุดอ้างอิง",
         "attach_outfit_note": "พรอมต์จะสั่งให้ AI สร้างชุดตามรูปที่แนบ",
         # Fabric (A-Z) — separate for top & bottom
@@ -1136,6 +1220,12 @@ TRANSLATIONS = {
 
         # ── Advanced ──
         "exp_advanced": "ขั้นสูงและเทคนิค",
+        "save_load_header": "บันทึก / โหลดลุค",
+        "save_look": "บันทึกลุค (JSON)",
+        "load_look": "ใช้ลุคนี้",
+        "load_look_paste": "โหลดลุคที่บันทึกไว้ — วางโค้ด JSON ที่นี่",
+        "preset_loaded": "ใช้ลุคเรียบร้อยแล้ว!",
+        "preset_invalid": "อ่านลุคไม่ได้ — กรุณาวาง JSON ที่ได้จากปุ่ม “บันทึกลุค”",
         "custom_prompt": "เพิ่มเติมเอง (พิมพ์ได้เลย)",
         "custom_placeholder": "เช่น โทนภาพยนตร์, เลนส์แฟลร์, ฟิล์มเกรน",
         "negative_prompt": "สิ่งที่ไม่ต้องการ (Negative Prompt)",
@@ -1231,6 +1321,19 @@ ENGLISH_VALUES = {
     "expr_sad": "sad melancholic expression",
     "expr_dreamy": "dreamy wistful expression", "expr_playful": "playful mischievous expression",
     "expr_sultry": "sultry seductive expression", "expr_peaceful": "peaceful serene expression",
+    # Number of People (solo is the implicit "a ..." phrasing)
+    "ns_solo": "", "ns_duo": "two", "ns_trio": "three", "ns_group": "a group of five",
+    # Makeup
+    "mu_none": "",
+    "mu_red_lip": "elegant makeup with classic bold red lipstick",
+    "mu_douyin": "Douyin-style C-beauty makeup with aegyo-sal, precise brows and vivid lips",
+    "mu_glam": "full glam makeup with sculpted contour, defined eyes and bold lashes",
+    "mu_gradient": "Korean gradient lip makeup with soft blurred lip color",
+    "mu_dewy": "Korean-style dewy makeup with luminous glowing skin",
+    "mu_natural": "natural light makeup with subtle enhancement",
+    "mu_no_makeup": "no-makeup makeup look with bare fresh skin",
+    "mu_smoky": "smoky eye makeup with dark blended eyeshadow",
+    "mu_soft_matte": "soft matte makeup with a velvet finish",
     # Body Type
     "bt_slim": "slim slender body", "bt_petite": "petite small body frame",
     "bt_lean": "lean toned body", "bt_athletic": "athletic fit toned body",
@@ -1303,6 +1406,24 @@ ENGLISH_VALUES = {
     "bot_sweatpants": "wearing sweatpants", "bot_trousers": "wearing tailored trousers",
     "bot_denim_shorts": "wearing denim shorts", "bot_overalls": "wearing overalls",
     "bot_slip_skirt": "wearing a satin slip skirt", "bot_tennis_skirt": "wearing a pleated tennis skirt",
+    # Footwear
+    "sh_none": "",
+    "sh_ankle_boots": "wearing ankle boots",
+    "sh_ballet": "wearing ballet flats",
+    "sh_combat": "wearing chunky combat boots",
+    "sh_heels": "wearing high heels",
+    "sh_knee_boots": "wearing knee-high boots",
+    "sh_loafers": "wearing polished leather loafers",
+    "sh_mary_janes": "wearing mary jane shoes",
+    "sh_platform": "wearing platform shoes",
+    "sh_sandals": "wearing strappy sandals",
+    "sh_sneakers": "wearing clean white sneakers",
+    # Lens (photographic model types only)
+    "lens_24": "shot on 24mm wide-angle lens",
+    "lens_35": "shot on 35mm lens",
+    "lens_50": "shot on 50mm lens",
+    "lens_85": "shot on 85mm portrait lens with beautiful compression",
+    "lens_135": "shot on 135mm telephoto lens with strong background compression",
     # Color Palette
     "col_none": "",
     "col_red": "red color tones", "col_pink": "pink color tones",
@@ -1601,8 +1722,15 @@ AR_RATIOS = {
 MT_KEYS = ["model_realistic", "model_cinematic", "model_film", "model_fashion",
            "model_anime", "model_digital_painting", "model_watercolor",
            "model_comic", "model_3d"]
-# Model types that are photographic — these get the "shot on 35mm lens" spec
+# Model types that are photographic — these get the lens spec
 PHOTO_MODEL_KEYS = {"model_realistic", "model_cinematic", "model_film", "model_fashion"}
+LENS_KEYS = ["lens_24", "lens_35", "lens_50", "lens_85", "lens_135"]
+GD_KEYS = ["gender_female", "gender_male", "gender_nb"]
+AG_KEYS = ["age_20_25", "age_5_9", "age_10_14", "age_15_19",
+           "age_26_35", "age_36_45", "age_46_60", "age_60plus"]
+ET_KEYS = ["eth_asian", "eth_se_asian", "eth_south_asian", "eth_european",
+           "eth_african", "eth_latin", "eth_middle_east", "eth_mixed"]
+NS_KEYS = ["ns_solo", "ns_duo", "ns_trio", "ns_group"]
 HR_KEYS_WOMEN = [
     "hair_long", "hair_straight", "hair_loose_waves",
     "hair_curly", "hair_wavy", "hair_layered", "hair_wolf_cut",
@@ -1645,6 +1773,8 @@ AP_KEYS = ["app_beautiful", "app_cpop", "app_charming", "app_chic",
            "app_cool", "app_cute", "app_doll", "app_elegant",
            "app_fierce", "app_girl_next_door", "app_handsome",
            "app_jpop", "app_kpop", "app_natural", "app_sweet", "app_youthful"]
+MU_KEYS = ["mu_none", "mu_red_lip", "mu_douyin", "mu_glam", "mu_gradient",
+           "mu_dewy", "mu_natural", "mu_no_makeup", "mu_smoky", "mu_soft_matte"]
 FS_KEYS = ["fs_athleisure", "fs_bohemian", "fs_office", "fs_casual",
            "fs_coquette", "fs_cottagecore", "fs_cyberpunk",
            "fs_elegant", "fs_gothic", "fs_grunge", "fs_japanese",
@@ -1667,6 +1797,9 @@ BOT_KEYS = ["bot_none", "bot_a_line", "bot_cargo", "bot_denim_shorts", "bot_jean
             "bot_pencil_skirt", "bot_pleated_skirt", "bot_slip_skirt",
             "bot_shorts", "bot_sweatpants", "bot_trousers",
             "bot_tennis_skirt", "bot_wide_leg"]
+SH_KEYS = ["sh_none", "sh_ankle_boots", "sh_ballet", "sh_combat", "sh_heels",
+           "sh_knee_boots", "sh_loafers", "sh_mary_janes", "sh_platform",
+           "sh_sandals", "sh_sneakers"]
 LO_KEYS = ["loc_studio", "loc_airport", "loc_amusement", "loc_aquarium",
            "loc_art_gallery", "loc_beach", "loc_bridge", "loc_castle",
            "loc_cafe", "loc_desert", "loc_old_town", "loc_flower_field",
@@ -1720,18 +1853,42 @@ PO_KEYS = ["pose_arms_up", "pose_cross_arms", "pose_arms_open",
 RANDOM_WIDGETS = {
     "w_hair_color": HC_KEYS, "w_bangs": BN_KEYS,
     "w_expr": EX_KEYS, "w_body": BT_KEYS, "w_appearance": AP_KEYS,
+    "w_makeup": MU_KEYS,
     "w_location": LO_KEYS, "w_tod": TD_KEYS, "w_lighting": LT_KEYS,
     "w_season": SN_KEYS, "w_pstyle": PS_KEYS, "w_framing": SF_KEYS,
     "w_angle": CA_KEYS, "w_dof": DOF_KEYS, "w_comp": CMP_KEYS, "w_pose": PO_KEYS,
 }
 
+# Scene/camera subset for the "Random Scene" button — keeps the subject,
+# outfit and pose untouched (useful for consistent-character variations).
+SCENE_RANDOM_WIDGETS = {
+    "w_location": LO_KEYS, "w_tod": TD_KEYS, "w_lighting": LT_KEYS,
+    "w_season": SN_KEYS, "w_pstyle": PS_KEYS, "w_framing": SF_KEYS,
+    "w_angle": CA_KEYS, "w_dof": DOF_KEYS, "w_comp": CMP_KEYS,
+}
+
 # Widgets whose stored value is a translated label — must be reset when the
 # UI language changes, otherwise the stale label is no longer a valid option.
 LANG_DEPENDENT_WIDGETS = list(RANDOM_WIDGETS) + [
-    "fashion_multi", "w_gender", "w_hair",
+    "fashion_multi", "w_gender", "w_age", "w_eth", "w_hair",
     "w_top", "top_fabric_sel", "top_color_sel",
-    "w_bottom", "bot_fabric_sel", "bot_color_sel",
+    "w_bottom", "bot_fabric_sel", "bot_color_sel", "w_shoes",
 ]
+
+# Widget key → option key list, for saving/loading a look as JSON.
+# Presets store option KEYS (language-independent), not translated labels.
+PRESET_WIDGETS = {
+    "w_gender": GD_KEYS, "w_age": AG_KEYS, "w_eth": ET_KEYS,
+    "w_hair": HR_KEYS, "w_hair_color": HC_KEYS, "w_bangs": BN_KEYS,
+    "w_expr": EX_KEYS, "w_body": BT_KEYS, "w_appearance": AP_KEYS,
+    "w_makeup": MU_KEYS,
+    "w_top": TOP_KEYS, "top_fabric_sel": FB_KEYS, "top_color_sel": CP_KEYS,
+    "w_bottom": BOT_KEYS, "bot_fabric_sel": FB_KEYS, "bot_color_sel": CP_KEYS,
+    "w_shoes": SH_KEYS,
+    "w_location": LO_KEYS, "w_tod": TD_KEYS, "w_lighting": LT_KEYS,
+    "w_season": SN_KEYS, "w_pstyle": PS_KEYS, "w_framing": SF_KEYS,
+    "w_angle": CA_KEYS, "w_dof": DOF_KEYS, "w_comp": CMP_KEYS, "w_pose": PO_KEYS,
+}
 
 
 def reset_hair_on_gender_change():
@@ -1761,6 +1918,7 @@ def randomize_look():
         st.session_state["bot_fabric_sel"] = t("fab_none")
         st.session_state["top_color_sel"] = t("col_none")
         st.session_state["bot_color_sel"] = t("col_none")
+        st.session_state["w_shoes"] = t("sh_none")
     else:
         st.session_state["fashion_multi"] = []
         st.session_state["w_top"] = t(random.choice(TOP_KEYS[1:]))
@@ -1769,6 +1927,49 @@ def randomize_look():
         st.session_state["bot_fabric_sel"] = t(random.choice(FB_KEYS[1:]))
         st.session_state["top_color_sel"] = t(random.choice(CP_KEYS[1:]))
         st.session_state["bot_color_sel"] = t(random.choice(CP_KEYS[1:]))
+        st.session_state["w_shoes"] = t(random.choice(SH_KEYS[1:]))
+    st.session_state["force_generate"] = True
+
+
+def randomize_scene():
+    """Randomize only scene/camera widgets, keeping subject/outfit/pose fixed."""
+    for widget_key, option_keys in SCENE_RANDOM_WIDGETS.items():
+        st.session_state[widget_key] = t(random.choice(option_keys))
+    st.session_state["force_generate"] = True
+
+
+def apply_look_preset():
+    """Load a saved look: parse pasted JSON of option keys and set widgets."""
+    try:
+        data = json.loads(st.session_state.get("preset_paste", ""))
+        if not isinstance(data, dict):
+            raise ValueError("not a dict")
+    except (ValueError, TypeError):
+        st.session_state["preset_status"] = "error"
+        return
+    # Gender first — the hairstyle pool depends on it
+    gd = data.get("w_gender")
+    if gd in GD_KEYS:
+        st.session_state["w_gender"] = t(gd)
+    else:
+        gd = None
+    for widget_key, option_keys in PRESET_WIDGETS.items():
+        val = data.get(widget_key)
+        if not isinstance(val, str) or val not in option_keys:
+            continue
+        # Hairstyle must exist in the pool of the (possibly new) gender
+        if widget_key == "w_hair":
+            gd_label = st.session_state.get("w_gender", t("gender_female"))
+            pool = HR_KEYS_MEN if gd_label == t("gender_male") else (
+                HR_KEYS if gd_label == t("gender_nb") else HR_KEYS_WOMEN)
+            if val not in pool:
+                st.session_state.pop("w_hair", None)
+                continue
+        st.session_state[widget_key] = t(val)
+    fs = data.get("fashion_multi", [])
+    if isinstance(fs, list):
+        st.session_state["fashion_multi"] = [t(k) for k in fs if k in FS_KEYS]
+    st.session_state["preset_status"] = "ok"
     st.session_state["force_generate"] = True
 
 
@@ -1857,13 +2058,28 @@ def main():
         mt_idx = st.selectbox(t("model_type"), mt_labels, index=0)
         mt_selected_key = MT_KEYS[mt_labels.index(mt_idx)]
 
+        # Lens only affects photographic model types (index 1 = classic 35mm)
+        lens_key = "lens_35"
+        if mt_selected_key in PHOTO_MODEL_KEYS:
+            lens_labels, _ = make_option(LENS_KEYS)
+            lens_sel = st.selectbox(t("lens"), lens_labels, index=1)
+            lens_key = LENS_KEYS[lens_labels.index(lens_sel)]
+
         pf_keys = ["platform_universal", "platform_midjourney", "platform_sd"]
         pf_labels, _ = make_option(pf_keys)
         pf_sel = st.selectbox(t("target_platform"), pf_labels, index=0)
         pf_selected_key = pf_keys[pf_labels.index(pf_sel)]
 
+        # Midjourney-only knobs, appended to the --ar parameter block
+        mj_stylize = 100
+        mj_seed = ""
+        if pf_selected_key == "platform_midjourney":
+            mj_stylize = st.number_input(t("mj_stylize"), min_value=0,
+                                         max_value=1000, value=100, step=50)
+            mj_seed = st.text_input(t("mj_seed"), value="")
+
         st.divider()
-        st.caption("v5.0 — AI Prompt Generator")
+        st.caption("v5.2 — AI Prompt Generator")
 
     # ── Header ───────────────────────────────────────────────────────────
     st.markdown(
@@ -1883,23 +2099,18 @@ def main():
 
         col1, col2, col3 = st.columns(3)
         with col1:
-            gd_keys = ["gender_female", "gender_male", "gender_nb"]
-            gd_labels, _ = make_option(gd_keys)
+            gd_labels, _ = make_option(GD_KEYS)
             gd_sel = st.selectbox(t("gender"), gd_labels, key="w_gender",
                                   on_change=reset_hair_on_gender_change)
-            gd_key = gd_keys[gd_labels.index(gd_sel)]
+            gd_key = GD_KEYS[gd_labels.index(gd_sel)]
         with col2:
-            ag_keys = ["age_20_25", "age_5_9", "age_10_14", "age_15_19",
-                        "age_26_35", "age_36_45", "age_46_60", "age_60plus"]
-            ag_labels, _ = make_option(ag_keys)
-            ag_sel = st.selectbox(t("age_group"), ag_labels)
-            ag_key = ag_keys[ag_labels.index(ag_sel)]
+            ag_labels, _ = make_option(AG_KEYS)
+            ag_sel = st.selectbox(t("age_group"), ag_labels, key="w_age")
+            ag_key = AG_KEYS[ag_labels.index(ag_sel)]
         with col3:
-            et_keys = ["eth_asian", "eth_se_asian", "eth_south_asian", "eth_european",
-                        "eth_african", "eth_latin", "eth_middle_east", "eth_mixed"]
-            et_labels, _ = make_option(et_keys)
-            et_sel = st.selectbox(t("ethnicity"), et_labels)
-            et_key = et_keys[et_labels.index(et_sel)]
+            et_labels, _ = make_option(ET_KEYS)
+            et_sel = st.selectbox(t("ethnicity"), et_labels, key="w_eth")
+            et_key = ET_KEYS[et_labels.index(et_sel)]
 
         col4, col5 = st.columns(2)
         with col4:
@@ -1921,6 +2132,16 @@ def main():
             ex_labels, _ = make_option(EX_KEYS)
             ex_sel = st.selectbox(t("expression"), ex_labels, key="w_expr")
             ex_key = EX_KEYS[ex_labels.index(ex_sel)]
+
+        col_mu, col_ns = st.columns(2)
+        with col_mu:
+            mu_labels, _ = make_option(MU_KEYS)
+            mu_sel = st.selectbox(t("makeup"), mu_labels, key="w_makeup")
+            mu_key = MU_KEYS[mu_labels.index(mu_sel)]
+        with col_ns:
+            ns_labels, _ = make_option(NS_KEYS)
+            ns_sel = st.selectbox(t("num_subjects"), ns_labels)
+            ns_key = NS_KEYS[ns_labels.index(ns_sel)]
 
         col7, _ = st.columns(2)
         with col7:
@@ -1981,6 +2202,12 @@ def main():
         # Gentle warning when a preset style and explicit garments are mixed
         if fs_selected_keys and (top_key != "top_none" or bot_key != "bot_none"):
             st.caption(t("outfit_clash_hint"))
+
+        col_sh, _ = st.columns(2)
+        with col_sh:
+            sh_labels, _ = make_option(SH_KEYS)
+            sh_sel = st.selectbox(t("footwear"), sh_labels, key="w_shoes")
+            sh_key = SH_KEYS[sh_labels.index(sh_sel)]
 
         st.markdown("---")
         outfit_text = st.text_input(t("outfit_input"), placeholder=t("outfit_placeholder"))
@@ -2132,15 +2359,45 @@ def main():
                 if st.checkbox(t(qk), value=(qk in ("qt_8k", "qt_detail", "qt_sharp"))):
                     qt_selected.append(qk)
 
+        # ── Save / Load Look ──
+        # Presets store language-independent option KEYS, so a look saved in
+        # Thai loads fine in English (and vice versa).
+        st.markdown("---")
+        st.markdown(f"**💾 {t('save_load_header')}**")
+        current_look = {
+            "w_gender": gd_key, "w_age": ag_key, "w_eth": et_key,
+            "w_hair": hr_key, "w_hair_color": hc_key, "w_bangs": bn_key,
+            "w_expr": ex_key, "w_body": bt_key, "w_appearance": ap_key,
+            "w_makeup": mu_key,
+            "w_top": top_key, "top_fabric_sel": top_fb_key, "top_color_sel": top_cp_key,
+            "w_bottom": bot_key, "bot_fabric_sel": bot_fb_key, "bot_color_sel": bot_cp_key,
+            "w_shoes": sh_key, "fashion_multi": fs_selected_keys,
+            "w_location": lo_key, "w_tod": td_key, "w_lighting": lt_key,
+            "w_season": sn_key, "w_pstyle": ps_key, "w_framing": sf_key,
+            "w_angle": ca_key, "w_dof": dof_key, "w_comp": cmp_key, "w_pose": po_key,
+        }
+        st.download_button(f"💾 {t('save_look')}",
+                           json.dumps(current_look, indent=2),
+                           file_name="look.json", mime="application/json")
+        st.text_area(t("load_look_paste"), height=80, key="preset_paste")
+        st.button(f"📂 {t('load_look')}", on_click=apply_look_preset)
+        preset_status = st.session_state.pop("preset_status", None)
+        if preset_status == "ok":
+            st.success(t("preset_loaded"))
+        elif preset_status == "error":
+            st.error(t("preset_invalid"))
+
     # ══════════════════════════════════════════════════════════════════════
     #  6. GENERATE
     # ══════════════════════════════════════════════════════════════════════
     st.markdown("")
-    gen_col, rand_col, _ = st.columns([1, 1, 1])
+    gen_col, rand_col, scene_col = st.columns([1, 1, 1])
     with gen_col:
         generate_clicked = st.button(f"🚀  {t('generate_btn')}", type="primary", use_container_width=True)
     with rand_col:
         st.button(f"🎲  {t('random_btn')}", on_click=randomize_look, use_container_width=True)
+    with scene_col:
+        st.button(f"🎬  {t('random_scene_btn')}", on_click=randomize_scene, use_container_width=True)
     # Random Look callback sets new widget values, then requests a generate
     if st.session_state.pop("force_generate", False):
         generate_clicked = True
@@ -2153,7 +2410,7 @@ def main():
         # Technical — lens spec only makes sense for photographic model types
         specs = [eng(mt_selected_key)]
         if mt_selected_key in PHOTO_MODEL_KEYS:
-            specs.append("shot on 35mm lens")
+            specs.append(eng(lens_key))
         for qk in qt_selected:
             specs.append(eng(qk))
         technical = ", ".join(specs)
@@ -2161,17 +2418,24 @@ def main():
         # Subject (with body type + appearance)
         bangs_text = eng(bn_key)
         bangs_part = f", {bangs_text}" if bangs_text else ""
+        makeup_part = f", {eng(mu_key)}" if eng(mu_key) else ""
         if attach_subject:
             subject = (f"a photo of the exact same person as in the attached reference photo, "
                        f"preserving their facial identity and features precisely, "
                        f"{eng(bt_key)}, {eng(ap_key)}, "
                        f"with {eng(hr_key)}, {eng(hc_key)}{bangs_part}, "
-                       f"and {eng(ex_key)}")
-        else:
+                       f"and {eng(ex_key)}{makeup_part}")
+        elif ns_key == "ns_solo":
             subject = (f"a {eng(ag_key)} {eng(et_key)} {eng(gd_key)}, "
                        f"{eng(bt_key)}, {eng(ap_key)}, "
                        f"with {eng(hr_key)}, {eng(hc_key)}{bangs_part}, "
-                       f"and {eng(ex_key)}")
+                       f"and {eng(ex_key)}{makeup_part}")
+        else:
+            shared_with = "both with" if ns_key == "ns_duo" else "all with"
+            subject = (f"{eng(ns_key)} {eng(ag_key)} {eng(et_key)} {eng(gd_key)}s, "
+                       f"{eng(bt_key)}, {eng(ap_key)}, "
+                       f"{shared_with} {eng(hr_key)}, {eng(hc_key)}{bangs_part}, "
+                       f"and {eng(ex_key)}{makeup_part}")
         if skin_check:
             subject += ", with ultra-realistic skin texture showing pores and fine details"
 
@@ -2192,6 +2456,8 @@ def main():
             if eng(cp_key):
                 garment += f" in {eng(cp_key)}"
             outfit_parts.append(garment)
+        if eng(sh_key):
+            outfit_parts.append(eng(sh_key))
         if outfit_text.strip():
             outfit_parts.append(f"wearing {translate_to_english(outfit_text)}")
         if attach_outfit:
@@ -2269,6 +2535,10 @@ def main():
         ratio = AR_RATIOS[ar_selected_key]
         if pf_selected_key == "platform_midjourney":
             ar_val = f"--ar {ratio}"
+            if int(mj_stylize) != 100:
+                ar_val += f" --stylize {int(mj_stylize)}"
+            if mj_seed.strip().isdigit():
+                ar_val += f" --seed {mj_seed.strip()}"
         else:
             ar_val = f"in {ratio} aspect ratio"
 
