@@ -2411,7 +2411,7 @@ def main():
             mj_seed = st.text_input(t("mj_seed"), value="")
 
         st.divider()
-        st.caption("v5.3 — AI Prompt Generator")
+        st.caption("v5.4 — AI Prompt Generator")
 
     # ── Header ───────────────────────────────────────────────────────────
     st.markdown(
