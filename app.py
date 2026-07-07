@@ -231,6 +231,7 @@ TRANSLATIONS = {
         "outfit_placeholder": "e.g. Japanese school uniform with red ribbon",
         "fashion_presets": "Fashion Styles (optional, multi-select)",
         "fashion_presets_help": "Select styles to blend, or skip and describe your own below",
+        "outfit_clash_hint": "💡 A fashion style is selected — leave Top/Bottom on “None” to let the style define the outfit, or clear the style to build your own.",
         # Fashion presets (A-Z)
         "fs_athleisure": "Athleisure / Sporty",
         "fs_bohemian": "Bohemian / Boho",
@@ -253,6 +254,7 @@ TRANSLATIONS = {
         "fs_y2k": "Y2K / 2000s Revival",
         # Top garments (A-Z)
         "top_garment": "Top",
+        "top_none": "— None (let fashion style decide) —",
         "top_blazer": "Blazer",
         "top_blouse": "Blouse",
         "top_button_shirt": "Button-up Shirt",
@@ -272,6 +274,7 @@ TRANSLATIONS = {
         "top_turtleneck": "Turtleneck",
         # Bottom garments (A-Z)
         "bottom_garment": "Bottom",
+        "bot_none": "— None (let fashion style decide) —",
         "bot_a_line": "A-line Skirt",
         "bot_cargo": "Cargo Pants",
         "bot_denim_shorts": "Denim Shorts",
@@ -293,6 +296,7 @@ TRANSLATIONS = {
         # Fabric (A-Z) — separate for top & bottom
         "top_fabric": "Top Fabric",
         "bot_fabric": "Bottom Fabric",
+        "fab_none": "— Not specified —",
         "fab_chiffon": "Chiffon",
         "fab_cotton": "Cotton",
         "fab_denim": "Denim",
@@ -308,6 +312,7 @@ TRANSLATIONS = {
         # Color palette (A-Z) — separate for top & bottom
         "top_color": "Top Color",
         "bot_color": "Bottom Color",
+        "col_none": "— Not specified —",
         "col_black": "All Black",
         "col_beige": "Beige & Nude",
         "col_blue": "Blue",
@@ -386,21 +391,39 @@ TRANSLATIONS = {
         "place_country_placeholder": "e.g. France, Thailand, Japan",
         "location": "Location",
         "loc_studio": "Photography Studio",
+        "loc_airport": "Airport Terminal",
         "loc_amusement": "Amusement Park",
+        "loc_aquarium": "Aquarium",
+        "loc_art_gallery": "Art Gallery / Museum",
         "loc_beach": "Beach / Seaside",
+        "loc_bridge": "Bridge / River View",
+        "loc_castle": "Castle / Palace",
         "loc_cafe": "Coffee Shop / Café",
+        "loc_desert": "Desert Dunes",
+        "loc_old_town": "European Old Town",
         "loc_flower_field": "Flower Field",
         "loc_forest": "Forest / Nature",
         "loc_garden": "Garden / Park",
+        "loc_stairs": "Grand Staircase",
+        "loc_gym": "Gym / Fitness Studio",
         "loc_room": "Indoor Room / Bedroom",
+        "loc_lake": "Lakeside Pier",
         "loc_library": "Library / Bookstore",
+        "loc_hotel_lobby": "Luxury Hotel Lobby",
+        "loc_mountain": "Mountain Viewpoint",
+        "loc_neon_alley": "Neon Alley (Cyberpunk)",
         "loc_night_market": "Night Market",
         "loc_pool": "Poolside",
+        "loc_rice_field": "Rice Field / Countryside",
         "loc_rooftop": "Rooftop / Cityscape",
         "loc_shopping": "Shopping Street",
-        "loc_street": "Urban Street",
+        "loc_snow": "Snowy Landscape / Ski",
+        "loc_subway": "Subway Station",
         "loc_temple": "Temple / Historic",
         "loc_train": "Train Station",
+        "loc_university": "University Campus",
+        "loc_street": "Urban Street",
+        "loc_waterfall": "Waterfall",
         "time_of_day": "Time of Day",
         "tod_golden": "Golden Hour (Sunset)",
         "tod_blue": "Blue Hour (Twilight)",
@@ -466,6 +489,10 @@ TRANSLATIONS = {
         "cam_dutch": "Dutch Angle (tilted)",
         "cam_over_shoulder": "Over the Shoulder",
         "cam_bird": "Bird's Eye View",
+        "cam_worm": "Worm's Eye (extreme low)",
+        "cam_ground": "Ground Level",
+        "cam_pov": "POV (first person)",
+        "cam_back": "From Behind",
 
         # ── Depth of Field (NEW) ──
         "dof": "Depth of Field / Background",
@@ -474,6 +501,10 @@ TRANSLATIONS = {
         "dof_shallow": "Shallow DOF (f/1.2, heavy bokeh, dreamy)",
         "dof_tiltshift": "Tilt-shift (miniature effect)",
         "dof_soft": "Soft / Dreamy Glow",
+        "dof_bokeh_lights": "Bokeh Light Orbs (night)",
+        "dof_motion": "Motion Blur Background",
+        "dof_fg_blur": "Blurred Foreground Framing",
+        "dof_clean_bg": "Clean Studio Background",
 
         # ── Composition ──
         "composition": "Composition",
@@ -485,35 +516,53 @@ TRANSLATIONS = {
         "comp_framed": "Framed / Doorway",
         "comp_negative_space": "Negative Space",
         "comp_symmetry": "Symmetrical",
+        "comp_diagonal": "Diagonal Lines",
+        "comp_fill": "Fill the Frame",
+        "comp_reflection": "Reflection / Mirror",
+        "comp_depth": "Layered Depth (FG/MG/BG)",
 
         # ── Pose ── (sorted A-Z)
         "pose": "Action / Pose",
         "pose_arms_up": "Arms Above Head",
         "pose_cross_arms": "Arms Crossed",
+        "pose_arms_open": "Arms Open Wide",
         "pose_back_camera": "Back to Camera",
         "pose_blow_kiss": "Blowing a Kiss",
+        "pose_candid": "Candid / Natural Motion",
+        "pose_chin_up": "Chin Up (Confident)",
         "pose_cross_leg": "Cross-legged Sitting",
         "pose_crouch": "Crouching",
+        "pose_dance": "Dancing",
         "pose_dynamic": "Dynamic / Action Pose",
+        "pose_editorial": "Editorial Model Pose",
+        "pose_elegant": "Elegant Graceful Pose",
         "pose_hand_hair": "Hand in Hair",
         "pose_hand_chin": "Hand on Chin",
+        "pose_hand_hip": "Hand on Hip",
         "pose_hands_back": "Hands Behind Back",
         "pose_cheek_hands": "Hands Framing Face",
         "pose_hands_pocket": "Hands in Pockets",
+        "pose_head_tilt": "Head Tilt (Cute)",
         "pose_heart_hands": "Heart Hands",
+        "pose_high_fashion": "High-Fashion Stance",
         "pose_hug_knees": "Hugging Knees",
         "pose_jump": "Jumping",
         "pose_kneel": "Kneeling",
         "pose_lean": "Leaning Against Wall",
+        "pose_lean_forward": "Leaning Toward Camera",
         "pose_looking_away": "Looking Away",
         "pose_over_shoulder": "Looking Over Shoulder",
+        "pose_look_up": "Looking Up (Dreamy)",
         "pose_lying": "Lying Down",
         "pose_mini_heart": "Mini Heart",
         "pose_peace": "Peace Sign",
         "pose_run": "Running",
+        "pose_runway": "Runway Walk",
         "pose_s_curve": "S-Curve Standing",
         "pose_sit": "Sitting",
+        "pose_sit_stairs": "Sitting on Stairs",
         "pose_stand": "Standing",
+        "pose_stretch": "Stretching Gracefully",
         "pose_hair_tuck": "Tucking Hair Behind Ear",
         "pose_twirl": "Twirling",
         "pose_w_sit": "W-Sitting",
@@ -746,6 +795,7 @@ TRANSLATIONS = {
         "outfit_placeholder": "เช่น ชุดนักเรียนญี่ปุ่นผูกโบว์สีแดง",
         "fashion_presets": "สไตล์แฟชั่น (เลือกได้หลายอัน)",
         "fashion_presets_help": "เลือกสไตล์ผสมกันได้ หรือข้ามไปอธิบายเองด้านล่าง",
+        "outfit_clash_hint": "💡 เลือกสไตล์แฟชั่นแล้ว — แนะนำให้ปล่อยเสื้อ/ท่อนล่างเป็น “ไม่ระบุ” เพื่อให้สไตล์กำหนดชุดเอง หรือล้างสไตล์ออกแล้วจัดชุดเองก็ได้",
         # Fashion presets (A-Z)
         "fs_athleisure": "แอธเลเชอร์ / สปอร์ต",
         "fs_bohemian": "โบฮีเมียน / โบโฮ",
@@ -768,6 +818,7 @@ TRANSLATIONS = {
         "fs_y2k": "Y2K / ยุค 2000",
         # Top garments (A-Z)
         "top_garment": "เสื้อ",
+        "top_none": "— ไม่ระบุ (ให้สไตล์แฟชั่นกำหนด) —",
         "top_blazer": "เสื้อเบลเซอร์",
         "top_blouse": "เสื้อเบลาส์",
         "top_button_shirt": "เสื้อเชิ้ต",
@@ -787,6 +838,7 @@ TRANSLATIONS = {
         "top_turtleneck": "เสื้อคอเต่า",
         # Bottom garments (A-Z)
         "bottom_garment": "ท่อนล่าง",
+        "bot_none": "— ไม่ระบุ (ให้สไตล์แฟชั่นกำหนด) —",
         "bot_a_line": "กระโปรงทรงเอ",
         "bot_cargo": "กางเกงคาร์โก้",
         "bot_denim_shorts": "กางเกงยีนส์ขาสั้น",
@@ -808,6 +860,7 @@ TRANSLATIONS = {
         # Fabric (A-Z) — separate for top & bottom
         "top_fabric": "ผ้าเสื้อ",
         "bot_fabric": "ผ้าท่อนล่าง",
+        "fab_none": "— ไม่ระบุ —",
         "fab_chiffon": "ผ้าชีฟอง",
         "fab_cotton": "ผ้าฝ้าย",
         "fab_denim": "ผ้ายีนส์",
@@ -823,6 +876,7 @@ TRANSLATIONS = {
         # Color palette (A-Z) — separate for top & bottom
         "top_color": "สีเสื้อ",
         "bot_color": "สีท่อนล่าง",
+        "col_none": "— ไม่ระบุ —",
         "col_black": "ดำล้วน",
         "col_beige": "เบจและนู้ด",
         "col_blue": "น้ำเงิน",
@@ -901,21 +955,39 @@ TRANSLATIONS = {
         "place_country_placeholder": "เช่น ฝรั่งเศส, ไทย, ญี่ปุ่น",
         "location": "สถานที่",
         "loc_studio": "สตูดิโอถ่ายภาพ",
+        "loc_airport": "สนามบิน / เทอร์มินอล",
         "loc_amusement": "สวนสนุก",
+        "loc_aquarium": "อควาเรียม / พิพิธภัณฑ์สัตว์น้ำ",
+        "loc_art_gallery": "หอศิลป์ / พิพิธภัณฑ์",
         "loc_beach": "ชายหาด / ทะเล",
+        "loc_bridge": "สะพาน / วิวแม่น้ำ",
+        "loc_castle": "ปราสาท / พระราชวัง",
         "loc_cafe": "ร้านกาแฟ / คาเฟ่",
+        "loc_desert": "ทะเลทราย",
+        "loc_old_town": "ย่านเมืองเก่ายุโรป",
         "loc_flower_field": "ทุ่งดอกไม้",
         "loc_forest": "ป่า / ธรรมชาติ",
         "loc_garden": "สวน / สวนสาธารณะ",
+        "loc_stairs": "บันไดหรูหรา",
+        "loc_gym": "ยิม / ฟิตเนส",
         "loc_room": "ห้อง / ห้องนอน",
+        "loc_lake": "ท่าเรือริมทะเลสาบ",
         "loc_library": "ห้องสมุด / ร้านหนังสือ",
+        "loc_hotel_lobby": "ล็อบบี้โรงแรมหรู",
+        "loc_mountain": "จุดชมวิวภูเขา",
+        "loc_neon_alley": "ตรอกไฟนีออน (ไซเบอร์พังก์)",
         "loc_night_market": "ตลาดกลางคืน",
         "loc_pool": "ริมสระว่ายน้ำ",
+        "loc_rice_field": "ทุ่งนา / ชนบท",
         "loc_rooftop": "ดาดฟ้า / วิวเมือง",
         "loc_shopping": "ถนนช้อปปิ้ง",
-        "loc_street": "ถนนในเมือง",
+        "loc_snow": "ภูมิทัศน์หิมะ / ลานสกี",
+        "loc_subway": "สถานีรถไฟฟ้าใต้ดิน",
         "loc_temple": "วัด / สถานที่ประวัติศาสตร์",
         "loc_train": "สถานีรถไฟ",
+        "loc_university": "มหาวิทยาลัย / แคมปัส",
+        "loc_street": "ถนนในเมือง",
+        "loc_waterfall": "น้ำตก",
         "time_of_day": "ช่วงเวลา",
         "tod_golden": "ชั่วโมงทอง (พระอาทิตย์ตก)",
         "tod_blue": "ชั่วโมงฟ้า (สนธยา)",
@@ -981,6 +1053,10 @@ TRANSLATIONS = {
         "cam_dutch": "มุมเอียง (Dutch Angle)",
         "cam_over_shoulder": "มองข้ามไหล่",
         "cam_bird": "มุมมองจากบน (Bird's Eye)",
+        "cam_worm": "มุมหนอน (ต่ำมาก แหงนขึ้น)",
+        "cam_ground": "ระดับพื้น",
+        "cam_pov": "มุมมองบุคคลที่หนึ่ง (POV)",
+        "cam_back": "ถ่ายจากด้านหลัง",
 
         # ── Depth of Field ──
         "dof": "ความชัดลึก / พื้นหลัง",
@@ -989,6 +1065,10 @@ TRANSLATIONS = {
         "dof_shallow": "เบลอหนักมาก (f/1.2, โบเก้ฝัน)",
         "dof_tiltshift": "Tilt-shift (เหมือนโมเดลจิ๋ว)",
         "dof_soft": "นุ่มนวล / เรืองแสง (Dreamy)",
+        "dof_bokeh_lights": "โบเก้ดวงไฟกลม (กลางคืน)",
+        "dof_motion": "พื้นหลังเบลอเคลื่อนไหว",
+        "dof_fg_blur": "ฉากหน้าเบลอ (ถ่ายลอดวัตถุ)",
+        "dof_clean_bg": "พื้นหลังเรียบสตูดิโอ",
 
         # ── Composition ──
         "composition": "การจัดองค์ประกอบ",
@@ -1000,35 +1080,53 @@ TRANSLATIONS = {
         "comp_framed": "กรอบภาพธรรมชาติ / ประตู",
         "comp_negative_space": "เว้นพื้นที่ว่าง (Negative Space)",
         "comp_symmetry": "สมมาตร (Symmetrical)",
+        "comp_diagonal": "เส้นทแยงมุม",
+        "comp_fill": "ซับเจกต์เต็มเฟรม",
+        "comp_reflection": "เงาสะท้อน / กระจก",
+        "comp_depth": "มิติหลายชั้น (หน้า-กลาง-หลัง)",
 
         # ── Pose ── (sorted A-Z)
         "pose": "ท่าโพส / แอคชั่น",
         "pose_arms_up": "ยกแขนเหนือศีรษะ",
         "pose_cross_arms": "กอดอก",
+        "pose_arms_open": "กางแขนกว้าง",
         "pose_back_camera": "หันหลังให้กล้อง",
         "pose_blow_kiss": "ส่งจูบ",
+        "pose_candid": "แคนดิด / ท่าธรรมชาติ",
+        "pose_chin_up": "เชิดคางมั่นใจ",
         "pose_cross_leg": "นั่งไขว่ห้าง",
         "pose_crouch": "นั่งยอง",
+        "pose_dance": "เต้นรำ",
         "pose_dynamic": "ท่าไดนามิก / แอคชั่น",
+        "pose_editorial": "ท่าแบบนิตยสารแฟชั่น",
+        "pose_elegant": "ท่าสง่างาม",
         "pose_hand_hair": "มือจับผม",
         "pose_hand_chin": "มือจับคาง",
+        "pose_hand_hip": "มือเท้าเอวข้างเดียว",
         "pose_hands_back": "มือไขว้หลัง",
         "pose_cheek_hands": "มือเท้าแก้ม",
         "pose_hands_pocket": "มือในกระเป๋า",
+        "pose_head_tilt": "เอียงหัวน่ารัก",
         "pose_heart_hands": "ทำมือรูปหัวใจ",
+        "pose_high_fashion": "ท่านางแบบไฮแฟชั่น",
         "pose_hug_knees": "นั่งกอดเข่า",
         "pose_jump": "กระโดด",
         "pose_kneel": "คุกเข่า",
         "pose_lean": "พิงกำแพง",
+        "pose_lean_forward": "โน้มตัวเข้าหากล้อง",
         "pose_looking_away": "มองไปทางอื่น",
         "pose_over_shoulder": "เหลียวมองข้ามไหล่",
+        "pose_look_up": "แหงนมองขึ้น (ชวนฝัน)",
         "pose_lying": "นอน",
         "pose_mini_heart": "มินิฮาร์ท",
         "pose_peace": "ชูสองนิ้ว",
         "pose_run": "วิ่ง",
+        "pose_runway": "เดินแบบรันเวย์",
         "pose_s_curve": "ยืนโพสตัว S",
         "pose_sit": "นั่ง",
+        "pose_sit_stairs": "นั่งบนบันได",
         "pose_stand": "ยืน",
+        "pose_stretch": "ท่ายืดตัวสวยงาม",
         "pose_hair_tuck": "เกี่ยวผมหลังหู",
         "pose_twirl": "หมุนตัว",
         "pose_w_sit": "นั่งขารูป W",
@@ -1177,6 +1275,7 @@ ENGLISH_VALUES = {
     "fs_office": "polished business casual office fashion",
     "fs_resort": "breezy resort vacation fashion with light summer fabrics",
     # Fabric
+    "fab_none": "",
     "fab_cotton": "cotton fabric", "fab_silk": "silk fabric",
     "fab_denim": "denim", "fab_leather": "leather",
     "fab_lace": "lace fabric", "fab_satin": "satin fabric",
@@ -1184,6 +1283,7 @@ ENGLISH_VALUES = {
     "fab_chiffon": "chiffon fabric", "fab_linen": "linen fabric",
     "fab_tweed": "tweed fabric", "fab_velvet": "velvet fabric",
     # Top Garment
+    "top_none": "",
     "top_tshirt": "wearing a t-shirt", "top_crop": "wearing a crop top",
     "top_blouse": "wearing a blouse", "top_button_shirt": "wearing a button-up shirt",
     "top_tank": "wearing a tank top", "top_sweater": "wearing a sweater",
@@ -1194,6 +1294,7 @@ ENGLISH_VALUES = {
     "top_denim_jacket": "wearing a denim jacket", "top_halter": "wearing a halter top",
     "top_puff_sleeve": "wearing a puff-sleeve blouse", "top_sweatshirt": "wearing a sweatshirt",
     # Bottom Garment
+    "bot_none": "",
     "bot_jeans": "wearing jeans", "bot_mini_skirt": "wearing a mini skirt",
     "bot_maxi_skirt": "wearing a maxi skirt", "bot_pleated_skirt": "wearing a pleated skirt",
     "bot_shorts": "wearing shorts", "bot_wide_leg": "wearing wide-leg pants",
@@ -1203,6 +1304,7 @@ ENGLISH_VALUES = {
     "bot_denim_shorts": "wearing denim shorts", "bot_overalls": "wearing overalls",
     "bot_slip_skirt": "wearing a satin slip skirt", "bot_tennis_skirt": "wearing a pleated tennis skirt",
     # Color Palette
+    "col_none": "",
     "col_red": "red color tones", "col_pink": "pink color tones",
     "col_orange": "orange color tones", "col_yellow": "yellow and gold color tones",
     "col_green": "green color tones", "col_blue": "blue color tones",
@@ -1271,6 +1373,24 @@ ENGLISH_VALUES = {
     "loc_pool": "at a luxurious poolside with clear blue water",
     "loc_shopping": "on a lively shopping street with stylish storefronts",
     "loc_train": "at a scenic train station platform",
+    "loc_airport": "at a modern airport terminal with large glass windows and departure boards",
+    "loc_aquarium": "inside an aquarium hall glowing with blue light from giant fish tanks",
+    "loc_art_gallery": "in a minimalist art gallery with white walls and framed artwork",
+    "loc_bridge": "on a scenic bridge overlooking the river and city skyline",
+    "loc_castle": "at a majestic castle with grand historic European architecture",
+    "loc_desert": "among golden desert sand dunes under a vast open sky",
+    "loc_old_town": "on a charming old European town street with cobblestones and classic facades",
+    "loc_stairs": "on a grand elegant staircase with ornate railings",
+    "loc_gym": "in a modern gym with sleek fitness equipment",
+    "loc_lake": "on a wooden pier by a calm lake with mountain reflections",
+    "loc_hotel_lobby": "in a luxurious hotel lobby with marble floors and chandeliers",
+    "loc_mountain": "at a mountain viewpoint overlooking rolling peaks and valleys",
+    "loc_neon_alley": "in a narrow city alley glowing with colorful neon signs",
+    "loc_rice_field": "in a lush green rice field in the peaceful countryside",
+    "loc_snow": "in a snowy winter landscape covered in fresh white powder snow",
+    "loc_subway": "in a modern subway station with clean architectural lines",
+    "loc_university": "on a university campus with classic collegiate architecture",
+    "loc_waterfall": "at a tropical waterfall surrounded by lush greenery and misty spray",
     # Time of Day
     "tod_golden": "during golden hour with warm sunset light",
     "tod_blue": "during blue hour twilight",
@@ -1320,12 +1440,20 @@ ENGLISH_VALUES = {
     "cam_selfie": "selfie angle shot from arm's length slightly above eye level",
     "cam_dutch": "dutch angle tilted composition",
     "cam_over_shoulder": "over-the-shoulder shot", "cam_bird": "bird's eye view from directly above",
+    "cam_worm": "worm's eye view from ground level looking straight up",
+    "cam_ground": "ground level shot with the camera placed close to the floor",
+    "cam_pov": "first-person POV shot",
+    "cam_back": "shot from directly behind the subject",
     # Depth of Field
     "dof_sharp": "deep focus with everything sharp",
     "dof_portrait": "shallow depth of field at f/1.8 with subject in sharp focus and beautifully blurred bokeh background",
     "dof_shallow": "very shallow depth of field at f/1.2 with heavy creamy bokeh and dreamy atmosphere",
     "dof_tiltshift": "tilt-shift effect creating miniature model appearance",
     "dof_soft": "soft dreamy glow with gentle diffusion",
+    "dof_bokeh_lights": "shallow depth of field with glowing round bokeh light orbs in the background",
+    "dof_motion": "subject in sharp focus with motion-blurred background conveying movement",
+    "dof_fg_blur": "shot through blurred foreground elements creating a dreamy layered frame",
+    "dof_clean_bg": "clean minimal seamless background with the subject in crisp focus",
     # Composition
     "comp_center": "",
     "comp_rot_left": "rule of thirds composition with subject positioned on the left third of the frame",
@@ -1335,6 +1463,10 @@ ENGLISH_VALUES = {
     "comp_framed": "subject framed through a natural foreground frame like a doorway or foliage",
     "comp_negative_space": "composed with generous negative space around the subject",
     "comp_symmetry": "symmetrical composition with subject centered along the axis of symmetry",
+    "comp_diagonal": "dynamic composition built on strong diagonal lines",
+    "comp_fill": "tight composition with the subject filling the entire frame",
+    "comp_reflection": "creative reflection composition using a mirror or water surface",
+    "comp_depth": "layered composition with distinct foreground, midground and background depth",
     # Pose (sorted A-Z)
     "pose_arms_up": "with arms raised above head",
     "pose_cross_arms": "with arms crossed",
@@ -1367,6 +1499,20 @@ ENGLISH_VALUES = {
     "pose_w_sit": "sitting in a W-sit position with legs folded to the sides",
     "pose_walk": "walking naturally",
     "pose_wink": "winking playfully at the camera",
+    "pose_arms_open": "with arms open wide in a joyful welcoming gesture",
+    "pose_candid": "captured candidly in natural unposed movement",
+    "pose_chin_up": "with chin tilted up in a confident poised stance",
+    "pose_dance": "dancing gracefully with flowing movement",
+    "pose_editorial": "striking an avant-garde editorial fashion pose with angular arm placement",
+    "pose_elegant": "posing with elegant graceful posture and refined hand gestures",
+    "pose_hand_hip": "standing with one hand on hip",
+    "pose_head_tilt": "tilting head cutely to one side",
+    "pose_high_fashion": "in a high-fashion model stance with strong confident body lines",
+    "pose_lean_forward": "leaning toward the camera playfully",
+    "pose_look_up": "gazing upward with a dreamy expression",
+    "pose_runway": "walking a runway stride with confident model attitude",
+    "pose_sit_stairs": "sitting casually on a set of stairs",
+    "pose_stretch": "stretching arms overhead in a graceful pose",
     # Model Type
     "model_realistic": "Photorealistic",
     "model_cinematic": "cinematic film still with movie-quality production",
@@ -1457,8 +1603,7 @@ MT_KEYS = ["model_realistic", "model_cinematic", "model_film", "model_fashion",
            "model_comic", "model_3d"]
 # Model types that are photographic — these get the "shot on 35mm lens" spec
 PHOTO_MODEL_KEYS = {"model_realistic", "model_cinematic", "model_film", "model_fashion"}
-HR_KEYS = [
-    # Women's hairstyles
+HR_KEYS_WOMEN = [
     "hair_long", "hair_straight", "hair_loose_waves",
     "hair_curly", "hair_wavy", "hair_layered", "hair_wolf_cut",
     "hair_hush_cut", "hair_hime", "hair_bob", "hair_lob", "hair_pixie",
@@ -1466,11 +1611,22 @@ HR_KEYS = [
     "hair_space_buns", "hair_braids", "hair_french_braid",
     "hair_twin_braids", "hair_twintails",
     "hair_half_up", "hair_side_swept",
-    # Men's hairstyles
+]
+HR_KEYS_MEN = [
     "hair_short", "hair_buzz", "hair_crew_cut", "hair_middle_part",
     "hair_textured_crop", "hair_undercut", "hair_fade", "hair_slick_back",
     "hair_man_bun", "hair_bald",
 ]
+# Full list (used for non-binary and as the language-reset superset)
+HR_KEYS = HR_KEYS_WOMEN + HR_KEYS_MEN
+
+def hair_keys_for_gender(gd_key: str):
+    """Hairstyle option pool filtered by the selected gender."""
+    if gd_key == "gender_female":
+        return HR_KEYS_WOMEN
+    if gd_key == "gender_male":
+        return HR_KEYS_MEN
+    return HR_KEYS
 HC_KEYS = ["hc_black", "hc_blue_black", "hc_dark_brown", "hc_ash_brown",
            "hc_milk_tea", "hc_light_brown", "hc_honey_blonde", "hc_blonde",
            "hc_platinum", "hc_red", "hc_burgundy", "hc_rose_gold",
@@ -1494,27 +1650,32 @@ FS_KEYS = ["fs_athleisure", "fs_bohemian", "fs_office", "fs_casual",
            "fs_elegant", "fs_gothic", "fs_grunge", "fs_japanese",
            "fs_korean", "fs_minimalist", "fs_old_money", "fs_preppy",
            "fs_resort", "fs_streetwear", "fs_vintage", "fs_y2k"]
-FB_KEYS = ["fab_chiffon", "fab_cotton", "fab_denim", "fab_lace",
+FB_KEYS = ["fab_none", "fab_chiffon", "fab_cotton", "fab_denim", "fab_lace",
            "fab_leather", "fab_linen", "fab_satin", "fab_sheer",
            "fab_silk", "fab_tweed", "fab_velvet", "fab_wool"]
-CP_KEYS = ["col_black", "col_beige", "col_blue", "col_burgundy", "col_cool",
+CP_KEYS = ["col_none", "col_black", "col_beige", "col_blue", "col_burgundy", "col_cool",
            "col_earthy", "col_green", "col_mono", "col_navy", "col_orange",
            "col_pastel", "col_pink", "col_purple", "col_red", "col_sage",
            "col_vibrant", "col_warm", "col_white", "col_yellow"]
-TOP_KEYS = ["top_blazer", "top_blouse", "top_button_shirt", "top_camisole",
+TOP_KEYS = ["top_none", "top_blazer", "top_blouse", "top_button_shirt", "top_camisole",
             "top_cardigan", "top_corset", "top_crop", "top_denim_jacket",
             "top_halter", "top_hoodie", "top_off_shoulder", "top_puff_sleeve",
             "top_sweater", "top_sweatshirt", "top_tank", "top_tshirt",
             "top_turtleneck"]
-BOT_KEYS = ["bot_a_line", "bot_cargo", "bot_denim_shorts", "bot_jeans",
+BOT_KEYS = ["bot_none", "bot_a_line", "bot_cargo", "bot_denim_shorts", "bot_jeans",
             "bot_leggings", "bot_maxi_skirt", "bot_mini_skirt", "bot_overalls",
             "bot_pencil_skirt", "bot_pleated_skirt", "bot_slip_skirt",
             "bot_shorts", "bot_sweatpants", "bot_trousers",
             "bot_tennis_skirt", "bot_wide_leg"]
-LO_KEYS = ["loc_studio", "loc_amusement", "loc_beach", "loc_cafe",
-           "loc_flower_field", "loc_forest", "loc_garden", "loc_room",
-           "loc_library", "loc_night_market", "loc_pool", "loc_rooftop",
-           "loc_shopping", "loc_street", "loc_temple", "loc_train"]
+LO_KEYS = ["loc_studio", "loc_airport", "loc_amusement", "loc_aquarium",
+           "loc_art_gallery", "loc_beach", "loc_bridge", "loc_castle",
+           "loc_cafe", "loc_desert", "loc_old_town", "loc_flower_field",
+           "loc_forest", "loc_garden", "loc_stairs", "loc_gym", "loc_room",
+           "loc_lake", "loc_library", "loc_hotel_lobby", "loc_mountain",
+           "loc_neon_alley", "loc_night_market", "loc_pool", "loc_rice_field",
+           "loc_rooftop", "loc_shopping", "loc_snow", "loc_subway",
+           "loc_temple", "loc_train", "loc_university", "loc_street",
+           "loc_waterfall"]
 TD_KEYS = ["tod_golden", "tod_blue", "tod_noon", "tod_night", "tod_overcast", "tod_sunrise"]
 LT_KEYS = ["lit_natural", "lit_window", "lit_studio", "lit_rim",
            "lit_neon", "lit_fairy", "lit_candle", "lit_dramatic", "lit_flash"]
@@ -1525,30 +1686,40 @@ PS_KEYS = ["ps_none", "ps_dreamy", "ps_soft", "ps_vivid", "ps_bw",
            "ps_hdr", "ps_matte"]
 SF_KEYS = ["sf_extreme_cu", "sf_closeup", "sf_medium_cu", "sf_medium",
            "sf_cowboy", "sf_medium_full", "sf_full", "sf_wide"]
-CA_KEYS = ["cam_eye", "cam_low", "cam_high", "cam_3q", "cam_profile",
-           "cam_selfie", "cam_dutch", "cam_over_shoulder", "cam_bird"]
-DOF_KEYS = ["dof_sharp", "dof_portrait", "dof_shallow", "dof_tiltshift", "dof_soft"]
+CA_KEYS = ["cam_eye", "cam_low", "cam_worm", "cam_ground", "cam_high",
+           "cam_3q", "cam_profile", "cam_selfie", "cam_dutch",
+           "cam_over_shoulder", "cam_back", "cam_pov", "cam_bird"]
+DOF_KEYS = ["dof_sharp", "dof_portrait", "dof_shallow", "dof_bokeh_lights",
+            "dof_motion", "dof_fg_blur", "dof_clean_bg",
+            "dof_tiltshift", "dof_soft"]
 CMP_KEYS = ["comp_center", "comp_rot_left", "comp_rot_right",
             "comp_golden", "comp_leading", "comp_framed",
-            "comp_negative_space", "comp_symmetry"]
-PO_KEYS = ["pose_arms_up", "pose_cross_arms", "pose_back_camera",
-           "pose_blow_kiss", "pose_cross_leg", "pose_crouch",
-           "pose_dynamic", "pose_hand_hair", "pose_hand_chin",
-           "pose_hands_back", "pose_cheek_hands", "pose_hands_pocket",
-           "pose_heart_hands", "pose_hug_knees", "pose_jump",
-           "pose_kneel", "pose_lean", "pose_looking_away",
-           "pose_over_shoulder", "pose_lying", "pose_mini_heart",
-           "pose_peace", "pose_run", "pose_s_curve", "pose_sit",
-           "pose_stand", "pose_hair_tuck", "pose_twirl", "pose_w_sit",
+            "comp_negative_space", "comp_symmetry", "comp_diagonal",
+            "comp_fill", "comp_reflection", "comp_depth"]
+PO_KEYS = ["pose_arms_up", "pose_cross_arms", "pose_arms_open",
+           "pose_back_camera", "pose_blow_kiss", "pose_candid",
+           "pose_chin_up", "pose_cross_leg", "pose_crouch",
+           "pose_dance", "pose_dynamic", "pose_editorial",
+           "pose_elegant", "pose_hand_hair", "pose_hand_chin",
+           "pose_hand_hip", "pose_hands_back", "pose_cheek_hands",
+           "pose_hands_pocket", "pose_head_tilt", "pose_heart_hands",
+           "pose_high_fashion", "pose_hug_knees", "pose_jump",
+           "pose_kneel", "pose_lean", "pose_lean_forward",
+           "pose_looking_away", "pose_over_shoulder", "pose_look_up",
+           "pose_lying", "pose_mini_heart", "pose_peace",
+           "pose_run", "pose_runway", "pose_s_curve", "pose_sit",
+           "pose_sit_stairs", "pose_stand", "pose_stretch",
+           "pose_hair_tuck", "pose_twirl", "pose_w_sit",
            "pose_walk", "pose_wink"]
 
 # Widget key → option key list, for the Random Look button.
 # Identity fields (gender, age, ethnicity) are deliberately NOT randomized.
+# Hair and outfit widgets are handled separately in randomize_look():
+# hair depends on the selected gender, and the outfit is either style-led
+# (fashion presets) or garment-led (top/bottom) — never both, to avoid clashes.
 RANDOM_WIDGETS = {
-    "w_hair": HR_KEYS, "w_hair_color": HC_KEYS, "w_bangs": BN_KEYS,
+    "w_hair_color": HC_KEYS, "w_bangs": BN_KEYS,
     "w_expr": EX_KEYS, "w_body": BT_KEYS, "w_appearance": AP_KEYS,
-    "w_top": TOP_KEYS, "top_fabric_sel": FB_KEYS, "top_color_sel": CP_KEYS,
-    "w_bottom": BOT_KEYS, "bot_fabric_sel": FB_KEYS, "bot_color_sel": CP_KEYS,
     "w_location": LO_KEYS, "w_tod": TD_KEYS, "w_lighting": LT_KEYS,
     "w_season": SN_KEYS, "w_pstyle": PS_KEYS, "w_framing": SF_KEYS,
     "w_angle": CA_KEYS, "w_dof": DOF_KEYS, "w_comp": CMP_KEYS, "w_pose": PO_KEYS,
@@ -1556,14 +1727,48 @@ RANDOM_WIDGETS = {
 
 # Widgets whose stored value is a translated label — must be reset when the
 # UI language changes, otherwise the stale label is no longer a valid option.
-LANG_DEPENDENT_WIDGETS = list(RANDOM_WIDGETS) + ["fashion_multi"]
+LANG_DEPENDENT_WIDGETS = list(RANDOM_WIDGETS) + [
+    "fashion_multi", "w_gender", "w_hair",
+    "w_top", "top_fabric_sel", "top_color_sel",
+    "w_bottom", "bot_fabric_sel", "bot_color_sel",
+]
+
+
+def reset_hair_on_gender_change():
+    """The hairstyle option list depends on gender — drop the stale selection."""
+    st.session_state.pop("w_hair", None)
 
 
 def randomize_look():
     """Pick a random label for every style widget, then auto-generate."""
     for widget_key, option_keys in RANDOM_WIDGETS.items():
         st.session_state[widget_key] = t(random.choice(option_keys))
-    st.session_state["fashion_multi"] = [t(k) for k in random.sample(FS_KEYS, random.randint(0, 2))]
+    # Hair: pick from the pool matching the currently selected gender
+    gd_label = st.session_state.get("w_gender", t("gender_female"))
+    if gd_label == t("gender_male"):
+        hair_pool = HR_KEYS_MEN
+    elif gd_label == t("gender_nb"):
+        hair_pool = HR_KEYS
+    else:
+        hair_pool = HR_KEYS_WOMEN
+    st.session_state["w_hair"] = t(random.choice(hair_pool))
+    # Outfit: either a fashion style OR explicit garments, never both
+    if random.random() < 0.5:
+        st.session_state["fashion_multi"] = [t(k) for k in random.sample(FS_KEYS, random.randint(1, 2))]
+        st.session_state["w_top"] = t("top_none")
+        st.session_state["w_bottom"] = t("bot_none")
+        st.session_state["top_fabric_sel"] = t("fab_none")
+        st.session_state["bot_fabric_sel"] = t("fab_none")
+        st.session_state["top_color_sel"] = t("col_none")
+        st.session_state["bot_color_sel"] = t("col_none")
+    else:
+        st.session_state["fashion_multi"] = []
+        st.session_state["w_top"] = t(random.choice(TOP_KEYS[1:]))
+        st.session_state["w_bottom"] = t(random.choice(BOT_KEYS[1:]))
+        st.session_state["top_fabric_sel"] = t(random.choice(FB_KEYS[1:]))
+        st.session_state["bot_fabric_sel"] = t(random.choice(FB_KEYS[1:]))
+        st.session_state["top_color_sel"] = t(random.choice(CP_KEYS[1:]))
+        st.session_state["bot_color_sel"] = t(random.choice(CP_KEYS[1:]))
     st.session_state["force_generate"] = True
 
 
@@ -1680,7 +1885,8 @@ def main():
         with col1:
             gd_keys = ["gender_female", "gender_male", "gender_nb"]
             gd_labels, _ = make_option(gd_keys)
-            gd_sel = st.selectbox(t("gender"), gd_labels)
+            gd_sel = st.selectbox(t("gender"), gd_labels, key="w_gender",
+                                  on_change=reset_hair_on_gender_change)
             gd_key = gd_keys[gd_labels.index(gd_sel)]
         with col2:
             ag_keys = ["age_20_25", "age_5_9", "age_10_14", "age_15_19",
@@ -1697,9 +1903,10 @@ def main():
 
         col4, col5 = st.columns(2)
         with col4:
-            hr_labels, _ = make_option(HR_KEYS)
+            hr_options = hair_keys_for_gender(gd_key)
+            hr_labels, _ = make_option(hr_options)
             hr_sel = st.selectbox(t("hair_style"), hr_labels, key="w_hair")
-            hr_key = HR_KEYS[hr_labels.index(hr_sel)]
+            hr_key = hr_options[hr_labels.index(hr_sel)]
         with col5:
             hc_labels, _ = make_option(HC_KEYS)
             hc_sel = st.selectbox(t("hair_color"), hc_labels, key="w_hair_color")
@@ -1742,28 +1949,38 @@ def main():
         st.markdown("---")
 
         # ── Top: garment + fabric + color ──
+        # Garments default to "None" so a fashion preset alone fully defines
+        # the outfit; fabric/color pickers only appear once a garment is chosen.
         col_top, col_bot = st.columns(2)
         with col_top:
             top_labels, _ = make_option(TOP_KEYS)
             top_sel = st.selectbox(t("top_garment"), top_labels, key="w_top")
             top_key = TOP_KEYS[top_labels.index(top_sel)]
-            top_fb_labels, _ = make_option(FB_KEYS)
-            top_fb_sel = st.selectbox(t("top_fabric"), top_fb_labels, key="top_fabric_sel")
-            top_fb_key = FB_KEYS[top_fb_labels.index(top_fb_sel)]
-            top_cp_labels, _ = make_option(CP_KEYS)
-            top_cp_sel = st.selectbox(t("top_color"), top_cp_labels, key="top_color_sel")
-            top_cp_key = CP_KEYS[top_cp_labels.index(top_cp_sel)]
+            top_fb_key, top_cp_key = "fab_none", "col_none"
+            if top_key != "top_none":
+                top_fb_labels, _ = make_option(FB_KEYS)
+                top_fb_sel = st.selectbox(t("top_fabric"), top_fb_labels, key="top_fabric_sel")
+                top_fb_key = FB_KEYS[top_fb_labels.index(top_fb_sel)]
+                top_cp_labels, _ = make_option(CP_KEYS)
+                top_cp_sel = st.selectbox(t("top_color"), top_cp_labels, key="top_color_sel")
+                top_cp_key = CP_KEYS[top_cp_labels.index(top_cp_sel)]
         # ── Bottom: garment + fabric + color ──
         with col_bot:
             bot_labels, _ = make_option(BOT_KEYS)
             bot_sel = st.selectbox(t("bottom_garment"), bot_labels, key="w_bottom")
             bot_key = BOT_KEYS[bot_labels.index(bot_sel)]
-            bot_fb_labels, _ = make_option(FB_KEYS)
-            bot_fb_sel = st.selectbox(t("bot_fabric"), bot_fb_labels, key="bot_fabric_sel")
-            bot_fb_key = FB_KEYS[bot_fb_labels.index(bot_fb_sel)]
-            bot_cp_labels, _ = make_option(CP_KEYS)
-            bot_cp_sel = st.selectbox(t("bot_color"), bot_cp_labels, key="bot_color_sel")
-            bot_cp_key = CP_KEYS[bot_cp_labels.index(bot_cp_sel)]
+            bot_fb_key, bot_cp_key = "fab_none", "col_none"
+            if bot_key != "bot_none":
+                bot_fb_labels, _ = make_option(FB_KEYS)
+                bot_fb_sel = st.selectbox(t("bot_fabric"), bot_fb_labels, key="bot_fabric_sel")
+                bot_fb_key = FB_KEYS[bot_fb_labels.index(bot_fb_sel)]
+                bot_cp_labels, _ = make_option(CP_KEYS)
+                bot_cp_sel = st.selectbox(t("bot_color"), bot_cp_labels, key="bot_color_sel")
+                bot_cp_key = CP_KEYS[bot_cp_labels.index(bot_cp_sel)]
+
+        # Gentle warning when a preset style and explicit garments are mixed
+        if fs_selected_keys and (top_key != "top_none" or bot_key != "bot_none"):
+            st.caption(t("outfit_clash_hint"))
 
         st.markdown("---")
         outfit_text = st.text_input(t("outfit_input"), placeholder=t("outfit_placeholder"))
@@ -1958,14 +2175,23 @@ def main():
         if skin_check:
             subject += ", with ultra-realistic skin texture showing pores and fine details"
 
-        # Outfit (top & bottom each with their own fabric + color)
+        # Outfit (top & bottom each with their own fabric + color).
+        # Garments set to "None" are omitted so fashion presets don't clash.
         outfit_parts = []
         for fk in fs_selected_keys:
             v = eng(fk)
             if v:
                 outfit_parts.append(v)
-        outfit_parts.append(f"{eng(top_key)} made of {eng(top_fb_key)} in {eng(top_cp_key)}")
-        outfit_parts.append(f"{eng(bot_key)} made of {eng(bot_fb_key)} in {eng(bot_cp_key)}")
+        for g_key, fb_key, cp_key in ((top_key, top_fb_key, top_cp_key),
+                                      (bot_key, bot_fb_key, bot_cp_key)):
+            garment = eng(g_key)
+            if not garment:
+                continue
+            if eng(fb_key):
+                garment += f" made of {eng(fb_key)}"
+            if eng(cp_key):
+                garment += f" in {eng(cp_key)}"
+            outfit_parts.append(garment)
         if outfit_text.strip():
             outfit_parts.append(f"wearing {translate_to_english(outfit_text)}")
         if attach_outfit:

@@ -14,9 +14,9 @@ Deployed on Streamlit Cloud — pushing to `main` on GitHub auto-deploys to http
 
 ## Architecture
 
-Single-file Streamlit app (`app.py`, ~2210 lines) structured in sequential sections:
+Single-file Streamlit app (`app.py`, ~2440 lines) structured in sequential sections:
 
-1. **TRANSLATIONS** — Bilingual dictionary (EN/TH) with 471 keys. Every UI string goes through `t(key)` helper.
+1. **TRANSLATIONS** — Bilingual dictionary (EN/TH) with 520 keys. Every UI string goes through `t(key)` helper.
 2. **ENGLISH_VALUES** — Maps option keys to English prompt text for AI output (e.g. `"hair_long"` → `"long flowing hair"`). Dropdown/selectbox options that affect the generated prompt need entries here.
 3. **HELPERS** — `t()` for translation, `eng()` for prompt values, `make_option()` for selectbox pairs, `translate_to_english()` for Thai→English with a mini dictionary.
 3.5. **OPTION KEY LISTS + RANDOMIZER** — Module-level `*_KEYS` constants (single source of truth for every selectbox's option keys, including `MT_KEYS` for model types), `PHOTO_MODEL_KEYS` (photographic model types that get the "shot on 35mm lens" spec), `AR_RATIOS` (raw ratio strings per aspect key), `RANDOM_WIDGETS` (widget key → option list map), and `randomize_look()` callback.
@@ -54,9 +54,9 @@ Single-file Streamlit app (`app.py`, ~2210 lines) structured in sequential secti
 
 **Picture style:** Dropdown in the Scene & Lighting expander with styles like dreamy, cinematic, B&W, etc. Appended to the camera/lighting section in the generated prompt.
 
-**Outfit top/bottom garments with independent fabric & color:** Two columns (Top and Bottom) each with their own garment selector, fabric selector, and color selector. In the generate block, each garment gets its own fabric and color description: `wearing a crop top made of silk fabric in white and cream color tones, wearing jeans made of denim in blue color tones`.
+**Outfit top/bottom garments with independent fabric & color:** Two columns (Top and Bottom) each with their own garment selector, fabric selector, and color selector. Garments default to a "None (let fashion style decide)" first option (`top_none`/`bot_none`, empty `ENGLISH_VALUES`) so fashion presets alone can define the outfit without clashing; fabric & color selectboxes are only rendered when a garment is chosen, and fabric/color also have "Not specified" first options (`fab_none`/`col_none`). If both a fashion preset and an explicit garment are set, a hint caption (`outfit_clash_hint`) warns about possible clashes. In the generate block, each non-None garment gets its own fabric and color description (each part omitted when unset): `wearing a crop top made of silk fabric in white and cream color tones, wearing jeans made of denim in blue color tones`.
 
-**Hair styles grouping:** Hair styles are ordered women's first (23 styles, incl. trendy cuts: wolf cut, hush cut, hime cut, layered, space buns, french braid), then men's (10 styles, incl. buzz cut, Korean middle part, textured crop) in both TRANSLATIONS and `HR_KEYS`. Comments in the code mark the grouping boundaries.
+**Hair styles filtered by gender:** `HR_KEYS_WOMEN` (23 styles) and `HR_KEYS_MEN` (10 styles) are separate lists; `HR_KEYS = HR_KEYS_WOMEN + HR_KEYS_MEN` is the superset used for non-binary and language resets. `hair_keys_for_gender(gd_key)` picks the option pool for the hairstyle selectbox based on the gender selectbox (key `w_gender`), whose `on_change=reset_hair_on_gender_change` pops the stale `w_hair` selection.
 
 **Hair colors (19):** Ordered dark→light→fashion colors, incl. popular shades: blue black, ash brown, milk tea brown, honey blonde, burgundy/cherry, rose gold.
 
@@ -66,13 +66,17 @@ Single-file Streamlit app (`app.py`, ~2210 lines) structured in sequential secti
 
 **Appearance / Vibe options (16, A-Z):** Includes general looks (cute, beautiful, cool, charming, chic, doll-like, girl-next-door, youthful, etc.) plus idol-specific looks: K-pop Idol, J-pop Idol, and C-pop Star, each with tailored prompt descriptions for skin, makeup, and feature characteristics.
 
-**Poses (31 total, A-Z sorted):** Includes standard poses plus idol/cute poses: heart hands, mini heart, peace sign, hands framing face, hands behind back, hugging knees, tucking hair behind ear, S-curve standing, W-sitting, cross-legged sitting, blowing a kiss, kneeling, winking.
+**Poses (45 total, A-Z sorted):** Standard poses, idol/cute poses (heart hands, mini heart, peace sign, hands framing face, hugging knees, winking, etc.), and model/editorial poses: runway walk, high-fashion stance, editorial model pose, elegant graceful pose, hand on hip, chin up, head tilt, candid motion, dancing, stretching, sitting on stairs, leaning toward camera, looking up.
+
+**Locations (34, `loc_studio` first then A-Z):** Includes airport, aquarium, art gallery, bridge, castle, desert, European old town, grand staircase, gym, lakeside pier, luxury hotel lobby, mountain viewpoint, neon alley, rice field, snowy landscape, subway, university campus, waterfall alongside the original 16.
+
+**Camera angles (13), DOF/background (9), compositions (12):** Angles add worm's eye, ground level, POV, and from-behind. DOF adds bokeh light orbs, motion-blur background, blurred foreground framing, and clean studio background. Composition adds diagonal lines, fill-the-frame, reflection/mirror, and layered depth.
 
 **Look-at-camera checkbox:** Independent of pose — appends `"looking directly at the camera with engaging eye contact"` to any selected pose. Located below the pose selectbox.
 
 **Target AI Platform (sidebar):** Universal (Gemini · Imagen) / Midjourney / Stable Diffusion. Controls output formatting at generate time: Midjourney gets `--ar {ratio}` and the negative prompt is appended inline as `--no {negative}` (no separate negative block shown); other platforms get plain-English `in {ratio} aspect ratio` and the negative prompt shown separately. Raw ratios live in `AR_RATIOS`.
 
-**Random Look button (🎲):** Next to Generate. Its `on_click=randomize_look` callback assigns a random translated label to every style widget key in `RANDOM_WIDGETS` (identity fields — gender, age, ethnicity — are deliberately not randomized), picks 0–2 random fashion presets, and sets `force_generate=True` so the prompt is generated in the same rerun.
+**Random Look button (🎲):** Next to Generate. Its `on_click=randomize_look` callback assigns a random translated label to every style widget key in `RANDOM_WIDGETS` (identity fields — gender, age, ethnicity — are deliberately not randomized), then handles two special cases: hair is drawn from the pool matching the current gender, and the outfit is randomized as either 1–2 fashion presets (garments set to None) **or** explicit top/bottom garments with fabric & color (presets cleared) — never both. Sets `force_generate=True` so the prompt is generated in the same rerun.
 
 **Language-switch state clearing:** Keyed selectboxes store the *translated label* in session state. When the language radio changes, all keys in `LANG_DEPENDENT_WIDGETS` are popped so stale labels can't collide with the new option lists (this resets those widgets to defaults, same as pre-keyed behavior).
 
