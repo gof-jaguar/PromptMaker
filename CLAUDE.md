@@ -16,7 +16,7 @@ Deployed on Streamlit Cloud — pushing to `main` on GitHub auto-deploys to http
 
 Single-file Streamlit app (`app.py`, ~2960 lines) structured in sequential sections:
 
-1. **TRANSLATIONS** — Bilingual dictionary (EN/TH) with 624 keys. Every UI string goes through `t(key)` helper.
+1. **TRANSLATIONS** — Bilingual dictionary (EN/TH) with 662 keys. Every UI string goes through `t(key)` helper.
 2. **ENGLISH_VALUES** — Maps option keys to English prompt text for AI output (e.g. `"hair_long"` → `"long flowing hair"`). Dropdown/selectbox options that affect the generated prompt need entries here.
 3. **HELPERS** — `t()` for translation, `eng()` for prompt values, `make_option()` for selectbox pairs, `translate_to_english()` for Thai→English with a mini dictionary.
 3.5. **OPTION KEY LISTS + RANDOMIZER** — Module-level `*_KEYS` constants (single source of truth for every selectbox's option keys, including `MT_KEYS` model types, `LENS_KEYS`, `GD_KEYS`/`AG_KEYS`/`ET_KEYS` identity lists, `MU_KEYS` makeup, `NS_KEYS` people count, `SH_KEYS` footwear), `PHOTO_MODEL_KEYS` (photographic model types that get the lens spec), `AR_RATIOS` (raw ratio strings per aspect key), `RANDOM_WIDGETS` (widget key → option list map), `SCENE_RANDOM_WIDGETS` (scene/camera subset), `PRESET_WIDGETS` (save/load field map), and the `randomize_look()`, `randomize_scene()`, `apply_look_preset()`, `reset_hair_on_gender_change()` callbacks.
@@ -54,7 +54,9 @@ Single-file Streamlit app (`app.py`, ~2960 lines) structured in sequential secti
 
 **Per-person looks (duo/trio):** When duo or trio is selected, extra "Person 2/3" rows render with their own hair / hair color / expression selectboxes (keys `w_hair_p2`, `w_hair_color_p2`, `w_expr_p2`, `_p3` variants; staggered default indexes so people differ out of the box). Person 1 uses the main subject selectors. The prompt reads `two {…} {gender}s, {body}, {vibe}, the first with …; the second with …`. Group (5) instead details the central person and instructs "each person with a clearly distinct hairstyle, outfit variation and expression". `HAIR_WIDGET_KEYS` lists all hairstyle widgets — gender changes and preset loads validate/reset each against the gender's hair pool; Random Look also randomizes the p2/p3 widgets.
 
-**Footwear (11, Outfit expander):** `SH_KEYS`, None-first, A-Z. Appended to the outfit section after the garments. Random Look picks footwear only in its garment-led branch.
+**Footwear (21, Outfit expander):** `SH_KEYS`, None-first, A-Z (boots, heels, sneakers, flats, sandals, barefoot). Appended to the outfit section after the garments. Random Look picks footwear only in its garment-led branch.
+
+**Garment counts:** 31 tops + None (`TOP_KEYS`, incl. jackets/outerwear like leather, bomber, varsity, puffer, trench) and 30 bottoms + None (`BOT_KEYS`, incl. jeans variants, skirt lengths, joggers, palazzo, skort).
 
 **Midjourney stylize/seed (sidebar):** When Target Platform is Midjourney, a `--stylize` number input (0–1000, default 100, only emitted when ≠ 100) and optional `--seed` text input (emitted only if digits) appear; both are appended to the `--ar` parameter block.
 
