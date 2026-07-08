@@ -113,7 +113,7 @@ TRANSLATIONS = {
         "ns_group": "Group (5 people)",
         "person_2": "Person 2 — distinct look",
         "person_3": "Person 3 — distinct look",
-        "multi_person_hint": "💡 Give each person a different hairstyle, hair color and expression below so the AI can tell them apart.",
+        "multi_person_hint": "💡 Give each person their own gender, hairstyle, hair color and expression below so the AI can tell them apart.",
         "group_hint": "💡 Group shots describe the central person in detail; the others are prompted to have naturally varied looks.",
         # Makeup styles (None first, then A-Z)
         "makeup": "Makeup Style",
@@ -734,6 +734,101 @@ TRANSLATIONS = {
         "ref_note_subject": "Attach: Your face/person reference photo",
         "ref_note_outfit": "Attach: Outfit/clothing reference photo",
         "ref_note_scene": "Attach: Scene/background reference photo",
+
+        # ── v5.5 — "Not specified" options ──
+        "age_none": "— Not specified —",
+        "eth_none": "— Not specified —",
+        "hair_none": "— Not specified —",
+        "hc_none": "— Not specified —",
+        "expr_none": "— Not specified —",
+        "bt_none": "— Not specified —",
+        "app_none": "— Not specified —",
+        "pose_none": "— None —",
+        "tod_none": "— Not specified —",
+        "lit_none": "— Not specified —",
+        "loc_none": "— Not specified —",
+        "sf_none": "— Not specified —",
+        "cam_none": "— Not specified —",
+        "dof_none": "— Not specified —",
+        # ── v5.5 — Per-person gender / group mix ──
+        "group_mix": "Group Genders",
+        "gg_same": "Same as main gender",
+        "gg_mixed": "Mixed (men & women)",
+        # ── v5.5 — Makeup ──
+        "mu_editorial": "Editorial / Avant-garde",
+        "mu_freckles": "Faux Freckles",
+        "mu_goth": "Goth / Dark",
+        "mu_igari": "Igari Blush (Japanese)",
+        "mu_bronzed": "Sun-kissed Bronzed",
+        "mu_glitter": "Y2K Glitter",
+        # ── v5.5 — Expressions ──
+        "expr_wink": "Winking",
+        "expr_tongue": "Tongue Out (Playful)",
+        "expr_mischief": "Mischievous Grin",
+        "expr_fierce": "Fierce Gaze",
+        "expr_eyes_closed": "Eyes Closed (Serene)",
+        "expr_bored": "Bored / Nonchalant",
+        "expr_angry": "Angry / Glaring",
+        "expr_tearful": "Tearful / Teary Eyes",
+        # ── v5.5 — Fashion styles ──
+        "fs_basketball": "Basketball / Jersey",
+        "fs_beach_cover": "Beachwear / Cover-up",
+        "fs_bikini": "Bikini Swimwear",
+        "fs_cheer": "Cheerleader",
+        "fs_golf": "Golf Wear",
+        "fs_one_piece": "One-piece Swimsuit",
+        "fs_rashguard": "Rash Guard / Surf",
+        "fs_school": "School Uniform",
+        "fs_ski": "Ski / Snowboard Wear",
+        "fs_teen": "Teen / High-School Style",
+        "fs_tennis": "Tennis / Court Style",
+        "fs_yoga": "Yoga / Activewear",
+        # ── v5.5 — Locations ──
+        "loc_arcade": "Arcade / Game Center",
+        "loc_ballroom": "Ballroom / Grand Hall",
+        "loc_basketball": "Basketball Court",
+        "loc_cherry": "Cherry Blossom Park",
+        "loc_cliff": "Cliff / Ocean View",
+        "loc_convenience": "Convenience Store",
+        "loc_greenhouse": "Greenhouse / Botanical",
+        "loc_harbor": "Harbor / Marina",
+        "loc_ice_rink": "Ice Skating Rink",
+        "loc_skatepark": "Skate Park",
+        "loc_stadium": "Sports Stadium",
+        "loc_supermarket": "Supermarket Aisle",
+        "loc_vineyard": "Vineyard",
+        "loc_yacht": "Yacht Deck",
+        # ── v5.5 — Camera angles ──
+        "cam_aerial": "Aerial View",
+        "cam_drone": "Drone Shot",
+        "cam_overhead": "Ceiling / Top-down",
+        "cam_cctv": "CCTV / Security Cam",
+        "cam_fisheye": "Fisheye Lens",
+        # ── v5.5 — Lighting ──
+        "lit_silhouette": "Sunset Silhouette",
+        "lit_lowkey": "Low-key (dark & moody)",
+        "lit_highkey": "High-key (bright & airy)",
+        "lit_lantern": "Paper Lanterns",
+        "lit_fireworks": "Fireworks Glow",
+        "lit_screen": "Screen / TV Glow",
+        "lit_projector": "Projector Patterns",
+        "lit_disco": "Disco Ball Sparkle",
+        # ── v5.5 — Poses ──
+        "pose_boxing": "Boxing Stance",
+        "pose_cartwheel": "Cartwheel",
+        "pose_dribble": "Dribbling Basketball",
+        "pose_finger_frame": "Finger Frame",
+        "pose_meditate": "Meditating (Lotus)",
+        "pose_ok_sign": "OK Sign",
+        "pose_point_camera": "Pointing at Camera",
+        "pose_salute": "Playful Salute",
+        "pose_selfie": "Selfie (arm extended)",
+        "pose_shush": "Shush (finger to lips)",
+        "pose_skip": "Skipping",
+        "pose_thumbs_up": "Thumbs Up",
+        "pose_tiptoe": "Tiptoe Reach",
+        "pose_wave": "Waving Hello",
+        "pose_yoga": "Yoga Pose",
     },
     "th": {
         # ── Global ──
@@ -821,7 +916,7 @@ TRANSLATIONS = {
         "ns_group": "กลุ่ม (5 คน)",
         "person_2": "คนที่ 2 — ลุคเฉพาะตัว",
         "person_3": "คนที่ 3 — ลุคเฉพาะตัว",
-        "multi_person_hint": "💡 เลือกทรงผม สีผม และสีหน้าให้แต่ละคนต่างกันด้านล่าง เพื่อให้ AI แยกแต่ละคนออกจากกันได้",
+        "multi_person_hint": "💡 เลือกเพศ ทรงผม สีผม และสีหน้าให้แต่ละคนต่างกันด้านล่าง เพื่อให้ AI แยกแต่ละคนออกจากกันได้",
         "group_hint": "💡 พรอมต์แบบกลุ่มจะบรรยายคนตรงกลางอย่างละเอียด ส่วนคนอื่นๆ จะถูกสั่งให้มีลุคหลากหลายตามธรรมชาติ",
         # Makeup styles (None first, then A-Z)
         "makeup": "สไตล์เมคอัพ",
@@ -1442,6 +1537,101 @@ TRANSLATIONS = {
         "ref_note_subject": "แนบ: รูปอ้างอิงใบหน้า/ตัวตน",
         "ref_note_outfit": "แนบ: รูปอ้างอิงชุด/เสื้อผ้า",
         "ref_note_scene": "แนบ: รูปอ้างอิงฉาก/แบ็คกราวด์",
+
+        # ── v5.5 — ตัวเลือก "ไม่ระบุ" ──
+        "age_none": "— ไม่ระบุ —",
+        "eth_none": "— ไม่ระบุ —",
+        "hair_none": "— ไม่ระบุ —",
+        "hc_none": "— ไม่ระบุ —",
+        "expr_none": "— ไม่ระบุ —",
+        "bt_none": "— ไม่ระบุ —",
+        "app_none": "— ไม่ระบุ —",
+        "pose_none": "— ไม่ระบุ —",
+        "tod_none": "— ไม่ระบุ —",
+        "lit_none": "— ไม่ระบุ —",
+        "loc_none": "— ไม่ระบุ —",
+        "sf_none": "— ไม่ระบุ —",
+        "cam_none": "— ไม่ระบุ —",
+        "dof_none": "— ไม่ระบุ —",
+        # ── v5.5 — เพศรายคน / กลุ่ม ──
+        "group_mix": "เพศของคนในกลุ่ม",
+        "gg_same": "เพศเดียวกับที่เลือกด้านบน",
+        "gg_mixed": "คละกัน (ชาย-หญิง)",
+        # ── v5.5 — เมคอัพ ──
+        "mu_editorial": "เมคอัพแฟชั่น / อาว็อง-การ์ด",
+        "mu_freckles": "แต้มกระน่ารัก",
+        "mu_goth": "โกธิค / สายดาร์ก",
+        "mu_igari": "บลัชอิการิ (ญี่ปุ่น)",
+        "mu_bronzed": "ผิวแทนโกลว์แดดสวย",
+        "mu_glitter": "กลิตเตอร์ Y2K",
+        # ── v5.5 — สีหน้า ──
+        "expr_wink": "ขยิบตา",
+        "expr_tongue": "แลบลิ้นขี้เล่น",
+        "expr_mischief": "ยิ้มมีเลศนัย",
+        "expr_fierce": "สายตาดุดัน",
+        "expr_eyes_closed": "หลับตาสงบ",
+        "expr_bored": "เบื่อๆ เฉยชา",
+        "expr_angry": "โกรธ / ถลึงตา",
+        "expr_tearful": "น้ำตาคลอ",
+        # ── v5.5 — สไตล์แฟชั่น ──
+        "fs_basketball": "บาสเกตบอล / เสื้อเจอร์ซีย์",
+        "fs_beach_cover": "ชุดชายหาด / ผ้าคลุม",
+        "fs_bikini": "ชุดว่ายน้ำบิกินี่",
+        "fs_cheer": "ชุดเชียร์ลีดเดอร์",
+        "fs_golf": "ชุดกอล์ฟ",
+        "fs_one_piece": "ชุดว่ายน้ำวันพีซ",
+        "fs_rashguard": "แรชการ์ด / ชุดเซิร์ฟ",
+        "fs_school": "ชุดนักเรียน",
+        "fs_ski": "ชุดสกี / สโนว์บอร์ด",
+        "fs_teen": "แฟชั่นวัยรุ่น / วัยเรียน",
+        "fs_tennis": "ชุดเทนนิส",
+        "fs_yoga": "ชุดโยคะ / ออกกำลังกาย",
+        # ── v5.5 — สถานที่ ──
+        "loc_arcade": "ร้านเกมอาร์เคด",
+        "loc_ballroom": "ห้องบอลรูมหรูหรา",
+        "loc_basketball": "สนามบาสเกตบอล",
+        "loc_cherry": "สวนซากุระบานสะพรั่ง",
+        "loc_cliff": "หน้าผาริมทะเล",
+        "loc_convenience": "ร้านสะดวกซื้อ",
+        "loc_greenhouse": "เรือนกระจก / สวนพฤกษศาสตร์",
+        "loc_harbor": "ท่าเรือ / มารีน่า",
+        "loc_ice_rink": "ลานสเก็ตน้ำแข็ง",
+        "loc_skatepark": "ลานสเก็ตบอร์ด",
+        "loc_stadium": "สนามกีฬาสเตเดียม",
+        "loc_supermarket": "ซูเปอร์มาร์เก็ต",
+        "loc_vineyard": "ไร่องุ่น",
+        "loc_yacht": "ดาดฟ้าเรือยอชท์",
+        # ── v5.5 — มุมกล้อง ──
+        "cam_aerial": "มุมสูงจากอากาศ",
+        "cam_drone": "มุมโดรน",
+        "cam_overhead": "มุมจากเพดาน (ตรงลงมา)",
+        "cam_cctv": "มุมกล้องวงจรปิด",
+        "cam_fisheye": "เลนส์ฟิชอาย",
+        # ── v5.5 — สไตล์แสง ──
+        "lit_silhouette": "เงาดำย้อนแสงอาทิตย์ตก",
+        "lit_lowkey": "โลว์คีย์ (มืดขรึม)",
+        "lit_highkey": "ไฮคีย์ (สว่างโปร่ง)",
+        "lit_lantern": "แสงโคมกระดาษ",
+        "lit_fireworks": "แสงพลุ / ดอกไม้ไฟ",
+        "lit_screen": "แสงจากหน้าจอ / ทีวี",
+        "lit_projector": "แสงโปรเจกเตอร์",
+        "lit_disco": "แสงดิสโก้บอล",
+        # ── v5.5 — ท่าโพส ──
+        "pose_boxing": "ท่าชกมวย",
+        "pose_cartwheel": "ตีลังกาล้อเกวียน",
+        "pose_dribble": "เลี้ยงลูกบาส",
+        "pose_finger_frame": "ทำกรอบรูปด้วยนิ้ว",
+        "pose_meditate": "นั่งสมาธิ",
+        "pose_ok_sign": "ทำมือโอเค",
+        "pose_point_camera": "ชี้มาที่กล้อง",
+        "pose_salute": "วันทยหัตถ์เล่นๆ",
+        "pose_selfie": "เซลฟี่ (ยื่นแขนถ่าย)",
+        "pose_shush": "ทำท่าจุ๊ๆ (นิ้วแตะปาก)",
+        "pose_skip": "ก้าวกระโดดร่าเริง",
+        "pose_thumbs_up": "ยกนิ้วโป้ง",
+        "pose_tiptoe": "เขย่งเท้าเอื้อมมือ",
+        "pose_wave": "โบกมือทักทาย",
+        "pose_yoga": "ท่าโยคะ",
     },
 }
 
@@ -1945,6 +2135,86 @@ ENGLISH_VALUES = {
     "ar_3_2": "--ar 3:2", "ar_2_3": "--ar 2:3",
     "ar_4_3": "--ar 4:3", "ar_3_4": "--ar 3:4",
     "ar_iphone": "--ar 1179:2556", "ar_android": "--ar 1080:2400",
+    # v5.5 — "Not specified" options (emit nothing in the prompt)
+    "age_none": "", "eth_none": "", "hair_none": "", "hc_none": "",
+    "expr_none": "", "bt_none": "", "app_none": "", "pose_none": "",
+    "tod_none": "", "lit_none": "", "loc_none": "", "sf_none": "",
+    "cam_none": "", "dof_none": "",
+    # v5.5 — Makeup
+    "mu_editorial": "avant-garde editorial makeup with bold graphic artistic accents",
+    "mu_freckles": "fresh natural makeup with cute faux freckles scattered across the nose and cheeks",
+    "mu_goth": "gothic dark makeup with deep dark lips and dramatic black eyeliner",
+    "mu_igari": "Japanese igari-style makeup with soft flushed blush swept across the cheeks",
+    "mu_bronzed": "sun-kissed bronzed makeup with a golden glow and highlighted cheekbones",
+    "mu_glitter": "playful Y2K glitter makeup with sparkly eyeshadow and glossy lips",
+    # v5.5 — Expressions
+    "expr_wink": "winking playfully with one eye closed",
+    "expr_tongue": "sticking tongue out playfully",
+    "expr_mischief": "mischievous impish grin",
+    "expr_fierce": "fierce intense piercing gaze",
+    "expr_eyes_closed": "eyes gently closed with a serene blissful face",
+    "expr_bored": "bored nonchalant expression",
+    "expr_angry": "angry intense glare",
+    "expr_tearful": "tearful glistening eyes with an emotional expression",
+    # v5.5 — Fashion styles
+    "fs_basketball": "sporty basketball style with an oversized jersey and athletic shorts",
+    "fs_beach_cover": "breezy beachwear with a flowing sarong cover-up over a swimsuit",
+    "fs_bikini": "stylish two-piece bikini swimwear",
+    "fs_cheer": "cheerleader uniform with a pleated skirt and pom-poms",
+    "fs_golf": "modern golf wear with a polo shirt and pleated golf skirt",
+    "fs_one_piece": "elegant one-piece swimsuit",
+    "fs_rashguard": "sporty long-sleeve rash guard surf wear",
+    "fs_school": "neat school uniform with a pleated skirt and ribbon tie",
+    "fs_ski": "stylish ski wear with an insulated jacket and snow goggles",
+    "fs_teen": "trendy teen fashion with a playful youthful mix of casual pieces",
+    "fs_tennis": "sporty tennis outfit with a pleated tennis skirt and fitted polo top",
+    "fs_yoga": "form-fitting yoga activewear set with leggings and a sports top",
+    # v5.5 — Locations
+    "loc_arcade": "inside a retro arcade glowing with colorful game machines",
+    "loc_ballroom": "in an opulent grand ballroom with crystal chandeliers and gilded details",
+    "loc_basketball": "on an outdoor basketball court with painted lines and a chain-link fence",
+    "loc_cherry": "in a park full of blooming cherry blossom trees with petals drifting in the air",
+    "loc_cliff": "on a dramatic coastal cliff overlooking the open ocean",
+    "loc_convenience": "outside a brightly lit convenience storefront",
+    "loc_greenhouse": "inside a lush botanical greenhouse filled with tropical plants",
+    "loc_harbor": "at a scenic harbor marina with yachts and sailboats",
+    "loc_ice_rink": "at an ice skating rink with a glossy reflective surface",
+    "loc_skatepark": "at a concrete skate park with ramps and street art",
+    "loc_stadium": "in a large sports stadium with floodlights and sweeping stands",
+    "loc_supermarket": "in a colorful supermarket aisle with neatly stocked shelves",
+    "loc_vineyard": "in a sun-drenched vineyard with rolling rows of grapevines",
+    "loc_yacht": "on the deck of a luxury yacht surrounded by sparkling blue water",
+    # v5.5 — Camera angles
+    "cam_aerial": "taken from an aerial view high above the scene",
+    "cam_drone": "sweeping cinematic drone shot from above",
+    "cam_overhead": "top-down shot taken from directly overhead, as if mounted on the ceiling",
+    "cam_cctv": "elevated security-camera viewpoint from a high corner",
+    "cam_fisheye": "shot up close with playful fisheye lens distortion",
+    # v5.5 — Lighting
+    "lit_silhouette": "dramatic silhouette backlighting against a glowing sunset sky",
+    "lit_lowkey": "low-key lighting with deep shadows and a single soft key light",
+    "lit_highkey": "bright high-key lighting with soft even illumination and minimal shadows",
+    "lit_lantern": "warm glow of traditional paper lanterns",
+    "lit_fireworks": "colorful fireworks bursting in the night sky lighting the scene",
+    "lit_screen": "cool blue screen glow illuminating the face in a dark room",
+    "lit_projector": "projector light casting colorful patterns across the subject",
+    "lit_disco": "sparkling disco ball reflections scattering spots of light",
+    # v5.5 — Poses
+    "pose_boxing": "in a playful boxing stance with fists raised",
+    "pose_cartwheel": "captured mid-cartwheel in dynamic motion",
+    "pose_dribble": "dribbling a basketball in mid-move",
+    "pose_finger_frame": "framing the shot with a finger-frame gesture toward the camera",
+    "pose_meditate": "sitting cross-legged in a peaceful lotus meditation pose",
+    "pose_ok_sign": "making a cute OK hand sign",
+    "pose_point_camera": "pointing playfully straight at the camera",
+    "pose_salute": "giving a cheeky two-finger salute",
+    "pose_selfie": "taking a selfie with one arm outstretched",
+    "pose_shush": "holding one finger to the lips in a playful shush gesture",
+    "pose_skip": "skipping forward with a light joyful bounce",
+    "pose_thumbs_up": "giving a cheerful thumbs up",
+    "pose_tiptoe": "standing on tiptoes reaching upward",
+    "pose_wave": "waving hello at the camera cheerfully",
+    "pose_yoga": "balancing gracefully in a yoga tree pose",
 }
 
 
@@ -1958,6 +2228,22 @@ def t(key: str) -> str:
 
 def eng(key: str) -> str:
     return ENGLISH_VALUES.get(key, "")
+
+def look_desc(hr_k, hc_k, bn_k=None, ex_k=None, mu_k=None):
+    """Hair/bangs/expression/makeup description for one person.
+
+    Any "None / Not specified" pick maps to an empty English value and is
+    skipped, so the phrase stays grammatical no matter what is unset.
+    """
+    hair_bits = [b for b in (eng(hr_k), eng(hc_k)) if b]
+    parts = []
+    if hair_bits:
+        parts.append("with " + ", ".join(hair_bits))
+    for k in (bn_k, ex_k, mu_k):
+        v = eng(k) if k else ""
+        if v:
+            parts.append(v)
+    return ", ".join(parts)
 
 def make_option(keys):
     return [t(k) for k in keys], keys
@@ -2019,12 +2305,15 @@ MT_KEYS = ["model_realistic", "model_cinematic", "model_film", "model_fashion",
 PHOTO_MODEL_KEYS = {"model_realistic", "model_cinematic", "model_film", "model_fashion"}
 LENS_KEYS = ["lens_24", "lens_35", "lens_50", "lens_85", "lens_135"]
 GD_KEYS = ["gender_female", "gender_male", "gender_nb"]
-AG_KEYS = ["age_20_25", "age_5_9", "age_10_14", "age_15_19",
+# Group gender mix (only shown for Group shots)
+GM_KEYS = ["gg_same", "gg_mixed"]
+AG_KEYS = ["age_none", "age_20_25", "age_5_9", "age_10_14", "age_15_19",
            "age_26_35", "age_36_45", "age_46_60", "age_60plus"]
-ET_KEYS = ["eth_asian", "eth_se_asian", "eth_south_asian", "eth_european",
+ET_KEYS = ["eth_none", "eth_asian", "eth_se_asian", "eth_south_asian", "eth_european",
            "eth_african", "eth_latin", "eth_middle_east", "eth_mixed"]
 NS_KEYS = ["ns_solo", "ns_duo", "ns_trio", "ns_group"]
 HR_KEYS_WOMEN = [
+    "hair_none",
     "hair_long", "hair_straight", "hair_loose_waves",
     "hair_curly", "hair_wavy", "hair_layered", "hair_wolf_cut",
     "hair_hush_cut", "hair_hime", "hair_bob", "hair_lob", "hair_pixie",
@@ -2034,12 +2323,13 @@ HR_KEYS_WOMEN = [
     "hair_half_up", "hair_side_swept",
 ]
 HR_KEYS_MEN = [
+    "hair_none",
     "hair_short", "hair_buzz", "hair_crew_cut", "hair_middle_part",
     "hair_textured_crop", "hair_undercut", "hair_fade", "hair_slick_back",
     "hair_man_bun", "hair_bald",
 ]
 # Full list (used for non-binary and as the language-reset superset)
-HR_KEYS = HR_KEYS_WOMEN + HR_KEYS_MEN
+HR_KEYS = HR_KEYS_WOMEN + HR_KEYS_MEN[1:]  # skip duplicate hair_none
 
 def hair_keys_for_gender(gd_key: str):
     """Hairstyle option pool filtered by the selected gender."""
@@ -2048,34 +2338,42 @@ def hair_keys_for_gender(gd_key: str):
     if gd_key == "gender_male":
         return HR_KEYS_MEN
     return HR_KEYS
-HC_KEYS = ["hc_black", "hc_blue_black", "hc_dark_brown", "hc_ash_brown",
+HC_KEYS = ["hc_none", "hc_black", "hc_blue_black", "hc_dark_brown", "hc_ash_brown",
            "hc_milk_tea", "hc_light_brown", "hc_honey_blonde", "hc_blonde",
            "hc_platinum", "hc_red", "hc_burgundy", "hc_rose_gold",
            "hc_pink", "hc_purple", "hc_blue", "hc_silver", "hc_white",
            "hc_ombre", "hc_highlights"]
 BN_KEYS = ["bangs_none", "bangs_straight", "bangs_see_through", "bangs_side",
            "bangs_curtain", "bangs_wispy", "bangs_micro", "bangs_hime"]
-EX_KEYS = ["expr_smile", "expr_bright_smile", "expr_laugh", "expr_giggle",
+EX_KEYS = ["expr_none", "expr_smile", "expr_bright_smile", "expr_laugh",
+           "expr_giggle", "expr_wink", "expr_tongue",
            "expr_soft_gaze", "expr_doe_eyes", "expr_pout", "expr_playful",
-           "expr_shy", "expr_confident", "expr_smirk", "expr_dreamy",
-           "expr_peaceful", "expr_neutral", "expr_pensive",
-           "expr_serious", "expr_surprised", "expr_sad", "expr_sultry"]
-BT_KEYS = ["bt_slim", "bt_petite", "bt_lean", "bt_athletic",
+           "expr_mischief", "expr_shy", "expr_confident", "expr_smirk",
+           "expr_fierce", "expr_dreamy",
+           "expr_peaceful", "expr_eyes_closed", "expr_neutral", "expr_bored",
+           "expr_pensive", "expr_serious", "expr_surprised",
+           "expr_angry", "expr_sad", "expr_tearful", "expr_sultry"]
+BT_KEYS = ["bt_none", "bt_slim", "bt_petite", "bt_lean", "bt_athletic",
            "bt_hourglass", "bt_curvy", "bt_tall", "bt_average"]
-AP_KEYS = ["app_beautiful", "app_cpop", "app_charming", "app_chic",
+AP_KEYS = ["app_none", "app_beautiful", "app_cpop", "app_charming", "app_chic",
            "app_cool", "app_cute", "app_doll", "app_elegant",
            "app_fierce", "app_girl_next_door", "app_handsome",
            "app_jpop", "app_kpop", "app_natural", "app_sweet", "app_youthful"]
-MU_KEYS = ["mu_none", "mu_red_lip", "mu_douyin", "mu_glam", "mu_gradient",
-           "mu_dewy", "mu_natural", "mu_no_makeup", "mu_smoky", "mu_soft_matte"]
-FS_KEYS = ["fs_athleisure", "fs_barbiecore", "fs_bohemian", "fs_office",
-           "fs_casual", "fs_clean_girl", "fs_coquette", "fs_cottagecore",
+MU_KEYS = ["mu_none", "mu_red_lip", "mu_douyin", "mu_editorial", "mu_freckles",
+           "mu_glam", "mu_goth", "mu_gradient", "mu_igari", "mu_dewy",
+           "mu_natural", "mu_no_makeup", "mu_smoky", "mu_soft_matte",
+           "mu_bronzed", "mu_glitter"]
+FS_KEYS = ["fs_athleisure", "fs_barbiecore", "fs_basketball", "fs_beach_cover",
+           "fs_bikini", "fs_bohemian", "fs_office",
+           "fs_casual", "fs_cheer", "fs_clean_girl", "fs_coquette", "fs_cottagecore",
            "fs_cyberpunk", "fs_dark_academia", "fs_egirl", "fs_elegant",
-           "fs_gorpcore", "fs_gothic", "fs_grunge", "fs_japanese",
+           "fs_golf", "fs_gorpcore", "fs_gothic", "fs_grunge", "fs_japanese",
            "fs_korean", "fs_light_academia", "fs_minimalist", "fs_mob_wife",
-           "fs_old_money", "fs_parisian", "fs_preppy", "fs_resort",
-           "fs_rockstar", "fs_skater", "fs_streetwear", "fs_thai",
-           "fs_vintage", "fs_western", "fs_y2k"]
+           "fs_old_money", "fs_one_piece", "fs_parisian", "fs_preppy",
+           "fs_rashguard", "fs_resort",
+           "fs_rockstar", "fs_school", "fs_skater", "fs_ski", "fs_streetwear",
+           "fs_teen", "fs_tennis", "fs_thai",
+           "fs_vintage", "fs_western", "fs_y2k", "fs_yoga"]
 FB_KEYS = ["fab_none", "fab_chiffon", "fab_cotton", "fab_denim", "fab_lace",
            "fab_leather", "fab_linen", "fab_satin", "fab_sheer",
            "fab_silk", "fab_tweed", "fab_velvet", "fab_wool"]
@@ -2110,20 +2408,28 @@ SH_KEYS = ["sh_none", "sh_ankle_boots", "sh_ballet", "sh_barefoot",
            "sh_knee_boots", "sh_loafers", "sh_mary_janes", "sh_mules",
            "sh_oxford", "sh_platform", "sh_running", "sh_sandals",
            "sh_sneakers"]
-LO_KEYS = ["loc_studio", "loc_airport", "loc_amusement", "loc_aquarium",
-           "loc_art_gallery", "loc_beach", "loc_bridge", "loc_castle",
-           "loc_cafe", "loc_desert", "loc_old_town", "loc_flower_field",
-           "loc_forest", "loc_garden", "loc_stairs", "loc_gym", "loc_room",
+LO_KEYS = ["loc_none", "loc_studio", "loc_airport", "loc_amusement", "loc_aquarium",
+           "loc_arcade", "loc_art_gallery", "loc_ballroom", "loc_basketball",
+           "loc_beach", "loc_bridge", "loc_castle",
+           "loc_cherry", "loc_cliff", "loc_cafe", "loc_convenience",
+           "loc_desert", "loc_old_town", "loc_flower_field",
+           "loc_forest", "loc_garden", "loc_stairs", "loc_greenhouse",
+           "loc_gym", "loc_harbor", "loc_ice_rink", "loc_room",
            "loc_lake", "loc_library", "loc_hotel_lobby", "loc_mountain",
            "loc_neon_alley", "loc_night_market", "loc_pool", "loc_rice_field",
-           "loc_rooftop", "loc_shopping", "loc_snow", "loc_subway",
+           "loc_rooftop", "loc_shopping", "loc_skatepark", "loc_snow",
+           "loc_stadium", "loc_subway", "loc_supermarket",
            "loc_temple", "loc_train", "loc_university", "loc_street",
-           "loc_waterfall"]
-TD_KEYS = ["tod_golden", "tod_blue", "tod_noon", "tod_night", "tod_overcast", "tod_sunrise"]
-LT_KEYS = ["lit_natural", "lit_window", "lit_studio", "lit_rim",
-           "lit_neon", "lit_fairy", "lit_candle", "lit_dramatic", "lit_flash",
+           "loc_vineyard", "loc_waterfall", "loc_yacht"]
+TD_KEYS = ["tod_none", "tod_golden", "tod_blue", "tod_noon", "tod_night",
+           "tod_overcast", "tod_sunrise"]
+LT_KEYS = ["lit_none", "lit_natural", "lit_window", "lit_studio",
+           "lit_highkey", "lit_lowkey", "lit_rim", "lit_silhouette",
+           "lit_neon", "lit_fairy", "lit_lantern", "lit_candle",
+           "lit_dramatic", "lit_flash",
            "lit_backlit", "lit_dappled", "lit_blinds", "lit_gel",
-           "lit_spotlight", "lit_moonlight", "lit_bonfire", "lit_godrays"]
+           "lit_spotlight", "lit_moonlight", "lit_bonfire", "lit_fireworks",
+           "lit_screen", "lit_projector", "lit_disco", "lit_godrays"]
 SN_KEYS = ["season_none", "season_spring", "season_summer",
            "season_autumn", "season_winter", "season_rainy"]
 PS_KEYS = ["ps_none", "ps_dreamy", "ps_soft", "ps_vivid", "ps_bw",
@@ -2131,24 +2437,28 @@ PS_KEYS = ["ps_none", "ps_dreamy", "ps_soft", "ps_vivid", "ps_bw",
            "ps_hdr", "ps_matte", "ps_commercial", "ps_editorial",
            "ps_documentary", "ps_polaroid", "ps_digicam", "ps_fantasy",
            "ps_fairytale", "ps_cyber", "ps_vaporwave", "ps_surreal"]
-SF_KEYS = ["sf_extreme_cu", "sf_closeup", "sf_medium_cu", "sf_medium",
+SF_KEYS = ["sf_none", "sf_extreme_cu", "sf_closeup", "sf_medium_cu", "sf_medium",
            "sf_cowboy", "sf_medium_full", "sf_full", "sf_wide"]
-CA_KEYS = ["cam_eye", "cam_low", "cam_worm", "cam_ground", "cam_high",
+CA_KEYS = ["cam_none", "cam_eye", "cam_low", "cam_worm", "cam_ground", "cam_high",
            "cam_3q", "cam_profile", "cam_selfie", "cam_dutch",
-           "cam_over_shoulder", "cam_back", "cam_pov", "cam_bird"]
-DOF_KEYS = ["dof_sharp", "dof_portrait", "dof_shallow", "dof_bokeh_lights",
+           "cam_over_shoulder", "cam_back", "cam_pov", "cam_bird",
+           "cam_aerial", "cam_drone", "cam_overhead", "cam_cctv", "cam_fisheye"]
+DOF_KEYS = ["dof_none", "dof_sharp", "dof_portrait", "dof_shallow", "dof_bokeh_lights",
             "dof_motion", "dof_fg_blur", "dof_clean_bg",
             "dof_tiltshift", "dof_soft"]
 CMP_KEYS = ["comp_center", "comp_rot_left", "comp_rot_right",
             "comp_golden", "comp_leading", "comp_framed",
             "comp_negative_space", "comp_symmetry", "comp_diagonal",
             "comp_fill", "comp_reflection", "comp_depth"]
-PO_KEYS = ["pose_fix_jacket", "pose_adjust_glasses", "pose_arms_up",
+PO_KEYS = ["pose_none",
+           "pose_fix_jacket", "pose_adjust_glasses", "pose_arms_up",
            "pose_cross_arms", "pose_arms_open", "pose_back_camera",
-           "pose_blow_kiss", "pose_candid", "pose_chin_up",
+           "pose_blow_kiss", "pose_boxing", "pose_candid",
+           "pose_cartwheel", "pose_chin_up",
            "pose_cross_leg", "pose_crouch", "pose_dance",
-           "pose_dynamic", "pose_editorial", "pose_elegant",
-           "pose_finger_heart", "pose_hair_flip", "pose_hand_hair",
+           "pose_dribble", "pose_dynamic", "pose_editorial", "pose_elegant",
+           "pose_finger_frame", "pose_finger_heart",
+           "pose_hair_flip", "pose_hand_hair",
            "pose_hand_chin", "pose_hand_hip", "pose_hands_back",
            "pose_arms_behind_head", "pose_cheek_hands",
            "pose_hands_pocket", "pose_head_tilt", "pose_heart_hands",
@@ -2156,13 +2466,17 @@ PO_KEYS = ["pose_fix_jacket", "pose_adjust_glasses", "pose_arms_up",
            "pose_kneel", "pose_lean", "pose_railing", "pose_lean_forward",
            "pose_looking_away", "pose_look_back_walk",
            "pose_over_shoulder", "pose_look_up", "pose_lying",
-           "pose_mini_heart", "pose_mirror_selfie", "pose_peace",
-           "pose_peek_fingers", "pose_reach_camera", "pose_run",
-           "pose_runway", "pose_s_curve", "pose_shield_sun", "pose_sit",
-           "pose_sit_stairs", "pose_legs_extended", "pose_stand",
-           "pose_squat", "pose_stretch", "pose_hold_hat",
-           "pose_hair_tuck", "pose_twirl", "pose_w_sit",
-           "pose_walk", "pose_walk_away", "pose_wink"]
+           "pose_meditate", "pose_mini_heart", "pose_mirror_selfie",
+           "pose_ok_sign", "pose_peace",
+           "pose_peek_fingers", "pose_point_camera",
+           "pose_reach_camera", "pose_run",
+           "pose_runway", "pose_s_curve", "pose_salute", "pose_selfie",
+           "pose_shield_sun", "pose_shush", "pose_sit",
+           "pose_sit_stairs", "pose_legs_extended", "pose_skip", "pose_stand",
+           "pose_squat", "pose_stretch", "pose_thumbs_up", "pose_tiptoe",
+           "pose_hold_hat",
+           "pose_hair_tuck", "pose_twirl", "pose_wave", "pose_w_sit",
+           "pose_walk", "pose_walk_away", "pose_wink", "pose_yoga"]
 
 # Widget key → option key list, for the Random Look button.
 # Identity fields (gender, age, ethnicity) are deliberately NOT randomized.
@@ -2192,12 +2506,26 @@ LANG_DEPENDENT_WIDGETS = list(RANDOM_WIDGETS) + [
     "fashion_multi", "w_gender", "w_age", "w_eth", "w_hair",
     "w_top", "top_fabric_sel", "top_color_sel",
     "w_bottom", "bot_fabric_sel", "bot_color_sel", "w_shoes",
-    "w_hair_p2", "w_hair_color_p2", "w_expr_p2",
-    "w_hair_p3", "w_hair_color_p3", "w_expr_p3",
+    "w_gender_p2", "w_hair_p2", "w_hair_color_p2", "w_expr_p2",
+    "w_gender_p3", "w_hair_p3", "w_hair_color_p3", "w_expr_p3",
+    "w_group_mix",
 ]
 
-# Per-person hairstyle widgets — all depend on the gender's hair pool
-HAIR_WIDGET_KEYS = ("w_hair", "w_hair_p2", "w_hair_p3")
+# Hairstyle widget → the gender widget whose hair pool it depends on
+HAIR_GENDER_WIDGETS = {
+    "w_hair": "w_gender",
+    "w_hair_p2": "w_gender_p2",
+    "w_hair_p3": "w_gender_p3",
+}
+
+
+def hair_pool_for_label(gd_label):
+    """Hair option pool for a gender given as its *translated label*."""
+    if gd_label == t("gender_male"):
+        return HR_KEYS_MEN
+    if gd_label == t("gender_nb"):
+        return HR_KEYS
+    return HR_KEYS_WOMEN
 
 # Widget key → option key list, for saving/loading a look as JSON.
 # Presets store option KEYS (language-independent), not translated labels.
@@ -2209,8 +2537,11 @@ PRESET_WIDGETS = {
     "w_top": TOP_KEYS, "top_fabric_sel": FB_KEYS, "top_color_sel": CP_KEYS,
     "w_bottom": BOT_KEYS, "bot_fabric_sel": FB_KEYS, "bot_color_sel": CP_KEYS,
     "w_shoes": SH_KEYS,
+    "w_gender_p2": GD_KEYS,
     "w_hair_p2": HR_KEYS, "w_hair_color_p2": HC_KEYS, "w_expr_p2": EX_KEYS,
+    "w_gender_p3": GD_KEYS,
     "w_hair_p3": HR_KEYS, "w_hair_color_p3": HC_KEYS, "w_expr_p3": EX_KEYS,
+    "w_group_mix": GM_KEYS,
     "w_location": LO_KEYS, "w_tod": TD_KEYS, "w_lighting": LT_KEYS,
     "w_season": SN_KEYS, "w_pstyle": PS_KEYS, "w_framing": SF_KEYS,
     "w_angle": CA_KEYS, "w_dof": DOF_KEYS, "w_comp": CMP_KEYS, "w_pose": PO_KEYS,
@@ -2218,27 +2549,29 @@ PRESET_WIDGETS = {
 
 
 def reset_hair_on_gender_change():
-    """The hairstyle option lists depend on gender — drop stale selections."""
-    for wk in HAIR_WIDGET_KEYS:
+    """Main gender changed — per-person genders default to it, so drop the
+    per-person gender picks and every hairstyle pick (their pools changed)."""
+    for wk in list(HAIR_GENDER_WIDGETS) + ["w_gender_p2", "w_gender_p3"]:
         st.session_state.pop(wk, None)
+
+
+def reset_person_hair(hair_widget_key):
+    """A per-person gender changed — drop only that person's hairstyle."""
+    st.session_state.pop(hair_widget_key, None)
 
 
 def randomize_look():
     """Pick a random label for every style widget, then auto-generate."""
     for widget_key, option_keys in RANDOM_WIDGETS.items():
         st.session_state[widget_key] = t(random.choice(option_keys))
-    # Hair: pick from the pool matching the currently selected gender
+    # Hair: pick from the pool matching each person's selected gender
     gd_label = st.session_state.get("w_gender", t("gender_female"))
-    if gd_label == t("gender_male"):
-        hair_pool = HR_KEYS_MEN
-    elif gd_label == t("gender_nb"):
-        hair_pool = HR_KEYS
-    else:
-        hair_pool = HR_KEYS_WOMEN
-    st.session_state["w_hair"] = t(random.choice(hair_pool))
+    st.session_state["w_hair"] = t(random.choice(hair_pool_for_label(gd_label)))
     # Extra persons (only visible for duo/trio) get distinct random looks too
     for suffix in ("_p2", "_p3"):
-        st.session_state[f"w_hair{suffix}"] = t(random.choice(hair_pool))
+        p_gd_label = st.session_state.get(f"w_gender{suffix}", gd_label)
+        p_pool = hair_pool_for_label(p_gd_label)
+        st.session_state[f"w_hair{suffix}"] = t(random.choice(p_pool))
         st.session_state[f"w_hair_color{suffix}"] = t(random.choice(HC_KEYS))
         st.session_state[f"w_expr{suffix}"] = t(random.choice(EX_KEYS))
     # Outfit: either a fashion style OR explicit garments, never both
@@ -2279,22 +2612,21 @@ def apply_look_preset():
     except (ValueError, TypeError):
         st.session_state["preset_status"] = "error"
         return
-    # Gender first — the hairstyle pool depends on it
-    gd = data.get("w_gender")
-    if gd in GD_KEYS:
-        st.session_state["w_gender"] = t(gd)
-    else:
-        gd = None
+    # Genders first — each person's hairstyle pool depends on their gender
+    for gender_widget in ("w_gender", "w_gender_p2", "w_gender_p3"):
+        gv = data.get(gender_widget)
+        if gv in GD_KEYS:
+            st.session_state[gender_widget] = t(gv)
     for widget_key, option_keys in PRESET_WIDGETS.items():
         val = data.get(widget_key)
         if not isinstance(val, str) or val not in option_keys:
             continue
-        # Hairstyles must exist in the pool of the (possibly new) gender
-        if widget_key in HAIR_WIDGET_KEYS:
-            gd_label = st.session_state.get("w_gender", t("gender_female"))
-            pool = HR_KEYS_MEN if gd_label == t("gender_male") else (
-                HR_KEYS if gd_label == t("gender_nb") else HR_KEYS_WOMEN)
-            if val not in pool:
+        # Hairstyles must exist in the pool of that person's (new) gender
+        if widget_key in HAIR_GENDER_WIDGETS:
+            gd_label = st.session_state.get(
+                HAIR_GENDER_WIDGETS[widget_key],
+                st.session_state.get("w_gender", t("gender_female")))
+            if val not in hair_pool_for_label(gd_label):
                 st.session_state.pop(widget_key, None)
                 continue
         st.session_state[widget_key] = t(val)
@@ -2411,7 +2743,7 @@ def main():
             mj_seed = st.text_input(t("mj_seed"), value="")
 
         st.divider()
-        st.caption("v5.4 — AI Prompt Generator")
+        st.caption("v5.5 — AI Prompt Generator")
 
     # ── Header ───────────────────────────────────────────────────────────
     st.markdown(
@@ -2437,22 +2769,22 @@ def main():
             gd_key = GD_KEYS[gd_labels.index(gd_sel)]
         with col2:
             ag_labels, _ = make_option(AG_KEYS)
-            ag_sel = st.selectbox(t("age_group"), ag_labels, key="w_age")
+            ag_sel = st.selectbox(t("age_group"), ag_labels, index=1, key="w_age")
             ag_key = AG_KEYS[ag_labels.index(ag_sel)]
         with col3:
             et_labels, _ = make_option(ET_KEYS)
-            et_sel = st.selectbox(t("ethnicity"), et_labels, key="w_eth")
+            et_sel = st.selectbox(t("ethnicity"), et_labels, index=1, key="w_eth")
             et_key = ET_KEYS[et_labels.index(et_sel)]
 
         col4, col5 = st.columns(2)
         with col4:
             hr_options = hair_keys_for_gender(gd_key)
             hr_labels, _ = make_option(hr_options)
-            hr_sel = st.selectbox(t("hair_style"), hr_labels, key="w_hair")
+            hr_sel = st.selectbox(t("hair_style"), hr_labels, index=1, key="w_hair")
             hr_key = hr_options[hr_labels.index(hr_sel)]
         with col5:
             hc_labels, _ = make_option(HC_KEYS)
-            hc_sel = st.selectbox(t("hair_color"), hc_labels, key="w_hair_color")
+            hc_sel = st.selectbox(t("hair_color"), hc_labels, index=1, key="w_hair_color")
             hc_key = HC_KEYS[hc_labels.index(hc_sel)]
 
         col_bn, col_ex = st.columns(2)
@@ -2462,7 +2794,7 @@ def main():
             bn_key = BN_KEYS[bn_labels.index(bn_sel)]
         with col_ex:
             ex_labels, _ = make_option(EX_KEYS)
-            ex_sel = st.selectbox(t("expression"), ex_labels, key="w_expr")
+            ex_sel = st.selectbox(t("expression"), ex_labels, index=1, key="w_expr")
             ex_key = EX_KEYS[ex_labels.index(ex_sel)]
 
         col_mu, col_ns = st.columns(2)
@@ -2477,37 +2809,53 @@ def main():
 
         # Per-person looks so a duo/trio doesn't come out as identical clones.
         # Person 1 uses the main selectors above; each extra person gets their
-        # own hair / hair color / expression (different defaults on purpose).
+        # own gender / hair / hair color / expression (staggered defaults on
+        # purpose). The hairstyle pool follows that person's own gender.
         extra_person_keys = []
+        gm_key = "gg_same"
         if ns_key in ("ns_duo", "ns_trio"):
             st.caption(t("multi_person_hint"))
             for pi in range(2, 3 if ns_key == "ns_duo" else 4):
                 st.markdown(f"**{t(f'person_{pi}')}**")
-                pc1, pc2, pc3 = st.columns(3)
+                pc0, pc1, pc2, pc3 = st.columns(4)
+                with pc0:
+                    p_gd_sel = st.selectbox(
+                        t("gender"), gd_labels,
+                        index=GD_KEYS.index(gd_key),
+                        key=f"w_gender_p{pi}",
+                        on_change=reset_person_hair,
+                        args=(f"w_hair_p{pi}",))
+                    p_gd_key = GD_KEYS[gd_labels.index(p_gd_sel)]
                 with pc1:
-                    p_hr_labels, _ = make_option(hr_options)
+                    p_hr_options = hair_keys_for_gender(p_gd_key)
+                    p_hr_labels, _ = make_option(p_hr_options)
                     p_hr_sel = st.selectbox(
                         t("hair_style"), p_hr_labels,
-                        index=min(3 * (pi - 1), len(hr_options) - 1),
+                        index=min(1 + 3 * (pi - 1), len(p_hr_options) - 1),
                         key=f"w_hair_p{pi}")
-                    p_hr_key = hr_options[p_hr_labels.index(p_hr_sel)]
+                    p_hr_key = p_hr_options[p_hr_labels.index(p_hr_sel)]
                 with pc2:
                     p_hc_labels, _ = make_option(HC_KEYS)
                     p_hc_sel = st.selectbox(
                         t("hair_color"), p_hc_labels,
-                        index=min(6 * (pi - 1), len(HC_KEYS) - 1),
+                        index=min(1 + 6 * (pi - 1), len(HC_KEYS) - 1),
                         key=f"w_hair_color_p{pi}")
                     p_hc_key = HC_KEYS[p_hc_labels.index(p_hc_sel)]
                 with pc3:
                     p_ex_labels, _ = make_option(EX_KEYS)
                     p_ex_sel = st.selectbox(
                         t("expression"), p_ex_labels,
-                        index=min(1 + 9 * (pi - 2), len(EX_KEYS) - 1),
+                        index=min(2 + 9 * (pi - 2), len(EX_KEYS) - 1),
                         key=f"w_expr_p{pi}")
                     p_ex_key = EX_KEYS[p_ex_labels.index(p_ex_sel)]
-                extra_person_keys.append((p_hr_key, p_hc_key, p_ex_key))
+                extra_person_keys.append((p_gd_key, p_hr_key, p_hc_key, p_ex_key))
         elif ns_key == "ns_group":
             st.caption(t("group_hint"))
+            col_gm, _ = st.columns(2)
+            with col_gm:
+                gm_labels, _ = make_option(GM_KEYS)
+                gm_sel = st.selectbox(t("group_mix"), gm_labels, key="w_group_mix")
+                gm_key = GM_KEYS[gm_labels.index(gm_sel)]
 
         col7, _ = st.columns(2)
         with col7:
@@ -2516,11 +2864,11 @@ def main():
         col_bt, col_ap = st.columns(2)
         with col_bt:
             bt_labels, _ = make_option(BT_KEYS)
-            bt_sel = st.selectbox(t("body_type"), bt_labels, key="w_body")
+            bt_sel = st.selectbox(t("body_type"), bt_labels, index=1, key="w_body")
             bt_key = BT_KEYS[bt_labels.index(bt_sel)]
         with col_ap:
             ap_labels, _ = make_option(AP_KEYS)
-            ap_sel = st.selectbox(t("appearance"), ap_labels, key="w_appearance")
+            ap_sel = st.selectbox(t("appearance"), ap_labels, index=1, key="w_appearance")
             ap_key = AP_KEYS[ap_labels.index(ap_sel)]
 
     # ══════════════════════════════════════════════════════════════════════
@@ -2639,7 +2987,7 @@ def main():
 
         if scene_mode == scene_mode_labels[0]:
             lo_labels, _ = make_option(LO_KEYS)
-            lo_sel = st.selectbox(t("location"), lo_labels, key="w_location")
+            lo_sel = st.selectbox(t("location"), lo_labels, index=1, key="w_location")
             lo_key = LO_KEYS[lo_labels.index(lo_sel)]
         elif scene_mode == scene_mode_labels[1]:
             scene_custom_text = st.text_area(t("scene_custom_input"),
@@ -2664,11 +3012,11 @@ def main():
         col10, col11, col_season, col_ps = st.columns(4)
         with col10:
             td_labels, _ = make_option(TD_KEYS)
-            td_sel = st.selectbox(t("time_of_day"), td_labels, key="w_tod")
+            td_sel = st.selectbox(t("time_of_day"), td_labels, index=1, key="w_tod")
             td_key = TD_KEYS[td_labels.index(td_sel)]
         with col11:
             lt_labels, _ = make_option(LT_KEYS)
-            lt_sel = st.selectbox(t("lighting"), lt_labels, key="w_lighting")
+            lt_sel = st.selectbox(t("lighting"), lt_labels, index=1, key="w_lighting")
             lt_key = LT_KEYS[lt_labels.index(lt_sel)]
         with col_season:
             sn_labels, _ = make_option(SN_KEYS)
@@ -2688,17 +3036,17 @@ def main():
         col12, col13 = st.columns(2)
         with col12:
             sf_labels, _ = make_option(SF_KEYS)
-            sf_sel = st.selectbox(t("shot_framing"), sf_labels, index=1, key="w_framing")
+            sf_sel = st.selectbox(t("shot_framing"), sf_labels, index=2, key="w_framing")
             sf_key = SF_KEYS[sf_labels.index(sf_sel)]
         with col13:
             ca_labels, _ = make_option(CA_KEYS)
-            ca_sel = st.selectbox(t("camera_angle"), ca_labels, key="w_angle")
+            ca_sel = st.selectbox(t("camera_angle"), ca_labels, index=1, key="w_angle")
             ca_key = CA_KEYS[ca_labels.index(ca_sel)]
 
         col14, col15, col16 = st.columns(3)
         with col14:
             dof_labels, _ = make_option(DOF_KEYS)
-            dof_sel = st.selectbox(t("dof"), dof_labels, index=1, key="w_dof")
+            dof_sel = st.selectbox(t("dof"), dof_labels, index=2, key="w_dof")
             dof_key = DOF_KEYS[dof_labels.index(dof_sel)]
         with col15:
             cmp_labels, _ = make_option(CMP_KEYS)
@@ -2738,10 +3086,17 @@ def main():
             "w_top": top_key, "top_fabric_sel": top_fb_key, "top_color_sel": top_cp_key,
             "w_bottom": bot_key, "bot_fabric_sel": bot_fb_key, "bot_color_sel": bot_cp_key,
             "w_shoes": sh_key, "fashion_multi": fs_selected_keys,
+            "w_group_mix": gm_key,
             "w_location": lo_key, "w_tod": td_key, "w_lighting": lt_key,
             "w_season": sn_key, "w_pstyle": ps_key, "w_framing": sf_key,
             "w_angle": ca_key, "w_dof": dof_key, "w_comp": cmp_key, "w_pose": po_key,
         }
+        # Extra persons (duo/trio) — only present while those rows are shown
+        for pi, (p_gd, p_hr, p_hc, p_ex) in enumerate(extra_person_keys, start=2):
+            current_look[f"w_gender_p{pi}"] = p_gd
+            current_look[f"w_hair_p{pi}"] = p_hr
+            current_look[f"w_hair_color_p{pi}"] = p_hc
+            current_look[f"w_expr_p{pi}"] = p_ex
         st.download_button(f"💾 {t('save_look')}",
                            json.dumps(current_look, indent=2),
                            file_name="look.json", mime="application/json")
@@ -2781,38 +3136,51 @@ def main():
             specs.append(eng(qk))
         technical = ", ".join(specs)
 
-        # Subject (with body type + appearance)
-        bangs_text = eng(bn_key)
-        bangs_part = f", {bangs_text}" if bangs_text else ""
-        makeup_part = f", {eng(mu_key)}" if eng(mu_key) else ""
+        # Subject (with body type + appearance).
+        # Every field may be "None / Not specified" — empty parts are skipped.
+        main_look = look_desc(hr_key, hc_key, bn_key, ex_key, mu_key)
+        look_part = f", {main_look}" if main_look else ""
+        traits = [v for v in (eng(bt_key), eng(ap_key)) if v]
+        trait_part = f", {', '.join(traits)}" if traits else ""
         if attach_subject:
-            subject = (f"a photo of the exact same person as in the attached reference photo, "
-                       f"preserving their facial identity and features precisely, "
-                       f"{eng(bt_key)}, {eng(ap_key)}, "
-                       f"with {eng(hr_key)}, {eng(hc_key)}{bangs_part}, "
-                       f"and {eng(ex_key)}{makeup_part}")
+            subject = ("a photo of the exact same person as in the attached reference photo, "
+                       "preserving their facial identity and features precisely"
+                       + trait_part + look_part)
         elif ns_key == "ns_solo":
-            subject = (f"a {eng(ag_key)} {eng(et_key)} {eng(gd_key)}, "
-                       f"{eng(bt_key)}, {eng(ap_key)}, "
-                       f"with {eng(hr_key)}, {eng(hc_key)}{bangs_part}, "
-                       f"and {eng(ex_key)}{makeup_part}")
+            head = " ".join(x for x in (eng(ag_key), eng(et_key), eng(gd_key)) if x)
+            subject = f"a {head}" + trait_part + look_part
         elif ns_key in ("ns_duo", "ns_trio"):
-            # Distinct per-person descriptions so the AI can tell them apart
-            ordinals = ["second", "third"]
-            person_descs = [f"the first with {eng(hr_key)}, {eng(hc_key)}{bangs_part}, "
-                            f"and {eng(ex_key)}{makeup_part}"]
-            for i, (p_hr, p_hc, p_ex) in enumerate(extra_person_keys):
-                person_descs.append(f"the {ordinals[i]} with {eng(p_hr)}, "
-                                    f"{eng(p_hc)}, and {eng(p_ex)}")
-            subject = (f"{eng(ns_key)} {eng(ag_key)} {eng(et_key)} {eng(gd_key)}s, "
-                       f"{eng(bt_key)}, {eng(ap_key)}, "
-                       + "; ".join(person_descs))
+            # Distinct per-person descriptions so the AI can tell them apart;
+            # each extra person has their own gender, hair and expression.
+            ordinals = ["first", "second", "third"]
+            persons = [(gd_key, main_look)]
+            for (p_gd, p_hr, p_hc, p_ex) in extra_person_keys:
+                persons.append((p_gd, look_desc(p_hr, p_hc, None, p_ex)))
+            mixed_genders = len({p[0] for p in persons}) > 1
+            head = " ".join(x for x in (eng(ns_key), eng(ag_key), eng(et_key)) if x)
+            head += " people" if mixed_genders else f" {eng(gd_key)}s"
+            person_descs = []
+            for i, (p_gd, p_look) in enumerate(persons):
+                desc_bits = []
+                if mixed_genders:
+                    desc_bits.append(f"a {eng(p_gd).lower()}")
+                if p_look:
+                    desc_bits.append(p_look)
+                if desc_bits:
+                    person_descs.append(f"the {ordinals[i]} " + ", ".join(desc_bits))
+            subject = head + trait_part
+            if person_descs:
+                subject += ", " + "; ".join(person_descs)
         else:  # group — detail the central person, vary the rest
-            subject = (f"{eng(ns_key)} {eng(ag_key)} {eng(et_key)} {eng(gd_key)}s, "
-                       f"{eng(bt_key)}, {eng(ap_key)}, "
-                       f"each person with a clearly distinct hairstyle, outfit variation and expression, "
-                       f"the central person with {eng(hr_key)}, {eng(hc_key)}{bangs_part}, "
-                       f"and {eng(ex_key)}{makeup_part}")
+            head = " ".join(x for x in (eng(ns_key), eng(ag_key), eng(et_key)) if x)
+            if gm_key == "gg_mixed":
+                head += " people, a mixed group of men and women"
+            else:
+                head += f" {eng(gd_key)}s"
+            subject = (head + trait_part +
+                       ", each person with a clearly distinct hairstyle, outfit variation and expression")
+            if main_look:
+                subject += f", the central person {main_look}"
         if skin_check:
             subject += ", with ultra-realistic skin texture showing pores and fine details"
 
@@ -2845,10 +3213,11 @@ def main():
                 outfit_parts.append(v)
         outfit = ", ".join(outfit_parts)
 
-        # Pose
-        pose = eng(po_key)
+        # Pose — the pose itself may be "None"
+        pose_parts = [eng(po_key)] if eng(po_key) else []
         if look_at_camera:
-            pose += ", looking directly at the camera with engaging eye contact"
+            pose_parts.append("looking directly at the camera with engaging eye contact")
+        pose = ", ".join(pose_parts)
 
         # Environment
         if attach_scene:
@@ -2876,21 +3245,12 @@ def main():
             weather_parts.append("with red and golden autumn leaves falling through the air")
         weather_text = ", ".join(weather_parts)
         env_time = eng(td_key)
-        env_parts = [env_loc, env_time]
-        if season_text:
-            env_parts.append(season_text)
-        if weather_text:
-            env_parts.append(weather_text)
+        env_parts = [p for p in (env_loc, env_time, season_text, weather_text) if p]
         environment = ", ".join(env_parts)
 
-        # Camera & Lighting + Picture Style + Composition
-        camera_parts = [eng(lt_key), eng(sf_key), eng(ca_key), eng(dof_key)]
-        cmp_text = eng(cmp_key)
-        if cmp_text:
-            camera_parts.append(cmp_text)
-        ps_text = eng(ps_key)
-        if ps_text:
-            camera_parts.append(ps_text)
+        # Camera & Lighting + Picture Style + Composition — all optional
+        camera_parts = [p for p in (eng(lt_key), eng(sf_key), eng(ca_key),
+                                    eng(dof_key), eng(cmp_key), eng(ps_key)) if p]
         camera_section = ", ".join(camera_parts)
 
         # Custom
