@@ -518,6 +518,8 @@ TRANSLATIONS = {
         "loc_mountain": "Mountain Viewpoint",
         "loc_neon_alley": "Neon Alley (Cyberpunk)",
         "loc_night_market": "Night Market",
+        "loc_brick_ruin": "Old Brick House with Ivy",
+        "loc_overgrown": "Overgrown Garden",
         "loc_pool": "Poolside",
         "loc_rice_field": "Rice Field / Countryside",
         "loc_rooftop": "Rooftop / Cityscape",
@@ -547,6 +549,7 @@ TRANSLATIONS = {
         "weather_rain": "Rain falling",
         "weather_snow": "Snow falling",
         "weather_leaves": "Red/autumn leaves falling",
+        "weather_wind": "Gentle breeze (wind-blown hair)",
         "lighting": "Lighting Style",
         "lit_natural": "Natural / Ambient",
         "lit_window": "Soft Window Light",
@@ -574,6 +577,7 @@ TRANSLATIONS = {
         "ps_vivid": "Vivid / Saturated",
         "ps_bw": "Black & White",
         "ps_vintage": "Vintage / Retro Film",
+        "ps_nostalgic": "Warm Nostalgic Film",
         "ps_cinematic": "Cinematic Color Grade",
         "ps_moody": "Moody / Dark Tone",
         "ps_pastel": "Pastel / Light Airy",
@@ -829,6 +833,44 @@ TRANSLATIONS = {
         "pose_tiptoe": "Tiptoe Reach",
         "pose_wave": "Waving Hello",
         "pose_yoga": "Yoga Pose",
+        "pose_carefree_walk": "Carefree Walk, Arms Swinging",
+        "pose_touch_plants": "Crouching, Touching Plants",
+        "pose_hold_camera": "Holding a Film Camera",
+        "pose_grass_stalk": "Holding a Grass Stalk",
+        "pose_ear_wall": "Listening Against a Wall",
+        "pose_peek_tree": "Peeking from Behind a Tree",
+        "pose_pick_flower": "Picking a Flower",
+        "pose_smell_flower": "Smelling a Flower, Eyes Closed",
+
+        # ── Companion / Animal ──
+        "companion": "Companion / Animal",
+        "pet_none": "— None —",
+        "pet_bird": "Bird on Finger",
+        "pet_butterflies": "Butterflies Around",
+        "pet_cat": "Cat",
+        "pet_dog": "Dog",
+        "pet_kitten": "Kitten",
+        "pet_puppy": "Puppy",
+        "pet_rabbit": "Rabbit",
+
+        # ── Quick Themes ──
+        "themes_header": "Quick Themes",
+        "theme_select": "Theme",
+        "apply_theme_btn": "Apply Theme",
+        "theme_hint": "Sets a curated look & scene, then generates — your gender, age and identity stay as chosen.",
+        "theme_golden_garden": "🌾 Golden Hour Garden",
+        "theme_neon_night": "🌃 Neon City Night",
+        "theme_cafe_film": "☕ Cozy Café Film",
+        "theme_beach": "🏖️ Summer Beach",
+        "theme_studio": "🎬 Studio Editorial",
+        "theme_cherry": "🌸 Cherry Blossom Spring",
+
+        # ── Photo Set ──
+        "photo_set_btn": "Photo Set",
+        "photo_set_header": "Photo Set — same look, 6 shots",
+        "photo_set_hint": "Same subject, outfit and scene in every shot — only the pose, framing and camera angle change. Generate them all for a matching album.",
+        "photo_set_shot": "Shot",
+        "photo_set_download": "Download all shots",
     },
     "th": {
         # ── Global ──
@@ -1321,6 +1363,8 @@ TRANSLATIONS = {
         "loc_mountain": "จุดชมวิวภูเขา",
         "loc_neon_alley": "ตรอกไฟนีออน (ไซเบอร์พังก์)",
         "loc_night_market": "ตลาดกลางคืน",
+        "loc_brick_ruin": "บ้านอิฐเก่าเลื้อยไม้เถา",
+        "loc_overgrown": "สวนรกครึ้มธรรมชาติ",
         "loc_pool": "ริมสระว่ายน้ำ",
         "loc_rice_field": "ทุ่งนา / ชนบท",
         "loc_rooftop": "ดาดฟ้า / วิวเมือง",
@@ -1350,6 +1394,7 @@ TRANSLATIONS = {
         "weather_rain": "ฝนกำลังตก",
         "weather_snow": "หิมะกำลังตก",
         "weather_leaves": "ใบไม้แดง/ใบไม้ร่วงกำลังร่วง",
+        "weather_wind": "ลมพัดเบาๆ (ผมปลิวตามลม)",
         "lighting": "สไตล์แสง",
         "lit_natural": "แสงธรรมชาติ",
         "lit_window": "แสงหน้าต่างนุ่มนวล",
@@ -1377,6 +1422,7 @@ TRANSLATIONS = {
         "ps_vivid": "สดใส / อิ่มสี",
         "ps_bw": "ขาวดำ",
         "ps_vintage": "วินเทจ / ฟิล์มย้อนยุค",
+        "ps_nostalgic": "ฟิล์มโทนอุ่นชวนคิดถึง",
         "ps_cinematic": "ซีนีมาติก / โทนภาพยนตร์",
         "ps_moody": "มู้ดดี้ / โทนมืด",
         "ps_pastel": "พาสเทล / โปร่งเบา",
@@ -1632,6 +1678,44 @@ TRANSLATIONS = {
         "pose_tiptoe": "เขย่งเท้าเอื้อมมือ",
         "pose_wave": "โบกมือทักทาย",
         "pose_yoga": "ท่าโยคะ",
+        "pose_carefree_walk": "เดินชิลแกว่งแขนสบายๆ",
+        "pose_touch_plants": "นั่งยองแตะใบไม้ใบหญ้า",
+        "pose_hold_camera": "ถือกล้องฟิล์มมองไปไกลๆ",
+        "pose_grass_stalk": "ถือดอกหญ้าข้างแก้ม",
+        "pose_ear_wall": "แนบหูฟังกำแพงเก่า",
+        "pose_peek_tree": "แอบมองจากหลังต้นไม้",
+        "pose_pick_flower": "เอื้อมเด็ดดอกไม้เล็กๆ",
+        "pose_smell_flower": "ดมดอกไม้หลับตายิ้ม",
+
+        # ── Companion / Animal ──
+        "companion": "เพื่อนร่วมเฟรม (สัตว์)",
+        "pet_none": "— ไม่มี —",
+        "pet_bird": "นกเกาะบนนิ้ว",
+        "pet_butterflies": "ผีเสื้อบินรอบตัว",
+        "pet_cat": "แมว",
+        "pet_dog": "สุนัข",
+        "pet_kitten": "ลูกแมว",
+        "pet_puppy": "ลูกสุนัข",
+        "pet_rabbit": "กระต่าย",
+
+        # ── Quick Themes ──
+        "themes_header": "ธีมสำเร็จรูป",
+        "theme_select": "เลือกธีม",
+        "apply_theme_btn": "ใช้ธีมนี้",
+        "theme_hint": "ตั้งค่าลุคและฉากที่จัดชุดไว้ให้ แล้วสร้างพรอมต์ทันที — เพศ อายุ และตัวตนที่เลือกไว้ไม่เปลี่ยน",
+        "theme_golden_garden": "🌾 สวนแดดทองยามเย็น",
+        "theme_neon_night": "🌃 เมืองนีออนยามค่ำคืน",
+        "theme_cafe_film": "☕ คาเฟ่อบอุ่นโทนฟิล์ม",
+        "theme_beach": "🏖️ ชายหาดหน้าร้อน",
+        "theme_studio": "🎬 สตูดิโอแฟชั่น",
+        "theme_cherry": "🌸 ซากุระฤดูใบไม้ผลิ",
+
+        # ── Photo Set ──
+        "photo_set_btn": "ชุดภาพถ่าย",
+        "photo_set_header": "ชุดภาพถ่าย — ลุคเดิม 6 ช็อต",
+        "photo_set_hint": "ตัวแบบ ชุด และฉากเหมือนกันทุกช็อต — เปลี่ยนเฉพาะท่าโพส ระยะภาพ และมุมกล้อง นำไปสร้างภาพเป็นอัลบั้มชุดเดียวกันได้เลย",
+        "photo_set_shot": "ช็อตที่",
+        "photo_set_download": "ดาวน์โหลดทุกช็อต",
     },
 }
 
@@ -1941,6 +2025,8 @@ ENGLISH_VALUES = {
     "loc_flower_field": "in a blooming flower field stretching to the horizon",
     "loc_library": "in a cozy library surrounded by tall bookshelves",
     "loc_night_market": "at a vibrant night market with glowing street food stalls",
+    "loc_brick_ruin": "beside an old abandoned red-brick building overgrown with ivy, surrounded by tall wild grass and lush trees",
+    "loc_overgrown": "in a lush overgrown garden with tall wild grass, ferns and dappled greenery",
     "loc_pool": "at a luxurious poolside with clear blue water",
     "loc_shopping": "on a lively shopping street with stylish storefronts",
     "loc_train": "at a scenic train station platform",
@@ -1998,6 +2084,7 @@ ENGLISH_VALUES = {
     "ps_vivid": "vivid highly saturated colors with rich contrast",
     "ps_bw": "black and white monochrome photography with rich tonal range",
     "ps_vintage": "vintage retro film look with warm faded tones and slight grain",
+    "ps_nostalgic": "warm nostalgic film tone with golden sunlit hues, soft grain, muted greens and a gentle hazy glow, evoking fond summer memories",
     "ps_cinematic": "cinematic color grading with teal and orange tones",
     "ps_moody": "moody dark atmospheric tones with deep shadows",
     "ps_pastel": "pastel light airy color palette with soft delicate hues",
@@ -2215,6 +2302,22 @@ ENGLISH_VALUES = {
     "pose_tiptoe": "standing on tiptoes reaching upward",
     "pose_wave": "waving hello at the camera cheerfully",
     "pose_yoga": "balancing gracefully in a yoga tree pose",
+    "pose_carefree_walk": "walking carefree with arms swinging loosely out to the sides, looking down at the ground with a soft smile",
+    "pose_touch_plants": "crouching down and gently touching small plants and leaves on the ground",
+    "pose_hold_camera": "holding a vintage film camera at chest level while gazing up and away thoughtfully",
+    "pose_grass_stalk": "playfully holding a stalk of wild grass up beside their face",
+    "pose_ear_wall": "leaning close to an old wall with a hand cupped behind the ear, as if listening to it",
+    "pose_peek_tree": "peeking out playfully from behind a tree trunk with a bright smile",
+    "pose_pick_flower": "reaching down to pick a small flower from the grass",
+    "pose_smell_flower": "holding a small wildflower up to their nose with both hands, eyes closed with a soft blissful smile",
+    "pet_none": "",
+    "pet_bird": "with a small bird perched on their outstretched finger",
+    "pet_butterflies": "with colorful butterflies fluttering around them",
+    "pet_cat": "gently reaching out to a cute cat, about to touch its nose",
+    "pet_dog": "accompanied by a friendly dog, petting it affectionately",
+    "pet_kitten": "cradling a tiny kitten in their hands",
+    "pet_puppy": "playing with an adorable puppy",
+    "pet_rabbit": "holding a fluffy white rabbit",
 }
 
 
@@ -2312,6 +2415,9 @@ AG_KEYS = ["age_none", "age_20_25", "age_5_9", "age_10_14", "age_15_19",
 ET_KEYS = ["eth_none", "eth_asian", "eth_se_asian", "eth_south_asian", "eth_european",
            "eth_african", "eth_latin", "eth_middle_east", "eth_mixed"]
 NS_KEYS = ["ns_solo", "ns_duo", "ns_trio", "ns_group"]
+# Companion animal (None-first, A-Z) — appended to the subject section
+PET_KEYS = ["pet_none", "pet_bird", "pet_butterflies", "pet_cat", "pet_dog",
+            "pet_kitten", "pet_puppy", "pet_rabbit"]
 HR_KEYS_WOMEN = [
     "hair_none",
     "hair_long", "hair_straight", "hair_loose_waves",
@@ -2416,7 +2522,8 @@ LO_KEYS = ["loc_none", "loc_studio", "loc_airport", "loc_amusement", "loc_aquari
            "loc_forest", "loc_garden", "loc_stairs", "loc_greenhouse",
            "loc_gym", "loc_harbor", "loc_ice_rink", "loc_room",
            "loc_lake", "loc_library", "loc_hotel_lobby", "loc_mountain",
-           "loc_neon_alley", "loc_night_market", "loc_pool", "loc_rice_field",
+           "loc_neon_alley", "loc_night_market", "loc_brick_ruin",
+           "loc_overgrown", "loc_pool", "loc_rice_field",
            "loc_rooftop", "loc_shopping", "loc_skatepark", "loc_snow",
            "loc_stadium", "loc_subway", "loc_supermarket",
            "loc_temple", "loc_train", "loc_university", "loc_street",
@@ -2433,7 +2540,7 @@ LT_KEYS = ["lit_none", "lit_natural", "lit_window", "lit_studio",
 SN_KEYS = ["season_none", "season_spring", "season_summer",
            "season_autumn", "season_winter", "season_rainy"]
 PS_KEYS = ["ps_none", "ps_dreamy", "ps_soft", "ps_vivid", "ps_bw",
-           "ps_vintage", "ps_cinematic", "ps_moody", "ps_pastel",
+           "ps_vintage", "ps_nostalgic", "ps_cinematic", "ps_moody", "ps_pastel",
            "ps_hdr", "ps_matte", "ps_commercial", "ps_editorial",
            "ps_documentary", "ps_polaroid", "ps_digicam", "ps_fantasy",
            "ps_fairytale", "ps_cyber", "ps_vaporwave", "ps_surreal"]
@@ -2454,25 +2561,28 @@ PO_KEYS = ["pose_none",
            "pose_fix_jacket", "pose_adjust_glasses", "pose_arms_up",
            "pose_cross_arms", "pose_arms_open", "pose_back_camera",
            "pose_blow_kiss", "pose_boxing", "pose_candid",
-           "pose_cartwheel", "pose_chin_up",
-           "pose_cross_leg", "pose_crouch", "pose_dance",
+           "pose_carefree_walk", "pose_cartwheel", "pose_chin_up",
+           "pose_cross_leg", "pose_crouch", "pose_touch_plants", "pose_dance",
            "pose_dribble", "pose_dynamic", "pose_editorial", "pose_elegant",
            "pose_finger_frame", "pose_finger_heart",
            "pose_hair_flip", "pose_hand_hair",
            "pose_hand_chin", "pose_hand_hip", "pose_hands_back",
            "pose_arms_behind_head", "pose_cheek_hands",
            "pose_hands_pocket", "pose_head_tilt", "pose_heart_hands",
-           "pose_high_fashion", "pose_hug_knees", "pose_jump",
+           "pose_high_fashion", "pose_hold_camera", "pose_grass_stalk",
+           "pose_hug_knees", "pose_jump",
            "pose_kneel", "pose_lean", "pose_railing", "pose_lean_forward",
-           "pose_looking_away", "pose_look_back_walk",
+           "pose_ear_wall", "pose_looking_away", "pose_look_back_walk",
            "pose_over_shoulder", "pose_look_up", "pose_lying",
            "pose_meditate", "pose_mini_heart", "pose_mirror_selfie",
            "pose_ok_sign", "pose_peace",
-           "pose_peek_fingers", "pose_point_camera",
+           "pose_peek_tree", "pose_peek_fingers", "pose_pick_flower",
+           "pose_point_camera",
            "pose_reach_camera", "pose_run",
            "pose_runway", "pose_s_curve", "pose_salute", "pose_selfie",
            "pose_shield_sun", "pose_shush", "pose_sit",
-           "pose_sit_stairs", "pose_legs_extended", "pose_skip", "pose_stand",
+           "pose_sit_stairs", "pose_legs_extended", "pose_skip",
+           "pose_smell_flower", "pose_stand",
            "pose_squat", "pose_stretch", "pose_thumbs_up", "pose_tiptoe",
            "pose_hold_hat",
            "pose_hair_tuck", "pose_twirl", "pose_wave", "pose_w_sit",
@@ -2500,6 +2610,19 @@ SCENE_RANDOM_WIDGETS = {
     "w_angle": CA_KEYS, "w_dof": DOF_KEYS, "w_comp": CMP_KEYS,
 }
 
+# Photo Set mode: portrait-friendly framing/angle pools — no CCTV, fisheye,
+# aerial etc., so the album reads like one photographer moving around the
+# subject. Poses that need a mirror, a phone-in-hand or a sports court are
+# excluded for the same reason.
+PHOTO_SET_SF_KEYS = ["sf_closeup", "sf_medium_cu", "sf_medium", "sf_cowboy",
+                     "sf_medium_full", "sf_full"]
+PHOTO_SET_CA_KEYS = ["cam_eye", "cam_low", "cam_high", "cam_3q", "cam_profile",
+                     "cam_over_shoulder", "cam_back"]
+PHOTO_SET_POSE_EXCLUDE = {"pose_none", "pose_boxing", "pose_cartwheel",
+                          "pose_dribble", "pose_meditate", "pose_yoga",
+                          "pose_mirror_selfie", "pose_selfie"}
+PHOTO_SET_SIZE = 6
+
 # Widgets whose stored value is a translated label — must be reset when the
 # UI language changes, otherwise the stale label is no longer a valid option.
 LANG_DEPENDENT_WIDGETS = list(RANDOM_WIDGETS) + [
@@ -2508,7 +2631,7 @@ LANG_DEPENDENT_WIDGETS = list(RANDOM_WIDGETS) + [
     "w_bottom", "bot_fabric_sel", "bot_color_sel", "w_shoes",
     "w_gender_p2", "w_hair_p2", "w_hair_color_p2", "w_expr_p2",
     "w_gender_p3", "w_hair_p3", "w_hair_color_p3", "w_expr_p3",
-    "w_group_mix",
+    "w_group_mix", "w_pet", "w_theme",
 ]
 
 # Hairstyle widget → the gender widget whose hair pool it depends on
@@ -2533,7 +2656,7 @@ PRESET_WIDGETS = {
     "w_gender": GD_KEYS, "w_age": AG_KEYS, "w_eth": ET_KEYS,
     "w_hair": HR_KEYS, "w_hair_color": HC_KEYS, "w_bangs": BN_KEYS,
     "w_expr": EX_KEYS, "w_body": BT_KEYS, "w_appearance": AP_KEYS,
-    "w_makeup": MU_KEYS,
+    "w_makeup": MU_KEYS, "w_pet": PET_KEYS,
     "w_top": TOP_KEYS, "top_fabric_sel": FB_KEYS, "top_color_sel": CP_KEYS,
     "w_bottom": BOT_KEYS, "bot_fabric_sel": FB_KEYS, "bot_color_sel": CP_KEYS,
     "w_shoes": SH_KEYS,
@@ -2603,15 +2726,9 @@ def randomize_scene():
     st.session_state["force_generate"] = True
 
 
-def apply_look_preset():
-    """Load a saved look: parse pasted JSON of option keys and set widgets."""
-    try:
-        data = json.loads(st.session_state.get("preset_paste", ""))
-        if not isinstance(data, dict):
-            raise ValueError("not a dict")
-    except (ValueError, TypeError):
-        st.session_state["preset_status"] = "error"
-        return
+def _apply_preset_dict(data):
+    """Set widgets from a dict of option keys (shared by pasted looks and
+    built-in themes), validating every key against its option list."""
     # Genders first — each person's hairstyle pool depends on their gender
     for gender_widget in ("w_gender", "w_gender_p2", "w_gender_p3"):
         gv = data.get(gender_widget)
@@ -2633,8 +2750,126 @@ def apply_look_preset():
     fs = data.get("fashion_multi", [])
     if isinstance(fs, list):
         st.session_state["fashion_multi"] = [t(k) for k in fs if k in FS_KEYS]
-    st.session_state["preset_status"] = "ok"
     st.session_state["force_generate"] = True
+
+
+def apply_look_preset():
+    """Load a saved look: parse pasted JSON of option keys and set widgets."""
+    try:
+        data = json.loads(st.session_state.get("preset_paste", ""))
+        if not isinstance(data, dict):
+            raise ValueError("not a dict")
+    except (ValueError, TypeError):
+        st.session_state["preset_status"] = "error"
+        return
+    _apply_preset_dict(data)
+    st.session_state["preset_status"] = "ok"
+
+
+def apply_theme():
+    """Apply the built-in theme selected in the sidebar, then generate."""
+    label = st.session_state.get("w_theme")
+    for theme_key, preset in THEME_PRESETS.items():
+        if t(theme_key) == label:
+            _apply_preset_dict(preset)
+            break
+
+
+def request_photo_set():
+    """Generate a set of prompt variations sharing subject/outfit/scene."""
+    st.session_state["photo_set_request"] = True
+    st.session_state["force_generate"] = True
+
+
+# Built-in theme presets: curated look + scene bundles applied through the
+# same machinery as pasted look.json presets. Identity fields (gender, age,
+# ethnicity) are deliberately absent so the chosen subject stays unchanged.
+THEME_PRESETS = {
+    "theme_golden_garden": {
+        "w_hair": "hair_loose_waves", "w_hair_color": "hc_dark_brown",
+        "w_bangs": "bangs_none", "w_expr": "expr_soft_gaze",
+        "w_makeup": "mu_natural", "fashion_multi": [],
+        "w_top": "top_tshirt", "top_fabric_sel": "fab_cotton",
+        "top_color_sel": "col_white",
+        "w_bottom": "bot_denim_shorts", "bot_fabric_sel": "fab_denim",
+        "bot_color_sel": "col_blue", "w_shoes": "sh_sneakers",
+        "w_location": "loc_brick_ruin", "w_tod": "tod_golden",
+        "w_lighting": "lit_backlit", "w_season": "season_summer",
+        "w_pstyle": "ps_nostalgic", "w_framing": "sf_medium",
+        "w_angle": "cam_eye", "w_dof": "dof_fg_blur",
+        "w_comp": "comp_framed", "w_pose": "pose_smell_flower",
+    },
+    "theme_neon_night": {
+        "w_hair": "hair_straight", "w_hair_color": "hc_black",
+        "w_bangs": "bangs_none", "w_expr": "expr_confident",
+        "w_makeup": "mu_smoky", "fashion_multi": ["fs_streetwear"],
+        "w_top": "top_none", "top_fabric_sel": "fab_none",
+        "top_color_sel": "col_none",
+        "w_bottom": "bot_none", "bot_fabric_sel": "fab_none",
+        "bot_color_sel": "col_none", "w_shoes": "sh_chunky",
+        "w_location": "loc_neon_alley", "w_tod": "tod_night",
+        "w_lighting": "lit_neon", "w_season": "season_none",
+        "w_pstyle": "ps_cyber", "w_framing": "sf_medium",
+        "w_angle": "cam_low", "w_dof": "dof_bokeh_lights",
+        "w_comp": "comp_center", "w_pose": "pose_lean",
+    },
+    "theme_cafe_film": {
+        "w_hair": "hair_lob", "w_hair_color": "hc_milk_tea",
+        "w_bangs": "bangs_see_through", "w_expr": "expr_smile",
+        "w_makeup": "mu_natural", "fashion_multi": ["fs_korean"],
+        "w_top": "top_none", "top_fabric_sel": "fab_none",
+        "top_color_sel": "col_none",
+        "w_bottom": "bot_none", "bot_fabric_sel": "fab_none",
+        "bot_color_sel": "col_none", "w_shoes": "sh_none",
+        "w_location": "loc_cafe", "w_tod": "tod_overcast",
+        "w_lighting": "lit_window", "w_season": "season_autumn",
+        "w_pstyle": "ps_vintage", "w_framing": "sf_medium_cu",
+        "w_angle": "cam_3q", "w_dof": "dof_portrait",
+        "w_comp": "comp_negative_space", "w_pose": "pose_hand_chin",
+    },
+    "theme_beach": {
+        "w_hair": "hair_loose_waves", "w_hair_color": "hc_light_brown",
+        "w_bangs": "bangs_none", "w_expr": "expr_laugh",
+        "w_makeup": "mu_bronzed", "fashion_multi": ["fs_beach_cover"],
+        "w_top": "top_none", "top_fabric_sel": "fab_none",
+        "top_color_sel": "col_none",
+        "w_bottom": "bot_none", "bot_fabric_sel": "fab_none",
+        "bot_color_sel": "col_none", "w_shoes": "sh_barefoot",
+        "w_location": "loc_beach", "w_tod": "tod_golden",
+        "w_lighting": "lit_natural", "w_season": "season_summer",
+        "w_pstyle": "ps_vivid", "w_framing": "sf_full",
+        "w_angle": "cam_eye", "w_dof": "dof_shallow",
+        "w_comp": "comp_golden", "w_pose": "pose_shield_sun",
+    },
+    "theme_studio": {
+        "w_hair": "hair_bun", "w_hair_color": "hc_black",
+        "w_bangs": "bangs_none", "w_expr": "expr_fierce",
+        "w_makeup": "mu_editorial", "fashion_multi": ["fs_elegant"],
+        "w_top": "top_none", "top_fabric_sel": "fab_none",
+        "top_color_sel": "col_none",
+        "w_bottom": "bot_none", "bot_fabric_sel": "fab_none",
+        "bot_color_sel": "col_none", "w_shoes": "sh_heels",
+        "w_location": "loc_studio", "w_tod": "tod_none",
+        "w_lighting": "lit_studio", "w_season": "season_none",
+        "w_pstyle": "ps_editorial", "w_framing": "sf_medium",
+        "w_angle": "cam_eye", "w_dof": "dof_clean_bg",
+        "w_comp": "comp_center", "w_pose": "pose_high_fashion",
+    },
+    "theme_cherry": {
+        "w_hair": "hair_half_up", "w_hair_color": "hc_dark_brown",
+        "w_bangs": "bangs_see_through", "w_expr": "expr_bright_smile",
+        "w_makeup": "mu_dewy", "fashion_multi": ["fs_korean"],
+        "w_top": "top_none", "top_fabric_sel": "fab_none",
+        "top_color_sel": "col_none",
+        "w_bottom": "bot_none", "bot_fabric_sel": "fab_none",
+        "bot_color_sel": "col_none", "w_shoes": "sh_mary_janes",
+        "w_location": "loc_cherry", "w_tod": "tod_noon",
+        "w_lighting": "lit_dappled", "w_season": "season_spring",
+        "w_pstyle": "ps_soft", "w_framing": "sf_medium_full",
+        "w_angle": "cam_eye", "w_dof": "dof_shallow",
+        "w_comp": "comp_depth", "w_pose": "pose_look_back_walk",
+    },
+}
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -2742,8 +2977,17 @@ def main():
                                          max_value=1000, value=100, step=50)
             mj_seed = st.text_input(t("mj_seed"), value="")
 
+        # ── Quick themes: curated look + scene bundles, one click ──
         st.divider()
-        st.caption("v5.5 — AI Prompt Generator")
+        st.markdown(f"**🎨 {t('themes_header')}**")
+        theme_labels = [t(k) for k in THEME_PRESETS]
+        st.selectbox(t("theme_select"), theme_labels, key="w_theme")
+        st.button(f"✨ {t('apply_theme_btn')}", on_click=apply_theme,
+                  use_container_width=True)
+        st.caption(t("theme_hint"))
+
+        st.divider()
+        st.caption("v5.6 — AI Prompt Generator")
 
     # ── Header ───────────────────────────────────────────────────────────
     st.markdown(
@@ -2870,6 +3114,12 @@ def main():
             ap_labels, _ = make_option(AP_KEYS)
             ap_sel = st.selectbox(t("appearance"), ap_labels, index=1, key="w_appearance")
             ap_key = AP_KEYS[ap_labels.index(ap_sel)]
+
+        col_pet, _ = st.columns(2)
+        with col_pet:
+            pet_labels, _ = make_option(PET_KEYS)
+            pet_sel = st.selectbox(t("companion"), pet_labels, key="w_pet")
+            pet_key = PET_KEYS[pet_labels.index(pet_sel)]
 
     # ══════════════════════════════════════════════════════════════════════
     #  EXPANDER 2 — Outfit & Style
@@ -3025,6 +3275,7 @@ def main():
             weather_rain = st.checkbox(t("weather_rain"), key="weather_rain_cb")
             weather_snow = st.checkbox(t("weather_snow"), key="weather_snow_cb")
             weather_leaves = st.checkbox(t("weather_leaves"), key="weather_leaves_cb")
+            weather_wind = st.checkbox(t("weather_wind"), key="weather_wind_cb")
         with col_ps:
             ps_labels, _ = make_option(PS_KEYS)
             ps_sel = st.selectbox(t("picture_style"), ps_labels, key="w_pstyle")
@@ -3086,7 +3337,7 @@ def main():
             "w_top": top_key, "top_fabric_sel": top_fb_key, "top_color_sel": top_cp_key,
             "w_bottom": bot_key, "bot_fabric_sel": bot_fb_key, "bot_color_sel": bot_cp_key,
             "w_shoes": sh_key, "fashion_multi": fs_selected_keys,
-            "w_group_mix": gm_key,
+            "w_group_mix": gm_key, "w_pet": pet_key,
             "w_location": lo_key, "w_tod": td_key, "w_lighting": lt_key,
             "w_season": sn_key, "w_pstyle": ps_key, "w_framing": sf_key,
             "w_angle": ca_key, "w_dof": dof_key, "w_comp": cmp_key, "w_pose": po_key,
@@ -3112,13 +3363,15 @@ def main():
     #  6. GENERATE
     # ══════════════════════════════════════════════════════════════════════
     st.markdown("")
-    gen_col, rand_col, scene_col = st.columns([1, 1, 1])
+    gen_col, rand_col, scene_col, set_col = st.columns([1, 1, 1, 1])
     with gen_col:
         generate_clicked = st.button(f"🚀  {t('generate_btn')}", type="primary", use_container_width=True)
     with rand_col:
         st.button(f"🎲  {t('random_btn')}", on_click=randomize_look, use_container_width=True)
     with scene_col:
         st.button(f"🎬  {t('random_scene_btn')}", on_click=randomize_scene, use_container_width=True)
+    with set_col:
+        st.button(f"📸  {t('photo_set_btn')}", on_click=request_photo_set, use_container_width=True)
     # Random Look callback sets new widget values, then requests a generate
     if st.session_state.pop("force_generate", False):
         generate_clicked = True
@@ -3183,6 +3436,8 @@ def main():
                 subject += f", the central person {main_look}"
         if skin_check:
             subject += ", with ultra-realistic skin texture showing pores and fine details"
+        if eng(pet_key):
+            subject += f", {eng(pet_key)}"
 
         # Outfit (top & bottom each with their own fabric + color).
         # Garments set to "None" are omitted so fashion presets don't clash.
@@ -3243,6 +3498,8 @@ def main():
             weather_parts.append("with snow gently falling")
         if weather_leaves:
             weather_parts.append("with red and golden autumn leaves falling through the air")
+        if weather_wind:
+            weather_parts.append("with a gentle breeze blowing, hair and clothes fluttering softly in the wind")
         weather_text = ", ".join(weather_parts)
         env_time = eng(td_key)
         env_parts = [p for p in (env_loc, env_time, season_text, weather_text) if p]
@@ -3303,6 +3560,34 @@ def main():
         if not history or history[0] != history_entry:
             history.insert(0, history_entry)
         st.session_state["prompt_history"] = history[:10]
+
+        # ── Photo Set: same subject/outfit/scene, varied pose + framing +
+        # angle per shot, so the prompts generate one coherent album ──
+        if st.session_state.pop("photo_set_request", False):
+            pose_pool = [k for k in PO_KEYS
+                         if eng(k) and k not in PHOTO_SET_POSE_EXCLUDE]
+            set_prompts = []
+            for v_pose_key in random.sample(pose_pool, PHOTO_SET_SIZE):
+                v_pose_parts = [eng(v_pose_key)]
+                if look_at_camera:
+                    v_pose_parts.append("looking directly at the camera with engaging eye contact")
+                v_camera = ", ".join(p for p in (
+                    eng(lt_key), eng(random.choice(PHOTO_SET_SF_KEYS)),
+                    eng(random.choice(PHOTO_SET_CA_KEYS)),
+                    eng(dof_key), eng(cmp_key), eng(ps_key)) if p)
+                parts = [technical, subject, outfit, ", ".join(v_pose_parts),
+                         environment, v_camera]
+                if custom_eng.strip():
+                    parts.append(custom_eng)
+                parts.append(ar_val)
+                p_text = ", ".join(p.strip() for p in parts if p.strip())
+                if pf_selected_key == "platform_midjourney" and negative_eng:
+                    p_text += f" --no {negative_eng}"
+                set_prompts.append(p_text)
+            st.session_state["photo_set_prompts"] = set_prompts
+        else:
+            # A normal generate reflects new settings — drop the stale set
+            st.session_state.pop("photo_set_prompts", None)
 
     # ── Display: Editable Sections ────────────────────────────────────────
     if st.session_state.get("prompt_generated"):
@@ -3431,6 +3716,19 @@ def main():
                 st.markdown(f"- {note}")
     else:
         st.info(t("no_prompt_yet"))
+
+    # ── Photo Set output ──────────────────────────────────────────────────
+    set_prompts = st.session_state.get("photo_set_prompts", [])
+    if set_prompts:
+        st.markdown("---")
+        st.markdown(f"### 📸 {t('photo_set_header')}")
+        st.caption(t("photo_set_hint"))
+        for i, p_text in enumerate(set_prompts, 1):
+            st.markdown(f"**{t('photo_set_shot')} {i}/{len(set_prompts)}**")
+            st.code(p_text, language=None)
+        st.download_button(f"💾 {t('photo_set_download')}",
+                           "\n\n".join(set_prompts),
+                           file_name="photo_set.txt", mime="text/plain")
 
     # ── Prompt history ────────────────────────────────────────────────────
     history = st.session_state.get("prompt_history", [])
