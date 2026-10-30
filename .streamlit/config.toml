@@ -1,0 +1,4 @@
+[global]
+# Widgets are deliberately set via st.session_state (Random Look, themes,
+# presets, Character Lock) while also passing a default index.
+disableWidgetStateDuplicationWarning = true

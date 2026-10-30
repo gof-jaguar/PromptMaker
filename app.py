@@ -105,7 +105,6 @@ TRANSLATIONS = {
         "eth_latin": "Latin American",
         "eth_middle_east": "Middle-Eastern",
         "eth_mixed": "Mixed / Ambiguous",
-        "skin_detail": "Ultra-realistic Skin Texture",
         "num_subjects": "Number of People",
         "ns_solo": "Solo (1 person)",
         "ns_duo": "Duo (2 people)",
@@ -545,11 +544,6 @@ TRANSLATIONS = {
         "season_autumn": "Autumn / Fall",
         "season_winter": "Winter",
         "season_rainy": "Rainy Season",
-        "weather_effect": "Weather Effect",
-        "weather_rain": "Rain falling",
-        "weather_snow": "Snow falling",
-        "weather_leaves": "Red/autumn leaves falling",
-        "weather_wind": "Gentle breeze (wind-blown hair)",
         "lighting": "Lighting Style",
         "lit_natural": "Natural / Ambient",
         "lit_window": "Soft Window Light",
@@ -605,21 +599,6 @@ TRANSLATIONS = {
         "sf_full": "Full Body",
         "sf_wide": "Wide Shot (full body + environment)",
 
-        # ── Camera Angle ──
-        "camera_angle": "Camera Angle",
-        "cam_eye": "Eye Level",
-        "cam_low": "Low Angle (heroic)",
-        "cam_high": "High Angle (overhead)",
-        "cam_3q": "3/4 View",
-        "cam_profile": "Side Profile",
-        "cam_selfie": "Selfie Angle",
-        "cam_dutch": "Dutch Angle (tilted)",
-        "cam_over_shoulder": "Over the Shoulder",
-        "cam_bird": "Bird's Eye View",
-        "cam_worm": "Worm's Eye (extreme low)",
-        "cam_ground": "Ground Level",
-        "cam_pov": "POV (first person)",
-        "cam_back": "From Behind",
 
         # ── Depth of Field (NEW) ──
         "dof": "Depth of Field / Background",
@@ -751,7 +730,6 @@ TRANSLATIONS = {
         "lit_none": "— Not specified —",
         "loc_none": "— Not specified —",
         "sf_none": "— Not specified —",
-        "cam_none": "— Not specified —",
         "dof_none": "— Not specified —",
         # ── v5.5 — Per-person gender / group mix ──
         "group_mix": "Group Genders",
@@ -802,11 +780,6 @@ TRANSLATIONS = {
         "loc_vineyard": "Vineyard",
         "loc_yacht": "Yacht Deck",
         # ── v5.5 — Camera angles ──
-        "cam_aerial": "Aerial View",
-        "cam_drone": "Drone Shot",
-        "cam_overhead": "Ceiling / Top-down",
-        "cam_cctv": "CCTV / Security Cam",
-        "cam_fisheye": "Fisheye Lens",
         # ── v5.5 — Lighting ──
         "lit_silhouette": "Sunset Silhouette",
         "lit_lowkey": "Low-key (dark & moody)",
@@ -1152,6 +1125,302 @@ TRANSLATIONS = {
         "col_butter": "Butter Yellow",
         "col_grey": "Grey",
         "col_ivory": "Ivory",
+        # v5.8 — subject details, character lock, camera & scene
+        "sub_identity": "Identity",
+        "sub_face": "Face Details",
+        "sub_hair": "Hair",
+        "sub_expression": "Expression, Makeup & Nails",
+        "sub_people": "People & Companion",
+        "skin_tone": "Skin Tone",
+        "face_shape": "Face Shape",
+        "eye_shape": "Eye Shape",
+        "eye_color": "Eye Color",
+        "brows": "Eyebrows",
+        "lips": "Lips",
+        "face_marks": "Facial Features & Charm Points",
+        "face_marks_help": "Pick a few — e.g. mole under eye + aegyo-sal + dimples",
+        "facial_hair": "Facial Hair",
+        "skin_finish": "Skin Finish",
+        "hair_finish": "Hair Finish & Styling",
+        "nails": "Nails",
+        "char_lock_header": "Character Lock",
+        "char_lock_hint": "Lock identity, face, body & hair so every prompt describes the same person — Random Look, themes and presets then only change styling, pose and scene.",
+        "char_name": "Character name (optional)",
+        "char_name_placeholder": "e.g. Mali",
+        "char_lock_btn": "Lock character",
+        "char_unlock_btn": "Unlock",
+        "char_locked_msg": "is locked — identity, face, body and hair stay fixed.",
+        "char_unnamed": "Character",
+        "char_download": "Download character (JSON)",
+        "char_library": "Saved characters (this session)",
+        "char_load_btn": "Load & lock",
+        "char_json_hint": "To reuse later, download the JSON and paste it into Advanced → Apply Look.",
+        "location_category": "Location Category",
+        "atmosphere": "Weather & Atmosphere",
+        "atmosphere_help": "Pick any — e.g. after-rain reflections + fog",
+        "bg_people": "Background People",
+        "sub_lighting": "Lighting",
+        "light_dir": "Light Direction",
+        "light_color": "Light Color",
+        "light_quality": "Light Quality",
+        "sub_camera": "Camera",
+        "cam_height": "Camera Height",
+        "cam_dir": "Camera Position (around subject)",
+        "cam_special": "Special Shot / Perspective",
+        "cam_hint": "💡 Height = how high the camera is · Position = where it stands around the subject (Body Orientation in the Pose section = where the subject faces) · Framing = how much of the body is shown.",
+        "cam_preview": "Camera in prompt:",
+        "camera_film": "Camera / Film Stock",
+        "lens_fx": "Lens & Film Effects",
+        "lens_fx_help": "Pick any — e.g. film grain + light leak",
+        "lcat_all": "All Locations",
+        "lcat_indoor": "Studio & Indoor",
+        "lcat_home": "Home & Bedroom",
+        "lcat_city": "City & Street",
+        "lcat_shops": "Cafés & Shops",
+        "lcat_nature": "Nature & Parks",
+        "lcat_water": "Beach & Water",
+        "lcat_luxury": "Luxury & Elegant",
+        "lcat_travel": "Landmarks & Travel",
+        "lcat_thai": "Thailand",
+        "lcat_asia": "Japan & Korea",
+        "lcat_leisure": "Sports & Leisure",
+        "st_none": "— Not specified —",
+        "st_porcelain": "Porcelain / Very Fair",
+        "st_fair": "Fair",
+        "st_light_warm": "Light, Warm Undertone",
+        "st_medium": "Medium / Wheatish",
+        "st_olive": "Olive",
+        "st_tan": "Tan / Sun-kissed",
+        "st_brown": "Brown",
+        "st_deep": "Deep",
+        "fsh_none": "— Not specified —",
+        "fsh_heart": "Heart-shaped",
+        "fsh_sharp": "High Cheekbones",
+        "fsh_oval": "Oval",
+        "fsh_round": "Round, Soft Cheeks",
+        "fsh_small": "Small Delicate Face",
+        "fsh_v": "V-line (Slim Jaw)",
+        "eye_none": "— Not specified —",
+        "eye_almond": "Almond-shaped",
+        "eye_big": "Big Round Eyes",
+        "eye_doe": "Doe Eyes",
+        "eye_double": "Double Eyelids",
+        "eye_monolid": "Monolid",
+        "eye_droopy": "Soft Droopy Puppy Eyes",
+        "eye_cat": "Upturned Cat Eyes",
+        "ec_none": "— Not specified —",
+        "ec_amber": "Amber",
+        "ec_black": "Black",
+        "ec_blue": "Blue",
+        "ec_dark_brown": "Dark Brown",
+        "ec_green": "Green",
+        "ec_grey": "Grey",
+        "ec_hazel": "Hazel / Light Brown",
+        "brow_none": "— Not specified —",
+        "brow_feathery": "Fluffy Feathered",
+        "brow_arched": "Softly Arched",
+        "brow_straight": "Straight K-Brows",
+        "brow_thick": "Thick Natural",
+        "brow_thin": "Thin & Defined",
+        "lip_none": "— Not specified —",
+        "lip_cat": "Cat Lips (Upturned Corners)",
+        "lip_full": "Full Lips",
+        "lip_heart": "Heart-shaped (Cupid's Bow)",
+        "lip_plump": "Plump & Glossy",
+        "lip_small": "Small Rosebud Lips",
+        "lip_thin": "Thin, Defined Lips",
+        "fm_aegyo": "Aegyo-sal (Puffy Under-eyes)",
+        "fm_mole_lip": "Beauty Mark Near Lips",
+        "fm_dimples": "Dimples",
+        "fm_high_nose": "High Nose Bridge",
+        "fm_lashes": "Long Natural Lashes",
+        "fm_mole_eye": "Mole Under Eye",
+        "fm_freckles": "Natural Freckles",
+        "fm_rosy": "Naturally Rosy Cheeks",
+        "fm_button_nose": "Small Button Nose",
+        "fm_snaggle": "Snaggletooth (Yaeba)",
+        "fh_none": "— Not specified —",
+        "fh_clean": "Clean-shaven",
+        "fh_full_beard": "Full Beard",
+        "fh_goatee": "Goatee",
+        "fh_stubble": "Light Stubble",
+        "fh_mustache": "Mustache",
+        "fh_short_beard": "Short Beard",
+        "skf_none": "— Not specified —",
+        "skf_dewy": "Dewy Glow",
+        "skf_porcelain": "Flawless Porcelain",
+        "skf_glass": "Glass Skin",
+        "skf_natural": "Natural, Lightly Textured",
+        "skf_matte": "Soft Matte",
+        "skf_sunkissed": "Sun-kissed Glow",
+        "skf_real": "Ultra-realistic Texture (Pores)",
+        "hf_none": "— Not specified —",
+        "hf_messy": "Effortlessly Messy",
+        "hf_strands": "Face-framing Strands",
+        "hf_glossy": "Glossy & Silky",
+        "hf_sleek": "Sleek & Polished",
+        "hf_tucked": "Tucked Behind Ears",
+        "hf_voluminous": "Voluminous",
+        "hf_wet": "Wet Look",
+        "hf_windswept": "Wind-swept",
+        "nl_none": "— Not specified —",
+        "nl_black": "Black Nails",
+        "nl_chrome": "Chrome / Glazed Donut",
+        "nl_red": "Classic Red",
+        "nl_natural": "Clean Natural Manicure",
+        "nl_french": "French Manicure",
+        "nl_glitter": "Glitter",
+        "nl_long": "Long Almond, Decorated",
+        "nl_nude": "Nude Gel",
+        "nl_pastel": "Pastel",
+        "ld_none": "— Not specified —",
+        "ld_back": "Backlight",
+        "ld_butterfly": "Butterfly / Paramount",
+        "ld_clamshell": "Clamshell (Beauty)",
+        "ld_front": "Front Light",
+        "ld_loop": "Loop Light",
+        "ld_rembrandt": "Rembrandt (45°)",
+        "ld_side": "Side Light",
+        "ld_split": "Split Light (Half Face)",
+        "ld_top": "Top Light",
+        "ld_under": "Under Light (Eerie)",
+        "lc_none": "— Not specified —",
+        "lc_amber": "Candlelit Amber",
+        "lc_cool": "Cool Blue",
+        "lc_green": "Green Fluorescent Tint",
+        "lc_red": "Moody Red",
+        "lc_neutral": "Neutral Daylight",
+        "lc_pink_blue": "Pink & Blue Mixed",
+        "lc_purple": "Purple & Magenta",
+        "lc_teal_orange": "Teal & Orange (Cinematic)",
+        "lc_warm": "Warm Golden",
+        "lq_none": "— Not specified —",
+        "lq_hard": "Hard, Crisp Shadows",
+        "lq_high_contrast": "High Contrast",
+        "lq_low_contrast": "Low Contrast, Airy",
+        "lq_soft": "Soft & Diffused",
+        "ch_none": "— Not specified —",
+        "ch_aerial": "Aerial / Drone (Very High)",
+        "ch_top": "Top-Down (Directly Overhead)",
+        "ch_high": "High Angle (Looking Down)",
+        "ch_slight_high": "Slightly Above Eye Level (Flattering)",
+        "ch_eye": "Eye Level",
+        "ch_chest": "Chest Level",
+        "ch_waist": "Waist Level",
+        "ch_slight_low": "Slightly Below Eye Level",
+        "ch_low": "Low Angle (Looking Up)",
+        "ch_ground": "Ground Level",
+        "ch_worm": "Worm's Eye (Straight Up)",
+        "cd_none": "— Not specified —",
+        "cd_front": "Front (Straight-on)",
+        "cd_front_3q": "Front Three-Quarter (45°)",
+        "cd_side": "Side (90° Profile)",
+        "cd_back_3q": "Rear Three-Quarter",
+        "cd_back": "Directly Behind",
+        "cd_over_shoulder": "Over the Shoulder",
+        "cs_none": "— None —",
+        "cs_telephoto": "Candid Telephoto (Paparazzi)",
+        "cs_cctv": "CCTV / Security Camera",
+        "cs_dutch": "Dutch Tilt",
+        "cs_pov": "First-person POV",
+        "cs_fisheye": "Fisheye Lens",
+        "cs_mirror": "Mirror Reflection",
+        "cs_selfie": "Selfie (Arm's Length)",
+        "cs_through": "Shot Through Foreground",
+        "cs_window": "Through a Window",
+        "cf_none": "— Not specified —",
+        "cf_digicam": "2000s Compact Digicam",
+        "cf_arri": "ARRI Alexa (Cinema)",
+        "cf_canon": "Canon EOS R5 (Clean Digital)",
+        "cf_cinestill": "CineStill 800T (Night Film)",
+        "cf_disposable": "Disposable Film Camera",
+        "cf_superia": "Fujifilm Superia 400 Film",
+        "cf_fuji": "Fujifilm X-T5 (Classic Chrome)",
+        "cf_hasselblad": "Hasselblad Medium Format",
+        "cf_ilford": "Ilford HP5 (B&W Film)",
+        "cf_instax": "Instax Mini (Instant)",
+        "cf_iphone": "iPhone (Smartphone)",
+        "cf_gold": "Kodak Gold 200 Film",
+        "cf_portra": "Kodak Portra 400 Film",
+        "cf_leica": "Leica M (Rangefinder)",
+        "cf_polaroid": "Polaroid Instant Film",
+        "cf_sony": "Sony A7R V (Sharp Digital)",
+        "atm_puddles": "After-Rain Reflections",
+        "atm_leaves": "Autumn Leaves Falling",
+        "atm_petals": "Cherry Petals Falling",
+        "atm_confetti": "Confetti",
+        "atm_dust": "Dust Particles in Light",
+        "atm_fireflies": "Fireflies",
+        "atm_fog": "Fog / Mist",
+        "atm_wind": "Gentle Breeze (Hair Blowing)",
+        "atm_sparkles": "Magical Sparkles",
+        "atm_rain": "Rain",
+        "atm_smoke": "Smoke / Haze",
+        "atm_snow": "Snow",
+        "atm_bubbles": "Soap Bubbles",
+        "atm_steam": "Steam",
+        "bgp_none": "— Not specified —",
+        "bgp_few": "A Few Passersby",
+        "bgp_crowd": "Blurred Bustling Crowd",
+        "bgp_empty": "No One Else (Empty)",
+        "lfx_chromatic": "Chromatic Aberration",
+        "lfx_double": "Double Exposure",
+        "lfx_date": "Film Date Stamp",
+        "lfx_grain": "Film Grain",
+        "lfx_halation": "Halation Glow",
+        "lfx_flare": "Lens Flare",
+        "lfx_leak": "Light Leak",
+        "lfx_motion": "Motion Blur",
+        "lfx_prism": "Prism Rainbow",
+        "lfx_bloom": "Soft Bloom",
+        "lfx_vignette": "Vignette",
+        "loc_dance_studio": "Dance Studio",
+        "loc_classroom": "Sunlit Classroom",
+        "loc_museum": "Museum Hall",
+        "loc_bedroom": "Cozy Bedroom",
+        "loc_kitchen": "Homey Kitchen",
+        "loc_living": "Living Room Sofa",
+        "loc_balcony": "Balcony with Plants",
+        "loc_window_seat": "Window Seat",
+        "loc_vanity": "Vanity Mirror",
+        "loc_crosswalk": "City Crosswalk",
+        "loc_railway": "Old Railway Tracks",
+        "loc_bus_stop": "Bus Stop",
+        "loc_flower_shop": "Flower Shop",
+        "loc_bookstore": "Bookstore",
+        "loc_bakery": "Pastel Bakery",
+        "loc_boutique": "Fashion Boutique",
+        "loc_record_store": "Vintage Record Store",
+        "loc_laundromat": "Retro Laundromat",
+        "loc_sunflower": "Sunflower Field",
+        "loc_lavender": "Lavender Field",
+        "loc_autumn_park": "Autumn Park",
+        "loc_meadow": "Wildflower Meadow",
+        "loc_lighthouse": "Seaside Lighthouse",
+        "loc_mansion": "Classic Mansion Interior",
+        "loc_fine_dining": "Fine Dining Restaurant",
+        "loc_santorini": "Santorini-style White Village",
+        "loc_venice": "Venice-style Canal",
+        "loc_th_wat": "Golden Thai Temple",
+        "loc_th_floating": "Floating Market",
+        "loc_th_chiangmai": "Chiang Mai Old Town Lane",
+        "loc_th_shophouse": "Old Shophouse Street",
+        "loc_th_island": "Thai Island Beach",
+        "loc_th_rooftop": "Bangkok Rooftop Bar",
+        "loc_th_tea": "Tea Plantation Hills",
+        "loc_th_tuktuk": "Tuk-tuk Street",
+        "loc_jp_torii": "Shrine with Torii Gates",
+        "loc_jp_street": "Tokyo Side Street",
+        "loc_jp_ryokan": "Ryokan Tatami Room",
+        "loc_bamboo": "Bamboo Forest",
+        "loc_kr_hanok": "Hanok Village",
+        "loc_kr_street": "Seoul Neighborhood Street",
+        "loc_photo_booth": "Photo Booth",
+        "loc_bowling": "Retro Bowling Alley",
+        "loc_carousel": "Vintage Carousel",
+        "loc_cinema": "Movie Theater",
+        "loc_karaoke": "Karaoke Room",
+        "loc_tennis": "Tennis Court",
     },
     "th": {
         # ── Global ──
@@ -1231,7 +1500,6 @@ TRANSLATIONS = {
         "eth_latin": "ลาตินอเมริกัน",
         "eth_middle_east": "ตะวันออกกลาง",
         "eth_mixed": "เชื้อชาติผสม",
-        "skin_detail": "ผิวหนังสมจริงสุดๆ (รูขุมขน, กระ)",
         "num_subjects": "จำนวนคน",
         "ns_solo": "เดี่ยว (1 คน)",
         "ns_duo": "คู่ (2 คน)",
@@ -1671,11 +1939,6 @@ TRANSLATIONS = {
         "season_autumn": "ฤดูใบไม้ร่วง",
         "season_winter": "ฤดูหนาว",
         "season_rainy": "ฤดูฝน",
-        "weather_effect": "เอฟเฟกต์สภาพอากาศ",
-        "weather_rain": "ฝนกำลังตก",
-        "weather_snow": "หิมะกำลังตก",
-        "weather_leaves": "ใบไม้แดง/ใบไม้ร่วงกำลังร่วง",
-        "weather_wind": "ลมพัดเบาๆ (ผมปลิวตามลม)",
         "lighting": "สไตล์แสง",
         "lit_natural": "แสงธรรมชาติ",
         "lit_window": "แสงหน้าต่างนุ่มนวล",
@@ -1731,21 +1994,6 @@ TRANSLATIONS = {
         "sf_full": "ภาพเต็มตัว",
         "sf_wide": "ภาพกว้าง (เต็มตัว + สิ่งแวดล้อม)",
 
-        # ── Camera Angle ──
-        "camera_angle": "มุมกล้อง",
-        "cam_eye": "ระดับสายตา",
-        "cam_low": "มุมต่ำ (ดูยิ่งใหญ่)",
-        "cam_high": "มุมสูง (มองลง)",
-        "cam_3q": "มุม 3/4",
-        "cam_profile": "มุมด้านข้าง (โปรไฟล์)",
-        "cam_selfie": "มุมเซลฟี่",
-        "cam_dutch": "มุมเอียง (Dutch Angle)",
-        "cam_over_shoulder": "มองข้ามไหล่",
-        "cam_bird": "มุมมองจากบน (Bird's Eye)",
-        "cam_worm": "มุมหนอน (ต่ำมาก แหงนขึ้น)",
-        "cam_ground": "ระดับพื้น",
-        "cam_pov": "มุมมองบุคคลที่หนึ่ง (POV)",
-        "cam_back": "ถ่ายจากด้านหลัง",
 
         # ── Depth of Field ──
         "dof": "ความชัดลึก / พื้นหลัง",
@@ -1877,7 +2125,6 @@ TRANSLATIONS = {
         "lit_none": "— ไม่ระบุ —",
         "loc_none": "— ไม่ระบุ —",
         "sf_none": "— ไม่ระบุ —",
-        "cam_none": "— ไม่ระบุ —",
         "dof_none": "— ไม่ระบุ —",
         # ── v5.5 — เพศรายคน / กลุ่ม ──
         "group_mix": "เพศของคนในกลุ่ม",
@@ -1928,11 +2175,6 @@ TRANSLATIONS = {
         "loc_vineyard": "ไร่องุ่น",
         "loc_yacht": "ดาดฟ้าเรือยอชท์",
         # ── v5.5 — มุมกล้อง ──
-        "cam_aerial": "มุมสูงจากอากาศ",
-        "cam_drone": "มุมโดรน",
-        "cam_overhead": "มุมจากเพดาน (ตรงลงมา)",
-        "cam_cctv": "มุมกล้องวงจรปิด",
-        "cam_fisheye": "เลนส์ฟิชอาย",
         # ── v5.5 — สไตล์แสง ──
         "lit_silhouette": "เงาดำย้อนแสงอาทิตย์ตก",
         "lit_lowkey": "โลว์คีย์ (มืดขรึม)",
@@ -2278,6 +2520,302 @@ TRANSLATIONS = {
         "col_butter": "เหลืองบัตเตอร์",
         "col_grey": "เทา",
         "col_ivory": "สีงาช้าง",
+        # v5.8 — subject details, character lock, camera & scene
+        "sub_identity": "ตัวตน",
+        "sub_face": "รายละเอียดใบหน้า",
+        "sub_hair": "ผม",
+        "sub_expression": "สีหน้า เมคอัพ และเล็บ",
+        "sub_people": "จำนวนคนและสัตว์เลี้ยง",
+        "skin_tone": "โทนสีผิว",
+        "face_shape": "รูปหน้า",
+        "eye_shape": "รูปตา",
+        "eye_color": "สีตา",
+        "brows": "คิ้ว",
+        "lips": "ริมฝีปาก",
+        "face_marks": "จุดเด่นบนใบหน้า",
+        "face_marks_help": "เลือกได้หลายอย่าง เช่น ไฝใต้ตา + ถุงใต้ตาน่ารัก + ลักยิ้ม",
+        "facial_hair": "หนวดเครา",
+        "skin_finish": "ลักษณะผิว",
+        "hair_finish": "ลักษณะเส้นผม",
+        "nails": "เล็บ",
+        "char_lock_header": "ล็อกตัวละคร",
+        "char_lock_hint": "ล็อกตัวตน ใบหน้า รูปร่าง และผม ให้ทุกพรอมต์เป็นคนเดิม ปุ่มสุ่มลุค ธีม และพรีเซ็ตจะเปลี่ยนแค่การแต่งตัว ท่าโพส และฉาก",
+        "char_name": "ชื่อตัวละคร (ไม่บังคับ)",
+        "char_name_placeholder": "เช่น มะลิ",
+        "char_lock_btn": "ล็อกตัวละคร",
+        "char_unlock_btn": "ปลดล็อก",
+        "char_locked_msg": "ถูกล็อกแล้ว ตัวตน ใบหน้า รูปร่าง และผมจะคงเดิม",
+        "char_unnamed": "ตัวละคร",
+        "char_download": "ดาวน์โหลดตัวละคร (JSON)",
+        "char_library": "ตัวละครที่บันทึกไว้ (เซสชันนี้)",
+        "char_load_btn": "โหลดและล็อก",
+        "char_json_hint": "ถ้าจะใช้ภายหลัง ให้ดาวน์โหลด JSON แล้ววางในส่วนขั้นสูง → ใช้ลุคนี้",
+        "location_category": "หมวดสถานที่",
+        "atmosphere": "สภาพอากาศและบรรยากาศ",
+        "atmosphere_help": "เลือกได้หลายอย่าง เช่น แอ่งน้ำหลังฝน + หมอก",
+        "bg_people": "ผู้คนในฉากหลัง",
+        "sub_lighting": "แสง",
+        "light_dir": "ทิศทางแสง",
+        "light_color": "สีของแสง",
+        "light_quality": "คุณภาพแสง",
+        "sub_camera": "กล้อง",
+        "cam_height": "ระดับความสูงกล้อง",
+        "cam_dir": "ตำแหน่งกล้อง (รอบตัวแบบ)",
+        "cam_special": "มุมพิเศษ / เปอร์สเปกทีฟ",
+        "cam_hint": "💡 ความสูง = กล้องอยู่สูงหรือต่ำ · ตำแหน่ง = กล้องยืนตรงไหนรอบตัวแบบ (ส่วน “ทิศทางลำตัว” ในท่าโพส = แบบหันไปทางไหน) · ระยะภาพ = เห็นตัวแบบมากแค่ไหน",
+        "cam_preview": "กล้องในพรอมต์:",
+        "camera_film": "กล้อง / ฟิล์ม",
+        "lens_fx": "เอฟเฟกต์เลนส์และฟิล์ม",
+        "lens_fx_help": "เลือกได้หลายอย่าง เช่น เกรนฟิล์ม + แสงรั่ว",
+        "lcat_all": "ทุกสถานที่",
+        "lcat_indoor": "สตูดิโอและในอาคาร",
+        "lcat_home": "ในบ้านและห้องนอน",
+        "lcat_city": "เมืองและถนน",
+        "lcat_shops": "คาเฟ่และร้านค้า",
+        "lcat_nature": "ธรรมชาติและสวน",
+        "lcat_water": "ทะเลและแหล่งน้ำ",
+        "lcat_luxury": "หรูหราและสง่างาม",
+        "lcat_travel": "สถานที่ท่องเที่ยว",
+        "lcat_thai": "ประเทศไทย",
+        "lcat_asia": "ญี่ปุ่นและเกาหลี",
+        "lcat_leisure": "กีฬาและสันทนาการ",
+        "st_none": "— ไม่ระบุ —",
+        "st_porcelain": "ขาวมาก (พอร์ซเลน)",
+        "st_fair": "ผิวขาว",
+        "st_light_warm": "ขาวเหลือง",
+        "st_medium": "ผิวสองสี",
+        "st_olive": "ผิวมะกอก (โอลีฟ)",
+        "st_tan": "ผิวแทน",
+        "st_brown": "ผิวน้ำตาล",
+        "st_deep": "ผิวเข้ม",
+        "fsh_none": "— ไม่ระบุ —",
+        "fsh_heart": "หน้ารูปหัวใจ",
+        "fsh_sharp": "โหนกแก้มสูง",
+        "fsh_oval": "หน้ารูปไข่",
+        "fsh_round": "หน้ากลม แก้มนุ่ม",
+        "fsh_small": "หน้าเล็ก",
+        "fsh_v": "หน้าวีเชฟ (คางเรียว)",
+        "eye_none": "— ไม่ระบุ —",
+        "eye_almond": "ตาอัลมอนด์",
+        "eye_big": "ตาโตกลม",
+        "eye_doe": "ตากวาง (ตาหวานโต)",
+        "eye_double": "ตาสองชั้น",
+        "eye_monolid": "ตาชั้นเดียว",
+        "eye_droopy": "ตาตก (ตาลูกหมา)",
+        "eye_cat": "ตาแมว (หางตาชี้ขึ้น)",
+        "ec_none": "— ไม่ระบุ —",
+        "ec_amber": "สีอำพัน",
+        "ec_black": "สีดำ",
+        "ec_blue": "สีฟ้า",
+        "ec_dark_brown": "น้ำตาลเข้ม",
+        "ec_green": "สีเขียว",
+        "ec_grey": "สีเทา",
+        "ec_hazel": "น้ำตาลอ่อน (เฮเซล)",
+        "brow_none": "— ไม่ระบุ —",
+        "brow_feathery": "คิ้วฟูขนนก",
+        "brow_arched": "คิ้วโก่งนิดๆ",
+        "brow_straight": "คิ้วตรงแบบเกาหลี",
+        "brow_thick": "คิ้วหนาธรรมชาติ",
+        "brow_thin": "คิ้วบางคม",
+        "lip_none": "— ไม่ระบุ —",
+        "lip_cat": "ปากแมว (มุมปากยกขึ้น)",
+        "lip_full": "ปากอิ่ม",
+        "lip_heart": "ปากรูปหัวใจ (กระจับชัด)",
+        "lip_plump": "ปากอวบฉ่ำ",
+        "lip_small": "ปากเล็กกุหลาบตูม",
+        "lip_thin": "ปากบางได้รูป",
+        "fm_aegyo": "ถุงใต้ตาน่ารัก (แอกโยซัล)",
+        "fm_mole_lip": "ไฝเสน่ห์ใกล้ริมฝีปาก",
+        "fm_dimples": "ลักยิ้ม",
+        "fm_high_nose": "สันจมูกโด่ง",
+        "fm_lashes": "ขนตายาวธรรมชาติ",
+        "fm_mole_eye": "ไฝใต้ตา",
+        "fm_freckles": "กระธรรมชาติ",
+        "fm_rosy": "แก้มแดงระเรื่อ",
+        "fm_button_nose": "จมูกเล็กน่ารัก",
+        "fm_snaggle": "ฟันเขี้ยวน่ารัก (ยาเอบะ)",
+        "fh_none": "— ไม่ระบุ —",
+        "fh_clean": "โกนเกลี้ยง",
+        "fh_full_beard": "เคราเต็มหน้า",
+        "fh_goatee": "เคราแพะ",
+        "fh_stubble": "หนวดเคราเขียวๆ",
+        "fh_mustache": "หนวด",
+        "fh_short_beard": "เคราสั้น",
+        "skf_none": "— ไม่ระบุ —",
+        "skf_dewy": "ผิวฉ่ำโกลว์",
+        "skf_porcelain": "ผิวเนียนกริบไร้ที่ติ",
+        "skf_glass": "ผิวกระจก (Glass Skin)",
+        "skf_natural": "ผิวธรรมชาติ มีเท็กซ์เจอร์นิดๆ",
+        "skf_matte": "ผิวแมตต์นุ่ม",
+        "skf_sunkissed": "ผิวโกลว์รับแดด",
+        "skf_real": "ผิวสมจริงสุดๆ (เห็นรูขุมขน)",
+        "hf_none": "— ไม่ระบุ —",
+        "hf_messy": "ยุ่งนิดๆ แบบตั้งใจ",
+        "hf_strands": "ปอยผมกรอบหน้า",
+        "hf_glossy": "เงาสลวย",
+        "hf_sleek": "เรียบแปล้",
+        "hf_tucked": "ทัดหู",
+        "hf_voluminous": "ผมพองมีวอลลุ่ม",
+        "hf_wet": "ผมเปียก",
+        "hf_windswept": "ผมปลิวลม",
+        "nl_none": "— ไม่ระบุ —",
+        "nl_black": "เล็บดำ",
+        "nl_chrome": "เล็บโครม (เกลซโดนัท)",
+        "nl_red": "เล็บแดงคลาสสิก",
+        "nl_natural": "เล็บธรรมชาติสะอาด",
+        "nl_french": "เล็บเฟรนช์",
+        "nl_glitter": "เล็บกากเพชร",
+        "nl_long": "เล็บยาวทรงอัลมอนด์แต่งลาย",
+        "nl_nude": "เล็บเจลสีนู้ด",
+        "nl_pastel": "เล็บพาสเทล",
+        "ld_none": "— ไม่ระบุ —",
+        "ld_back": "แสงย้อน",
+        "ld_butterfly": "แสงผีเสื้อ (บนหน้าตรง)",
+        "ld_clamshell": "แสงหอยลาย (บิวตี้)",
+        "ld_front": "แสงหน้าตรง",
+        "ld_loop": "แสงลูป",
+        "ld_rembrandt": "แสงเรมบรันต์ (45°)",
+        "ld_side": "แสงข้าง",
+        "ld_split": "แสงครึ่งหน้า",
+        "ld_top": "แสงจากด้านบน",
+        "ld_under": "แสงจากด้านล่าง (ลึกลับ)",
+        "lc_none": "— ไม่ระบุ —",
+        "lc_amber": "อำพันแสงเทียน",
+        "lc_cool": "โทนเย็นอมฟ้า",
+        "lc_green": "อมเขียวแสงฟลูออเรสเซนต์",
+        "lc_red": "แดงมีมูด",
+        "lc_neutral": "แสงกลางวันเป็นกลาง",
+        "lc_pink_blue": "ชมพูผสมฟ้า",
+        "lc_purple": "ม่วงและบานเย็น",
+        "lc_teal_orange": "ทีลและส้ม (ภาพยนตร์)",
+        "lc_warm": "โทนอุ่นสีทอง",
+        "lq_none": "— ไม่ระบุ —",
+        "lq_hard": "แสงแข็ง เงาคม",
+        "lq_high_contrast": "คอนทราสต์สูง",
+        "lq_low_contrast": "คอนทราสต์ต่ำ โปร่งสบาย",
+        "lq_soft": "แสงนุ่ม กระจายตัว",
+        "ch_none": "— ไม่ระบุ —",
+        "ch_aerial": "มุมสูงมาก (โดรน)",
+        "ch_top": "มุมบนลงล่างตรงๆ",
+        "ch_high": "มุมสูง (กดลง)",
+        "ch_slight_high": "สูงกว่าระดับตาเล็กน้อย (ถ่ายแล้วสวย)",
+        "ch_eye": "ระดับสายตา",
+        "ch_chest": "ระดับอก",
+        "ch_waist": "ระดับเอว",
+        "ch_slight_low": "ต่ำกว่าระดับตาเล็กน้อย",
+        "ch_low": "มุมต่ำ (เงยขึ้น)",
+        "ch_ground": "ระดับพื้น",
+        "ch_worm": "มุมหนอน (เงยตั้งฉาก)",
+        "cd_none": "— ไม่ระบุ —",
+        "cd_front": "ด้านหน้าตรง",
+        "cd_front_3q": "เฉียงด้านหน้า 45°",
+        "cd_side": "ด้านข้าง 90°",
+        "cd_back_3q": "เฉียงด้านหลัง",
+        "cd_back": "ด้านหลังตรง",
+        "cd_over_shoulder": "ข้ามไหล่",
+        "cs_none": "— ไม่ระบุ —",
+        "cs_telephoto": "เทเลโฟโต้แอบถ่าย (ปาปารัสซี่)",
+        "cs_cctv": "กล้องวงจรปิด",
+        "cs_dutch": "เอียงกล้อง (Dutch Angle)",
+        "cs_pov": "มุมมองบุคคลที่หนึ่ง (POV)",
+        "cs_fisheye": "เลนส์ฟิชอาย",
+        "cs_mirror": "ภาพสะท้อนในกระจก",
+        "cs_selfie": "เซลฟี่ (ยื่นแขน)",
+        "cs_through": "ถ่ายลอดฉากหน้า",
+        "cs_window": "ถ่ายผ่านกระจกหน้าต่าง",
+        "cf_none": "— ไม่ระบุ —",
+        "cf_digicam": "กล้องดิจิทัลคอมแพคยุค 2000",
+        "cf_arri": "ARRI Alexa (กล้องภาพยนตร์)",
+        "cf_canon": "Canon EOS R5 (ดิจิทัลคมชัด)",
+        "cf_cinestill": "CineStill 800T (ฟิล์มกลางคืน)",
+        "cf_disposable": "กล้องฟิล์มใช้แล้วทิ้ง",
+        "cf_superia": "ฟิล์ม Fujifilm Superia 400",
+        "cf_fuji": "Fujifilm X-T5 (Classic Chrome)",
+        "cf_hasselblad": "Hasselblad มีเดียมฟอร์แมต",
+        "cf_ilford": "ฟิล์มขาวดำ Ilford HP5",
+        "cf_instax": "Instax Mini (ฟิล์มโพลารอยด์เล็ก)",
+        "cf_iphone": "iPhone (มือถือ)",
+        "cf_gold": "ฟิล์ม Kodak Gold 200",
+        "cf_portra": "ฟิล์ม Kodak Portra 400",
+        "cf_leica": "Leica M (เรนจ์ไฟน์เดอร์)",
+        "cf_polaroid": "ฟิล์มโพลารอยด์",
+        "cf_sony": "Sony A7R V (ดิจิทัลคมชัด)",
+        "atm_puddles": "พื้นเปียกสะท้อนแสงหลังฝน",
+        "atm_leaves": "ใบไม้ร่วงปลิว",
+        "atm_petals": "กลีบซากุระร่วง",
+        "atm_confetti": "กระดาษสีโปรยปราย",
+        "atm_dust": "ฝุ่นละอองในลำแสง",
+        "atm_fireflies": "หิ่งห้อย",
+        "atm_fog": "หมอก",
+        "atm_wind": "ลมพัดเบาๆ (ผมปลิว)",
+        "atm_sparkles": "ประกายวิบวับ",
+        "atm_rain": "ฝนตก",
+        "atm_smoke": "ควัน / หมอกควัน",
+        "atm_snow": "หิมะตก",
+        "atm_bubbles": "ฟองสบู่",
+        "atm_steam": "ไอน้ำ",
+        "bgp_none": "— ไม่ระบุ —",
+        "bgp_few": "มีคนเดินผ่านเล็กน้อย",
+        "bgp_crowd": "ฝูงชนพลุกพล่าน (เบลอ)",
+        "bgp_empty": "ไม่มีคนอื่นในฉาก",
+        "lfx_chromatic": "ขอบสีเหลื่อม",
+        "lfx_double": "ภาพซ้อน (Double Exposure)",
+        "lfx_date": "ตัวเลขวันที่แบบกล้องฟิล์ม",
+        "lfx_grain": "เกรนฟิล์ม",
+        "lfx_halation": "แสงฟุ้งรอบไฟ (Halation)",
+        "lfx_flare": "แสงแฟลร์",
+        "lfx_leak": "แสงรั่ว (Light Leak)",
+        "lfx_motion": "ภาพเบลอจากการเคลื่อนไหว",
+        "lfx_prism": "ปริซึมสายรุ้ง",
+        "lfx_bloom": "ฟุ้งนุ่ม (Bloom)",
+        "lfx_vignette": "ขอบภาพมืด (Vignette)",
+        "loc_dance_studio": "สตูดิโอเต้น",
+        "loc_classroom": "ห้องเรียนแสงแดดส่อง",
+        "loc_museum": "ห้องโถงพิพิธภัณฑ์",
+        "loc_bedroom": "ห้องนอนอบอุ่น",
+        "loc_kitchen": "ห้องครัวในบ้าน",
+        "loc_living": "โซฟาห้องนั่งเล่น",
+        "loc_balcony": "ระเบียงต้นไม้",
+        "loc_window_seat": "มุมนั่งริมหน้าต่าง",
+        "loc_vanity": "โต๊ะเครื่องแป้ง",
+        "loc_crosswalk": "ทางม้าลายกลางเมือง",
+        "loc_railway": "รางรถไฟเก่า",
+        "loc_bus_stop": "ป้ายรถเมล์",
+        "loc_flower_shop": "ร้านดอกไม้",
+        "loc_bookstore": "ร้านหนังสือ",
+        "loc_bakery": "ร้านเบเกอรี่โทนพาสเทล",
+        "loc_boutique": "ร้านเสื้อผ้าบูติก",
+        "loc_record_store": "ร้านแผ่นเสียงวินเทจ",
+        "loc_laundromat": "ร้านซักผ้าเรโทร",
+        "loc_sunflower": "ทุ่งทานตะวัน",
+        "loc_lavender": "ทุ่งลาเวนเดอร์",
+        "loc_autumn_park": "สวนสาธารณะฤดูใบไม้ร่วง",
+        "loc_meadow": "ทุ่งดอกไม้ป่า",
+        "loc_lighthouse": "ประภาคารริมทะเล",
+        "loc_mansion": "คฤหาสน์คลาสสิก",
+        "loc_fine_dining": "ร้านอาหารหรู",
+        "loc_santorini": "หมู่บ้านสีขาวสไตล์ซานโตรินี",
+        "loc_venice": "คลองสไตล์เวนิส",
+        "loc_th_wat": "วัดไทยสีทอง",
+        "loc_th_floating": "ตลาดน้ำ",
+        "loc_th_chiangmai": "ซอยเมืองเก่าเชียงใหม่",
+        "loc_th_shophouse": "ย่านตึกแถวชิโนโปรตุกีส",
+        "loc_th_island": "ชายหาดเกาะไทย",
+        "loc_th_rooftop": "รูฟท็อปบาร์กรุงเทพ",
+        "loc_th_tea": "ไร่ชาบนเขา",
+        "loc_th_tuktuk": "ถนนกับรถตุ๊กตุ๊ก",
+        "loc_jp_torii": "ศาลเจ้าซุ้มโทริอิ",
+        "loc_jp_street": "ซอยในโตเกียว",
+        "loc_jp_ryokan": "ห้องเรียวกังเสื่อทาทามิ",
+        "loc_bamboo": "ป่าไผ่",
+        "loc_kr_hanok": "หมู่บ้านฮันอก",
+        "loc_kr_street": "ย่านเก๋ในโซล",
+        "loc_photo_booth": "ตู้ถ่ายรูป",
+        "loc_bowling": "โบว์ลิ่งเรโทร",
+        "loc_carousel": "ม้าหมุนวินเทจ",
+        "loc_cinema": "โรงภาพยนตร์",
+        "loc_karaoke": "ห้องคาราโอเกะ",
+        "loc_tennis": "สนามเทนนิส",
     },
 }
 
@@ -2671,17 +3209,6 @@ ENGLISH_VALUES = {
     "sf_medium_full": "medium full shot from knees up",
     "sf_full": "full body shot",
     "sf_wide": "wide shot showing full body and surrounding environment",
-    # Camera Angle
-    "cam_eye": "shot at eye level", "cam_low": "shot from low angle looking up",
-    "cam_high": "shot from high angle looking down",
-    "cam_3q": "three-quarter view", "cam_profile": "side profile view",
-    "cam_selfie": "selfie angle shot from arm's length slightly above eye level",
-    "cam_dutch": "dutch angle tilted composition",
-    "cam_over_shoulder": "over-the-shoulder shot", "cam_bird": "bird's eye view from directly above",
-    "cam_worm": "worm's eye view from ground level looking straight up",
-    "cam_ground": "ground level shot with the camera placed close to the floor",
-    "cam_pov": "first-person POV shot",
-    "cam_back": "shot from directly behind the subject",
     # Depth of Field
     "dof_sharp": "deep focus with everything sharp",
     "dof_portrait": "shallow depth of field at f/1.8 with subject in sharp focus and beautifully blurred bokeh background",
@@ -2788,7 +3315,7 @@ ENGLISH_VALUES = {
     "age_none": "", "eth_none": "", "hair_none": "", "hc_none": "",
     "expr_none": "", "bt_none": "", "app_none": "", "pose_none": "",
     "tod_none": "", "lit_none": "", "loc_none": "", "sf_none": "",
-    "cam_none": "", "dof_none": "",
+    "dof_none": "",
     # v5.5 — Makeup
     "mu_editorial": "avant-garde editorial makeup with bold graphic artistic accents",
     "mu_freckles": "fresh natural makeup with cute faux freckles scattered across the nose and cheeks",
@@ -2834,11 +3361,6 @@ ENGLISH_VALUES = {
     "loc_vineyard": "in a sun-drenched vineyard with rolling rows of grapevines",
     "loc_yacht": "on the deck of a luxury yacht surrounded by sparkling blue water",
     # v5.5 — Camera angles
-    "cam_aerial": "taken from an aerial view high above the scene",
-    "cam_drone": "sweeping cinematic drone shot from above",
-    "cam_overhead": "top-down shot taken from directly overhead, as if mounted on the ceiling",
-    "cam_cctv": "elevated security-camera viewpoint from a high corner",
-    "cam_fisheye": "shot up close with playful fisheye lens distortion",
     # v5.5 — Lighting
     "lit_silhouette": "dramatic silhouette backlighting against a glowing sunset sky",
     "lit_lowkey": "low-key lighting with deep shadows and a single soft key light",
@@ -3121,6 +3643,244 @@ ENGLISH_VALUES = {
     "col_butter": "soft butter yellow color tones",
     "col_grey": "grey color tones",
     "col_ivory": "soft ivory color tones",
+    # v5.8 — subject details, camera & scene
+    "st_none": "",
+    "st_porcelain": "porcelain fair skin",
+    "st_fair": "fair skin",
+    "st_light_warm": "light warm-toned skin",
+    "st_medium": "medium wheat-toned skin",
+    "st_olive": "olive skin",
+    "st_tan": "sun-kissed tan skin",
+    "st_brown": "warm brown skin",
+    "st_deep": "deep rich dark skin",
+    "fsh_none": "",
+    "fsh_heart": "a heart-shaped face",
+    "fsh_sharp": "high sculpted cheekbones",
+    "fsh_oval": "an oval face",
+    "fsh_round": "a soft round face with full cheeks",
+    "fsh_small": "a small delicate face",
+    "fsh_v": "a slim V-line jaw",
+    "eye_none": "",
+    "eye_almond": "almond-shaped",
+    "eye_big": "big round",
+    "eye_doe": "large doe",
+    "eye_double": "double-lidded",
+    "eye_monolid": "monolid",
+    "eye_droopy": "soft droopy puppy-like",
+    "eye_cat": "upturned cat-like",
+    "ec_none": "",
+    "ec_amber": "amber",
+    "ec_black": "deep black",
+    "ec_blue": "blue",
+    "ec_dark_brown": "dark brown",
+    "ec_green": "green",
+    "ec_grey": "grey",
+    "ec_hazel": "warm hazel",
+    "brow_none": "",
+    "brow_feathery": "fluffy feathered brows",
+    "brow_arched": "softly arched brows",
+    "brow_straight": "soft straight brows",
+    "brow_thick": "thick natural brows",
+    "brow_thin": "thin defined brows",
+    "lip_none": "",
+    "lip_cat": "cat-like lips with naturally upturned corners",
+    "lip_full": "full lips",
+    "lip_heart": "heart-shaped lips with a defined cupid's bow",
+    "lip_plump": "plump glossy lips",
+    "lip_small": "small rosebud lips",
+    "lip_thin": "thin, well-defined lips",
+    "fm_aegyo": "puffy aegyo-sal under the eyes",
+    "fm_mole_lip": "a beauty mark near the lips",
+    "fm_dimples": "cute dimples",
+    "fm_high_nose": "a high nose bridge",
+    "fm_lashes": "long natural lashes",
+    "fm_mole_eye": "a small beauty mark under one eye",
+    "fm_freckles": "light natural freckles across the nose",
+    "fm_rosy": "naturally rosy cheeks",
+    "fm_button_nose": "a small button nose",
+    "fm_snaggle": "a cute snaggletooth",
+    "fh_none": "",
+    "fh_clean": "clean-shaven",
+    "fh_full_beard": "a full well-groomed beard",
+    "fh_goatee": "a goatee",
+    "fh_stubble": "light stubble",
+    "fh_mustache": "a mustache",
+    "fh_short_beard": "a short trimmed beard",
+    "skf_none": "",
+    "skf_dewy": "with dewy glowing skin",
+    "skf_porcelain": "with flawless porcelain-smooth skin",
+    "skf_glass": "with luminous glass skin",
+    "skf_natural": "with natural, lightly textured skin",
+    "skf_matte": "with smooth soft-matte skin",
+    "skf_sunkissed": "with sun-kissed glowing skin",
+    "skf_real": "with ultra-realistic skin texture showing pores and fine details",
+    "hf_none": "",
+    "hf_messy": "effortlessly messy hair",
+    "hf_strands": "loose face-framing strands",
+    "hf_glossy": "glossy silky hair",
+    "hf_sleek": "sleek polished hair",
+    "hf_tucked": "hair tucked behind the ears",
+    "hf_voluminous": "voluminous hair",
+    "hf_wet": "wet-look hair",
+    "hf_windswept": "wind-swept hair",
+    "nl_none": "",
+    "nl_black": "with glossy black nails",
+    "nl_chrome": "with glazed chrome nails",
+    "nl_red": "with classic red nails",
+    "nl_natural": "with clean natural manicured nails",
+    "nl_french": "with a French manicure",
+    "nl_glitter": "with sparkly glitter nails",
+    "nl_long": "with long almond-shaped decorated nails",
+    "nl_nude": "with nude gel nails",
+    "nl_pastel": "with pastel nails",
+    "ld_none": "",
+    "ld_back": "backlighting from behind the subject",
+    "ld_butterfly": "butterfly lighting from above and in front, flattering the cheekbones",
+    "ld_clamshell": "clamshell beauty lighting with a soft fill from below and minimal shadows",
+    "ld_front": "soft front lighting",
+    "ld_loop": "loop lighting casting a soft small nose shadow",
+    "ld_rembrandt": "Rembrandt lighting with a small triangle of light on the shadowed cheek",
+    "ld_side": "directional side lighting sculpting the face",
+    "ld_split": "split lighting with half the face in shadow",
+    "ld_top": "overhead top light",
+    "ld_under": "dramatic underlighting from below",
+    "lc_none": "",
+    "lc_amber": "deep amber candlelit tones",
+    "lc_cool": "cool bluish color temperature",
+    "lc_green": "a greenish fluorescent tint",
+    "lc_red": "moody red light",
+    "lc_neutral": "neutral daylight color balance",
+    "lc_pink_blue": "mixed pink and blue lighting",
+    "lc_purple": "purple and magenta toned light",
+    "lc_teal_orange": "cinematic teal and orange color contrast",
+    "lc_warm": "warm golden color temperature",
+    "lq_none": "",
+    "lq_hard": "hard light with crisp defined shadows",
+    "lq_high_contrast": "high-contrast lighting",
+    "lq_low_contrast": "low-contrast airy lighting",
+    "lq_soft": "soft diffused light",
+    "ch_none": "",
+    "ch_aerial": "aerial drone view from high above the scene",
+    "ch_top": "top-down shot from directly overhead",
+    "ch_high": "high-angle shot with the camera well above the subject looking down",
+    "ch_slight_high": "camera slightly above eye level angled gently down, a flattering portrait angle",
+    "ch_eye": "camera at eye level, looking straight at the subject",
+    "ch_chest": "camera held at chest level",
+    "ch_waist": "camera held at waist level, looking slightly up",
+    "ch_slight_low": "camera slightly below eye level angled gently upward",
+    "ch_low": "low-angle shot with the camera below the subject looking up, making them look tall and powerful",
+    "ch_ground": "camera placed at ground level, close to the floor",
+    "ch_worm": "worm's eye view from the ground looking straight up",
+    "cd_none": "",
+    "cd_front": "camera directly in front of the subject",
+    "cd_front_3q": "camera at a 45-degree angle to the front of the subject",
+    "cd_side": "camera to the side of the subject for a profile view",
+    "cd_back_3q": "camera behind and to one side of the subject, showing the back and a partial profile",
+    "cd_back": "camera directly behind the subject",
+    "cd_over_shoulder": "over-the-shoulder framing",
+    "cs_none": "",
+    "cs_telephoto": "candid telephoto shot from a distance, as if unnoticed",
+    "cs_cctv": "elevated security-camera viewpoint from a high corner",
+    "cs_dutch": "dutch angle tilted composition",
+    "cs_pov": "first-person POV shot",
+    "cs_fisheye": "shot up close with playful fisheye lens distortion",
+    "cs_mirror": "captured as a reflection in a mirror",
+    "cs_selfie": "selfie angle shot from arm's length slightly above eye level",
+    "cs_through": "shot through foreground elements such as leaves or a doorway framing the subject",
+    "cs_window": "shot through a window pane with soft reflections",
+    "cf_none": "",
+    "cf_digicam": "shot on an early-2000s compact digital camera",
+    "cf_arri": "shot on an ARRI Alexa cinema camera",
+    "cf_canon": "shot on a Canon EOS R5",
+    "cf_cinestill": "shot on CineStill 800T film with red halation around lights",
+    "cf_disposable": "shot on a disposable film camera with on-camera flash",
+    "cf_superia": "shot on Fujifilm Superia 400 film with cool green tones",
+    "cf_fuji": "shot on a Fujifilm X-T5 with Classic Chrome film simulation",
+    "cf_hasselblad": "shot on a Hasselblad medium format camera",
+    "cf_ilford": "shot on Ilford HP5 black and white film",
+    "cf_instax": "shot on Fujifilm Instax Mini instant film",
+    "cf_iphone": "shot on an iPhone with a natural smartphone photo look",
+    "cf_gold": "shot on Kodak Gold 200 film with warm nostalgic colors",
+    "cf_portra": "shot on Kodak Portra 400 film with soft natural skin tones",
+    "cf_leica": "shot on a Leica M rangefinder",
+    "cf_polaroid": "shot on Polaroid instant film",
+    "cf_sony": "shot on a Sony A7R V",
+    "atm_puddles": "with wet ground and puddles reflecting the lights after rain",
+    "atm_leaves": "with red and golden autumn leaves falling through the air",
+    "atm_petals": "with pink cherry blossom petals drifting through the air",
+    "atm_confetti": "with colorful confetti falling",
+    "atm_dust": "with dust particles glittering in the light beams",
+    "atm_fireflies": "with glowing fireflies floating around",
+    "atm_fog": "with soft fog and mist hanging in the air",
+    "atm_wind": "with a gentle breeze blowing, hair and clothes fluttering softly in the wind",
+    "atm_sparkles": "with tiny magical sparkles in the air",
+    "atm_rain": "with rain falling from the sky",
+    "atm_smoke": "with drifting smoke and haze",
+    "atm_snow": "with snow gently falling",
+    "atm_bubbles": "with iridescent soap bubbles floating in the air",
+    "atm_steam": "with soft rising steam",
+    "bgp_none": "",
+    "bgp_few": "with a few passersby in the background",
+    "bgp_crowd": "with a bustling crowd blurred in the background",
+    "bgp_empty": "with no other people in the scene",
+    "lfx_chromatic": "slight chromatic aberration",
+    "lfx_double": "a double exposure effect",
+    "lfx_date": "an orange date stamp in the corner like an old film camera",
+    "lfx_grain": "fine film grain",
+    "lfx_halation": "soft halation glow around highlights",
+    "lfx_flare": "subtle lens flare",
+    "lfx_leak": "warm light leaks",
+    "lfx_motion": "motion blur conveying movement",
+    "lfx_prism": "prism rainbow light refractions",
+    "lfx_bloom": "dreamy soft bloom",
+    "lfx_vignette": "a gentle vignette",
+    "loc_dance_studio": "in a dance studio with wall mirrors and a wooden floor",
+    "loc_classroom": "in a sunlit classroom with wooden desks",
+    "loc_museum": "in a grand museum hall with high ceilings",
+    "loc_bedroom": "in a cozy bedroom with soft bedding and warm decor",
+    "loc_kitchen": "in a bright homey kitchen",
+    "loc_living": "on a sofa in a stylish living room",
+    "loc_balcony": "on a sunny apartment balcony filled with potted plants",
+    "loc_window_seat": "on a cushioned window seat bathed in soft daylight",
+    "loc_vanity": "at a vanity table with a lit mirror",
+    "loc_crosswalk": "on a busy city crosswalk",
+    "loc_railway": "along old railway tracks stretching into the distance",
+    "loc_bus_stop": "at a city bus stop",
+    "loc_flower_shop": "in a charming flower shop overflowing with blooms",
+    "loc_bookstore": "in a cozy independent bookstore",
+    "loc_bakery": "in a sweet pastel bakery with display cases of pastries",
+    "loc_boutique": "in a chic fashion boutique with clothing racks",
+    "loc_record_store": "in a vintage record store",
+    "loc_laundromat": "in a retro laundromat with rows of washing machines",
+    "loc_sunflower": "in a vast sunflower field",
+    "loc_lavender": "in a purple lavender field",
+    "loc_autumn_park": "in a park with golden autumn trees and fallen leaves",
+    "loc_meadow": "in a wildflower meadow at the edge of the woods",
+    "loc_lighthouse": "by a white lighthouse on the seashore",
+    "loc_mansion": "inside a classic mansion with tall windows and ornate moldings",
+    "loc_fine_dining": "in an upscale fine dining restaurant with candlelit tables",
+    "loc_santorini": "in a Santorini-style village with white walls and blue domes",
+    "loc_venice": "beside a Venice-style canal with gondolas",
+    "loc_th_wat": "at a golden Thai Buddhist temple with ornate tiered roofs",
+    "loc_th_floating": "at a bustling Thai floating market with wooden boats full of fruit and flowers",
+    "loc_th_chiangmai": "on a quiet lane in Chiang Mai old town with old wooden houses and bougainvillea",
+    "loc_th_shophouse": "on a street of old Sino-Portuguese shophouses with colorful facades",
+    "loc_th_island": "on a white-sand Thai island beach with longtail boats and limestone cliffs",
+    "loc_th_rooftop": "at a rooftop bar overlooking the glittering Bangkok skyline at night",
+    "loc_th_tea": "on rolling terraced green tea plantation hills",
+    "loc_th_tuktuk": "on a lively Bangkok street beside a colorful tuk-tuk",
+    "loc_jp_torii": "under rows of vermilion torii gates at a Japanese shrine",
+    "loc_jp_street": "on a narrow Tokyo side street with vending machines and hanging signs",
+    "loc_jp_ryokan": "in a traditional Japanese ryokan room with tatami mats and shoji screens",
+    "loc_bamboo": "in a towering bamboo forest",
+    "loc_kr_hanok": "in a traditional Korean hanok village with curved tiled roofs",
+    "loc_kr_street": "on a trendy Seoul neighborhood street lined with cafés",
+    "loc_photo_booth": "inside a photo booth with a colorful curtain",
+    "loc_bowling": "at a retro bowling alley",
+    "loc_carousel": "beside a glowing vintage carousel",
+    "loc_cinema": "in a movie theater with red velvet seats",
+    "loc_karaoke": "in a karaoke room glowing with colorful LED lights",
+    "loc_tennis": "on a tennis court",
 }
 
 
@@ -3135,13 +3895,13 @@ def t(key: str) -> str:
 def eng(key: str) -> str:
     return ENGLISH_VALUES.get(key, "")
 
-def look_desc(hr_k, hc_k, bn_k=None, ex_k=None, mu_k=None):
+def look_desc(hr_k, hc_k, bn_k=None, ex_k=None, mu_k=None, hf_k=None):
     """Hair/bangs/expression/makeup description for one person.
 
     Any "None / Not specified" pick maps to an empty English value and is
     skipped, so the phrase stays grammatical no matter what is unset.
     """
-    hair_bits = [b for b in (eng(hr_k), eng(hc_k)) if b]
+    hair_bits = [b for b in (eng(hr_k), eng(hc_k), eng(hf_k) if hf_k else "") if b]
     parts = []
     if hair_bits:
         parts.append("with " + ", ".join(hair_bits))
@@ -3318,20 +4078,51 @@ SH_KEYS = ["sh_none", "sh_ankle_boots", "sh_ballet", "sh_barefoot",
            "sh_knee_boots", "sh_loafers", "sh_mary_janes", "sh_mules",
            "sh_oxford", "sh_platform", "sh_running", "sh_sandals",
            "sh_sneakers"]
-LO_KEYS = ["loc_none", "loc_studio", "loc_airport", "loc_amusement", "loc_aquarium",
-           "loc_arcade", "loc_art_gallery", "loc_ballroom", "loc_basketball",
-           "loc_beach", "loc_bridge", "loc_castle",
-           "loc_cherry", "loc_cliff", "loc_cafe", "loc_convenience",
-           "loc_desert", "loc_old_town", "loc_flower_field",
-           "loc_forest", "loc_garden", "loc_stairs", "loc_greenhouse",
-           "loc_gym", "loc_harbor", "loc_ice_rink", "loc_room",
-           "loc_lake", "loc_library", "loc_hotel_lobby", "loc_mountain",
-           "loc_neon_alley", "loc_night_market", "loc_brick_ruin",
-           "loc_overgrown", "loc_pool", "loc_rice_field",
-           "loc_rooftop", "loc_shopping", "loc_skatepark", "loc_snow",
-           "loc_stadium", "loc_subway", "loc_supermarket",
-           "loc_temple", "loc_train", "loc_university", "loc_street",
-           "loc_vineyard", "loc_waterfall", "loc_yacht"]
+# Location categories (first-level picker). Every location belongs to exactly
+# one category; LO_KEYS is derived: None, Studio (default), then A-Z.
+LCAT_KEYS = ["lcat_all", "lcat_indoor", "lcat_home", "lcat_city", "lcat_shops",
+            "lcat_nature", "lcat_water", "lcat_luxury", "lcat_travel", "lcat_thai",
+            "lcat_asia", "lcat_leisure"]
+LOC_CATEGORIES = {
+    "lcat_indoor": ["loc_art_gallery", "loc_dance_studio", "loc_library", "loc_museum",
+            "loc_studio", "loc_classroom"],
+    "lcat_home": ["loc_balcony", "loc_bedroom", "loc_kitchen", "loc_room", "loc_living",
+            "loc_vanity", "loc_window_seat"],
+    "lcat_city": ["loc_bridge", "loc_bus_stop", "loc_crosswalk", "loc_neon_alley",
+            "loc_night_market", "loc_railway", "loc_rooftop", "loc_shopping",
+            "loc_subway", "loc_train", "loc_university", "loc_street"],
+    "lcat_shops": ["loc_bookstore", "loc_cafe", "loc_convenience", "loc_boutique",
+            "loc_flower_shop", "loc_bakery", "loc_laundromat", "loc_supermarket",
+            "loc_record_store"],
+    "lcat_nature": ["loc_autumn_park", "loc_cherry", "loc_desert", "loc_flower_field",
+            "loc_forest", "loc_garden", "loc_greenhouse", "loc_lavender",
+            "loc_mountain", "loc_brick_ruin", "loc_overgrown", "loc_rice_field",
+            "loc_snow", "loc_sunflower", "loc_vineyard", "loc_meadow"],
+    "lcat_water": ["loc_beach", "loc_cliff", "loc_harbor", "loc_lake", "loc_pool",
+            "loc_lighthouse", "loc_waterfall"],
+    "lcat_luxury": ["loc_ballroom", "loc_mansion", "loc_fine_dining", "loc_stairs",
+            "loc_hotel_lobby", "loc_yacht"],
+    "lcat_travel": ["loc_airport", "loc_castle", "loc_old_town", "loc_santorini", "loc_temple",
+            "loc_venice"],
+    "lcat_thai": ["loc_th_rooftop", "loc_th_chiangmai", "loc_th_floating", "loc_th_wat",
+            "loc_th_shophouse", "loc_th_tea", "loc_th_island", "loc_th_tuktuk"],
+    "lcat_asia": ["loc_bamboo", "loc_kr_hanok", "loc_jp_ryokan", "loc_kr_street", "loc_jp_torii",
+            "loc_jp_street"],
+    "lcat_leisure": ["loc_amusement", "loc_aquarium", "loc_arcade", "loc_basketball", "loc_gym",
+            "loc_ice_rink", "loc_karaoke", "loc_cinema", "loc_photo_booth",
+            "loc_bowling", "loc_skatepark", "loc_stadium", "loc_tennis", "loc_carousel"],
+}
+LO_KEYS = ["loc_none", "loc_studio"] + sorted(
+    (k for keys in LOC_CATEGORIES.values() for k in keys if k != "loc_studio"),
+    key=lambda k: TRANSLATIONS["en"][k].lower())
+
+
+def loc_keys_for_category(lcat_key: str):
+    """Location option pool for the selected category (None stays first)."""
+    if lcat_key in LOC_CATEGORIES:
+        return ["loc_none"] + [k for k in LO_KEYS if k in LOC_CATEGORIES[lcat_key]]
+    return LO_KEYS
+
 TD_KEYS = ["tod_none", "tod_golden", "tod_blue", "tod_noon", "tod_night",
            "tod_overcast", "tod_sunrise"]
 LT_KEYS = ["lit_none", "lit_natural", "lit_window", "lit_studio",
@@ -3350,10 +4141,80 @@ PS_KEYS = ["ps_none", "ps_dreamy", "ps_soft", "ps_vivid", "ps_bw",
            "ps_fairytale", "ps_cyber", "ps_vaporwave", "ps_surreal"]
 SF_KEYS = ["sf_none", "sf_extreme_cu", "sf_closeup", "sf_medium_cu", "sf_medium",
            "sf_cowboy", "sf_medium_full", "sf_full", "sf_wide"]
-CA_KEYS = ["cam_none", "cam_eye", "cam_low", "cam_worm", "cam_ground", "cam_high",
-           "cam_3q", "cam_profile", "cam_selfie", "cam_dutch",
-           "cam_over_shoulder", "cam_back", "cam_pov", "cam_bird",
-           "cam_aerial", "cam_drone", "cam_overhead", "cam_cctv", "cam_fisheye"]
+# Subject: skin tone (light → dark), face details, skin & hair finish, nails
+ST_KEYS = ["st_none", "st_porcelain", "st_fair", "st_light_warm", "st_medium",
+           "st_olive", "st_tan", "st_brown", "st_deep"]
+FSH_KEYS = ["fsh_none", "fsh_heart", "fsh_sharp", "fsh_oval", "fsh_round",
+            "fsh_small", "fsh_v"]
+EYE_KEYS = ["eye_none", "eye_almond", "eye_big", "eye_doe", "eye_double",
+            "eye_monolid", "eye_droopy", "eye_cat"]
+EC_KEYS = ["ec_none", "ec_amber", "ec_black", "ec_blue", "ec_dark_brown",
+           "ec_green", "ec_grey", "ec_hazel"]
+BROW_KEYS = ["brow_none", "brow_feathery", "brow_arched", "brow_straight",
+             "brow_thick", "brow_thin"]
+LIP_KEYS = ["lip_none", "lip_cat", "lip_full", "lip_heart", "lip_plump",
+            "lip_small", "lip_thin"]
+FM_KEYS = ["fm_aegyo", "fm_mole_lip", "fm_dimples", "fm_high_nose", "fm_lashes",
+           "fm_mole_eye", "fm_freckles", "fm_rosy", "fm_button_nose", "fm_snaggle"]
+FH_KEYS = ["fh_none", "fh_clean", "fh_full_beard", "fh_goatee", "fh_stubble",
+           "fh_mustache", "fh_short_beard"]
+SKF_KEYS = ["skf_none", "skf_dewy", "skf_porcelain", "skf_glass", "skf_natural",
+            "skf_matte", "skf_sunkissed", "skf_real"]
+HF_KEYS = ["hf_none", "hf_messy", "hf_strands", "hf_glossy", "hf_sleek",
+           "hf_tucked", "hf_voluminous", "hf_wet", "hf_windswept"]
+NL_KEYS = ["nl_none", "nl_black", "nl_chrome", "nl_red", "nl_natural", "nl_french",
+           "nl_glitter", "nl_long", "nl_nude", "nl_pastel"]
+# Lighting direction / color / quality — layered on top of the lighting style
+LD_KEYS = ["ld_none", "ld_back", "ld_butterfly", "ld_clamshell", "ld_front",
+           "ld_loop", "ld_rembrandt", "ld_side", "ld_split", "ld_top", "ld_under"]
+LC_KEYS = ["lc_none", "lc_amber", "lc_cool", "lc_green", "lc_red", "lc_neutral",
+           "lc_pink_blue", "lc_purple", "lc_teal_orange", "lc_warm"]
+LQ_KEYS = ["lq_none", "lq_hard", "lq_high_contrast", "lq_low_contrast", "lq_soft"]
+# Camera: height (high → low) and position around the subject (front → back)
+# are spatial scales, so they keep that order instead of A-Z
+CH_KEYS = ["ch_none", "ch_aerial", "ch_top", "ch_high", "ch_slight_high", "ch_eye",
+           "ch_chest", "ch_waist", "ch_slight_low", "ch_low", "ch_ground",
+           "ch_worm"]
+CD_KEYS = ["cd_none", "cd_front", "cd_front_3q", "cd_side", "cd_back_3q", "cd_back",
+           "cd_over_shoulder"]
+# Special shots / perspectives (optional, rarely combined)
+CS_KEYS = ["cs_none", "cs_telephoto", "cs_cctv", "cs_dutch", "cs_pov", "cs_fisheye",
+           "cs_mirror", "cs_selfie", "cs_through", "cs_window"]
+# Camera body / film stock — photographic model types only (technical section)
+CF_KEYS = ["cf_none", "cf_digicam", "cf_arri", "cf_canon", "cf_cinestill",
+           "cf_disposable", "cf_superia", "cf_fuji", "cf_hasselblad", "cf_ilford",
+           "cf_instax", "cf_iphone", "cf_gold", "cf_portra", "cf_leica",
+           "cf_polaroid", "cf_sony"]
+# Weather & atmosphere (multiselect) and background people
+ATM_KEYS = ["atm_puddles", "atm_leaves", "atm_petals", "atm_confetti", "atm_dust",
+            "atm_fireflies", "atm_fog", "atm_wind", "atm_sparkles", "atm_rain",
+            "atm_smoke", "atm_snow", "atm_bubbles", "atm_steam"]
+BGP_KEYS = ["bgp_none", "bgp_few", "bgp_crowd", "bgp_empty"]
+# Lens & film effects (multiselect)
+LFX_KEYS = ["lfx_chromatic", "lfx_double", "lfx_date", "lfx_grain", "lfx_halation",
+            "lfx_flare", "lfx_leak", "lfx_motion", "lfx_prism", "lfx_bloom",
+            "lfx_vignette"]
+# Old single camera-angle keys (look.json ≤ v5.7) → new camera widget + key
+CAM_MIGRATION = {
+    "cam_eye": ("w_cam_height", "ch_eye"),
+    "cam_low": ("w_cam_height", "ch_low"),
+    "cam_worm": ("w_cam_height", "ch_worm"),
+    "cam_ground": ("w_cam_height", "ch_ground"),
+    "cam_high": ("w_cam_height", "ch_high"),
+    "cam_bird": ("w_cam_height", "ch_top"),
+    "cam_overhead": ("w_cam_height", "ch_top"),
+    "cam_aerial": ("w_cam_height", "ch_aerial"),
+    "cam_drone": ("w_cam_height", "ch_aerial"),
+    "cam_3q": ("w_cam_dir", "cd_front_3q"),
+    "cam_profile": ("w_cam_dir", "cd_side"),
+    "cam_over_shoulder": ("w_cam_dir", "cd_over_shoulder"),
+    "cam_back": ("w_cam_dir", "cd_back"),
+    "cam_selfie": ("w_cam_special", "cs_selfie"),
+    "cam_dutch": ("w_cam_special", "cs_dutch"),
+    "cam_pov": ("w_cam_special", "cs_pov"),
+    "cam_cctv": ("w_cam_special", "cs_cctv"),
+    "cam_fisheye": ("w_cam_special", "cs_fisheye"),
+}
 DOF_KEYS = ["dof_none", "dof_sharp", "dof_portrait", "dof_shallow", "dof_bokeh_lights",
             "dof_motion", "dof_fg_blur", "dof_clean_bg",
             "dof_tiltshift", "dof_soft"]
@@ -3483,8 +4344,10 @@ RANDOM_WIDGETS = {
     "w_makeup": MU_KEYS,
     "w_location": LO_KEYS, "w_tod": TD_KEYS, "w_lighting": LT_KEYS,
     "w_season": SN_KEYS, "w_pstyle": PS_KEYS, "w_framing": SF_KEYS,
-    "w_angle": CA_KEYS, "w_dof": DOF_KEYS, "w_comp": CMP_KEYS, "w_pose": PO_KEYS,
+    "w_dof": DOF_KEYS, "w_comp": CMP_KEYS, "w_pose": PO_KEYS,
     "w_gaze": GZ_KEYS, "w_pose_energy": PE_KEYS,
+    "w_light_dir": LD_KEYS, "w_light_color": LC_KEYS,
+    "w_hair_finish": HF_KEYS, "w_skin_finish": SKF_KEYS, "w_nails": NL_KEYS,
 }
 
 # Pose fine-tuning widgets that only make sense for a specific pose — Random
@@ -3499,7 +4362,8 @@ POSE_DETAIL_WIDGETS = {
 SCENE_RANDOM_WIDGETS = {
     "w_location": LO_KEYS, "w_tod": TD_KEYS, "w_lighting": LT_KEYS,
     "w_season": SN_KEYS, "w_pstyle": PS_KEYS, "w_framing": SF_KEYS,
-    "w_angle": CA_KEYS, "w_dof": DOF_KEYS, "w_comp": CMP_KEYS,
+    "w_dof": DOF_KEYS, "w_comp": CMP_KEYS,
+    "w_light_dir": LD_KEYS, "w_light_color": LC_KEYS,
 }
 
 # Photo Set mode: portrait-friendly framing/angle pools — no CCTV, fisheye,
@@ -3508,27 +4372,14 @@ SCENE_RANDOM_WIDGETS = {
 # excluded for the same reason.
 PHOTO_SET_SF_KEYS = ["sf_closeup", "sf_medium_cu", "sf_medium", "sf_cowboy",
                      "sf_medium_full", "sf_full"]
-PHOTO_SET_CA_KEYS = ["cam_eye", "cam_low", "cam_high", "cam_3q", "cam_profile",
-                     "cam_over_shoulder", "cam_back"]
+PHOTO_SET_CH_KEYS = ["ch_high", "ch_slight_high", "ch_eye", "ch_chest",
+                     "ch_slight_low", "ch_low"]
+PHOTO_SET_CD_KEYS = ["cd_front", "cd_front_3q", "cd_side", "cd_back_3q",
+                     "cd_over_shoulder"]
 PHOTO_SET_POSE_EXCLUDE = ({"pose_none", "pose_meditate", "pose_mirror_selfie",
                            "pose_selfie", "pose_phone_check"}
                           | set(POSE_CATEGORIES["pc_sport"]))
 PHOTO_SET_SIZE = 6
-
-# Widgets whose stored value is a translated label — must be reset when the
-# UI language changes, otherwise the stale label is no longer a valid option.
-LANG_DEPENDENT_WIDGETS = list(RANDOM_WIDGETS) + [
-    "fashion_multi", "w_gender", "w_age", "w_eth", "w_hair",
-    "w_top", "top_fabric_sel", "top_color_sel",
-    "w_bottom", "bot_fabric_sel", "bot_color_sel", "w_shoes",
-    "w_gender_p2", "w_hair_p2", "w_hair_color_p2", "w_expr_p2",
-    "w_gender_p3", "w_hair_p3", "w_hair_color_p3", "w_expr_p3",
-    "w_group_mix", "w_pet", "w_theme",
-    "w_pose_cat", *POSE_DETAIL_WIDGETS,
-    "w_outfit_mode", "w_dress", "dress_fabric_sel", "dress_color_sel",
-    "w_outfit_set", "w_outer", "outer_color_sel", "w_fit", "w_legwear",
-    "detail_multi",
-]
 
 # Hairstyle widget → the gender widget whose hair pool it depends on
 HAIR_GENDER_WIDGETS = {
@@ -3563,14 +4414,40 @@ PRESET_WIDGETS = {
     "w_group_mix": GM_KEYS,
     "w_location": LO_KEYS, "w_tod": TD_KEYS, "w_lighting": LT_KEYS,
     "w_season": SN_KEYS, "w_pstyle": PS_KEYS, "w_framing": SF_KEYS,
-    "w_angle": CA_KEYS, "w_dof": DOF_KEYS, "w_comp": CMP_KEYS, "w_pose": PO_KEYS,
+    "w_dof": DOF_KEYS, "w_comp": CMP_KEYS, "w_pose": PO_KEYS,
     "w_pose_cat": PC_KEYS, "w_gaze": GZ_KEYS, "w_pose_energy": PE_KEYS,
     **POSE_DETAIL_WIDGETS,
     "w_outfit_mode": OM_KEYS, "w_dress": DR_KEYS,
     "dress_fabric_sel": FB_KEYS, "dress_color_sel": CP_KEYS,
     "w_outfit_set": OSET_KEYS, "w_outer": OUT_KEYS, "outer_color_sel": CP_KEYS,
     "w_fit": FIT_KEYS, "w_legwear": LEG_KEYS,
+    "w_skin_tone": ST_KEYS, "w_face_shape": FSH_KEYS, "w_eye_shape": EYE_KEYS,
+    "w_eye_color": EC_KEYS, "w_brows": BROW_KEYS, "w_lips": LIP_KEYS,
+    "w_facial_hair": FH_KEYS, "w_skin_finish": SKF_KEYS, "w_hair_finish": HF_KEYS,
+    "w_nails": NL_KEYS,
+    "w_loc_cat": LCAT_KEYS, "w_cam_height": CH_KEYS, "w_cam_dir": CD_KEYS,
+    "w_cam_special": CS_KEYS, "w_camera_film": CF_KEYS, "w_light_dir": LD_KEYS,
+    "w_light_color": LC_KEYS, "w_light_quality": LQ_KEYS, "w_bg_people": BGP_KEYS,
 }
+
+# Multiselect widgets (lists of option keys in presets)
+MULTI_WIDGETS = {
+    "fashion_multi": FS_KEYS, "detail_multi": DET_KEYS, "face_marks": FM_KEYS,
+    "atm_multi": ATM_KEYS, "lfx_multi": LFX_KEYS,
+}
+
+# Widgets whose stored value is a translated label — must be reset when the
+# UI language changes, otherwise the stale label is no longer a valid option.
+LANG_DEPENDENT_WIDGETS = list(PRESET_WIDGETS) + list(MULTI_WIDGETS) + ["w_theme"]
+
+# Character Lock: identity, face, body and hair. While a character is locked
+# these widgets are disabled and re-set from the lock on every run, so Random
+# Look, themes and presets can only change styling, pose and scene.
+CHAR_WIDGETS = [
+    "w_gender", "w_age", "w_eth", "w_skin_tone", "w_body", "w_appearance",
+    "w_face_shape", "w_eye_shape", "w_eye_color", "w_brows", "w_lips",
+    "face_marks", "w_facial_hair", "w_hair", "w_hair_color", "w_bangs",
+]
 
 # Neutral outfit-layer + pose-detail values. Built-in themes are applied on
 # top of this so leftovers from the previous look (a dress, leg warmers,
@@ -3584,10 +4461,69 @@ LOOK_BASE = {
     "w_fit": "fit_none", "w_legwear": "leg_none", "detail_multi": [],
 }
 
+# Neutral scene/camera extras, applied under every built-in theme
+SCENE_BASE = {
+    "w_loc_cat": "lcat_all", "w_cam_height": "ch_none", "w_cam_dir": "cd_none",
+    "w_cam_special": "cs_none", "w_camera_film": "cf_none", "w_light_dir": "ld_none",
+    "w_light_color": "lc_none", "w_light_quality": "lq_none", "w_bg_people": "bgp_none",
+    "atm_multi": [], "lfx_multi": [],
+}
+
+
+def widget_option_value(widget_key):
+    """Current option key (or list of keys) of a widget, from its label(s)."""
+    val = st.session_state.get(widget_key)
+    if widget_key in MULTI_WIDGETS:
+        return [k for k in MULTI_WIDGETS[widget_key] if t(k) in (val or [])]
+    return next((k for k in PRESET_WIDGETS[widget_key] if t(k) == val), None)
+
+
+def _lock(name, data):
+    """Store a character lock (option keys) and add it to the session library."""
+    entry = {"name": name,
+             "data": {wk: data[wk] for wk in CHAR_WIDGETS if data.get(wk) is not None}}
+    st.session_state["char_lock"] = entry
+    st.session_state.setdefault("char_library", {})[name or t("char_unnamed")] = entry
+
+
+def lock_character():
+    """Lock the character currently shown in the Subject section."""
+    _lock(st.session_state.get("char_name_input", "").strip(),
+          {wk: widget_option_value(wk) for wk in CHAR_WIDGETS})
+
+
+def unlock_character():
+    st.session_state.pop("char_lock", None)
+
+
+def load_library_character():
+    """Load a character saved earlier in this session, and lock it."""
+    entry = st.session_state.get("char_library", {}).get(st.session_state.get("w_char_lib"))
+    if entry:
+        st.session_state["char_lock"] = entry
+        st.session_state["char_name_input"] = entry["name"]
+        st.session_state["force_generate"] = True
+
+
+def enforce_character_lock():
+    """Re-apply the locked character's values before the widgets render."""
+    lock = st.session_state.get("char_lock")
+    if not lock:
+        return
+    for wk, val in lock["data"].items():
+        label = [t(k) for k in val] if isinstance(val, list) else t(val)
+        if st.session_state.get(wk) != label:
+            st.session_state[wk] = label
+
 
 def reset_pose_on_category_change():
     """Pose category changed — the old pose may not be in the new pool."""
     st.session_state.pop("w_pose", None)
+
+
+def reset_location_on_category_change():
+    """Location category changed — the old location may not be in the new pool."""
+    st.session_state.pop("w_location", None)
 
 
 def reset_hair_on_gender_change():
@@ -3616,6 +4552,7 @@ def randomize_look():
         st.session_state[f"w_hair{suffix}"] = t(random.choice(p_pool))
         st.session_state[f"w_hair_color{suffix}"] = t(random.choice(HC_KEYS))
         st.session_state[f"w_expr{suffix}"] = t(random.choice(EX_KEYS))
+    _reset_scene_pickers()
     # Pose: drawn from the full list, so show all categories; the per-pose
     # details (hands, legs…) go back to None so they can't contradict it
     st.session_state["w_pose_cat"] = t("pc_all")
@@ -3663,10 +4600,21 @@ def randomize_look():
     st.session_state["force_generate"] = True
 
 
+def _reset_scene_pickers():
+    """Random picks come from the full location list, use portrait-friendly
+    camera heights/positions (the Photo Set pools) and never a special shot
+    (CCTV, fisheye…) — those are deliberate choices, not random ones."""
+    st.session_state["w_loc_cat"] = t("lcat_all")
+    st.session_state["w_cam_special"] = t("cs_none")
+    st.session_state["w_cam_height"] = t(random.choice(PHOTO_SET_CH_KEYS))
+    st.session_state["w_cam_dir"] = t(random.choice(["cd_none"] + PHOTO_SET_CD_KEYS))
+
+
 def randomize_scene():
     """Randomize only scene/camera widgets, keeping subject/outfit/pose fixed."""
     for widget_key, option_keys in SCENE_RANDOM_WIDGETS.items():
         st.session_state[widget_key] = t(random.choice(option_keys))
+    _reset_scene_pickers()
     st.session_state["force_generate"] = True
 
 
@@ -3691,12 +4639,21 @@ def _apply_preset_dict(data):
                 st.session_state.pop(widget_key, None)
                 continue
         st.session_state[widget_key] = t(val)
-    fs = data.get("fashion_multi", [])
-    if isinstance(fs, list):
-        st.session_state["fashion_multi"] = [t(k) for k in fs if k in FS_KEYS]
-    det = data.get("detail_multi")
-    if isinstance(det, list):
-        st.session_state["detail_multi"] = [t(k) for k in det if k in DET_KEYS]
+    for widget_key, option_keys in MULTI_WIDGETS.items():
+        vals = data.get(widget_key)
+        if isinstance(vals, list):
+            st.session_state[widget_key] = [t(k) for k in vals if k in option_keys]
+    # look.json from ≤ v5.7 stored a single camera angle
+    old_angle = CAM_MIGRATION.get(data.get("w_angle"))
+    if old_angle:
+        st.session_state[old_angle[0]] = t(old_angle[1])
+    # A loaded location must be selectable in the current location category
+    loc = data.get("w_location")
+    if loc in LO_KEYS:
+        lcat_label = st.session_state.get("w_loc_cat", t("lcat_all"))
+        lcat_key = next((k for k in LCAT_KEYS if t(k) == lcat_label), "lcat_all")
+        if loc not in loc_keys_for_category(lcat_key):
+            st.session_state["w_loc_cat"] = t("lcat_all")
     # A loaded pose must be selectable in the (possibly loaded) pose category
     pose = data.get("w_pose")
     if pose in PO_KEYS:
@@ -3716,7 +4673,15 @@ def apply_look_preset():
     except (ValueError, TypeError):
         st.session_state["preset_status"] = "error"
         return
+    # A character.json (has "char_name") replaces the locked character
+    is_character = isinstance(data.get("char_name"), str)
+    if is_character:
+        unlock_character()
     _apply_preset_dict(data)
+    if is_character:
+        _lock(data["char_name"].strip(),
+              {wk: widget_option_value(wk) for wk in CHAR_WIDGETS})
+        st.session_state["char_name_input"] = data["char_name"].strip()
     st.session_state["preset_status"] = "ok"
 
 
@@ -3725,7 +4690,7 @@ def apply_theme():
     label = st.session_state.get("w_theme")
     for theme_key, preset in THEME_PRESETS.items():
         if t(theme_key) == label:
-            _apply_preset_dict({**LOOK_BASE, **preset})
+            _apply_preset_dict({**LOOK_BASE, **SCENE_BASE, **preset})
             break
 
 
@@ -3766,7 +4731,9 @@ THEME_PRESETS = {
         "w_location": "loc_brick_ruin", "w_tod": "tod_golden",
         "w_lighting": "lit_backlit", "w_season": "season_summer",
         "w_pstyle": "ps_nostalgic", "w_framing": "sf_medium",
-        "w_angle": "cam_eye", "w_dof": "dof_fg_blur",
+        "w_cam_height": "ch_eye", "w_dof": "dof_fg_blur",
+        "w_light_dir": "ld_back", "w_light_color": "lc_warm", "w_camera_film": "cf_portra",
+        "atm_multi": ["atm_wind", "atm_dust"], "lfx_multi": ["lfx_flare"],
         "w_comp": "comp_framed", "w_pose": "pose_smell_flower",
         "w_pose_energy": "pe_relaxed",
     },
@@ -3781,7 +4748,9 @@ THEME_PRESETS = {
         "w_location": "loc_neon_alley", "w_tod": "tod_night",
         "w_lighting": "lit_neon", "w_season": "season_none",
         "w_pstyle": "ps_cyber", "w_framing": "sf_medium",
-        "w_angle": "cam_low", "w_dof": "dof_bokeh_lights",
+        "w_cam_height": "ch_low", "w_dof": "dof_bokeh_lights",
+        "w_light_color": "lc_pink_blue", "w_camera_film": "cf_cinestill",
+        "atm_multi": ["atm_puddles"], "lfx_multi": ["lfx_halation"],
         "w_comp": "comp_center", "w_pose": "pose_lean",
         "w_gaze": "gaze_camera", "w_pose_energy": "pe_cool",
     },
@@ -3796,7 +4765,9 @@ THEME_PRESETS = {
         "w_location": "loc_cafe", "w_tod": "tod_overcast",
         "w_lighting": "lit_window", "w_season": "season_autumn",
         "w_pstyle": "ps_vintage", "w_framing": "sf_medium_cu",
-        "w_angle": "cam_3q", "w_dof": "dof_portrait",
+        "w_cam_height": "ch_eye", "w_cam_dir": "cd_front_3q", "w_dof": "dof_portrait",
+        "w_light_quality": "lq_soft", "w_light_color": "lc_warm", "w_camera_film": "cf_gold",
+        "lfx_multi": ["lfx_grain"],
         "w_comp": "comp_negative_space", "w_pose": "pose_hand_chin",
         "w_gaze": "gaze_away", "w_pose_energy": "pe_relaxed",
     },
@@ -3811,7 +4782,8 @@ THEME_PRESETS = {
         "w_location": "loc_beach", "w_tod": "tod_golden",
         "w_lighting": "lit_natural", "w_season": "season_summer",
         "w_pstyle": "ps_vivid", "w_framing": "sf_full",
-        "w_angle": "cam_eye", "w_dof": "dof_shallow",
+        "w_cam_height": "ch_eye", "w_dof": "dof_shallow",
+        "w_light_color": "lc_warm", "w_camera_film": "cf_superia", "atm_multi": ["atm_wind"],
         "w_comp": "comp_golden", "w_pose": "pose_shield_sun",
         "w_pose_energy": "pe_candid",
     },
@@ -3826,7 +4798,9 @@ THEME_PRESETS = {
         "w_location": "loc_studio", "w_tod": "tod_none",
         "w_lighting": "lit_studio", "w_season": "season_none",
         "w_pstyle": "ps_editorial", "w_framing": "sf_medium",
-        "w_angle": "cam_eye", "w_dof": "dof_clean_bg",
+        "w_cam_height": "ch_eye", "w_dof": "dof_clean_bg",
+        "w_light_dir": "ld_clamshell", "w_light_quality": "lq_soft",
+        "w_light_color": "lc_neutral", "w_camera_film": "cf_hasselblad",
         "w_comp": "comp_center", "w_pose": "pose_high_fashion",
         "w_gaze": "gaze_camera", "w_pose_energy": "pe_confident",
     },
@@ -3841,7 +4815,8 @@ THEME_PRESETS = {
         "w_location": "loc_cherry", "w_tod": "tod_noon",
         "w_lighting": "lit_dappled", "w_season": "season_spring",
         "w_pstyle": "ps_soft", "w_framing": "sf_medium_full",
-        "w_angle": "cam_eye", "w_dof": "dof_shallow",
+        "w_cam_height": "ch_slight_high", "w_dof": "dof_shallow",
+        "w_light_quality": "lq_soft", "w_camera_film": "cf_fuji", "atm_multi": ["atm_petals"],
         "w_comp": "comp_depth", "w_pose": "pose_look_back_walk",
         "w_pose_energy": "pe_playful",
     },
@@ -3963,7 +4938,7 @@ def main():
         st.caption(t("theme_hint"))
 
         st.divider()
-        st.caption("v5.7 — AI Prompt Generator")
+        st.caption("v5.8 — AI Prompt Generator")
 
     # ── Header ───────────────────────────────────────────────────────────
     st.markdown(
@@ -3976,56 +4951,135 @@ def main():
     #  EXPANDER 1 — Subject
     # ══════════════════════════════════════════════════════════════════════
     with st.expander(f"👤  {t('exp_subject')}", expanded=True):
+        # ── Character Lock ──
+        enforce_character_lock()
+        char_lock = st.session_state.get("char_lock")
+        locked = bool(char_lock)
+        st.markdown(f"**🔒 {t('char_lock_header')}**")
+        if locked:
+            lock_name = char_lock["name"] or t("char_unnamed")
+            st.markdown(f'<div class="ref-attached">🔒 <b>{html_mod.escape(lock_name)}</b> '
+                        f'{t("char_locked_msg")}</div>', unsafe_allow_html=True)
+            cl1, cl2 = st.columns(2)
+            with cl1:
+                st.button(f"🔓 {t('char_unlock_btn')}", on_click=unlock_character,
+                          use_container_width=True)
+            with cl2:
+                st.download_button(f"💾 {t('char_download')}",
+                                   json.dumps({"char_name": char_lock["name"], **char_lock["data"]},
+                                              indent=2, ensure_ascii=False),
+                                   file_name="character.json", mime="application/json",
+                                   use_container_width=True)
+            st.caption(t("char_json_hint"))
+        else:
+            st.caption(t("char_lock_hint"))
+            cl1, cl2 = st.columns([2, 1])
+            with cl1:
+                st.text_input(t("char_name"), placeholder=t("char_name_placeholder"),
+                              key="char_name_input")
+            with cl2:
+                st.markdown("<div style='height:1.75rem'></div>", unsafe_allow_html=True)
+                st.button(f"🔒 {t('char_lock_btn')}", on_click=lock_character,
+                          use_container_width=True)
+            library = st.session_state.get("char_library", {})
+            if library:
+                lb1, lb2 = st.columns([2, 1])
+                with lb1:
+                    st.selectbox(t("char_library"), list(library), key="w_char_lib")
+                with lb2:
+                    st.markdown("<div style='height:1.75rem'></div>", unsafe_allow_html=True)
+                    st.button(f"📂 {t('char_load_btn')}", on_click=load_library_character,
+                              use_container_width=True)
+        st.markdown("---")
+
         # Reference photo checkbox (no file uploader — just a toggle)
         attach_subject = st.checkbox(t("attach_subject_photo"), key="attach_subject")
         if attach_subject:
             st.markdown(f'<div class="ref-attached">📎 {t("attach_subject_note")}</div>', unsafe_allow_html=True)
 
+        def pick(keys, label_key, widget_key, index=0, **kw):
+            """Selectbox over option keys → selected key (locked if part of the character)."""
+            labels, _ = make_option(keys)
+            sel = st.selectbox(t(label_key), labels, index=index, key=widget_key,
+                               disabled=locked and widget_key in CHAR_WIDGETS, **kw)
+            return keys[labels.index(sel)]
+
+        # ── Identity ──
+        st.markdown(f"**{t('sub_identity')}**")
         col1, col2, col3 = st.columns(3)
         with col1:
+            gd_key = pick(GD_KEYS, "gender", "w_gender", on_change=reset_hair_on_gender_change)
             gd_labels, _ = make_option(GD_KEYS)
-            gd_sel = st.selectbox(t("gender"), gd_labels, key="w_gender",
-                                  on_change=reset_hair_on_gender_change)
-            gd_key = GD_KEYS[gd_labels.index(gd_sel)]
         with col2:
-            ag_labels, _ = make_option(AG_KEYS)
-            ag_sel = st.selectbox(t("age_group"), ag_labels, index=1, key="w_age")
-            ag_key = AG_KEYS[ag_labels.index(ag_sel)]
+            ag_key = pick(AG_KEYS, "age_group", "w_age", index=1)
         with col3:
-            et_labels, _ = make_option(ET_KEYS)
-            et_sel = st.selectbox(t("ethnicity"), et_labels, index=1, key="w_eth")
-            et_key = ET_KEYS[et_labels.index(et_sel)]
+            et_key = pick(ET_KEYS, "ethnicity", "w_eth", index=1)
+        col_st, col_bt, col_ap = st.columns(3)
+        with col_st:
+            st_key = pick(ST_KEYS, "skin_tone", "w_skin_tone")
+        with col_bt:
+            bt_key = pick(BT_KEYS, "body_type", "w_body", index=1)
+        with col_ap:
+            ap_key = pick(AP_KEYS, "appearance", "w_appearance", index=1)
 
+        # ── Face details (all optional) ──
+        st.markdown(f"**{t('sub_face')}**")
+        fc1, fc2, fc3 = st.columns(3)
+        with fc1:
+            fsh_key = pick(FSH_KEYS, "face_shape", "w_face_shape")
+        with fc2:
+            eye_key = pick(EYE_KEYS, "eye_shape", "w_eye_shape")
+        with fc3:
+            ec_key = pick(EC_KEYS, "eye_color", "w_eye_color")
+        fc4, fc5, fc6 = st.columns(3)
+        with fc4:
+            brow_key = pick(BROW_KEYS, "brows", "w_brows")
+        with fc5:
+            lip_key = pick(LIP_KEYS, "lips", "w_lips")
+        with fc6:
+            skf_key = pick(SKF_KEYS, "skin_finish", "w_skin_finish")
+        fm_labels = [t(k) for k in FM_KEYS]
+        fm_selected = st.multiselect(t("face_marks"), fm_labels, default=[], key="face_marks",
+                                     help=t("face_marks_help"), disabled=locked)
+        fm_keys = [FM_KEYS[fm_labels.index(lbl)] for lbl in fm_selected]
+        fh_key = "fh_none"
+        if gd_key != "gender_female":
+            col_fh, _ = st.columns(2)
+            with col_fh:
+                fh_key = pick(FH_KEYS, "facial_hair", "w_facial_hair")
+
+        # ── Hair ──
+        st.markdown(f"**{t('sub_hair')}**")
         col4, col5 = st.columns(2)
         with col4:
-            hr_options = hair_keys_for_gender(gd_key)
-            hr_labels, _ = make_option(hr_options)
-            hr_sel = st.selectbox(t("hair_style"), hr_labels, index=1, key="w_hair")
-            hr_key = hr_options[hr_labels.index(hr_sel)]
+            hr_key = pick(hair_keys_for_gender(gd_key), "hair_style", "w_hair", index=1)
         with col5:
-            hc_labels, _ = make_option(HC_KEYS)
-            hc_sel = st.selectbox(t("hair_color"), hc_labels, index=1, key="w_hair_color")
-            hc_key = HC_KEYS[hc_labels.index(hc_sel)]
-
-        col_bn, col_ex = st.columns(2)
+            hc_key = pick(HC_KEYS, "hair_color", "w_hair_color", index=1)
+        col_bn, col_hf = st.columns(2)
         with col_bn:
-            bn_labels, _ = make_option(BN_KEYS)
-            bn_sel = st.selectbox(t("bangs"), bn_labels, key="w_bangs")
-            bn_key = BN_KEYS[bn_labels.index(bn_sel)]
-        with col_ex:
-            ex_labels, _ = make_option(EX_KEYS)
-            ex_sel = st.selectbox(t("expression"), ex_labels, index=1, key="w_expr")
-            ex_key = EX_KEYS[ex_labels.index(ex_sel)]
+            bn_key = pick(BN_KEYS, "bangs", "w_bangs")
+        with col_hf:
+            hf_key = pick(HF_KEYS, "hair_finish", "w_hair_finish")
 
-        col_mu, col_ns = st.columns(2)
+        # ── Expression, makeup & nails ──
+        st.markdown(f"**{t('sub_expression')}**")
+        col_ex, col_mu, col_nl = st.columns(3)
+        with col_ex:
+            ex_key = pick(EX_KEYS, "expression", "w_expr", index=1)
         with col_mu:
-            mu_labels, _ = make_option(MU_KEYS)
-            mu_sel = st.selectbox(t("makeup"), mu_labels, key="w_makeup")
-            mu_key = MU_KEYS[mu_labels.index(mu_sel)]
+            mu_key = pick(MU_KEYS, "makeup", "w_makeup")
+        with col_nl:
+            nl_key = pick(NL_KEYS, "nails", "w_nails")
+
+        # ── People & companion ──
+        st.markdown(f"**{t('sub_people')}**")
+        col_ns, col_pet = st.columns(2)
         with col_ns:
             ns_labels, _ = make_option(NS_KEYS)
             ns_sel = st.selectbox(t("num_subjects"), ns_labels)
             ns_key = NS_KEYS[ns_labels.index(ns_sel)]
+        with col_pet:
+            pet_key = pick(PET_KEYS, "companion", "w_pet")
 
         # Per-person looks so a duo/trio doesn't come out as identical clones.
         # Person 1 uses the main selectors above; each extra person gets their
@@ -4076,26 +5130,6 @@ def main():
                 gm_labels, _ = make_option(GM_KEYS)
                 gm_sel = st.selectbox(t("group_mix"), gm_labels, key="w_group_mix")
                 gm_key = GM_KEYS[gm_labels.index(gm_sel)]
-
-        col7, _ = st.columns(2)
-        with col7:
-            skin_check = st.checkbox(t("skin_detail"))
-
-        col_bt, col_ap = st.columns(2)
-        with col_bt:
-            bt_labels, _ = make_option(BT_KEYS)
-            bt_sel = st.selectbox(t("body_type"), bt_labels, index=1, key="w_body")
-            bt_key = BT_KEYS[bt_labels.index(bt_sel)]
-        with col_ap:
-            ap_labels, _ = make_option(AP_KEYS)
-            ap_sel = st.selectbox(t("appearance"), ap_labels, index=1, key="w_appearance")
-            ap_key = AP_KEYS[ap_labels.index(ap_sel)]
-
-        col_pet, _ = st.columns(2)
-        with col_pet:
-            pet_labels, _ = make_option(PET_KEYS)
-            pet_sel = st.selectbox(t("companion"), pet_labels, key="w_pet")
-            pet_key = PET_KEYS[pet_labels.index(pet_sel)]
 
     # ══════════════════════════════════════════════════════════════════════
     #  EXPANDER 2 — Outfit & Style
@@ -4297,9 +5331,20 @@ def main():
         place_country = ""
 
         if scene_mode == scene_mode_labels[0]:
-            lo_labels, _ = make_option(LO_KEYS)
-            lo_sel = st.selectbox(t("location"), lo_labels, index=1, key="w_location")
-            lo_key = LO_KEYS[lo_labels.index(lo_sel)]
+            # Two-level picker: category → location ("All" lists everything)
+            col_lc, col_lo = st.columns(2)
+            with col_lc:
+                lcat_labels, _ = make_option(LCAT_KEYS)
+                lcat_sel = st.selectbox(t("location_category"), lcat_labels, key="w_loc_cat",
+                                        on_change=reset_location_on_category_change)
+                lcat_key = LCAT_KEYS[lcat_labels.index(lcat_sel)]
+            with col_lo:
+                lo_options = loc_keys_for_category(lcat_key)
+                lo_labels, _ = make_option(lo_options)
+                if st.session_state.get("w_location") not in lo_labels:
+                    st.session_state.pop("w_location", None)
+                lo_sel = st.selectbox(t("location"), lo_labels, index=1, key="w_location")
+                lo_key = lo_options[lo_labels.index(lo_sel)]
         elif scene_mode == scene_mode_labels[1]:
             scene_custom_text = st.text_area(t("scene_custom_input"),
                                               placeholder=t("scene_custom_placeholder"),
@@ -4320,42 +5365,70 @@ def main():
                                               key="place_country_input")
 
         st.markdown("---")
-        col10, col11, col_season, col_ps = st.columns(4)
+        col10, col_season, col_bgp = st.columns(3)
         with col10:
             td_labels, _ = make_option(TD_KEYS)
             td_sel = st.selectbox(t("time_of_day"), td_labels, index=1, key="w_tod")
             td_key = TD_KEYS[td_labels.index(td_sel)]
-        with col11:
-            lt_labels, _ = make_option(LT_KEYS)
-            lt_sel = st.selectbox(t("lighting"), lt_labels, index=1, key="w_lighting")
-            lt_key = LT_KEYS[lt_labels.index(lt_sel)]
         with col_season:
             sn_labels, _ = make_option(SN_KEYS)
             sn_sel = st.selectbox(t("season"), sn_labels, key="w_season")
             sn_key = SN_KEYS[sn_labels.index(sn_sel)]
-            weather_rain = st.checkbox(t("weather_rain"), key="weather_rain_cb")
-            weather_snow = st.checkbox(t("weather_snow"), key="weather_snow_cb")
-            weather_leaves = st.checkbox(t("weather_leaves"), key="weather_leaves_cb")
-            weather_wind = st.checkbox(t("weather_wind"), key="weather_wind_cb")
-        with col_ps:
-            ps_labels, _ = make_option(PS_KEYS)
-            ps_sel = st.selectbox(t("picture_style"), ps_labels, key="w_pstyle")
-            ps_key = PS_KEYS[ps_labels.index(ps_sel)]
+        with col_bgp:
+            bgp_labels, _ = make_option(BGP_KEYS)
+            bgp_sel = st.selectbox(t("bg_people"), bgp_labels, key="w_bg_people")
+            bgp_key = BGP_KEYS[bgp_labels.index(bgp_sel)]
+        atm_labels = [t(k) for k in ATM_KEYS]
+        atm_selected = st.multiselect(t("atmosphere"), atm_labels, default=[],
+                                      help=t("atmosphere_help"), key="atm_multi")
+        atm_keys = [ATM_KEYS[atm_labels.index(lbl)] for lbl in atm_selected]
 
-        st.markdown("---")
+        # ── Lighting: style + direction + color + quality ──
+        st.markdown(f"**{t('sub_lighting')}**")
+        col11, col_ld, col_lc2, col_lq = st.columns(4)
+        with col11:
+            lt_labels, _ = make_option(LT_KEYS)
+            lt_sel = st.selectbox(t("lighting"), lt_labels, index=1, key="w_lighting")
+            lt_key = LT_KEYS[lt_labels.index(lt_sel)]
+        with col_ld:
+            ld_labels, _ = make_option(LD_KEYS)
+            ld_sel = st.selectbox(t("light_dir"), ld_labels, key="w_light_dir")
+            ld_key = LD_KEYS[ld_labels.index(ld_sel)]
+        with col_lc2:
+            lc_labels, _ = make_option(LC_KEYS)
+            lc_sel = st.selectbox(t("light_color"), lc_labels, key="w_light_color")
+            lc_key = LC_KEYS[lc_labels.index(lc_sel)]
+        with col_lq:
+            lq_labels, _ = make_option(LQ_KEYS)
+            lq_sel = st.selectbox(t("light_quality"), lq_labels, key="w_light_quality")
+            lq_key = LQ_KEYS[lq_labels.index(lq_sel)]
 
-        # ── Shot Framing + Camera Angle + DOF ──
-        col12, col13 = st.columns(2)
+        # ── Camera: framing + height + position + special shot ──
+        st.markdown(f"**{t('sub_camera')}**")
+        st.caption(t("cam_hint"))
+        col12, col_ch, col_cd, col_cs = st.columns(4)
         with col12:
             sf_labels, _ = make_option(SF_KEYS)
             sf_sel = st.selectbox(t("shot_framing"), sf_labels, index=2, key="w_framing")
             sf_key = SF_KEYS[sf_labels.index(sf_sel)]
-        with col13:
-            ca_labels, _ = make_option(CA_KEYS)
-            ca_sel = st.selectbox(t("camera_angle"), ca_labels, index=1, key="w_angle")
-            ca_key = CA_KEYS[ca_labels.index(ca_sel)]
+        with col_ch:
+            ch_labels, _ = make_option(CH_KEYS)
+            ch_sel = st.selectbox(t("cam_height"), ch_labels,
+                                  index=CH_KEYS.index("ch_eye"), key="w_cam_height")
+            ch_key = CH_KEYS[ch_labels.index(ch_sel)]
+        with col_cd:
+            cd_labels, _ = make_option(CD_KEYS)
+            cd_sel = st.selectbox(t("cam_dir"), cd_labels, key="w_cam_dir")
+            cd_key = CD_KEYS[cd_labels.index(cd_sel)]
+        with col_cs:
+            cs_labels, _ = make_option(CS_KEYS)
+            cs_sel = st.selectbox(t("cam_special"), cs_labels, key="w_cam_special")
+            cs_key = CS_KEYS[cs_labels.index(cs_sel)]
+        cam_preview = " · ".join(eng(k) for k in (sf_key, ch_key, cd_key, cs_key) if eng(k))
+        if cam_preview:
+            st.caption(f"📷 {t('cam_preview')} *{cam_preview}*")
 
-        col14, col15 = st.columns(2)
+        col14, col15, col_ps = st.columns(3)
         with col14:
             dof_labels, _ = make_option(DOF_KEYS)
             dof_sel = st.selectbox(t("dof"), dof_labels, index=2, key="w_dof")
@@ -4364,6 +5437,24 @@ def main():
             cmp_labels, _ = make_option(CMP_KEYS)
             cmp_sel = st.selectbox(t("composition"), cmp_labels, key="w_comp")
             cmp_key = CMP_KEYS[cmp_labels.index(cmp_sel)]
+        with col_ps:
+            ps_labels, _ = make_option(PS_KEYS)
+            ps_sel = st.selectbox(t("picture_style"), ps_labels, key="w_pstyle")
+            ps_key = PS_KEYS[ps_labels.index(ps_sel)]
+
+        # Camera body / film stock only makes sense for photographic models
+        cf_key = "cf_none"
+        col_cf, col_lfx = st.columns([1, 2])
+        if mt_selected_key in PHOTO_MODEL_KEYS:
+            with col_cf:
+                cf_labels, _ = make_option(CF_KEYS)
+                cf_sel = st.selectbox(t("camera_film"), cf_labels, key="w_camera_film")
+                cf_key = CF_KEYS[cf_labels.index(cf_sel)]
+        with col_lfx:
+            lfx_labels = [t(k) for k in LFX_KEYS]
+            lfx_selected = st.multiselect(t("lens_fx"), lfx_labels, default=[],
+                                          help=t("lens_fx_help"), key="lfx_multi")
+            lfx_keys = [LFX_KEYS[lfx_labels.index(lbl)] for lbl in lfx_selected]
 
     # ══════════════════════════════════════════════════════════════════════
     #  EXPANDER 5 — Advanced
@@ -4396,14 +5487,24 @@ def main():
             "w_group_mix": gm_key, "w_pet": pet_key,
             "w_location": lo_key, "w_tod": td_key, "w_lighting": lt_key,
             "w_season": sn_key, "w_pstyle": ps_key, "w_framing": sf_key,
-            "w_angle": ca_key, "w_dof": dof_key, "w_comp": cmp_key, "w_pose": po_key,
+            "w_dof": dof_key, "w_comp": cmp_key, "w_pose": po_key,
             "w_pose_cat": pc_key, "w_gaze": gz_key, "w_pose_energy": pe_key,
             **pose_detail_keys,
             "w_outfit_mode": om_key, "w_dress": dr_key,
             "dress_fabric_sel": dr_fb_key, "dress_color_sel": dr_cp_key,
             "w_outfit_set": os_key, "w_outer": out_key, "outer_color_sel": out_cp_key,
             "w_fit": fit_key, "w_legwear": leg_key, "detail_multi": det_selected_keys,
+            "w_skin_tone": st_key, "w_face_shape": fsh_key, "w_eye_shape": eye_key,
+            "w_eye_color": ec_key, "w_brows": brow_key, "w_lips": lip_key,
+            "face_marks": fm_keys, "w_facial_hair": fh_key, "w_skin_finish": skf_key,
+            "w_hair_finish": hf_key, "w_nails": nl_key,
+            "w_cam_height": ch_key, "w_cam_dir": cd_key, "w_cam_special": cs_key,
+            "w_camera_film": cf_key, "w_light_dir": ld_key, "w_light_color": lc_key,
+            "w_light_quality": lq_key, "w_bg_people": bgp_key,
+            "atm_multi": atm_keys, "lfx_multi": lfx_keys,
         }
+        if scene_mode == scene_mode_labels[0]:
+            current_look["w_loc_cat"] = lcat_key
         # Extra persons (duo/trio) — only present while those rows are shown
         for pi, (p_gd, p_hr, p_hc, p_ex) in enumerate(extra_person_keys, start=2):
             current_look[f"w_gender_p{pi}"] = p_gd
@@ -4447,16 +5548,29 @@ def main():
         specs = [eng(mt_selected_key)]
         if mt_selected_key in PHOTO_MODEL_KEYS:
             specs.append(eng(lens_key))
+        if eng(cf_key):
+            specs.append(eng(cf_key))
         for qk in qt_selected:
             specs.append(eng(qk))
         technical = ", ".join(specs)
 
-        # Subject (with body type + appearance).
+        # Subject (with skin tone + body type + appearance).
         # Every field may be "None / Not specified" — empty parts are skipped.
-        main_look = look_desc(hr_key, hc_key, bn_key, ex_key, mu_key)
+        # The main person's face details, hair, expression, makeup and nails
+        # form one description, reused for solo / person 1 / the group centre.
+        eyes = " ".join(x for x in (eng(eye_key), eng(ec_key)) if x)
+        face_bits = [eng(fsh_key), f"{eyes} eyes" if eyes else ""] + \
+            [eng(k) for k in [brow_key, lip_key] + fm_keys + [fh_key]]
+        face_bits = [b for b in face_bits if b]
+        main_look = ", ".join(p for p in (
+            "with " + ", ".join(face_bits) if face_bits else "",
+            look_desc(hr_key, hc_key, bn_key, ex_key, mu_key, hf_key),
+            eng(nl_key)) if p)
         look_part = f", {main_look}" if main_look else ""
-        traits = [v for v in (eng(bt_key), eng(ap_key)) if v]
+        traits = [v for v in (eng(st_key), eng(bt_key), eng(ap_key)) if v]
         trait_part = f", {', '.join(traits)}" if traits else ""
+        # Character Lock: an optional name + a consistency instruction
+        char_name = char_lock["name"] if locked else ""
         if attach_subject:
             subject = ("a photo of the exact same person as in the attached reference photo, "
                        "preserving their facial identity and features precisely"
@@ -4464,6 +5578,8 @@ def main():
         elif ns_key == "ns_solo":
             head = " ".join(x for x in (eng(ag_key), eng(et_key), eng(gd_key)) if x)
             subject = f"a {head}" + trait_part + look_part
+            if char_name:
+                subject = f"{char_name}, {subject}"
         elif ns_key in ("ns_duo", "ns_trio"):
             # Distinct per-person descriptions so the AI can tell them apart;
             # each extra person has their own gender, hair and expression.
@@ -4482,7 +5598,8 @@ def main():
                 if p_look:
                     desc_bits.append(p_look)
                 if desc_bits:
-                    person_descs.append(f"the {ordinals[i]} " + ", ".join(desc_bits))
+                    who = f"the {ordinals[i]}" + (f" ({char_name})" if i == 0 and char_name else "")
+                    person_descs.append(f"{who} " + ", ".join(desc_bits))
             subject = head + trait_part
             if person_descs:
                 subject += ", " + "; ".join(person_descs)
@@ -4495,9 +5612,12 @@ def main():
             subject = (head + trait_part +
                        ", each person with a clearly distinct hairstyle, outfit variation and expression")
             if main_look:
-                subject += f", the central person {main_look}"
-        if skin_check:
-            subject += ", with ultra-realistic skin texture showing pores and fine details"
+                who = "the central person" + (f" ({char_name})" if char_name else "")
+                subject += f", {who} {main_look}"
+        if eng(skf_key):
+            subject += f", {eng(skf_key)}"
+        if locked:
+            subject += ", the same recurring character with a consistent face and identity in every image"
         if eng(pet_key):
             subject += f", {eng(pet_key)}"
 
@@ -4579,23 +5699,20 @@ def main():
         else:
             env_loc = eng(lo_key)
         season_text = eng(sn_key)
-        weather_parts = []
-        if weather_rain:
-            weather_parts.append("with rain falling from the sky")
-        if weather_snow:
-            weather_parts.append("with snow gently falling")
-        if weather_leaves:
-            weather_parts.append("with red and golden autumn leaves falling through the air")
-        if weather_wind:
-            weather_parts.append("with a gentle breeze blowing, hair and clothes fluttering softly in the wind")
-        weather_text = ", ".join(weather_parts)
+        weather_text = ", ".join(eng(k) for k in atm_keys if eng(k))
         env_time = eng(td_key)
-        env_parts = [p for p in (env_loc, env_time, season_text, weather_text) if p]
+        env_parts = [p for p in (env_loc, env_time, season_text, weather_text, eng(bgp_key)) if p]
         environment = ", ".join(env_parts)
 
         # Camera & Lighting + Picture Style + Composition — all optional
-        camera_parts = [p for p in (eng(lt_key), eng(sf_key), eng(ca_key),
-                                    eng(dof_key), eng(cmp_key), eng(ps_key)) if p]
+        lfx_vals = [eng(k) for k in lfx_keys if eng(k)]
+        lfx_text = ""
+        if lfx_vals:
+            lfx_text = "with " + (", ".join(lfx_vals[:-1]) + " and " + lfx_vals[-1]
+                                  if len(lfx_vals) > 1 else lfx_vals[0])
+        light_parts = [eng(k) for k in (lt_key, ld_key, lc_key, lq_key)]
+        camera_parts = [p for p in light_parts + [eng(k) for k in (
+            sf_key, ch_key, cd_key, cs_key, dof_key, cmp_key, ps_key)] + [lfx_text] if p]
         camera_section = ", ".join(camera_parts)
 
         # Custom
@@ -4665,10 +5782,11 @@ def main():
             set_prompts = []
             for v_pose_key in random.sample(pose_pool, PHOTO_SET_SIZE):
                 v_pose_parts = [p for p in [eng(v_pose_key), eng(gz_key), eng(pe_key)] if p]
-                v_camera = ", ".join(p for p in (
-                    eng(lt_key), eng(random.choice(PHOTO_SET_SF_KEYS)),
-                    eng(random.choice(PHOTO_SET_CA_KEYS)),
-                    eng(dof_key), eng(cmp_key), eng(ps_key)) if p)
+                v_camera = ", ".join(p for p in light_parts + [
+                    eng(random.choice(PHOTO_SET_SF_KEYS)),
+                    eng(random.choice(PHOTO_SET_CH_KEYS)),
+                    eng(random.choice(PHOTO_SET_CD_KEYS)),
+                    eng(dof_key), eng(cmp_key), eng(ps_key), lfx_text] if p)
                 parts = [technical, subject, outfit, ", ".join(v_pose_parts),
                          environment, v_camera]
                 if custom_eng.strip():
