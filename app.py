@@ -385,7 +385,7 @@ TRANSLATIONS = {
         "sh_sandals": "Sandals",
         "sh_sneakers": "Sneakers",
         "attach_outfit_photo": "I will attach outfit reference photo",
-        "attach_outfit_note": "Prompt will instruct AI to recreate the attached outfit",
+        "attach_outfit_note": "Prompt will instruct AI to recreate the attached outfit (mannequin or flat-lay images work too)",
         # Fabric (A-Z) — separate for top & bottom
         "top_fabric": "Top Fabric",
         "bot_fabric": "Bottom Fabric",
@@ -710,7 +710,6 @@ TRANSLATIONS = {
         "pose_walk": "Walking",
         "pose_walk_away": "Walking Away (Candid)",
         "pose_wink": "Winking",
-        "look_camera": "Looking at camera",
 
         # ── Advanced ──
         "exp_advanced": "Advanced & Technical",
@@ -871,6 +870,288 @@ TRANSLATIONS = {
         "photo_set_hint": "Same subject, outfit and scene in every shot — only the pose, framing and camera angle change. Generate them all for a matching album.",
         "photo_set_shot": "Shot",
         "photo_set_download": "Download all shots",
+        # v5.7 — pose builder + outfit layers
+        "exp_pose": "Pose & Body Language",
+        "attach_pose_photo": "I will attach a pose reference image (e.g. a mannequin pose sheet)",
+        "attach_pose_note": "Prompt will instruct AI to copy only the body pose from the attached image — not its face, body or clothing. The pose pickers below are disabled.",
+        "ref_note_pose": "Attach: Pose reference image (mannequin / pose sheet)",
+        "pose_category": "Pose Category",
+        "pose_detail_header": "Fine-tune the pose",
+        "pose_detail_hint": "💡 Optional details layered on top of the pose — leave on “None” if they would contradict it (e.g. hands in pockets + heart hands).",
+        "body_dir": "Body Orientation",
+        "head_pos": "Head Position",
+        "gaze": "Gaze / Eye Direction",
+        "hands_pos": "Arms & Hands",
+        "legs_pos": "Legs & Stance",
+        "pose_energy": "Pose Mood / Energy",
+        "pose_text": "Describe the pose in your own words (optional)",
+        "pose_text_placeholder": "e.g. sitting on a swing, holding the ropes, legs stretched forward",
+        "outfit_mode": "Outfit Type",
+        "dress_garment": "Dress / One-piece",
+        "dress_fabric": "Dress Fabric",
+        "dress_color": "Dress Color",
+        "outfit_set": "Outfit Set",
+        "outfit_set_hint": "Each set is a complete, coordinated look (layers, legwear, shoes, bag, jewelry). Accessories below are added on top.",
+        "outer_layer": "Outer Layer",
+        "outer_color": "Outer Layer Color",
+        "fit": "Fit / Silhouette",
+        "legwear": "Socks & Legwear",
+        "details": "Design Details & Prints",
+        "details_help": "Pick a few — e.g. ruffles + ribbon bows + lace trim",
+        "om_separates": "Top + Bottom",
+        "om_dress": "Dress / One-piece",
+        "om_set": "Ready-made Outfit Set",
+        "pc_all": "All Poses",
+        "pc_standing": "Standing",
+        "pc_walking": "Walking & Motion",
+        "pc_sitting": "Sitting",
+        "pc_kneeling": "Kneeling",
+        "pc_lying": "Lying Down",
+        "pc_crouching": "Crouching & Bending",
+        "pc_cute": "Cute Hand Gestures",
+        "pc_social": "Social Media & Fashion",
+        "pc_props": "Nature & Props",
+        "pc_sport": "Sports & Action",
+        "pose_contrapposto": "Contrapposto, Weight on One Leg",
+        "pose_hands_hips": "Both Hands on Hips",
+        "pose_hands_nape": "Hands on Nape of Neck",
+        "pose_hand_collar": "Hand at Collarbone",
+        "pose_foot_kick": "One Foot Kicked Up Behind",
+        "pose_hair_both": "Both Hands Lifting Hair",
+        "pose_walk_toward": "Walking Toward Camera",
+        "pose_bag_strap": "Walking, Holding Bag Strap",
+        "pose_sit_side": "Side-Saddle Sitting",
+        "pose_sit_knee_up": "Sitting, One Knee Up",
+        "pose_sit_cheek_knee": "Sitting, Cheek on Knees",
+        "pose_sit_chair_back": "Sitting Backwards on a Chair",
+        "pose_sit_ledge": "Sitting on a Ledge, Legs Dangling",
+        "pose_sit_floor_cross": "Sitting Cross-legged on the Floor",
+        "pose_sit_hold_ankle": "Sitting, Holding Ankle",
+        "pose_wariza_hands": "Wariza, Hands on Floor in Front",
+        "pose_seiza": "Seiza (Sitting on Heels)",
+        "pose_kneel_upright": "Kneeling Upright, Hands on Thighs",
+        "pose_one_knee": "On One Knee",
+        "pose_kneel_look_up": "Kneeling, Looking Up",
+        "pose_kneel_hair": "Kneeling, Hand in Hair",
+        "pose_lie_stomach": "Lying on Stomach, Feet Up",
+        "pose_lie_side": "Lying on Side, Head on Hand",
+        "pose_lie_back_hair": "Lying on Back, Hair Spread Out",
+        "pose_lie_back_knee": "Lying on Back, One Knee Up",
+        "pose_lie_arm_pillow": "Lying on Stomach, Head on Arms",
+        "pose_crouch_chin": "Crouching, Chin in Hand",
+        "pose_crouch_look_back": "Crouching, Looking Back",
+        "pose_bend_knees": "Bending Forward, Hands on Knees",
+        "pose_bend_shoe": "Bending Down to Fix a Shoe",
+        "pose_double_peace": "Double Peace Under Chin",
+        "pose_gyaru_peace": "Gyaru Peace (Back of Hand)",
+        "pose_fist_cheeks": "Fists on Cheeks (Burikko)",
+        "pose_bunny_ears": "Bunny Ears Hands",
+        "pose_cat_paw": "Cat Paw Gesture",
+        "pose_rawr": "Rawr! Claw Pose",
+        "pose_poke_cheek": "Poking Own Cheek",
+        "pose_flower_chin": "Flower Pose (Chin on Palms)",
+        "pose_sweater_paws": "Sweater Paws Over Mouth",
+        "pose_please": "Pleading 'Please' Hands",
+        "pose_self_hug": "Shy Self-Hug",
+        "pose_big_heart": "Big Heart Above Head",
+        "pose_yawn": "Yawning Stretch",
+        "pose_coat_lapels": "Holding Coat Lapels",
+        "pose_phone_check": "Checking Phone Candidly",
+        "pose_skirt_hem": "Holding the Skirt Hem",
+        "pose_curtsy": "Curtsy",
+        "pose_umbrella": "Holding an Umbrella",
+        "pose_bouquet": "Holding a Bouquet",
+        "pose_read_book": "Reading a Book",
+        "pose_coffee": "Holding a Coffee Cup",
+        "pose_bicycle": "Standing with a Bicycle",
+        "pose_balloons": "Holding Balloons",
+        "pose_ballet": "Ballet Arabesque",
+        "pose_tennis_swing": "Tennis Swing",
+        "pose_skateboard": "Riding a Skateboard",
+        "pose_lunge": "Stretching Lunge",
+        "dir_none": "— None —",
+        "dir_back": "Back View",
+        "dir_back_look": "Back Turned, Looking Back",
+        "dir_front": "Facing the Camera",
+        "dir_side": "Side Profile",
+        "dir_slight": "Slightly Angled",
+        "dir_3q": "Three-Quarter Turn",
+        "head_none": "— None —",
+        "head_chin_down": "Chin Lowered",
+        "head_chin_up": "Chin Raised",
+        "head_shoulder": "Cheek Toward Shoulder",
+        "head_rest_hand": "Resting on Hand",
+        "head_back": "Tilted Back",
+        "head_tilt": "Tilted to One Side",
+        "head_turned": "Turned to the Side",
+        "gaze_none": "— None —",
+        "gaze_closed": "Eyes Closed",
+        "gaze_camera": "Looking at Camera",
+        "gaze_down": "Looking Down",
+        "gaze_away": "Looking Into the Distance",
+        "gaze_upward_glance": "Looking Up at Camera (Upward Glance)",
+        "gaze_up": "Looking Upward",
+        "gaze_side_glance": "Side Glance at Camera",
+        "hands_none": "— None —",
+        "hands_crossed": "Arms Crossed",
+        "hands_overhead": "Arms Raised Overhead",
+        "hands_relaxed": "Arms Relaxed at Sides",
+        "hands_both_hips": "Both Hands on Hips",
+        "hands_lips": "Finger to Lips",
+        "hands_hair": "Hand in Hair",
+        "hands_hip": "Hand on Hip",
+        "hands_neck": "Hand on Neck / Collarbone",
+        "hands_face": "Hand Touching Face",
+        "hands_behind": "Hands Clasped Behind Back",
+        "hands_clasped": "Hands Clasped in Front",
+        "hands_pockets": "Hands in Pockets",
+        "hands_strap": "Holding Bag Strap",
+        "hands_sleeve": "Tugging a Sleeve",
+        "legs_none": "— None —",
+        "legs_ankles_crossed": "Ankles Crossed",
+        "legs_kick_back": "Foot Kicked Up Behind",
+        "legs_knees_in": "Knees Together, Toes In",
+        "legs_crossed_knee": "Legs Crossed at the Knee",
+        "legs_cross_stand": "Legs Crossed While Standing",
+        "legs_extended": "Legs Stretched Out",
+        "legs_together": "Legs Together",
+        "legs_mid_stride": "Mid-Stride",
+        "legs_tiptoe": "On Tiptoe",
+        "legs_knee_bent": "One Knee Slightly Bent",
+        "legs_wide": "Wide Power Stance",
+        "pe_none": "— None —",
+        "pe_candid": "Candid, Unposed",
+        "pe_confident": "Confident Power Pose",
+        "pe_cool": "Cool & Nonchalant",
+        "pe_dynamic": "Dynamic, Mid-Motion",
+        "pe_elegant": "Elegant & Graceful",
+        "pe_playful": "Playful & Energetic",
+        "pe_relaxed": "Relaxed & Natural",
+        "pe_shy": "Shy & Soft",
+        "dress_none": "— None —",
+        "dress_babydoll": "Babydoll Dress",
+        "dress_ballgown": "Ball Gown",
+        "dress_bodycon": "Bodycon Dress",
+        "dress_corset": "Corset Dress",
+        "dress_jumpsuit": "Jumpsuit",
+        "dress_knit": "Knit Dress",
+        "dress_maxi": "Maxi Dress",
+        "dress_midi": "Midi Dress",
+        "dress_mini": "Mini Dress",
+        "dress_off_shoulder": "Off-Shoulder Dress",
+        "dress_pinafore": "Pinafore Dress",
+        "dress_qipao": "Qipao / Cheongsam",
+        "dress_romper": "Romper / Playsuit",
+        "dress_shirt": "Shirt Dress",
+        "dress_slip": "Slip Dress",
+        "dress_sundress": "Sundress",
+        "dress_tea": "Tea Dress (Vintage)",
+        "dress_tiered": "Tiered Ruffle Dress",
+        "dress_wrap": "Wrap Dress",
+        "out_none": "— None —",
+        "out_blazer": "Blazer",
+        "out_bolero": "Bolero / Shrug",
+        "out_cape": "Cape",
+        "out_cardigan": "Cardigan",
+        "out_cropped_cardigan": "Cropped Cardigan",
+        "out_denim_jacket": "Denim Jacket",
+        "out_faux_fur": "Faux Fur Coat",
+        "out_kimono": "Kimono-style Cardigan",
+        "out_leather": "Leather Jacket",
+        "out_wool_coat": "Long Wool Coat",
+        "out_open_shirt": "Open Button-up Shirt",
+        "out_puffer": "Puffer Jacket",
+        "out_shawl": "Shawl over Shoulders",
+        "out_trench": "Trench Coat",
+        "out_tweed": "Tweed Jacket",
+        "out_varsity": "Varsity Jacket",
+        "out_zip_hoodie": "Zip-up Hoodie",
+        "fit_none": "— Not specified —",
+        "fit_aline": "A-Line",
+        "fit_body": "Body-Hugging",
+        "fit_cropped": "Cropped & High-Waisted",
+        "fit_fitted": "Fitted",
+        "fit_flowy": "Flowy & Airy",
+        "fit_layered": "Layered",
+        "fit_oversized": "Oversized",
+        "fit_relaxed": "Relaxed Fit",
+        "fit_tailored": "Tailored",
+        "leg_none": "— None —",
+        "leg_ankle": "Ankle Socks",
+        "leg_crew": "Crew Socks",
+        "leg_fishnet": "Fishnet Tights",
+        "leg_frilly": "Frilly Lace-trim Socks",
+        "leg_knee": "Knee-high Socks",
+        "leg_warmers": "Leg Warmers",
+        "leg_loose": "Loose Socks (Japanese)",
+        "leg_opaque": "Opaque Black Tights",
+        "leg_patterned": "Patterned Tights",
+        "leg_sheer_black": "Sheer Black Tights",
+        "leg_nude": "Sheer Nude Stockings",
+        "leg_thigh": "Thigh-high Socks",
+        "leg_white_tights": "White Tights",
+        "det_corset": "Corset Lacing",
+        "det_embroidery": "Embroidery",
+        "det_floral": "Floral Print",
+        "det_gingham": "Gingham",
+        "det_lace_trim": "Lace Trim",
+        "det_off_shoulder": "Off-Shoulder Neckline",
+        "det_buttons": "Pearl Buttons",
+        "det_collar": "Peter Pan Collar",
+        "det_checks": "Plaid / Check Pattern",
+        "det_pleats": "Pleats",
+        "det_polka": "Polka Dots",
+        "det_puff": "Puff Sleeves",
+        "det_bows": "Ribbon Bows",
+        "det_frills": "Ruffles / Frills",
+        "det_sailor": "Sailor Collar",
+        "det_sequins": "Sequins / Sparkle",
+        "det_sheer_sleeves": "Sheer Sleeves",
+        "det_slit": "Side Slit",
+        "det_square_neck": "Square Neckline",
+        "det_stripes": "Stripes",
+        "det_tiered": "Tiered Layers",
+        "det_v_neck": "V-Neckline",
+        "os_none": "— None —",
+        "os_spr_frill_knit": "🌸 Spring · Frill Knit + Denim Mini + Coat",
+        "os_spr_floral_cami": "🌸 Spring · Floral Cami + Cardigan + Pleated Skirt",
+        "os_spr_floral_midi": "🌸 Spring · Floral Midi Dress + Denim Jacket",
+        "os_spr_ribbon_blouse": "🌸 Spring · Ribbon Blouse + Mint Midi Skirt",
+        "os_spr_shirt_dress": "🌸 Spring · Ribbon Shirt Dress + Tights",
+        "os_spr_lace_cami": "🌸 Spring · Lace Cami + Cardigan + Wide Pants",
+        "os_sum_linen": "☀️ Summer · Linen Shirt + Shorts",
+        "os_sum_sundress": "☀️ Summer · Eyelet Sundress + Straw Hat",
+        "os_sum_crop_denim": "☀️ Summer · Baby Tee + Denim Shorts",
+        "os_sum_halter_maxi": "☀️ Summer · Halter Maxi Dress",
+        "os_sum_gingham": "☀️ Summer · Gingham Puff Top + White Skirt",
+        "os_sum_resort": "☀️ Summer · Resort Shirt + Linen Trousers",
+        "os_aut_trench": "🍂 Autumn · Trench + Turtleneck + Jeans",
+        "os_aut_corduroy": "🍂 Autumn · Corduroy Pinafore + Knit + Beret",
+        "os_aut_plaid": "🍂 Autumn · Plaid Skirt + Chunky Cardigan",
+        "os_aut_leather": "🍂 Autumn · Leather Jacket + Satin Slip Skirt",
+        "os_aut_knit_dress": "🍂 Autumn · Knit Dress + Suede Boots",
+        "os_aut_blazer": "🍂 Autumn · Oversized Blazer + Wide Trousers",
+        "os_win_wool_coat": "❄️ Winter · Long Wool Coat + Chunky Scarf",
+        "os_win_puffer": "❄️ Winter · Puffer + Hoodie + Beanie",
+        "os_win_fur": "❄️ Winter · Faux Fur Coat + Black Knit Dress",
+        "os_win_tweed": "❄️ Winter · Tweed Jacket & Skirt Set + Pearls",
+        "os_win_overcoat": "❄️ Winter · Turtleneck + Overcoat",
+        "os_win_cozy": "❄️ Winter · Cozy Knit + Leg Warmers",
+        "os_par_sequin": "✨ Party · Sequin Mini Dress",
+        "os_par_satin_gown": "✨ Party · Satin Slip Gown",
+        "os_par_tulle": "✨ Party · Tulle Princess Dress",
+        "os_par_velvet_suit": "✨ Party · Velvet Suit",
+        "os_par_lbd": "✨ Party · Little Black Dress",
+        "fab_corduroy": "Corduroy",
+        "fab_crochet": "Crochet",
+        "fab_jersey": "Jersey",
+        "fab_knit": "Fine Knit",
+        "fab_organza": "Organza",
+        "fab_sequin": "Sequin",
+        "fab_tulle": "Tulle",
+        "col_butter": "Butter Yellow",
+        "col_grey": "Grey",
+        "col_ivory": "Ivory",
     },
     "th": {
         # ── Global ──
@@ -1230,7 +1511,7 @@ TRANSLATIONS = {
         "sh_sandals": "รองเท้ารัดส้น",
         "sh_sneakers": "รองเท้าผ้าใบ",
         "attach_outfit_photo": "จะแนบรูปชุดอ้างอิง",
-        "attach_outfit_note": "พรอมต์จะสั่งให้ AI สร้างชุดตามรูปที่แนบ",
+        "attach_outfit_note": "พรอมต์จะสั่งให้ AI สร้างชุดตามรูปที่แนบ (ใช้ภาพหุ่นใส่ชุดหรือภาพวางชุดได้)",
         # Fabric (A-Z) — separate for top & bottom
         "top_fabric": "ผ้าเสื้อ",
         "bot_fabric": "ผ้าท่อนล่าง",
@@ -1555,7 +1836,6 @@ TRANSLATIONS = {
         "pose_walk": "เดิน",
         "pose_walk_away": "เดินหันหลัง (แคนดิด)",
         "pose_wink": "วิ้งก์ตา",
-        "look_camera": "หันมองกล้อง",
 
         # ── Advanced ──
         "exp_advanced": "ขั้นสูงและเทคนิค",
@@ -1716,6 +1996,288 @@ TRANSLATIONS = {
         "photo_set_hint": "ตัวแบบ ชุด และฉากเหมือนกันทุกช็อต — เปลี่ยนเฉพาะท่าโพส ระยะภาพ และมุมกล้อง นำไปสร้างภาพเป็นอัลบั้มชุดเดียวกันได้เลย",
         "photo_set_shot": "ช็อตที่",
         "photo_set_download": "ดาวน์โหลดทุกช็อต",
+        # v5.7 — pose builder + outfit layers
+        "exp_pose": "ท่าโพสและภาษากาย",
+        "attach_pose_photo": "จะแนบรูปท่าโพสอ้างอิง (เช่น ภาพหุ่นท่าโพส)",
+        "attach_pose_note": "พรอมต์จะสั่งให้ AI เลียนแบบเฉพาะท่าทางจากรูปที่แนบ ไม่เอาหน้าตา รูปร่าง หรือเสื้อผ้า (ตัวเลือกท่าด้านล่างจะถูกปิดไว้)",
+        "ref_note_pose": "แนบ: รูปท่าโพสอ้างอิง (หุ่น / ภาพท่าโพส)",
+        "pose_category": "หมวดท่าโพส",
+        "pose_detail_header": "ปรับรายละเอียดท่า",
+        "pose_detail_hint": "💡 รายละเอียดเสริมที่ต่อท้ายท่าหลัก ปล่อยเป็น “ไม่ระบุ” ถ้าขัดกับท่าที่เลือก (เช่น มือล้วงกระเป๋า + ทำมือหัวใจ)",
+        "body_dir": "ทิศทางลำตัว",
+        "head_pos": "ตำแหน่งศีรษะ",
+        "gaze": "ทิศทางสายตา",
+        "hands_pos": "แขนและมือ",
+        "legs_pos": "ขาและการยืน",
+        "pose_energy": "อารมณ์ของท่าทาง",
+        "pose_text": "อธิบายท่าโพสเอง (ไม่บังคับ)",
+        "pose_text_placeholder": "เช่น นั่งชิงช้า มือจับเชือก เหยียดขาไปข้างหน้า",
+        "outfit_mode": "รูปแบบชุด",
+        "dress_garment": "เดรส / ชุดชิ้นเดียว",
+        "dress_fabric": "เนื้อผ้าเดรส",
+        "dress_color": "สีเดรส",
+        "outfit_set": "ชุดสำเร็จรูป",
+        "outfit_set_hint": "แต่ละชุดจัดมาครบแล้ว (เสื้อซ้อน ถุงเท้า รองเท้า กระเป๋า เครื่องประดับ) เครื่องประดับที่ติ๊กด้านล่างจะถูกเพิ่มเข้าไปอีก",
+        "outer_layer": "เสื้อคลุมชั้นนอก",
+        "outer_color": "สีเสื้อคลุม",
+        "fit": "ทรงชุด",
+        "legwear": "ถุงเท้าและถุงน่อง",
+        "details": "ดีเทลและลวดลาย",
+        "details_help": "เลือกได้หลายอย่าง เช่น ระบาย + โบว์ + ขอบลูกไม้",
+        "om_separates": "เสื้อ + ท่อนล่าง",
+        "om_dress": "เดรส / ชุดชิ้นเดียว",
+        "om_set": "ชุดสำเร็จรูปตามฤดู",
+        "pc_all": "ทุกท่า",
+        "pc_standing": "ยืน",
+        "pc_walking": "เดินและเคลื่อนไหว",
+        "pc_sitting": "นั่ง",
+        "pc_kneeling": "คุกเข่า",
+        "pc_lying": "นอน",
+        "pc_crouching": "นั่งยองและก้มตัว",
+        "pc_cute": "ท่ามือน่ารัก",
+        "pc_social": "โซเชียลและแฟชั่น",
+        "pc_props": "ธรรมชาติและพร็อพ",
+        "pc_sport": "กีฬาและแอคชั่น",
+        "pose_contrapposto": "ยืนลงน้ำหนักขาเดียว",
+        "pose_hands_hips": "เท้าเอวสองข้าง",
+        "pose_hands_nape": "มือแตะต้นคอสองข้าง",
+        "pose_hand_collar": "มือแตะไหปลาร้า",
+        "pose_foot_kick": "ยกเท้าไปด้านหลังข้างเดียว",
+        "pose_hair_both": "ยกผมขึ้นด้วยสองมือ",
+        "pose_walk_toward": "เดินเข้าหากล้อง",
+        "pose_bag_strap": "เดินจับสายกระเป๋า",
+        "pose_sit_side": "นั่งพับเพียบ",
+        "pose_sit_knee_up": "นั่งชันเข่าข้างเดียว",
+        "pose_sit_cheek_knee": "นั่งชันเข่าเอาแก้มพิง",
+        "pose_sit_chair_back": "นั่งคร่อมเก้าอี้กลับด้าน",
+        "pose_sit_ledge": "นั่งบนขอบ ห้อยขา",
+        "pose_sit_floor_cross": "นั่งขัดสมาธิสบายๆ",
+        "pose_sit_hold_ankle": "นั่งเอามือจับข้อเท้า",
+        "pose_wariza_hands": "นั่งพับขาแบบญี่ปุ่น มือวางด้านหน้า",
+        "pose_seiza": "นั่งคุกเข่าทับส้นเท้า (เซซะ)",
+        "pose_kneel_upright": "คุกเข่าตัวตรง มือวางบนต้นขา",
+        "pose_one_knee": "คุกเข่าข้างเดียว",
+        "pose_kneel_look_up": "คุกเข่าแหงนมอง",
+        "pose_kneel_hair": "คุกเข่า มือแตะผม",
+        "pose_lie_stomach": "นอนคว่ำ ยกเท้าขึ้น",
+        "pose_lie_side": "นอนตะแคง มือยันศีรษะ",
+        "pose_lie_back_hair": "นอนหงาย ผมสยาย",
+        "pose_lie_back_knee": "นอนหงายชันเข่า",
+        "pose_lie_arm_pillow": "นอนคว่ำหนุนแขน",
+        "pose_crouch_chin": "นั่งยองเท้าคาง",
+        "pose_crouch_look_back": "นั่งยองหันกลับมามอง",
+        "pose_bend_knees": "โน้มตัว มือวางบนเข่า",
+        "pose_bend_shoe": "ก้มลงจัดรองเท้า",
+        "pose_double_peace": "ชูสองนิ้วสองมือใต้คาง",
+        "pose_gyaru_peace": "ชูสองนิ้วกลับด้านแบบกยารุ",
+        "pose_fist_cheeks": "กำมือแนบแก้ม (บุริกโกะ)",
+        "pose_bunny_ears": "ทำมือหูกระต่าย",
+        "pose_cat_paw": "ทำมือแมวกวัก",
+        "pose_rawr": "ท่าเสือคำราม (กาโอ้)",
+        "pose_poke_cheek": "จิ้มแก้มตัวเอง",
+        "pose_flower_chin": "เท้าคางด้วยสองฝ่ามือ (ท่าดอกไม้)",
+        "pose_sweater_paws": "แขนเสื้อยาวปิดปาก",
+        "pose_please": "พนมมือขอร้องน่ารัก",
+        "pose_self_hug": "กอดตัวเองเขินๆ",
+        "pose_big_heart": "ทำหัวใจใหญ่เหนือหัว",
+        "pose_yawn": "หาวพร้อมบิดขี้เกียจ",
+        "pose_coat_lapels": "จับปกเสื้อโค้ทสองข้าง",
+        "pose_phone_check": "ก้มดูมือถือแบบแคนดิด",
+        "pose_skirt_hem": "จับชายกระโปรง",
+        "pose_curtsy": "ถอนสายบัว",
+        "pose_umbrella": "ถือร่ม",
+        "pose_bouquet": "ถือช่อดอกไม้",
+        "pose_read_book": "อ่านหนังสือ",
+        "pose_coffee": "ถือแก้วกาแฟสองมือ",
+        "pose_bicycle": "ยืนจูงจักรยาน",
+        "pose_balloons": "ถือลูกโป่ง",
+        "pose_ballet": "ท่าบัลเล่ต์อาราเบสก์",
+        "pose_tennis_swing": "ตีเทนนิส",
+        "pose_skateboard": "เล่นสเก็ตบอร์ด",
+        "pose_lunge": "ยืดเหยียดท่าลันจ์",
+        "dir_none": "— ไม่ระบุ —",
+        "dir_back": "หันหลังทั้งตัว",
+        "dir_back_look": "หันหลังแล้วเหลียวมอง",
+        "dir_front": "หันหน้าเข้ากล้อง",
+        "dir_side": "หันข้าง",
+        "dir_slight": "เฉียงเล็กน้อย",
+        "dir_3q": "หันเฉียง 3/4",
+        "head_none": "— ไม่ระบุ —",
+        "head_chin_down": "ก้มคางเล็กน้อย",
+        "head_chin_up": "เชิดคาง",
+        "head_shoulder": "ซบแก้มเข้าหาไหล่",
+        "head_rest_hand": "ศีรษะพิงมือ",
+        "head_back": "เงยศีรษะไปด้านหลัง",
+        "head_tilt": "เอียงศีรษะ",
+        "head_turned": "หันศีรษะไปด้านข้าง",
+        "gaze_none": "— ไม่ระบุ —",
+        "gaze_closed": "หลับตา",
+        "gaze_camera": "มองกล้อง",
+        "gaze_down": "มองลงต่ำ",
+        "gaze_away": "มองไปไกลๆ",
+        "gaze_upward_glance": "ช้อนตามองกล้อง",
+        "gaze_up": "มองขึ้นด้านบน",
+        "gaze_side_glance": "ชำเลืองมองกล้อง",
+        "hands_none": "— ไม่ระบุ —",
+        "hands_crossed": "กอดอก",
+        "hands_overhead": "ยกแขนเหนือศีรษะ",
+        "hands_relaxed": "ปล่อยแขนสบายๆ",
+        "hands_both_hips": "เท้าเอวสองข้าง",
+        "hands_lips": "นิ้วแตะริมฝีปาก",
+        "hands_hair": "มือแตะผม",
+        "hands_hip": "มือเท้าเอว",
+        "hands_neck": "มือแตะคอ / ไหปลาร้า",
+        "hands_face": "มือแตะใบหน้า",
+        "hands_behind": "ไขว้มือไว้ด้านหลัง",
+        "hands_clasped": "ประสานมือด้านหน้า",
+        "hands_pockets": "มือล้วงกระเป๋า",
+        "hands_strap": "จับสายกระเป๋า",
+        "hands_sleeve": "ดึงแขนเสื้อ",
+        "legs_none": "— ไม่ระบุ —",
+        "legs_ankles_crossed": "ไขว้ข้อเท้า",
+        "legs_kick_back": "ยกเท้าไปด้านหลัง",
+        "legs_knees_in": "เข่าชิด ปลายเท้าเข้า",
+        "legs_crossed_knee": "ไขว่ห้าง",
+        "legs_cross_stand": "ยืนไขว้ขา",
+        "legs_extended": "เหยียดขาออก",
+        "legs_together": "ขาชิด",
+        "legs_mid_stride": "กำลังก้าวเดิน",
+        "legs_tiptoe": "เขย่งปลายเท้า",
+        "legs_knee_bent": "งอเข่าข้างเดียวเล็กน้อย",
+        "legs_wide": "ยืนกางขามั่นใจ",
+        "pe_none": "— ไม่ระบุ —",
+        "pe_candid": "แคนดิด ไม่จัดท่า",
+        "pe_confident": "มั่นใจ ทรงพลัง",
+        "pe_cool": "เท่ นิ่งๆ",
+        "pe_dynamic": "ไดนามิก กำลังเคลื่อนไหว",
+        "pe_elegant": "สง่างาม อ่อนช้อย",
+        "pe_playful": "ขี้เล่น สดใส",
+        "pe_relaxed": "ผ่อนคลาย เป็นธรรมชาติ",
+        "pe_shy": "เขินอาย อ่อนโยน",
+        "dress_none": "— ไม่ระบุ —",
+        "dress_babydoll": "เดรสเบบี้ดอลล์",
+        "dress_ballgown": "ชุดราตรีบอลกาวน์",
+        "dress_bodycon": "เดรสรัดรูป",
+        "dress_corset": "เดรสคอร์เซ็ต",
+        "dress_jumpsuit": "จัมพ์สูท",
+        "dress_knit": "เดรสไหมพรม",
+        "dress_maxi": "เดรสยาว (แม็กซี่)",
+        "dress_midi": "เดรสยาวคลุมเข่า (มิดี้)",
+        "dress_mini": "มินิเดรส",
+        "dress_off_shoulder": "เดรสเปิดไหล่",
+        "dress_pinafore": "เดรสเอี๊ยม",
+        "dress_qipao": "กี่เพ้า",
+        "dress_romper": "รอมเปอร์ / จั๊มสูทขาสั้น",
+        "dress_shirt": "เชิ้ตเดรส",
+        "dress_slip": "สลิปเดรส",
+        "dress_sundress": "เดรสฤดูร้อน (ซันเดรส)",
+        "dress_tea": "เดรสวินเทจ (ทีเดรส)",
+        "dress_tiered": "เดรสระบายชั้น",
+        "dress_wrap": "เดรสป้าย",
+        "out_none": "— ไม่ระบุ —",
+        "out_blazer": "เบลเซอร์",
+        "out_bolero": "โบเลโร่ (เสื้อคลุมสั้น)",
+        "out_cape": "เสื้อคลุมเคป",
+        "out_cardigan": "คาร์ดิแกน",
+        "out_cropped_cardigan": "คาร์ดิแกนครอป",
+        "out_denim_jacket": "แจ็คเก็ตยีนส์",
+        "out_faux_fur": "โค้ทขนเฟอร์เทียม",
+        "out_kimono": "เสื้อคลุมทรงกิโมโน",
+        "out_leather": "แจ็คเก็ตหนัง",
+        "out_wool_coat": "โค้ทขนสัตว์ตัวยาว",
+        "out_open_shirt": "เชิ้ตปลดกระดุมคลุม",
+        "out_puffer": "แจ็คเก็ตบุนวม",
+        "out_shawl": "ผ้าคลุมไหล่",
+        "out_trench": "เทรนช์โค้ท",
+        "out_tweed": "แจ็คเก็ตผ้าทวีด",
+        "out_varsity": "แจ็คเก็ตวาร์ซิตี้",
+        "out_zip_hoodie": "ฮู้ดดี้ซิป",
+        "fit_none": "— ไม่ระบุ —",
+        "fit_aline": "ทรงเอ",
+        "fit_body": "รัดรูป",
+        "fit_cropped": "ครอปเอวสูง",
+        "fit_fitted": "พอดีตัว",
+        "fit_flowy": "พลิ้วไหว",
+        "fit_layered": "เลเยอร์ซ้อนชั้น",
+        "fit_oversized": "โอเวอร์ไซซ์",
+        "fit_relaxed": "ทรงหลวมสบาย",
+        "fit_tailored": "ทรงตัดเย็บเข้ารูป",
+        "leg_none": "— ไม่ระบุ —",
+        "leg_ankle": "ถุงเท้าข้อสั้น",
+        "leg_crew": "ถุงเท้าข้อกลาง",
+        "leg_fishnet": "ถุงน่องตาข่าย",
+        "leg_frilly": "ถุงเท้าระบายลูกไม้",
+        "leg_knee": "ถุงเท้ายาวถึงเข่า",
+        "leg_warmers": "ปลอกขาไหมพรม",
+        "leg_loose": "ถุงเท้าย้วย (สไตล์ญี่ปุ่น)",
+        "leg_opaque": "ถุงน่องดำทึบ",
+        "leg_patterned": "ถุงน่องลวดลาย",
+        "leg_sheer_black": "ถุงน่องดำแบบบาง",
+        "leg_nude": "ถุงน่องสีเนื้อ",
+        "leg_thigh": "ถุงเท้ายาวเหนือเข่า",
+        "leg_white_tights": "ถุงน่องสีขาว",
+        "det_corset": "เชือกผูกแบบคอร์เซ็ต",
+        "det_embroidery": "งานปัก",
+        "det_floral": "ลายดอกไม้",
+        "det_gingham": "ลายตารางกิงแฮม",
+        "det_lace_trim": "ขอบลูกไม้",
+        "det_off_shoulder": "คอปาดเปิดไหล่",
+        "det_buttons": "กระดุมมุก",
+        "det_collar": "ปกบัว",
+        "det_checks": "ลายสก็อต",
+        "det_pleats": "จีบพลีท",
+        "det_polka": "ลายจุด",
+        "det_puff": "แขนตุ๊กตา",
+        "det_bows": "โบว์ริบบิ้น",
+        "det_frills": "ระบาย",
+        "det_sailor": "ปกกะลาสี",
+        "det_sequins": "เลื่อม / วิบวับ",
+        "det_sheer_sleeves": "แขนผ้าโปร่ง",
+        "det_slit": "ผ่าข้าง",
+        "det_square_neck": "คอเหลี่ยม",
+        "det_stripes": "ลายทาง",
+        "det_tiered": "ระบายเป็นชั้น",
+        "det_v_neck": "คอวี",
+        "os_none": "— ไม่ระบุ —",
+        "os_spr_frill_knit": "🌸 ใบไม้ผลิ · ไหมพรมระบาย + มินิสเกิร์ตยีนส์ + โค้ท",
+        "os_spr_floral_cami": "🌸 ใบไม้ผลิ · สายเดี่ยวลายดอก + คาร์ดิแกน + กระโปรงพลีท",
+        "os_spr_floral_midi": "🌸 ใบไม้ผลิ · เดรสมิดี้ลายดอก + แจ็คเก็ตยีนส์",
+        "os_spr_ribbon_blouse": "🌸 ใบไม้ผลิ · เบลาส์ผูกโบว์ + กระโปรงมิดี้สีมิ้นต์",
+        "os_spr_shirt_dress": "🌸 ใบไม้ผลิ · เชิ้ตเดรสผูกโบว์ + ถุงน่อง",
+        "os_spr_lace_cami": "🌸 ใบไม้ผลิ · สายเดี่ยวลูกไม้ + คาร์ดิแกน + กางเกงขากว้าง",
+        "os_sum_linen": "☀️ ฤดูร้อน · เชิ้ตลินิน + กางเกงขาสั้น",
+        "os_sum_sundress": "☀️ ฤดูร้อน · เดรสผ้าฉลุ + หมวกสาน",
+        "os_sum_crop_denim": "☀️ ฤดูร้อน · เสื้อครอปเบบี้ที + ยีนส์ขาสั้น",
+        "os_sum_halter_maxi": "☀️ ฤดูร้อน · เดรสยาวคล้องคอ",
+        "os_sum_gingham": "☀️ ฤดูร้อน · เสื้อแขนตุ๊กตาลายกิงแฮม + กระโปรงขาว",
+        "os_sum_resort": "☀️ ฤดูร้อน · เชิ้ตรีสอร์ท + กางเกงลินิน",
+        "os_aut_trench": "🍂 ใบไม้ร่วง · เทรนช์โค้ท + คอเต่า + ยีนส์",
+        "os_aut_corduroy": "🍂 ใบไม้ร่วง · เอี๊ยมลูกฟูก + ไหมพรม + หมวกเบเร่ต์",
+        "os_aut_plaid": "🍂 ใบไม้ร่วง · กระโปรงลายสก็อต + คาร์ดิแกนหนา",
+        "os_aut_leather": "🍂 ใบไม้ร่วง · แจ็คเก็ตหนัง + กระโปรงซาติน",
+        "os_aut_knit_dress": "🍂 ใบไม้ร่วง · เดรสไหมพรม + บู๊ตหนังกลับ",
+        "os_aut_blazer": "🍂 ใบไม้ร่วง · เบลเซอร์โอเวอร์ไซซ์ + กางเกงขากว้าง",
+        "os_win_wool_coat": "❄️ ฤดูหนาว · โค้ทยาว + ผ้าพันคอหนา",
+        "os_win_puffer": "❄️ ฤดูหนาว · แจ็คเก็ตบุนวม + ฮู้ดดี้ + หมวกไหมพรม",
+        "os_win_fur": "❄️ ฤดูหนาว · โค้ทเฟอร์ + เดรสไหมพรมดำ",
+        "os_win_tweed": "❄️ ฤดูหนาว · เซ็ตทวีด + สร้อยมุก",
+        "os_win_overcoat": "❄️ ฤดูหนาว · คอเต่า + โอเวอร์โค้ท",
+        "os_win_cozy": "❄️ ฤดูหนาว · ไหมพรมอุ่นๆ + ปลอกขา",
+        "os_par_sequin": "✨ ปาร์ตี้ · มินิเดรสเลื่อม",
+        "os_par_satin_gown": "✨ ปาร์ตี้ · ชุดราตรีซาตินทรงสลิป",
+        "os_par_tulle": "✨ ปาร์ตี้ · เดรสเจ้าหญิงผ้าทูล",
+        "os_par_velvet_suit": "✨ ปาร์ตี้ · สูทกำมะหยี่",
+        "os_par_lbd": "✨ ปาร์ตี้ · เดรสดำตัวเล็ก (LBD)",
+        "fab_corduroy": "ผ้าลูกฟูก",
+        "fab_crochet": "ผ้าถักโครเชต์",
+        "fab_jersey": "ผ้ายืดเจอร์ซีย์",
+        "fab_knit": "ผ้าไหมพรมเนื้อละเอียด",
+        "fab_organza": "ผ้าแก้ว (ออร์แกนซ่า)",
+        "fab_sequin": "ผ้าเลื่อม",
+        "fab_tulle": "ผ้าทูล",
+        "col_butter": "เหลืองบัตเตอร์",
+        "col_grey": "เทา",
+        "col_ivory": "สีงาช้าง",
     },
 }
 
@@ -2318,6 +2880,247 @@ ENGLISH_VALUES = {
     "pet_kitten": "cradling a tiny kitten in their hands",
     "pet_puppy": "playing with an adorable puppy",
     "pet_rabbit": "holding a fluffy white rabbit",
+    # v5.7 — pose builder + outfit layers
+    "pose_contrapposto": "standing in a relaxed contrapposto stance with weight shifted onto one leg and one hand resting on the hip",
+    "pose_hands_hips": "standing confidently with both hands on the hips",
+    "pose_hands_nape": "standing with both hands lifted to the nape of the neck, elbows raised and chest open",
+    "pose_hand_collar": "standing with one hand lightly touching the collarbone and the other resting on the thigh",
+    "pose_foot_kick": "standing on one leg with the other foot playfully kicked up behind",
+    "pose_hair_both": "lifting their hair up with both hands, elbows raised",
+    "pose_walk_toward": "walking confidently toward the camera",
+    "pose_bag_strap": "walking with one hand holding the strap of a shoulder bag",
+    "pose_sit_side": "sitting side-saddle on the floor with legs folded to one side and one hand resting on the ground",
+    "pose_sit_knee_up": "sitting on the ground with one knee drawn up and an arm resting casually across it",
+    "pose_sit_cheek_knee": "sitting with knees drawn up and one cheek resting softly on the knees",
+    "pose_sit_chair_back": "sitting backwards on a chair with arms folded over the backrest",
+    "pose_sit_ledge": "sitting on a low ledge with legs dangling and hands resting beside them",
+    "pose_sit_floor_cross": "sitting cross-legged on the floor with hands resting on the knees",
+    "pose_sit_hold_ankle": "sitting with legs bent to one side and one hand gently holding the ankle",
+    "pose_wariza_hands": "sitting in a cute wariza with knees together and both hands placed on the floor in front",
+    "pose_seiza": "kneeling in seiza, sitting back on the heels with hands resting in the lap",
+    "pose_kneel_upright": "kneeling upright with hands resting on the thighs",
+    "pose_one_knee": "kneeling on one knee with a forearm resting on the raised knee",
+    "pose_kneel_look_up": "kneeling on one knee and looking up toward the sky",
+    "pose_kneel_hair": "kneeling upright with one hand in the hair and the other on the hip",
+    "pose_lie_stomach": "lying on the stomach propped on the elbows, chin in the hands, feet kicked up playfully behind",
+    "pose_lie_side": "lying on one side with the head propped up on one hand",
+    "pose_lie_back_hair": "lying on the back with arms resting above the head and hair spread out around them",
+    "pose_lie_back_knee": "lying on the back, relaxed, with one knee raised",
+    "pose_lie_arm_pillow": "lying on the stomach with the head resting on folded arms",
+    "pose_crouch_chin": "crouching down with elbows on the knees and chin resting in one hand",
+    "pose_crouch_look_back": "crouching low and glancing back over the shoulder",
+    "pose_bend_knees": "bending forward slightly with hands on the knees, looking up at the camera",
+    "pose_bend_shoe": "bending down to adjust a shoe strap",
+    "pose_double_peace": "making double peace signs under the chin",
+    "pose_gyaru_peace": "making a gyaru peace sign with the back of the hand facing out beside the face",
+    "pose_fist_cheeks": "pressing small fists cutely against both cheeks",
+    "pose_bunny_ears": "holding both hands above the head like bunny ears",
+    "pose_cat_paw": "making a playful cat-paw gesture with loosely curled hands near the face",
+    "pose_rawr": "doing a playful 'rawr' pose with hands curled like little claws",
+    "pose_poke_cheek": "poking their own cheek with an index finger and a cute smile",
+    "pose_flower_chin": "resting the chin on both open palms like a blooming flower",
+    "pose_sweater_paws": "covering the mouth shyly with long sweater-paw sleeves",
+    "pose_please": "pressing palms together in a cute pleading 'please' gesture",
+    "pose_self_hug": "shyly hugging themselves with both arms",
+    "pose_big_heart": "making a big heart shape with both arms above the head",
+    "pose_yawn": "yawning cutely with one hand over the mouth while stretching",
+    "pose_coat_lapels": "holding the lapels of their coat with both hands",
+    "pose_phone_check": "looking down at a smartphone candidly",
+    "pose_skirt_hem": "lightly holding the hem of the skirt with both hands",
+    "pose_curtsy": "dipping into a graceful curtsy",
+    "pose_umbrella": "holding an open umbrella resting over one shoulder",
+    "pose_bouquet": "holding a bouquet of flowers close to the chest",
+    "pose_read_book": "reading an open book, absorbed in it",
+    "pose_coffee": "holding a coffee cup close with both hands",
+    "pose_bicycle": "standing beside a bicycle with one hand on the handlebar",
+    "pose_balloons": "holding a bunch of balloons",
+    "pose_ballet": "balancing in a graceful ballet arabesque",
+    "pose_tennis_swing": "swinging a tennis racket mid-stroke",
+    "pose_skateboard": "riding a skateboard mid-glide",
+    "pose_lunge": "stretching in a deep lunge",
+    "dir_none": "",
+    "dir_back": "seen from behind with the back to the camera",
+    "dir_back_look": "back turned to the camera, looking back over the shoulder",
+    "dir_front": "body facing the camera squarely",
+    "dir_side": "body turned sideways in full profile",
+    "dir_slight": "body angled slightly away from the camera",
+    "dir_3q": "body turned three-quarters to the camera",
+    "head_none": "",
+    "head_chin_down": "chin lowered slightly",
+    "head_chin_up": "chin raised slightly",
+    "head_shoulder": "cheek tipped toward the shoulder",
+    "head_rest_hand": "head resting against one hand",
+    "head_back": "head tilted back",
+    "head_tilt": "head tilted gently to one side",
+    "head_turned": "head turned to the side",
+    "gaze_none": "",
+    "gaze_closed": "eyes gently closed",
+    "gaze_camera": "looking directly at the camera with engaging eye contact",
+    "gaze_down": "eyes cast downward",
+    "gaze_away": "gazing off into the distance",
+    "gaze_upward_glance": "glancing up at the camera through the lashes",
+    "gaze_up": "eyes looking upward",
+    "gaze_side_glance": "giving the camera a sideways glance",
+    "hands_none": "",
+    "hands_crossed": "arms crossed",
+    "hands_overhead": "arms raised overhead",
+    "hands_relaxed": "arms relaxed naturally at the sides",
+    "hands_both_hips": "both hands on the hips",
+    "hands_lips": "a fingertip resting lightly on the lips",
+    "hands_hair": "one hand running through the hair",
+    "hands_hip": "one hand on the hip",
+    "hands_neck": "one hand resting at the neck and collarbone",
+    "hands_face": "one hand softly touching the face",
+    "hands_behind": "hands clasped behind the back",
+    "hands_clasped": "hands clasped loosely in front",
+    "hands_pockets": "hands tucked casually into the pockets",
+    "hands_strap": "one hand holding a bag strap",
+    "hands_sleeve": "fingers tugging lightly at a sleeve",
+    "legs_none": "",
+    "legs_ankles_crossed": "ankles crossed",
+    "legs_kick_back": "one foot kicked up behind",
+    "legs_knees_in": "knees together with toes turned slightly inward",
+    "legs_crossed_knee": "legs crossed at the knee",
+    "legs_cross_stand": "legs crossed while standing",
+    "legs_extended": "legs stretched out long",
+    "legs_together": "legs held neatly together",
+    "legs_mid_stride": "caught mid-stride",
+    "legs_tiptoe": "up on tiptoe",
+    "legs_knee_bent": "one knee slightly bent",
+    "legs_wide": "feet planted in a wide power stance",
+    "pe_none": "",
+    "pe_candid": "with candid, unposed body language",
+    "pe_confident": "with strong, confident body language",
+    "pe_cool": "with cool, nonchalant body language",
+    "pe_dynamic": "captured mid-motion with dynamic energy",
+    "pe_elegant": "with graceful, elegant posture",
+    "pe_playful": "with playful, energetic body language",
+    "pe_relaxed": "with relaxed, natural body language",
+    "pe_shy": "with shy, soft body language",
+    "dress_none": "",
+    "dress_babydoll": "wearing a babydoll dress",
+    "dress_ballgown": "wearing a ball gown",
+    "dress_bodycon": "wearing a bodycon dress",
+    "dress_corset": "wearing a corset dress",
+    "dress_jumpsuit": "wearing a jumpsuit",
+    "dress_knit": "wearing a knit dress",
+    "dress_maxi": "wearing a flowing maxi dress",
+    "dress_midi": "wearing a midi dress",
+    "dress_mini": "wearing a mini dress",
+    "dress_off_shoulder": "wearing an off-shoulder dress",
+    "dress_pinafore": "wearing a pinafore dress over a simple top",
+    "dress_qipao": "wearing a qipao cheongsam dress",
+    "dress_romper": "wearing a romper playsuit",
+    "dress_shirt": "wearing a shirt dress",
+    "dress_slip": "wearing a slip dress",
+    "dress_sundress": "wearing a sundress",
+    "dress_tea": "wearing a vintage tea dress",
+    "dress_tiered": "wearing a tiered ruffle dress",
+    "dress_wrap": "wearing a wrap dress",
+    "out_none": "",
+    "out_blazer": "a tailored blazer",
+    "out_bolero": "a cropped bolero shrug",
+    "out_cape": "a cape",
+    "out_cardigan": "a soft knit cardigan",
+    "out_cropped_cardigan": "a cropped knit cardigan",
+    "out_denim_jacket": "a denim jacket",
+    "out_faux_fur": "a fluffy faux-fur coat",
+    "out_kimono": "a flowing kimono-style cardigan",
+    "out_leather": "a leather jacket",
+    "out_wool_coat": "a long wool coat",
+    "out_open_shirt": "an unbuttoned shirt worn open",
+    "out_puffer": "a puffer jacket",
+    "out_shawl": "a soft shawl draped over the shoulders",
+    "out_trench": "a trench coat",
+    "out_tweed": "a tweed jacket",
+    "out_varsity": "a varsity jacket",
+    "out_zip_hoodie": "an open zip-up hoodie",
+    "fit_none": "",
+    "fit_aline": "an A-line silhouette",
+    "fit_body": "a body-hugging silhouette",
+    "fit_cropped": "a cropped, high-waisted silhouette",
+    "fit_fitted": "a neatly fitted silhouette",
+    "fit_flowy": "a flowy, airy silhouette",
+    "fit_layered": "a layered silhouette",
+    "fit_oversized": "an oversized, relaxed silhouette",
+    "fit_relaxed": "a relaxed-fit silhouette",
+    "fit_tailored": "a sharply tailored silhouette",
+    "leg_none": "",
+    "leg_ankle": "white ankle socks",
+    "leg_crew": "crew socks",
+    "leg_fishnet": "fishnet tights",
+    "leg_frilly": "frilly lace-trimmed socks",
+    "leg_knee": "knee-high socks",
+    "leg_warmers": "knit leg warmers",
+    "leg_loose": "slouchy Japanese loose socks",
+    "leg_opaque": "opaque black tights",
+    "leg_patterned": "patterned tights",
+    "leg_sheer_black": "sheer black tights",
+    "leg_nude": "sheer nude stockings",
+    "leg_thigh": "thigh-high socks",
+    "leg_white_tights": "white tights",
+    "det_corset": "a corset-style lace-up bodice",
+    "det_embroidery": "delicate embroidery",
+    "det_floral": "a floral print",
+    "det_gingham": "a gingham pattern",
+    "det_lace_trim": "lace trim",
+    "det_off_shoulder": "an off-shoulder neckline",
+    "det_buttons": "pearl buttons",
+    "det_collar": "a rounded Peter Pan collar",
+    "det_checks": "a plaid check pattern",
+    "det_pleats": "crisp pleats",
+    "det_polka": "a polka-dot pattern",
+    "det_puff": "puff sleeves",
+    "det_bows": "ribbon bow accents",
+    "det_frills": "ruffled frill trims",
+    "det_sailor": "a sailor collar",
+    "det_sequins": "sparkling sequins",
+    "det_sheer_sleeves": "sheer sleeves",
+    "det_slit": "a side slit",
+    "det_square_neck": "a square neckline",
+    "det_stripes": "stripes",
+    "det_tiered": "tiered layers",
+    "det_v_neck": "a V-neckline",
+    "os_none": "",
+    "os_spr_frill_knit": "wearing an ivory frill-trimmed knit top, a denim mini skirt and a light beige spring coat, with white crew socks and white sneakers",
+    "os_spr_floral_cami": "wearing a yellow floral camisole under a soft pink cardigan and a pink pleated mini skirt, with ivory socks, mary jane shoes and a small ribbon-trimmed shoulder bag",
+    "os_spr_floral_midi": "wearing a pink floral midi dress with a cropped denim jacket, white ankle socks, strappy sandals and a mini bag",
+    "os_spr_ribbon_blouse": "wearing a cream ribbon-tie blouse and a mint green pleated midi skirt, with beige pumps, a small handbag and a delicate gold necklace",
+    "os_spr_shirt_dress": "wearing a sage green shirt dress with a ribbon tie at the collar, sheer beige tights, low sandals and a mini bag on a gold chain",
+    "os_spr_lace_cami": "wearing a blue lace-trimmed camisole layered under a cropped knit cardigan and cream wide-leg pants, with pointed pumps and a pearl necklace",
+    "os_sum_linen": "wearing an oversized white linen shirt with rolled sleeves and beige linen shorts, with leather slide sandals, a straw tote bag and thin gold hoop earrings",
+    "os_sum_sundress": "wearing a white cotton eyelet sundress and a wide-brim straw hat, with flat strappy sandals and a woven basket bag",
+    "os_sum_crop_denim": "wearing a fitted baby-tee crop top and high-waisted light-wash denim shorts, with white ankle socks, chunky sneakers and a mini shoulder bag",
+    "os_sum_halter_maxi": "wearing a flowing printed halter-neck maxi dress, with flat sandals, layered gold anklets and oversized sunglasses",
+    "os_sum_gingham": "wearing a red gingham puff-sleeve top and a white tiered mini skirt, with white canvas sneakers and a cherry hair clip",
+    "os_sum_resort": "wearing a short-sleeve printed resort shirt and relaxed cream linen trousers, with leather loafers and round sunglasses",
+    "os_aut_trench": "wearing a classic beige trench coat over a fine-knit cream turtleneck and straight-leg blue jeans, with brown leather loafers and a structured shoulder bag",
+    "os_aut_corduroy": "wearing a brown corduroy pinafore dress over a cream ribbed knit top, with opaque black tights, mary jane shoes and a wool beret",
+    "os_aut_plaid": "wearing a burgundy plaid pleated skirt and a white collared shirt under a chunky cream cardigan, with knee-high socks and chunky penny loafers",
+    "os_aut_leather": "wearing a black leather biker jacket over a grey ribbed tank and a champagne satin slip midi skirt, with black ankle boots",
+    "os_aut_knit_dress": "wearing a camel ribbed knit midi dress with a thin belt, knee-high brown suede boots and a small gold pendant necklace",
+    "os_aut_blazer": "wearing an oversized grey wool blazer over a white t-shirt and pleated wide-leg trousers, with white leather sneakers and a black tote bag",
+    "os_win_wool_coat": "wearing a long camel wool coat over a cream cable-knit sweater and a knit mini skirt, with a chunky knit scarf, black tights and knee-high leather boots",
+    "os_win_puffer": "wearing a cropped white puffer jacket over a grey hoodie and relaxed sweatpants, with a soft knit beanie and chunky winter sneakers",
+    "os_win_fur": "wearing a fluffy faux-fur coat over a fitted black knit dress, with sheer black tights, heeled ankle boots and pearl earrings",
+    "os_win_tweed": "wearing a matching cream tweed jacket and mini skirt set with gold buttons, a pearl necklace, white tights and black ballet flats",
+    "os_win_overcoat": "wearing a charcoal wool overcoat over a black turtleneck sweater and tailored grey trousers, with leather chelsea boots and a cashmere scarf",
+    "os_win_cozy": "wearing an oversized fluffy knit sweater and a pleated mini skirt, with cream knit leg warmers, fuzzy earmuffs and suede boots",
+    "os_par_sequin": "wearing a sparkling silver sequin mini dress, with strappy heeled sandals, a small metallic clutch and statement drop earrings",
+    "os_par_satin_gown": "wearing a floor-length champagne satin slip gown with a cowl neckline, delicate strappy heels and a thin diamond necklace",
+    "os_par_tulle": "wearing a pastel pink tulle princess dress with a fitted bodice and layered full skirt, satin ribbon details, pearl hair accessories and ballet flats",
+    "os_par_velvet_suit": "wearing a tailored deep green velvet suit with a black silk shirt, polished oxford shoes and a slim watch",
+    "os_par_lbd": "wearing a classic little black dress with a square neckline, sheer black tights, black pointed pumps and pearl stud earrings",
+    "fab_corduroy": "corduroy fabric",
+    "fab_crochet": "crochet knit",
+    "fab_jersey": "soft jersey fabric",
+    "fab_knit": "fine-gauge knit",
+    "fab_organza": "organza fabric",
+    "fab_sequin": "sequin fabric",
+    "fab_tulle": "tulle fabric",
+    "col_butter": "soft butter yellow color tones",
+    "col_grey": "grey color tones",
+    "col_ivory": "soft ivory color tones",
 }
 
 
@@ -2480,16 +3283,17 @@ FS_KEYS = ["fs_athleisure", "fs_barbiecore", "fs_basketball", "fs_beach_cover",
            "fs_rockstar", "fs_school", "fs_skater", "fs_ski", "fs_streetwear",
            "fs_teen", "fs_tennis", "fs_thai",
            "fs_vintage", "fs_western", "fs_y2k", "fs_yoga"]
-FB_KEYS = ["fab_none", "fab_chiffon", "fab_cotton", "fab_denim", "fab_lace",
-           "fab_leather", "fab_linen", "fab_satin", "fab_sheer",
-           "fab_silk", "fab_tweed", "fab_velvet", "fab_wool"]
+FB_KEYS = ["fab_none", "fab_chiffon", "fab_corduroy", "fab_cotton", "fab_crochet",
+           "fab_denim", "fab_knit", "fab_jersey", "fab_lace", "fab_leather",
+           "fab_linen", "fab_organza", "fab_satin", "fab_sequin", "fab_sheer",
+           "fab_silk", "fab_tulle", "fab_tweed", "fab_velvet", "fab_wool"]
 CP_KEYS = ["col_none", "col_black", "col_baby_blue", "col_beige", "col_blue",
-           "col_brown", "col_burgundy", "col_colorblock", "col_cool",
-           "col_coral", "col_earthy", "col_gold", "col_green", "col_hot_pink",
-           "col_khaki", "col_lilac", "col_mint", "col_mono", "col_navy",
-           "col_orange", "col_pastel", "col_peach", "col_pink", "col_purple",
-           "col_red", "col_sage", "col_silver", "col_teal", "col_vibrant",
-           "col_warm", "col_white", "col_yellow"]
+           "col_brown", "col_burgundy", "col_butter", "col_colorblock", "col_cool",
+           "col_coral", "col_earthy", "col_gold", "col_green", "col_grey",
+           "col_hot_pink", "col_ivory", "col_khaki", "col_lilac", "col_mint",
+           "col_mono", "col_navy", "col_orange", "col_pastel", "col_peach",
+           "col_pink", "col_purple", "col_red", "col_sage", "col_silver",
+           "col_teal", "col_vibrant", "col_warm", "col_white", "col_yellow"]
 TOP_KEYS = ["top_none", "top_blazer", "top_blouse", "top_bodysuit",
             "top_bomber", "top_bralette", "top_button_shirt", "top_camisole",
             "top_cardigan", "top_corset", "top_crop", "top_denim_jacket",
@@ -2557,36 +3361,116 @@ CMP_KEYS = ["comp_center", "comp_rot_left", "comp_rot_right",
             "comp_golden", "comp_leading", "comp_framed",
             "comp_negative_space", "comp_symmetry", "comp_diagonal",
             "comp_fill", "comp_reflection", "comp_depth"]
-PO_KEYS = ["pose_none",
-           "pose_fix_jacket", "pose_adjust_glasses", "pose_arms_up",
-           "pose_cross_arms", "pose_arms_open", "pose_back_camera",
-           "pose_blow_kiss", "pose_boxing", "pose_candid",
-           "pose_carefree_walk", "pose_cartwheel", "pose_chin_up",
-           "pose_cross_leg", "pose_crouch", "pose_touch_plants", "pose_dance",
-           "pose_dribble", "pose_dynamic", "pose_editorial", "pose_elegant",
-           "pose_finger_frame", "pose_finger_heart",
-           "pose_hair_flip", "pose_hand_hair",
-           "pose_hand_chin", "pose_hand_hip", "pose_hands_back",
-           "pose_arms_behind_head", "pose_cheek_hands",
-           "pose_hands_pocket", "pose_head_tilt", "pose_heart_hands",
-           "pose_high_fashion", "pose_hold_camera", "pose_grass_stalk",
-           "pose_hug_knees", "pose_jump",
-           "pose_kneel", "pose_lean", "pose_railing", "pose_lean_forward",
-           "pose_ear_wall", "pose_looking_away", "pose_look_back_walk",
-           "pose_over_shoulder", "pose_look_up", "pose_lying",
-           "pose_meditate", "pose_mini_heart", "pose_mirror_selfie",
-           "pose_ok_sign", "pose_peace",
-           "pose_peek_tree", "pose_peek_fingers", "pose_pick_flower",
-           "pose_point_camera",
-           "pose_reach_camera", "pose_run",
-           "pose_runway", "pose_s_curve", "pose_salute", "pose_selfie",
-           "pose_shield_sun", "pose_shush", "pose_sit",
-           "pose_sit_stairs", "pose_legs_extended", "pose_skip",
-           "pose_smell_flower", "pose_stand",
-           "pose_squat", "pose_stretch", "pose_thumbs_up", "pose_tiptoe",
-           "pose_hold_hat",
-           "pose_hair_tuck", "pose_twirl", "pose_wave", "pose_w_sit",
-           "pose_walk", "pose_walk_away", "pose_wink", "pose_yoga"]
+# Pose categories (first-level picker). Every pose belongs to exactly one
+# category; PO_KEYS is derived from this map, sorted A-Z by English label.
+PC_KEYS = ["pc_all", "pc_standing", "pc_walking", "pc_sitting", "pc_kneeling",
+          "pc_lying", "pc_crouching", "pc_cute", "pc_social", "pc_props",
+          "pc_sport"]
+POSE_CATEGORIES = {
+    "pc_standing": ["pose_arms_up", "pose_cross_arms", "pose_arms_open", "pose_back_camera",
+            "pose_hair_both", "pose_hands_hips", "pose_chin_up", "pose_contrapposto",
+            "pose_elegant", "pose_hand_collar", "pose_hand_hair", "pose_hand_hip",
+            "pose_hands_back", "pose_arms_behind_head", "pose_hands_pocket",
+            "pose_hands_nape", "pose_lean", "pose_railing", "pose_looking_away",
+            "pose_over_shoulder", "pose_look_up", "pose_foot_kick", "pose_s_curve",
+            "pose_stand", "pose_stretch", "pose_tiptoe"],
+    "pc_walking": ["pose_candid", "pose_carefree_walk", "pose_dance", "pose_hair_flip",
+            "pose_jump", "pose_look_back_walk", "pose_run", "pose_runway", "pose_skip",
+            "pose_twirl", "pose_walk", "pose_walk_away", "pose_walk_toward",
+            "pose_bag_strap"],
+    "pc_sitting": ["pose_cross_leg", "pose_hug_knees", "pose_meditate", "pose_sit_side",
+            "pose_sit", "pose_sit_chair_back", "pose_sit_floor_cross", "pose_sit_ledge",
+            "pose_sit_stairs", "pose_sit_cheek_knee", "pose_sit_hold_ankle",
+            "pose_legs_extended", "pose_sit_knee_up", "pose_w_sit", "pose_wariza_hands"],
+    "pc_kneeling": ["pose_kneel", "pose_kneel_upright", "pose_kneel_hair", "pose_kneel_look_up",
+            "pose_one_knee", "pose_seiza"],
+    "pc_lying": ["pose_lying", "pose_lie_back_hair", "pose_lie_back_knee", "pose_lie_side",
+            "pose_lie_stomach", "pose_lie_arm_pillow"],
+    "pc_crouching": ["pose_bend_shoe", "pose_bend_knees", "pose_crouch", "pose_crouch_chin",
+            "pose_crouch_look_back", "pose_lean_forward", "pose_squat"],
+    "pc_cute": ["pose_big_heart", "pose_blow_kiss", "pose_bunny_ears", "pose_cat_paw",
+            "pose_double_peace", "pose_finger_frame", "pose_finger_heart",
+            "pose_fist_cheeks", "pose_flower_chin", "pose_gyaru_peace",
+            "pose_hand_chin", "pose_cheek_hands", "pose_head_tilt", "pose_heart_hands",
+            "pose_mini_heart", "pose_ok_sign", "pose_peace", "pose_peek_fingers",
+            "pose_salute", "pose_please", "pose_point_camera", "pose_poke_cheek",
+            "pose_rawr", "pose_shush", "pose_self_hug", "pose_sweater_paws",
+            "pose_thumbs_up", "pose_hair_tuck", "pose_wave", "pose_wink", "pose_yawn"],
+    "pc_social": ["pose_fix_jacket", "pose_adjust_glasses", "pose_phone_check", "pose_curtsy",
+            "pose_editorial", "pose_high_fashion", "pose_coat_lapels", "pose_skirt_hem",
+            "pose_mirror_selfie", "pose_reach_camera", "pose_selfie", "pose_shield_sun",
+            "pose_hold_hat"],
+    "pc_props": ["pose_touch_plants", "pose_bouquet", "pose_coffee", "pose_hold_camera",
+            "pose_grass_stalk", "pose_umbrella", "pose_balloons", "pose_ear_wall",
+            "pose_peek_tree", "pose_pick_flower", "pose_read_book", "pose_smell_flower",
+            "pose_bicycle"],
+    "pc_sport": ["pose_ballet", "pose_boxing", "pose_cartwheel", "pose_dribble", "pose_dynamic",
+            "pose_skateboard", "pose_lunge", "pose_tennis_swing", "pose_yoga"],
+}
+PO_KEYS = ["pose_none"] + sorted(
+    (k for keys in POSE_CATEGORIES.values() for k in keys),
+    key=lambda k: TRANSLATIONS["en"][k].lower())
+
+
+def pose_keys_for_category(pc_key: str):
+    """Pose option pool for the selected pose category (None stays first)."""
+    if pc_key in POSE_CATEGORIES:
+        return ["pose_none"] + [k for k in PO_KEYS if k in POSE_CATEGORIES[pc_key]]
+    return PO_KEYS
+
+# Pose fine-tuning (all None-first, rest A-Z) — appended after the pose
+BD_KEYS = ["dir_none", "dir_back", "dir_back_look", "dir_front", "dir_side",
+           "dir_slight", "dir_3q"]
+HD_KEYS = ["head_none", "head_chin_down", "head_chin_up", "head_shoulder",
+           "head_rest_hand", "head_back", "head_tilt", "head_turned"]
+GZ_KEYS = ["gaze_none", "gaze_closed", "gaze_camera", "gaze_down", "gaze_away",
+           "gaze_upward_glance", "gaze_up", "gaze_side_glance"]
+HA_KEYS = ["hands_none", "hands_crossed", "hands_overhead", "hands_relaxed",
+           "hands_both_hips", "hands_lips", "hands_hair", "hands_hip", "hands_neck",
+           "hands_face", "hands_behind", "hands_clasped", "hands_pockets",
+           "hands_strap", "hands_sleeve"]
+LG_KEYS = ["legs_none", "legs_ankles_crossed", "legs_kick_back", "legs_knees_in",
+           "legs_crossed_knee", "legs_cross_stand", "legs_extended",
+           "legs_together", "legs_mid_stride", "legs_tiptoe", "legs_knee_bent",
+           "legs_wide"]
+PE_KEYS = ["pe_none", "pe_candid", "pe_confident", "pe_cool", "pe_dynamic",
+           "pe_elegant", "pe_playful", "pe_relaxed", "pe_shy"]
+# Outfit layers: dress / one-piece garments (outfit type "Dress")
+DR_KEYS = ["dress_none", "dress_babydoll", "dress_ballgown", "dress_bodycon",
+           "dress_corset", "dress_jumpsuit", "dress_knit", "dress_maxi",
+           "dress_midi", "dress_mini", "dress_off_shoulder", "dress_pinafore",
+           "dress_qipao", "dress_romper", "dress_shirt", "dress_slip",
+           "dress_sundress", "dress_tea", "dress_tiered", "dress_wrap"]
+# Outer layer worn over the top or dress — noun phrases, prompt adds "layered with"
+OUT_KEYS = ["out_none", "out_blazer", "out_bolero", "out_cape", "out_cardigan",
+            "out_cropped_cardigan", "out_denim_jacket", "out_faux_fur",
+            "out_kimono", "out_leather", "out_wool_coat", "out_open_shirt",
+            "out_puffer", "out_shawl", "out_trench", "out_tweed", "out_varsity",
+            "out_zip_hoodie"]
+FIT_KEYS = ["fit_none", "fit_aline", "fit_body", "fit_cropped", "fit_fitted",
+            "fit_flowy", "fit_layered", "fit_oversized", "fit_relaxed",
+            "fit_tailored"]
+LEG_KEYS = ["leg_none", "leg_ankle", "leg_crew", "leg_fishnet", "leg_frilly",
+            "leg_knee", "leg_warmers", "leg_loose", "leg_opaque", "leg_patterned",
+            "leg_sheer_black", "leg_nude", "leg_thigh", "leg_white_tights"]
+# Design details & prints (multiselect, A-Z, no None)
+DET_KEYS = ["det_corset", "det_embroidery", "det_floral", "det_gingham",
+            "det_lace_trim", "det_off_shoulder", "det_buttons", "det_collar",
+            "det_checks", "det_pleats", "det_polka", "det_puff", "det_bows",
+            "det_frills", "det_sailor", "det_sequins", "det_sheer_sleeves",
+            "det_slit", "det_square_neck", "det_stripes", "det_tiered",
+            "det_v_neck"]
+# Ready-made seasonal outfit sets (outfit type "Set"), grouped by season
+OSET_KEYS = ["os_none", "os_spr_frill_knit", "os_spr_floral_cami",
+             "os_spr_floral_midi", "os_spr_ribbon_blouse", "os_spr_shirt_dress",
+             "os_spr_lace_cami", "os_sum_linen", "os_sum_sundress",
+             "os_sum_crop_denim", "os_sum_halter_maxi", "os_sum_gingham",
+             "os_sum_resort", "os_aut_trench", "os_aut_corduroy", "os_aut_plaid",
+             "os_aut_leather", "os_aut_knit_dress", "os_aut_blazer",
+             "os_win_wool_coat", "os_win_puffer", "os_win_fur", "os_win_tweed",
+             "os_win_overcoat", "os_win_cozy", "os_par_sequin", "os_par_satin_gown",
+             "os_par_tulle", "os_par_velvet_suit", "os_par_lbd"]
+OM_KEYS = ["om_separates", "om_dress", "om_set"]
 
 # Widget key → option key list, for the Random Look button.
 # Identity fields (gender, age, ethnicity) are deliberately NOT randomized.
@@ -2600,6 +3484,14 @@ RANDOM_WIDGETS = {
     "w_location": LO_KEYS, "w_tod": TD_KEYS, "w_lighting": LT_KEYS,
     "w_season": SN_KEYS, "w_pstyle": PS_KEYS, "w_framing": SF_KEYS,
     "w_angle": CA_KEYS, "w_dof": DOF_KEYS, "w_comp": CMP_KEYS, "w_pose": PO_KEYS,
+    "w_gaze": GZ_KEYS, "w_pose_energy": PE_KEYS,
+}
+
+# Pose fine-tuning widgets that only make sense for a specific pose — Random
+# Look and themes reset them to None instead of randomizing (random hand/leg
+# details would contradict the random pose most of the time).
+POSE_DETAIL_WIDGETS = {
+    "w_body_dir": BD_KEYS, "w_head": HD_KEYS, "w_hands": HA_KEYS, "w_legs": LG_KEYS,
 }
 
 # Scene/camera subset for the "Random Scene" button — keeps the subject,
@@ -2618,9 +3510,9 @@ PHOTO_SET_SF_KEYS = ["sf_closeup", "sf_medium_cu", "sf_medium", "sf_cowboy",
                      "sf_medium_full", "sf_full"]
 PHOTO_SET_CA_KEYS = ["cam_eye", "cam_low", "cam_high", "cam_3q", "cam_profile",
                      "cam_over_shoulder", "cam_back"]
-PHOTO_SET_POSE_EXCLUDE = {"pose_none", "pose_boxing", "pose_cartwheel",
-                          "pose_dribble", "pose_meditate", "pose_yoga",
-                          "pose_mirror_selfie", "pose_selfie"}
+PHOTO_SET_POSE_EXCLUDE = ({"pose_none", "pose_meditate", "pose_mirror_selfie",
+                           "pose_selfie", "pose_phone_check"}
+                          | set(POSE_CATEGORIES["pc_sport"]))
 PHOTO_SET_SIZE = 6
 
 # Widgets whose stored value is a translated label — must be reset when the
@@ -2632,6 +3524,10 @@ LANG_DEPENDENT_WIDGETS = list(RANDOM_WIDGETS) + [
     "w_gender_p2", "w_hair_p2", "w_hair_color_p2", "w_expr_p2",
     "w_gender_p3", "w_hair_p3", "w_hair_color_p3", "w_expr_p3",
     "w_group_mix", "w_pet", "w_theme",
+    "w_pose_cat", *POSE_DETAIL_WIDGETS,
+    "w_outfit_mode", "w_dress", "dress_fabric_sel", "dress_color_sel",
+    "w_outfit_set", "w_outer", "outer_color_sel", "w_fit", "w_legwear",
+    "detail_multi",
 ]
 
 # Hairstyle widget → the gender widget whose hair pool it depends on
@@ -2668,7 +3564,30 @@ PRESET_WIDGETS = {
     "w_location": LO_KEYS, "w_tod": TD_KEYS, "w_lighting": LT_KEYS,
     "w_season": SN_KEYS, "w_pstyle": PS_KEYS, "w_framing": SF_KEYS,
     "w_angle": CA_KEYS, "w_dof": DOF_KEYS, "w_comp": CMP_KEYS, "w_pose": PO_KEYS,
+    "w_pose_cat": PC_KEYS, "w_gaze": GZ_KEYS, "w_pose_energy": PE_KEYS,
+    **POSE_DETAIL_WIDGETS,
+    "w_outfit_mode": OM_KEYS, "w_dress": DR_KEYS,
+    "dress_fabric_sel": FB_KEYS, "dress_color_sel": CP_KEYS,
+    "w_outfit_set": OSET_KEYS, "w_outer": OUT_KEYS, "outer_color_sel": CP_KEYS,
+    "w_fit": FIT_KEYS, "w_legwear": LEG_KEYS,
 }
+
+# Neutral outfit-layer + pose-detail values. Built-in themes are applied on
+# top of this so leftovers from the previous look (a dress, leg warmers,
+# "hands in pockets"…) can't clash with the theme's own outfit and pose.
+LOOK_BASE = {
+    "w_pose_cat": "pc_all", "w_gaze": "gaze_none", "w_pose_energy": "pe_none",
+    **{wk: keys[0] for wk, keys in POSE_DETAIL_WIDGETS.items()},
+    "w_outfit_mode": "om_separates", "w_dress": "dress_none",
+    "dress_fabric_sel": "fab_none", "dress_color_sel": "col_none",
+    "w_outfit_set": "os_none", "w_outer": "out_none", "outer_color_sel": "col_none",
+    "w_fit": "fit_none", "w_legwear": "leg_none", "detail_multi": [],
+}
+
+
+def reset_pose_on_category_change():
+    """Pose category changed — the old pose may not be in the new pool."""
+    st.session_state.pop("w_pose", None)
 
 
 def reset_hair_on_gender_change():
@@ -2697,25 +3616,50 @@ def randomize_look():
         st.session_state[f"w_hair{suffix}"] = t(random.choice(p_pool))
         st.session_state[f"w_hair_color{suffix}"] = t(random.choice(HC_KEYS))
         st.session_state[f"w_expr{suffix}"] = t(random.choice(EX_KEYS))
-    # Outfit: either a fashion style OR explicit garments, never both
-    if random.random() < 0.5:
+    # Pose: drawn from the full list, so show all categories; the per-pose
+    # details (hands, legs…) go back to None so they can't contradict it
+    st.session_state["w_pose_cat"] = t("pc_all")
+    for widget_key, option_keys in POSE_DETAIL_WIDGETS.items():
+        st.session_state[widget_key] = t(option_keys[0])
+    # Outfit: a fashion style, explicit separates, a dress, or a ready-made
+    # set — one source per look, never mixed, to avoid clashes
+    for widget_key, val in LOOK_BASE.items():
+        if widget_key.startswith(("w_pose", "w_gaze")) or widget_key in POSE_DETAIL_WIDGETS:
+            continue
+        st.session_state[widget_key] = val if isinstance(val, list) else t(val)
+    for widget_key, none_key in (("w_top", "top_none"), ("w_bottom", "bot_none"),
+                                 ("top_fabric_sel", "fab_none"), ("bot_fabric_sel", "fab_none"),
+                                 ("top_color_sel", "col_none"), ("bot_color_sel", "col_none"),
+                                 ("w_shoes", "sh_none")):
+        st.session_state[widget_key] = t(none_key)
+    st.session_state["fashion_multi"] = []
+    roll = random.random()
+    if roll < 0.3:
         st.session_state["fashion_multi"] = [t(k) for k in random.sample(FS_KEYS, random.randint(1, 2))]
-        st.session_state["w_top"] = t("top_none")
-        st.session_state["w_bottom"] = t("bot_none")
-        st.session_state["top_fabric_sel"] = t("fab_none")
-        st.session_state["bot_fabric_sel"] = t("fab_none")
-        st.session_state["top_color_sel"] = t("col_none")
-        st.session_state["bot_color_sel"] = t("col_none")
-        st.session_state["w_shoes"] = t("sh_none")
-    else:
-        st.session_state["fashion_multi"] = []
-        st.session_state["w_top"] = t(random.choice(TOP_KEYS[1:]))
-        st.session_state["w_bottom"] = t(random.choice(BOT_KEYS[1:]))
-        st.session_state["top_fabric_sel"] = t(random.choice(FB_KEYS[1:]))
-        st.session_state["bot_fabric_sel"] = t(random.choice(FB_KEYS[1:]))
-        st.session_state["top_color_sel"] = t(random.choice(CP_KEYS[1:]))
-        st.session_state["bot_color_sel"] = t(random.choice(CP_KEYS[1:]))
+    elif roll < 0.85:
+        if roll < 0.6:
+            st.session_state["w_top"] = t(random.choice(TOP_KEYS[1:]))
+            st.session_state["w_bottom"] = t(random.choice(BOT_KEYS[1:]))
+            st.session_state["top_fabric_sel"] = t(random.choice(FB_KEYS[1:]))
+            st.session_state["bot_fabric_sel"] = t(random.choice(FB_KEYS[1:]))
+            st.session_state["top_color_sel"] = t(random.choice(CP_KEYS[1:]))
+            st.session_state["bot_color_sel"] = t(random.choice(CP_KEYS[1:]))
+        else:
+            st.session_state["w_outfit_mode"] = t("om_dress")
+            st.session_state["w_dress"] = t(random.choice(DR_KEYS[1:]))
+            st.session_state["dress_fabric_sel"] = t(random.choice(FB_KEYS[1:]))
+            st.session_state["dress_color_sel"] = t(random.choice(CP_KEYS[1:]))
+        # Optional layers on top of the garments
+        if random.random() < 0.35:
+            st.session_state["w_outer"] = t(random.choice(OUT_KEYS[1:]))
+        if random.random() < 0.35:
+            st.session_state["w_legwear"] = t(random.choice(LEG_KEYS[1:]))
+        st.session_state["w_fit"] = t(random.choice(FIT_KEYS))
+        st.session_state["detail_multi"] = [t(k) for k in random.sample(DET_KEYS, random.randint(0, 2))]
         st.session_state["w_shoes"] = t(random.choice(SH_KEYS[1:]))
+    else:
+        st.session_state["w_outfit_mode"] = t("om_set")
+        st.session_state["w_outfit_set"] = t(random.choice(OSET_KEYS[1:]))
     st.session_state["force_generate"] = True
 
 
@@ -2750,6 +3694,16 @@ def _apply_preset_dict(data):
     fs = data.get("fashion_multi", [])
     if isinstance(fs, list):
         st.session_state["fashion_multi"] = [t(k) for k in fs if k in FS_KEYS]
+    det = data.get("detail_multi")
+    if isinstance(det, list):
+        st.session_state["detail_multi"] = [t(k) for k in det if k in DET_KEYS]
+    # A loaded pose must be selectable in the (possibly loaded) pose category
+    pose = data.get("w_pose")
+    if pose in PO_KEYS:
+        cat_label = st.session_state.get("w_pose_cat", t("pc_all"))
+        cat_key = next((k for k in PC_KEYS if t(k) == cat_label), "pc_all")
+        if pose not in pose_keys_for_category(cat_key):
+            st.session_state["w_pose_cat"] = t("pc_all")
     st.session_state["force_generate"] = True
 
 
@@ -2771,7 +3725,7 @@ def apply_theme():
     label = st.session_state.get("w_theme")
     for theme_key, preset in THEME_PRESETS.items():
         if t(theme_key) == label:
-            _apply_preset_dict(preset)
+            _apply_preset_dict({**LOOK_BASE, **preset})
             break
 
 
@@ -2779,6 +3733,22 @@ def request_photo_set():
     """Generate a set of prompt variations sharing subject/outfit/scene."""
     st.session_state["photo_set_request"] = True
     st.session_state["force_generate"] = True
+
+
+def garment_picker(keys, label_key, widget_key, fab_label_key, fab_widget,
+                   col_label_key, col_widget):
+    """Garment selectbox plus fabric/color pickers (shown once a garment is
+    chosen). Returns (garment_key, fabric_key, color_key)."""
+    g_labels, _ = make_option(keys)
+    g_sel = st.selectbox(t(label_key), g_labels, key=widget_key)
+    g_key = keys[g_labels.index(g_sel)]
+    fb_key, cp_key = "fab_none", "col_none"
+    if g_key != keys[0]:
+        fb_labels, _ = make_option(FB_KEYS)
+        fb_key = FB_KEYS[fb_labels.index(st.selectbox(t(fab_label_key), fb_labels, key=fab_widget))]
+        cp_labels, _ = make_option(CP_KEYS)
+        cp_key = CP_KEYS[cp_labels.index(st.selectbox(t(col_label_key), cp_labels, key=col_widget))]
+    return g_key, fb_key, cp_key
 
 
 # Built-in theme presets: curated look + scene bundles applied through the
@@ -2798,6 +3768,7 @@ THEME_PRESETS = {
         "w_pstyle": "ps_nostalgic", "w_framing": "sf_medium",
         "w_angle": "cam_eye", "w_dof": "dof_fg_blur",
         "w_comp": "comp_framed", "w_pose": "pose_smell_flower",
+        "w_pose_energy": "pe_relaxed",
     },
     "theme_neon_night": {
         "w_hair": "hair_straight", "w_hair_color": "hc_black",
@@ -2812,6 +3783,7 @@ THEME_PRESETS = {
         "w_pstyle": "ps_cyber", "w_framing": "sf_medium",
         "w_angle": "cam_low", "w_dof": "dof_bokeh_lights",
         "w_comp": "comp_center", "w_pose": "pose_lean",
+        "w_gaze": "gaze_camera", "w_pose_energy": "pe_cool",
     },
     "theme_cafe_film": {
         "w_hair": "hair_lob", "w_hair_color": "hc_milk_tea",
@@ -2826,6 +3798,7 @@ THEME_PRESETS = {
         "w_pstyle": "ps_vintage", "w_framing": "sf_medium_cu",
         "w_angle": "cam_3q", "w_dof": "dof_portrait",
         "w_comp": "comp_negative_space", "w_pose": "pose_hand_chin",
+        "w_gaze": "gaze_away", "w_pose_energy": "pe_relaxed",
     },
     "theme_beach": {
         "w_hair": "hair_loose_waves", "w_hair_color": "hc_light_brown",
@@ -2840,6 +3813,7 @@ THEME_PRESETS = {
         "w_pstyle": "ps_vivid", "w_framing": "sf_full",
         "w_angle": "cam_eye", "w_dof": "dof_shallow",
         "w_comp": "comp_golden", "w_pose": "pose_shield_sun",
+        "w_pose_energy": "pe_candid",
     },
     "theme_studio": {
         "w_hair": "hair_bun", "w_hair_color": "hc_black",
@@ -2854,6 +3828,7 @@ THEME_PRESETS = {
         "w_pstyle": "ps_editorial", "w_framing": "sf_medium",
         "w_angle": "cam_eye", "w_dof": "dof_clean_bg",
         "w_comp": "comp_center", "w_pose": "pose_high_fashion",
+        "w_gaze": "gaze_camera", "w_pose_energy": "pe_confident",
     },
     "theme_cherry": {
         "w_hair": "hair_half_up", "w_hair_color": "hc_dark_brown",
@@ -2868,6 +3843,7 @@ THEME_PRESETS = {
         "w_pstyle": "ps_soft", "w_framing": "sf_medium_full",
         "w_angle": "cam_eye", "w_dof": "dof_shallow",
         "w_comp": "comp_depth", "w_pose": "pose_look_back_walk",
+        "w_pose_energy": "pe_playful",
     },
 }
 
@@ -2987,7 +3963,7 @@ def main():
         st.caption(t("theme_hint"))
 
         st.divider()
-        st.caption("v5.6 — AI Prompt Generator")
+        st.caption("v5.7 — AI Prompt Generator")
 
     # ── Header ───────────────────────────────────────────────────────────
     st.markdown(
@@ -3133,45 +4109,78 @@ def main():
 
         st.markdown("---")
 
-        # ── Top: garment + fabric + color ──
+        # Outfit type: separates (top + bottom), a dress / one-piece, or a
+        # ready-made seasonal set. Only the active type's garments are used.
+        om_labels, _ = make_option(OM_KEYS)
+        om_sel = st.radio(t("outfit_mode"), om_labels, horizontal=True, key="w_outfit_mode")
+        om_key = OM_KEYS[om_labels.index(om_sel)]
+
+        top_key, top_fb_key, top_cp_key = "top_none", "fab_none", "col_none"
+        bot_key, bot_fb_key, bot_cp_key = "bot_none", "fab_none", "col_none"
+        dr_key, dr_fb_key, dr_cp_key = "dress_none", "fab_none", "col_none"
+        os_key = "os_none"
+        out_key, out_cp_key = "out_none", "col_none"
+        fit_key, leg_key, sh_key = "fit_none", "leg_none", "sh_none"
+        det_selected_keys = []
+
         # Garments default to "None" so a fashion preset alone fully defines
         # the outfit; fabric/color pickers only appear once a garment is chosen.
-        col_top, col_bot = st.columns(2)
-        with col_top:
-            top_labels, _ = make_option(TOP_KEYS)
-            top_sel = st.selectbox(t("top_garment"), top_labels, key="w_top")
-            top_key = TOP_KEYS[top_labels.index(top_sel)]
-            top_fb_key, top_cp_key = "fab_none", "col_none"
-            if top_key != "top_none":
-                top_fb_labels, _ = make_option(FB_KEYS)
-                top_fb_sel = st.selectbox(t("top_fabric"), top_fb_labels, key="top_fabric_sel")
-                top_fb_key = FB_KEYS[top_fb_labels.index(top_fb_sel)]
-                top_cp_labels, _ = make_option(CP_KEYS)
-                top_cp_sel = st.selectbox(t("top_color"), top_cp_labels, key="top_color_sel")
-                top_cp_key = CP_KEYS[top_cp_labels.index(top_cp_sel)]
-        # ── Bottom: garment + fabric + color ──
-        with col_bot:
-            bot_labels, _ = make_option(BOT_KEYS)
-            bot_sel = st.selectbox(t("bottom_garment"), bot_labels, key="w_bottom")
-            bot_key = BOT_KEYS[bot_labels.index(bot_sel)]
-            bot_fb_key, bot_cp_key = "fab_none", "col_none"
-            if bot_key != "bot_none":
-                bot_fb_labels, _ = make_option(FB_KEYS)
-                bot_fb_sel = st.selectbox(t("bot_fabric"), bot_fb_labels, key="bot_fabric_sel")
-                bot_fb_key = FB_KEYS[bot_fb_labels.index(bot_fb_sel)]
-                bot_cp_labels, _ = make_option(CP_KEYS)
-                bot_cp_sel = st.selectbox(t("bot_color"), bot_cp_labels, key="bot_color_sel")
-                bot_cp_key = CP_KEYS[bot_cp_labels.index(bot_cp_sel)]
+        if om_key == "om_separates":
+            col_top, col_bot = st.columns(2)
+            with col_top:
+                top_key, top_fb_key, top_cp_key = garment_picker(
+                    TOP_KEYS, "top_garment", "w_top",
+                    "top_fabric", "top_fabric_sel", "top_color", "top_color_sel")
+            with col_bot:
+                bot_key, bot_fb_key, bot_cp_key = garment_picker(
+                    BOT_KEYS, "bottom_garment", "w_bottom",
+                    "bot_fabric", "bot_fabric_sel", "bot_color", "bot_color_sel")
+        elif om_key == "om_dress":
+            col_dr, _ = st.columns(2)
+            with col_dr:
+                dr_key, dr_fb_key, dr_cp_key = garment_picker(
+                    DR_KEYS, "dress_garment", "w_dress",
+                    "dress_fabric", "dress_fabric_sel", "dress_color", "dress_color_sel")
+        else:
+            os_labels, _ = make_option(OSET_KEYS)
+            os_sel = st.selectbox(t("outfit_set"), os_labels, index=1, key="w_outfit_set")
+            os_key = OSET_KEYS[os_labels.index(os_sel)]
+            st.caption(t("outfit_set_hint"))
 
         # Gentle warning when a preset style and explicit garments are mixed
-        if fs_selected_keys and (top_key != "top_none" or bot_key != "bot_none"):
+        if fs_selected_keys and (top_key != "top_none" or bot_key != "bot_none"
+                                 or dr_key != "dress_none" or os_key != "os_none"):
             st.caption(t("outfit_clash_hint"))
 
-        col_sh, _ = st.columns(2)
-        with col_sh:
-            sh_labels, _ = make_option(SH_KEYS)
-            sh_sel = st.selectbox(t("footwear"), sh_labels, key="w_shoes")
-            sh_key = SH_KEYS[sh_labels.index(sh_sel)]
+        # Layers & finishing — a ready-made set already includes all of these
+        if om_key != "om_set":
+            col_out, col_outc = st.columns(2)
+            with col_out:
+                out_labels, _ = make_option(OUT_KEYS)
+                out_sel = st.selectbox(t("outer_layer"), out_labels, key="w_outer")
+                out_key = OUT_KEYS[out_labels.index(out_sel)]
+            with col_outc:
+                if out_key != "out_none":
+                    out_cp_labels, _ = make_option(CP_KEYS)
+                    out_cp_sel = st.selectbox(t("outer_color"), out_cp_labels, key="outer_color_sel")
+                    out_cp_key = CP_KEYS[out_cp_labels.index(out_cp_sel)]
+            col_fit, col_leg, col_sh = st.columns(3)
+            with col_fit:
+                fit_labels, _ = make_option(FIT_KEYS)
+                fit_sel = st.selectbox(t("fit"), fit_labels, key="w_fit")
+                fit_key = FIT_KEYS[fit_labels.index(fit_sel)]
+            with col_leg:
+                leg_labels, _ = make_option(LEG_KEYS)
+                leg_sel = st.selectbox(t("legwear"), leg_labels, key="w_legwear")
+                leg_key = LEG_KEYS[leg_labels.index(leg_sel)]
+            with col_sh:
+                sh_labels, _ = make_option(SH_KEYS)
+                sh_sel = st.selectbox(t("footwear"), sh_labels, key="w_shoes")
+                sh_key = SH_KEYS[sh_labels.index(sh_sel)]
+            det_labels = [t(k) for k in DET_KEYS]
+            det_selected_labels = st.multiselect(t("details"), det_labels, default=[],
+                                                 help=t("details_help"), key="detail_multi")
+            det_selected_keys = [DET_KEYS[det_labels.index(lbl)] for lbl in det_selected_labels]
 
         st.markdown("---")
         outfit_text = st.text_input(t("outfit_input"), placeholder=t("outfit_placeholder"))
@@ -3217,7 +4226,59 @@ def main():
                     acc_selected.append(ak)
 
     # ══════════════════════════════════════════════════════════════════════
-    #  EXPANDER 3 — Scene & Lighting
+    #  EXPANDER 3 — Pose & Body Language
+    # ══════════════════════════════════════════════════════════════════════
+    with st.expander(f"🕺  {t('exp_pose')}", expanded=True):
+        # Pose reference (e.g. a mannequin pose sheet) — copies only the body
+        # position, so the pose pickers are disabled while it's on
+        attach_pose = st.checkbox(t("attach_pose_photo"), key="attach_pose")
+        if attach_pose:
+            st.markdown(f'<div class="ref-attached">📎 {t("attach_pose_note")}</div>', unsafe_allow_html=True)
+
+        # Two-level picker: category → pose (category "All" shows every pose)
+        col_pc, col_po = st.columns(2)
+        with col_pc:
+            pc_labels, _ = make_option(PC_KEYS)
+            pc_sel = st.selectbox(t("pose_category"), pc_labels, key="w_pose_cat",
+                                  on_change=reset_pose_on_category_change,
+                                  disabled=attach_pose)
+            pc_key = PC_KEYS[pc_labels.index(pc_sel)]
+        with col_po:
+            po_options = pose_keys_for_category(pc_key)
+            po_labels, _ = make_option(po_options)
+            if st.session_state.get("w_pose") not in po_labels:
+                st.session_state.pop("w_pose", None)
+            po_sel = st.selectbox(t("pose"), po_labels, key="w_pose", disabled=attach_pose)
+            po_key = po_options[po_labels.index(po_sel)]
+
+        # Fine-tuning: orientation / head / hands / legs are pose-specific;
+        # gaze and mood apply to any pose (and to every Photo Set shot)
+        st.markdown(f"**{t('pose_detail_header')}**")
+        st.caption(t("pose_detail_hint"))
+        pose_detail_keys = {}
+        detail_specs = [("w_body_dir", "body_dir"), ("w_head", "head_pos"),
+                        ("w_hands", "hands_pos"), ("w_legs", "legs_pos")]
+        detail_cols = st.columns(4)
+        for col, (wk, label_key) in zip(detail_cols, detail_specs):
+            with col:
+                opts = POSE_DETAIL_WIDGETS[wk]
+                d_labels, _ = make_option(opts)
+                d_sel = st.selectbox(t(label_key), d_labels, key=wk, disabled=attach_pose)
+                pose_detail_keys[wk] = opts[d_labels.index(d_sel)]
+        col_gz, col_pe = st.columns(2)
+        with col_gz:
+            gz_labels, _ = make_option(GZ_KEYS)
+            gz_sel = st.selectbox(t("gaze"), gz_labels, key="w_gaze")
+            gz_key = GZ_KEYS[gz_labels.index(gz_sel)]
+        with col_pe:
+            pe_labels, _ = make_option(PE_KEYS)
+            pe_sel = st.selectbox(t("pose_energy"), pe_labels, key="w_pose_energy")
+            pe_key = PE_KEYS[pe_labels.index(pe_sel)]
+        pose_text = st.text_input(t("pose_text"), placeholder=t("pose_text_placeholder"),
+                                  key="pose_text_input")
+
+    # ══════════════════════════════════════════════════════════════════════
+    #  EXPANDER 4 — Scene & Lighting
     # ══════════════════════════════════════════════════════════════════════
     with st.expander(f"🌅  {t('exp_scene')}", expanded=True):
         # Scene reference checkbox
@@ -3294,7 +4355,7 @@ def main():
             ca_sel = st.selectbox(t("camera_angle"), ca_labels, index=1, key="w_angle")
             ca_key = CA_KEYS[ca_labels.index(ca_sel)]
 
-        col14, col15, col16 = st.columns(3)
+        col14, col15 = st.columns(2)
         with col14:
             dof_labels, _ = make_option(DOF_KEYS)
             dof_sel = st.selectbox(t("dof"), dof_labels, index=2, key="w_dof")
@@ -3303,14 +4364,9 @@ def main():
             cmp_labels, _ = make_option(CMP_KEYS)
             cmp_sel = st.selectbox(t("composition"), cmp_labels, key="w_comp")
             cmp_key = CMP_KEYS[cmp_labels.index(cmp_sel)]
-        with col16:
-            po_labels, _ = make_option(PO_KEYS)
-            po_sel = st.selectbox(t("pose"), po_labels, key="w_pose")
-            po_key = PO_KEYS[po_labels.index(po_sel)]
-        look_at_camera = st.checkbox(t("look_camera"))
 
     # ══════════════════════════════════════════════════════════════════════
-    #  EXPANDER 4 — Advanced
+    #  EXPANDER 5 — Advanced
     # ══════════════════════════════════════════════════════════════════════
     with st.expander(f"⚙️  {t('exp_advanced')}", expanded=False):
         custom_text = st.text_area(t("custom_prompt"), placeholder=t("custom_placeholder"), height=80)
@@ -3341,6 +4397,12 @@ def main():
             "w_location": lo_key, "w_tod": td_key, "w_lighting": lt_key,
             "w_season": sn_key, "w_pstyle": ps_key, "w_framing": sf_key,
             "w_angle": ca_key, "w_dof": dof_key, "w_comp": cmp_key, "w_pose": po_key,
+            "w_pose_cat": pc_key, "w_gaze": gz_key, "w_pose_energy": pe_key,
+            **pose_detail_keys,
+            "w_outfit_mode": om_key, "w_dress": dr_key,
+            "dress_fabric_sel": dr_fb_key, "dress_color_sel": dr_cp_key,
+            "w_outfit_set": os_key, "w_outer": out_key, "outer_color_sel": out_cp_key,
+            "w_fit": fit_key, "w_legwear": leg_key, "detail_multi": det_selected_keys,
         }
         # Extra persons (duo/trio) — only present while those rows are shown
         for pi, (p_gd, p_hr, p_hc, p_ex) in enumerate(extra_person_keys, start=2):
@@ -3447,7 +4509,8 @@ def main():
             if v:
                 outfit_parts.append(v)
         for g_key, fb_key, cp_key in ((top_key, top_fb_key, top_cp_key),
-                                      (bot_key, bot_fb_key, bot_cp_key)):
+                                      (bot_key, bot_fb_key, bot_cp_key),
+                                      (dr_key, dr_fb_key, dr_cp_key)):
             garment = eng(g_key)
             if not garment:
                 continue
@@ -3456,23 +4519,48 @@ def main():
             if eng(cp_key):
                 garment += f" in {eng(cp_key)}"
             outfit_parts.append(garment)
+        if eng(os_key):
+            outfit_parts.append(eng(os_key))
+        if eng(out_key):
+            outer = f"layered with {eng(out_key)}"
+            if eng(out_cp_key):
+                outer += f" in {eng(out_cp_key)}"
+            outfit_parts.append(outer)
+        if eng(fit_key):
+            outfit_parts.append(f"with {eng(fit_key)}")
+        det_vals = [eng(k) for k in det_selected_keys if eng(k)]
+        if det_vals:
+            det_text = (", ".join(det_vals[:-1]) + " and " + det_vals[-1]
+                        if len(det_vals) > 1 else det_vals[0])
+            outfit_parts.append(f"featuring {det_text}")
+        if eng(leg_key):
+            outfit_parts.append(f"with {eng(leg_key)}")
         if eng(sh_key):
             outfit_parts.append(eng(sh_key))
         if outfit_text.strip():
             outfit_parts.append(f"wearing {translate_to_english(outfit_text)}")
         if attach_outfit:
-            outfit_parts.append("wearing the exact outfit shown in the attached outfit reference image, matching its design, colors and details")
+            outfit_parts.append("wearing the exact outfit shown in the attached outfit reference image (it may be displayed on a mannequin or as a flat lay), matching its design, layers, colors, fabrics and details")
         for ak in acc_selected:
             v = eng(ak)
             if v:
                 outfit_parts.append(v)
         outfit = ", ".join(outfit_parts)
 
-        # Pose — the pose itself may be "None"
-        pose_parts = [eng(po_key)] if eng(po_key) else []
-        if look_at_camera:
-            pose_parts.append("looking directly at the camera with engaging eye contact")
-        pose = ", ".join(pose_parts)
+        # Pose — a pose reference image replaces the pickers; otherwise the
+        # pose + its fine-tuning details, then gaze, mood and free text.
+        # Every part may be "None".
+        if attach_pose:
+            pose_parts = ["posed exactly like the figure in the attached pose reference image, "
+                          "matching its body position, limb placement and head angle, "
+                          "but not its appearance, body shape or clothing"]
+        else:
+            pose_parts = [eng(po_key)] + [eng(pose_detail_keys[wk]) for wk in
+                                          ("w_body_dir", "w_legs", "w_hands", "w_head")]
+        pose_tail = [eng(gz_key), eng(pe_key)]
+        if pose_text.strip():
+            pose_tail.append(translate_to_english(pose_text))
+        pose = ", ".join(p for p in pose_parts + pose_tail if p)
 
         # Environment
         if attach_scene:
@@ -3522,6 +4610,8 @@ def main():
             ref_notes.append(t("ref_note_subject"))
         if attach_outfit:
             ref_notes.append(t("ref_note_outfit"))
+        if attach_pose:
+            ref_notes.append(t("ref_note_pose"))
         if attach_scene:
             ref_notes.append(t("ref_note_scene"))
 
@@ -3564,13 +4654,17 @@ def main():
         # ── Photo Set: same subject/outfit/scene, varied pose + framing +
         # angle per shot, so the prompts generate one coherent album ──
         if st.session_state.pop("photo_set_request", False):
-            pose_pool = [k for k in PO_KEYS
+            # Stay inside the chosen pose category when it has enough poses
+            # (e.g. a "Sitting" album); gaze + mood carry over to every shot,
+            # pose-specific details and the pose reference do not.
+            pose_pool = [k for k in pose_keys_for_category(pc_key)
                          if eng(k) and k not in PHOTO_SET_POSE_EXCLUDE]
+            if len(pose_pool) < PHOTO_SET_SIZE:
+                pose_pool = [k for k in PO_KEYS
+                             if eng(k) and k not in PHOTO_SET_POSE_EXCLUDE]
             set_prompts = []
             for v_pose_key in random.sample(pose_pool, PHOTO_SET_SIZE):
-                v_pose_parts = [eng(v_pose_key)]
-                if look_at_camera:
-                    v_pose_parts.append("looking directly at the camera with engaging eye contact")
+                v_pose_parts = [p for p in [eng(v_pose_key), eng(gz_key), eng(pe_key)] if p]
                 v_camera = ", ".join(p for p in (
                     eng(lt_key), eng(random.choice(PHOTO_SET_SF_KEYS)),
                     eng(random.choice(PHOTO_SET_CA_KEYS)),
