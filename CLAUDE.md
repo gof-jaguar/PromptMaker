@@ -8,16 +8,16 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 python3 -m streamlit run app.py
 ```
 
-No build step, no environment variables, no API keys required. Single dependency: `streamlit>=1.30.0`.
+No build step, no environment variables, no API keys required. Single dependency: `streamlit>=1.40.0` (needs `st.container(key=…)`).
 
 Deployed on Streamlit Cloud — pushing to `main` on GitHub auto-deploys to https://promptmaker.streamlit.app/.
 
 ## Architecture
 
-Single-file Streamlit app (`app.py`, ~5900 lines) structured in sequential sections:
+Streamlit app in three Python files: `app.py` (~2,500 lines: helpers, option key lists, callbacks, UI, generate block), `translations.py` (`TRANSLATIONS`, ~3,000 lines) and `prompt_values.py` (`ENGLISH_VALUES`, ~1,200 lines), plus `browser_store/index.html` (static localStorage component) and `scripts/check.py`. `app.py` imports the two data modules; its sections in order:
 
-1. **TRANSLATIONS** — Bilingual dictionary (EN/TH) with 1332 keys. Every UI string goes through `t(key)` helper.
-2. **ENGLISH_VALUES** — Maps option keys to English prompt text for AI output (e.g. `"hair_long"` → `"long flowing hair"`). Dropdown/selectbox options that affect the generated prompt need entries here.
+1. **TRANSLATIONS** (`translations.py`) — Bilingual dictionary (EN/TH) with 1464 keys. Every UI string goes through `t(key)` helper.
+2. **ENGLISH_VALUES** (`prompt_values.py`) — Maps option keys to English prompt text for AI output (e.g. `"hair_long"` → `"long flowing hair"`). Dropdown/selectbox options that affect the generated prompt need entries here.
 3. **HELPERS** — `t()` for translation, `eng()` for prompt values, `make_option()` for selectbox pairs, `translate_to_english()` for Thai→English with a mini dictionary, `look_desc()` which builds one person's hair/bangs/expression/makeup phrase while skipping any "None / Not specified" pick.
 3.5. **OPTION KEY LISTS + RANDOMIZER** — Module-level `*_KEYS` constants (single source of truth for every selectbox's option keys, including `MT_KEYS` model types, `LENS_KEYS`, `GD_KEYS`/`AG_KEYS`/`ET_KEYS` identity lists, `MU_KEYS` makeup, `NS_KEYS` people count, `SH_KEYS` footwear), `PHOTO_MODEL_KEYS` (photographic model types that get the lens spec), `AR_RATIOS` (raw ratio strings per aspect key), `RANDOM_WIDGETS` (widget key → option list map), `SCENE_RANDOM_WIDGETS` (scene/camera subset), `PRESET_WIDGETS` (save/load field map), and the `randomize_look()`, `randomize_scene()`, `apply_look_preset()`, `reset_hair_on_gender_change()`, `reset_person_hair()` callbacks, plus `GM_KEYS` (group gender mix), `HAIR_GENDER_WIDGETS` (hairstyle widget → gender widget map) and `hair_pool_for_label()`. Also `PET_KEYS` (companion animal), `THEME_PRESETS` + `apply_theme()` (built-in look/scene bundles applied via the shared `_apply_preset_dict()` helper), and `PHOTO_SET_SF_KEYS`/`PHOTO_SET_CA_KEYS`/`PHOTO_SET_POSE_EXCLUDE`/`PHOTO_SET_SIZE` + `request_photo_set()` for Photo Set mode. v5.7 adds the pose builder (`PC_KEYS`, `POSE_CATEGORIES` → derived `PO_KEYS`, `pose_keys_for_category()`, `BD_KEYS`/`HD_KEYS`/`HA_KEYS`/`LG_KEYS` in `POSE_DETAIL_WIDGETS`, `GZ_KEYS`, `PE_KEYS`) and outfit layers (`OM_KEYS`, `DR_KEYS`, `OSET_KEYS`, `OUT_KEYS`, `FIT_KEYS`, `LEG_KEYS`, `DET_KEYS`), plus `LOOK_BASE` (neutral values themes are applied over) and `garment_picker()`. v5.8 adds subject detail lists (`ST_KEYS` skin tone, `FSH_KEYS`, `EYE_KEYS`, `EC_KEYS`, `BROW_KEYS`, `LIP_KEYS`, `FM_KEYS`, `FH_KEYS`, `SKF_KEYS`, `HF_KEYS`, `NL_KEYS`), Character Lock (`CHAR_WIDGETS`, `lock_character()`, `_lock()`, `unlock_character()`, `load_library_character()`, `enforce_character_lock()`, `widget_option_value()`), camera/scene lists (`CH_KEYS`, `CD_KEYS`, `CS_KEYS`, `CF_KEYS`, `LD_KEYS`, `LC_KEYS`, `LQ_KEYS`, `ATM_KEYS`, `BGP_KEYS`, `LFX_KEYS`, `LCAT_KEYS` + `LOC_CATEGORIES` → derived `LO_KEYS`, `loc_keys_for_category()`), `CAM_MIGRATION`, `MULTI_WIDGETS` (all multiselects), `SCENE_BASE` and `_reset_scene_pickers()`. `LANG_DEPENDENT_WIDGETS` is now derived from `PRESET_WIDGETS` + `MULTI_WIDGETS`.
 4. **CSS** — Injected via `st.markdown(unsafe_allow_html=True)`. Responsive breakpoints at 768px (mobile) and 1400px (desktop). Uses Noto Sans Thai font. `.streamlit/config.toml` sets `disableWidgetStateDuplicationWarning` because widgets are deliberately set via session state while passing a default index.
@@ -126,6 +126,17 @@ Single-file Streamlit app (`app.py`, ~5900 lines) structured in sequential secti
 
 **Sorting convention:** All selectbox/multiselect option lists are sorted A-Z by their English label. This applies to: fashion presets, top garments, bottom garments, fabric, color palette, poses, and appearance options.
 
+**v5.9 — national costumes, locations, hairstyles:** Ready-made sets gain 22 national/traditional costumes (`os_nat_*`, 👘-prefixed by country: Thai Chakkri / sabai + chong kraben / lace + pha sin / Lanna / Isan / men's raj pattern, Japanese furisode / yukata / hakama / miko / men's, Korean hanbok, Chinese hanfu / qipao / Tang suit, ao dai, saree, lehenga, kebaya, dirndl). `OSET_RANDOM_KEYS` excludes them, so Random Look never drops a kimono into a random scene — they are picked by hand or via the three new themes (`theme_thai_temple`, `theme_kyoto_kimono`, `theme_matsuri`). Six gender-neutral traditional fashion styles (`fs_kimono`, `fs_yukata`, `fs_hanbok`, `fs_hanfu`, `fs_ao_dai`, `fs_saree`; 49 total) cover duo/trio/men. Hairstyles: women 40 + None (trend cuts plus traditional Thai chignon, Japanese kanzashi updo, Korean daenggi braid, hanfu updo), men 18 + None (two-block, curtain, mullet, quiff…). Locations: 135 + None — Thailand 21, `lcat_asia` is now "Japan, Korea & China" (24), travel adds Hoi An, Bali, India, Morocco, Paris, New York, London. Also poses `pose_wai`, `pose_bow`, `pose_parasol`, `pose_sleeve_smile` (144 total) and accessories flower in hair, folding fan, paper parasol.
+
+**v6.0 — set categories, culture-matched random, browser storage:**
+- *Set categories:* `w_set_cat` (`OSCAT_KEYS`, in `PRESET_WIDGETS` and `LOOK_BASE`) filters `w_outfit_set` through `oset_keys_for_category()`; a set's category is its key prefix (`OSCAT_PREFIXES`: `os_spr_`/`os_sum_`/`os_aut_`/`os_win_`/`os_par_`/`os_nat_`), so **a new set only needs the right prefix**. Stale label popped before render; preset loads fall back to "All".
+- *Random Look style:* sidebar selectbox `w_random_style` (`RS_KEYS`: everyday / national costume any country / Thailand / Japan / Korea / China). For non-everyday styles `randomize_look()` calls `_pick_culture()` + `_apply_culture_look()` after the generic randomization: a costume set for the main gender (`sets_f`/`sets_m` in `CULTURE_LOOKS`; cultures without a set for that gender are skipped, and if none is eligible it falls back to an everyday look), a matching location, traditional hairstyle (women's pool only), pose, and calm values from `CULTURE_POOLS` (natural light, dark hair, soft makeup). `CULTURE_NIGHT_LOCS` force night + lantern light.
+- *Browser storage:* `sync_browser_store()` runs at the end of `main()`. The `browser_store` component (declared with `components.declare_component(path=…)`, no build step, no extra dependency) returns the saved JSON once; the library (validated by `_valid_library_entry()`) and history are merged into session state, then every run sends the current `char_library` + `prompt_history` back to `localStorage["promptmaker_store_v1"]`. Data stays in the browser. Library entries can be deleted (`delete_library_character()`), history cleared (`clear_prompt_history()`).
+
+**Prompt length (v6.1, sidebar `w_prompt_len`, `PL_KEYS`, default Standard):** `eng(key)` is length-aware. *Detailed* returns `ENGLISH_VALUES` unchanged. *Standard* uses `COMPACT_VALUES` (tighter wording for ~250 padded keys; an empty string such as `ch_eye` means "default — say nothing") and strips `COMPACT_STRIP_SUFFIXES` (" color tones", " fabric"). *Short* additionally returns "" for `SHORT_DROP_PREFIXES` (quality tags, lens, hair/skin finish, nails, light quality, composition, pose mood), uses `SHORT_VALUES` overrides (national sets, traditional hair) and cuts `SHORT_CUTS` (`fs_` at " with ", `os_` at ", with "). All four tables live in `prompt_values.py`. Because any key can now be empty, **every list in the generate block must filter empty parts**. The chosen key is mirrored into `st.session_state["prompt_len_key"]` (read by `prompt_len()`), so the choice survives a language switch even though the widget label is popped; changing it regenerates (`request_generate`). **When adding a long option, add a compact version to `COMPACT_VALUES` too.**
+
+**Simple mode (v6.2, default on):** `st.toggle` `simple_mode` at the top of the main area. The five expanders are wrapped in `st.container(key="full_ui")`; in Simple mode a `<style>.st-key-full_ui{display:none}</style>` hides them, but **they still render**, so every variable, widget state, theme, Random Look and preset works unchanged. `render_simple_panel()` draws 12 mirror pickers from `SIMPLE_ROWS` (gender, age, hair, hair color · expression, outfit, pose · location, time, lighting · framing, picture style) with keys `sm_<real key>`: before rendering, each mirror copies the real widget's current label (or is popped so both fall back to the same default index); `on_change=sync_simple` writes the pick to the real key (gender also resets hair; location/pose also reset their category to All and switch off the scene/pose reference). The outfit mirror (`sm_outfit`) lists None + fashion styles + ready-made sets; `_simple_outfit_key()` returns None when the real outfit is richer (garments, dress, several styles) and the list then gains a leading "Custom" entry; `sync_simple_outfit()` clears the outfit and sets one style or one set. Mirrors of `CHAR_WIDGETS` are disabled while a character is locked. **To add a simple picker, add a tuple to `SIMPLE_ROWS` with the real widget's default index.** "Reset all" (`reset_all()`) pops every `LANG_DEPENDENT_WIDGETS` key plus `acc_*`, `attach_*`, `sm_*` and the scene mode; the character lock, library and history are kept.
+
 ## Prompt Generation Sections
 
 The generate block builds these sections (in order), each stored as an editable `st.text_area`:
@@ -148,20 +159,8 @@ Plus aspect ratio appended at the end (formatted per target platform) and negati
 
 ## Verification After Changes
 
-Check syntax and key parity with:
 ```bash
-python3 -c "
-import ast
-with open('app.py') as f: tree = ast.parse(f.read())
-for node in ast.walk(tree):
-    if isinstance(node, ast.Assign):
-        for t in node.targets:
-            if isinstance(t, ast.Name) and t.id == 'TRANSLATIONS':
-                d = ast.literal_eval(node.value)
-                en, th = set(d['en']), set(d['th'])
-                print(f'EN: {len(en)}, TH: {len(th)}')
-                print(f'Only EN: {en - th}') if en - th else None
-                print(f'Only TH: {th - en}') if th - en else None
-                if en == th: print('Parity OK')
-"
+python3 scripts/check.py
 ```
+
+Checks EN/TH key parity, that every option key has a label (and prompt text), that themes / `CULTURE_LOOKS` / `CULTURE_POOLS` only use real keys, no duplicate labels per list, then runs the app headless (`AppTest`) in both languages: every theme, Random Look in every style, Random Scene, Photo Set, Generate. `.githooks/pre-push` runs it before every push (enable once per clone: `git config core.hooksPath .githooks`; bypass with `git push --no-verify`). The browser-storage component can only be verified in a real browser.

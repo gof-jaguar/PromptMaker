@@ -11,6 +11,7 @@
 import html as html_mod
 import json
 import random
+from pathlib import Path
 import streamlit as st
 import streamlit.components.v1 as components
 
@@ -26,3862 +27,15 @@ st.set_page_config(
 #  1. TRANSLATION DICTIONARY
 # ═══════════════════════════════════════════════════════════════════════════
 
-TRANSLATIONS = {
-    "en": {
-        # ── Global ──
-        "app_title": "AI Image Prompt Generator",
-        "app_subtitle": "Generate optimized prompts for Gemini · Imagen 3 · Midjourney",
-        "aspect_ratio": "Aspect Ratio",
-        "model_type": "Model Type",
-        "generate_btn": "Generate Prompt",
-        "copy_btn": "Copy to Clipboard",
-        "result_header": "Generated Prompt",
-        "no_prompt_yet": "Click **Generate Prompt** to see your result here.",
-        "target_platform": "Target AI Platform",
-        "platform_universal": "Universal (Gemini · Imagen)",
-        "platform_midjourney": "Midjourney",
-        "platform_sd": "Stable Diffusion / SDXL",
-        "random_btn": "Random Look",
-        "random_scene_btn": "Random Scene",
-        "lens": "Lens (photo modes only)",
-        "lens_24": "24mm (wide / environmental)",
-        "lens_35": "35mm (classic)",
-        "lens_50": "50mm (standard)",
-        "lens_85": "85mm (portrait)",
-        "lens_135": "135mm (telephoto)",
-        "mj_stylize": "Stylize (--stylize)",
-        "mj_seed": "Seed (--seed, optional)",
-        "download_btn": "Download .txt",
-        "history_header": "Prompt History (last 10)",
-        "chars_label": "characters",
-        "words_label": "words",
-
-        # Aspect Ratio
-        "ar_1_1": "1:1  (Square · Instagram)",
-        "ar_16_9": "16:9 (Landscape · YouTube)",
-        "ar_9_16": "9:16 (Portrait · TikTok/Reels)",
-        "ar_4_5": "4:5  (Portrait · Instagram)",
-        "ar_3_2": "3:2  (Landscape · Classic Photo)",
-        "ar_2_3": "2:3  (Portrait · Classic Photo)",
-        "ar_4_3": "4:3  (Landscape · Standard Photo)",
-        "ar_3_4": "3:4  (Portrait · Standard Photo)",
-        "ar_iphone": "iPhone Wallpaper",
-        "ar_android": "Android Wallpaper",
-
-        # Model Type
-        "model_realistic": "Realistic Photography",
-        "model_cinematic": "Cinematic Film Still",
-        "model_film": "Analog Film Photo",
-        "model_fashion": "Fashion Editorial",
-        "model_anime": "Anime / Illustration",
-        "model_digital_painting": "Digital Painting",
-        "model_watercolor": "Watercolor Painting",
-        "model_comic": "Comic / Manga",
-        "model_3d": "3D Render / CGI",
-
-        # ── Subject ──
-        "exp_subject": "Subject",
-        "attach_subject_photo": "I will attach my reference photo (face/person)",
-        "attach_subject_note": "Prompt will instruct AI to match the attached face/identity",
-        "gender": "Gender",
-        "gender_female": "Female",
-        "gender_male": "Male",
-        "gender_nb": "Non-binary",
-        "age_group": "Age Group",
-        "age_5_9": "Child (5-9)",
-        "age_10_14": "Preteen (10-14)",
-        "age_15_19": "Teenager (15-19)",
-        "age_20_25": "Young Adult (20-25)",
-        "age_26_35": "Adult (26-35)",
-        "age_36_45": "Mature (36-45)",
-        "age_46_60": "Middle-aged (46-60)",
-        "age_60plus": "Senior (60+)",
-        "ethnicity": "Ethnicity",
-        "eth_asian": "East-Asian",
-        "eth_se_asian": "Southeast-Asian",
-        "eth_south_asian": "South-Asian",
-        "eth_european": "European / Caucasian",
-        "eth_african": "African",
-        "eth_latin": "Latin American",
-        "eth_middle_east": "Middle-Eastern",
-        "eth_mixed": "Mixed / Ambiguous",
-        "num_subjects": "Number of People",
-        "ns_solo": "Solo (1 person)",
-        "ns_duo": "Duo (2 people)",
-        "ns_trio": "Trio (3 people)",
-        "ns_group": "Group (5 people)",
-        "person_2": "Person 2 — distinct look",
-        "person_3": "Person 3 — distinct look",
-        "multi_person_hint": "💡 Give each person their own gender, hairstyle, hair color and expression below so the AI can tell them apart.",
-        "group_hint": "💡 Group shots describe the central person in detail; the others are prompted to have naturally varied looks.",
-        # Makeup styles (None first, then A-Z)
-        "makeup": "Makeup Style",
-        "mu_none": "— None —",
-        "mu_red_lip": "Classic Red Lip",
-        "mu_douyin": "Douyin / C-beauty",
-        "mu_glam": "Full Glam",
-        "mu_gradient": "Gradient Lips (Korean)",
-        "mu_dewy": "Korean Dewy Glow",
-        "mu_natural": "Natural / Light",
-        "mu_no_makeup": "No-Makeup Look",
-        "mu_smoky": "Smoky Eyes",
-        "mu_soft_matte": "Soft Matte",
-        "hair_style": "Hair Style",
-        # Women's hairstyles
-        "hair_long": "Long Flowing",
-        "hair_straight": "Straight Long",
-        "hair_loose_waves": "Loose Waves",
-        "hair_curly": "Curly",
-        "hair_wavy": "Wavy",
-        "hair_layered": "Layered",
-        "hair_wolf_cut": "Wolf Cut",
-        "hair_hush_cut": "Hush Cut",
-        "hair_hime": "Hime Cut",
-        "hair_bob": "Bob Cut",
-        "hair_lob": "Long Bob / Lob",
-        "hair_pixie": "Pixie Cut",
-        "hair_ponytail": "Ponytail",
-        "hair_high_ponytail": "High Ponytail",
-        "hair_bun": "Bun",
-        "hair_messy_bun": "Messy Bun",
-        "hair_space_buns": "Space Buns",
-        "hair_braids": "Braids",
-        "hair_french_braid": "French Braid",
-        "hair_twin_braids": "Twin Braids",
-        "hair_twintails": "Twin Tails",
-        "hair_half_up": "Half Up Half Down",
-        "hair_side_swept": "Side Swept",
-        # Men's hairstyles
-        "hair_short": "Short",
-        "hair_buzz": "Buzz Cut",
-        "hair_crew_cut": "Crew Cut",
-        "hair_middle_part": "Middle Part (Comma)",
-        "hair_textured_crop": "Textured Crop",
-        "hair_undercut": "Undercut",
-        "hair_fade": "Fade",
-        "hair_slick_back": "Slicked Back",
-        "hair_man_bun": "Man Bun",
-        "hair_bald": "Bald / Shaved",
-        "hair_color": "Hair Color",
-        "hc_black": "Black",
-        "hc_blue_black": "Blue Black",
-        "hc_dark_brown": "Dark Brown",
-        "hc_ash_brown": "Ash Brown",
-        "hc_milk_tea": "Milk Tea Brown",
-        "hc_light_brown": "Light Brown",
-        "hc_honey_blonde": "Honey Blonde",
-        "hc_blonde": "Blonde",
-        "hc_platinum": "Platinum Blonde",
-        "hc_red": "Red / Auburn",
-        "hc_burgundy": "Burgundy / Cherry Red",
-        "hc_rose_gold": "Rose Gold",
-        "hc_pink": "Pink",
-        "hc_purple": "Purple / Lavender",
-        "hc_blue": "Blue",
-        "hc_silver": "Silver / Gray",
-        "hc_white": "White",
-        "hc_ombre": "Ombre (dark to light)",
-        "hc_highlights": "Highlights / Streaks",
-        "bangs": "Bangs",
-        "bangs_none": "None",
-        "bangs_straight": "Straight Bangs",
-        "bangs_see_through": "See-through Bangs",
-        "bangs_side": "Side Bangs",
-        "bangs_curtain": "Curtain Bangs",
-        "bangs_wispy": "Wispy Bangs",
-        "bangs_micro": "Micro Bangs",
-        "bangs_hime": "Hime Sidelocks",
-        "expression": "Facial Expression",
-        "expr_smile": "Gentle Smile",
-        "expr_bright_smile": "Bright Beaming Smile",
-        "expr_laugh": "Laughing",
-        "expr_giggle": "Giggling",
-        "expr_soft_gaze": "Soft Gentle Gaze",
-        "expr_doe_eyes": "Innocent Doe Eyes",
-        "expr_pout": "Cute Pout",
-        "expr_playful": "Playful",
-        "expr_shy": "Shy / Bashful",
-        "expr_confident": "Confident",
-        "expr_smirk": "Smirk",
-        "expr_dreamy": "Dreamy",
-        "expr_peaceful": "Peaceful / Serene",
-        "expr_neutral": "Neutral",
-        "expr_pensive": "Pensive / Thoughtful",
-        "expr_serious": "Serious / Stoic",
-        "expr_surprised": "Surprised",
-        "expr_sad": "Sad / Melancholic",
-        "expr_sultry": "Sultry",
-
-        # ── Body Type ──
-        "body_type": "Body Type",
-        "bt_slim": "Slim / Slender",
-        "bt_petite": "Petite",
-        "bt_lean": "Lean / Toned",
-        "bt_athletic": "Athletic / Fit",
-        "bt_hourglass": "Hourglass",
-        "bt_curvy": "Curvy",
-        "bt_tall": "Tall / Model-like",
-        "bt_average": "Average",
-
-        # ── Appearance / Vibe ── (A-Z)
-        "appearance": "Appearance / Vibe",
-        "app_beautiful": "Beautiful / Gorgeous",
-        "app_cpop": "C-pop Star",
-        "app_charming": "Charming / Lovely",
-        "app_chic": "Chic / Classy",
-        "app_cool": "Cool / Edgy",
-        "app_cute": "Cute / Adorable",
-        "app_doll": "Doll-like",
-        "app_elegant": "Elegant / Sophisticated",
-        "app_fierce": "Fierce / Bold",
-        "app_girl_next_door": "Girl-next-door",
-        "app_handsome": "Handsome / Charming",
-        "app_jpop": "J-pop Idol",
-        "app_kpop": "K-pop Idol",
-        "app_natural": "Natural / Fresh-faced",
-        "app_sweet": "Sweet / Innocent",
-        "app_youthful": "Youthful / Glowing",
-
-        # ── Section Labels (editable output) ──
-        "section_technical": "Technical / Quality",
-        "section_subject": "Subject / Character",
-        "section_outfit": "Outfit & Style",
-        "section_pose": "Pose",
-        "section_environment": "Environment",
-        "section_camera": "Camera & Lighting",
-        "section_custom": "Custom Additions",
-        "section_final": "Final Combined Prompt",
-        "section_negative": "Negative Prompt",
-        "edit_hint": "Edit any section below, then copy the combined prompt.",
-
-        # ── Outfit ──
-        "exp_outfit": "Outfit & Style",
-        "outfit_input": "Describe Outfit (free text)",
-        "outfit_placeholder": "e.g. Japanese school uniform with red ribbon",
-        "fashion_presets": "Fashion Styles (optional, multi-select)",
-        "fashion_presets_help": "Select styles to blend, or skip and describe your own below",
-        "outfit_clash_hint": "💡 A fashion style is selected — leave Top/Bottom on “None” to let the style define the outfit, or clear the style to build your own.",
-        # Fashion presets (A-Z)
-        "fs_athleisure": "Athleisure / Sporty",
-        "fs_barbiecore": "Barbiecore / All Pink",
-        "fs_bohemian": "Bohemian / Boho",
-        "fs_office": "Business Casual / Office",
-        "fs_casual": "Casual / Everyday",
-        "fs_clean_girl": "Clean Girl",
-        "fs_coquette": "Coquette / Balletcore",
-        "fs_cottagecore": "Cottagecore / Pastoral",
-        "fs_cyberpunk": "Cyberpunk / Techwear",
-        "fs_dark_academia": "Dark Academia",
-        "fs_egirl": "E-girl / E-boy",
-        "fs_elegant": "Elegant / Formal",
-        "fs_gorpcore": "Gorpcore / Outdoor",
-        "fs_gothic": "Gothic / Dark",
-        "fs_grunge": "Grunge / 90s",
-        "fs_japanese": "Japanese Harajuku",
-        "fs_korean": "Korean Fashion (K-Style)",
-        "fs_light_academia": "Light Academia",
-        "fs_minimalist": "Minimalist / Clean",
-        "fs_mob_wife": "Mob Wife / Fur Glam",
-        "fs_old_money": "Old Money / Quiet Luxury",
-        "fs_parisian": "Parisian Chic",
-        "fs_preppy": "Preppy / Academic",
-        "fs_resort": "Resort / Vacation",
-        "fs_rockstar": "Rockstar / Band",
-        "fs_skater": "Skater",
-        "fs_streetwear": "Streetwear / Urban",
-        "fs_thai": "Thai Traditional",
-        "fs_vintage": "Vintage / Retro",
-        "fs_western": "Western / Cowboy",
-        "fs_y2k": "Y2K / 2000s Revival",
-        # Top garments (A-Z)
-        "top_garment": "Top",
-        "top_none": "— None (let fashion style decide) —",
-        "top_blazer": "Blazer",
-        "top_blouse": "Blouse",
-        "top_bodysuit": "Bodysuit",
-        "top_bomber": "Bomber Jacket",
-        "top_bralette": "Bralette",
-        "top_button_shirt": "Button-up Shirt",
-        "top_camisole": "Camisole",
-        "top_cardigan": "Cardigan",
-        "top_corset": "Corset Top",
-        "top_crop": "Crop Top",
-        "top_denim_jacket": "Denim Jacket",
-        "top_halter": "Halter Top",
-        "top_hoodie": "Hoodie",
-        "top_knit_vest": "Knit Vest",
-        "top_leather_jacket": "Leather Jacket",
-        "top_long_sleeve": "Long-sleeve Tee",
-        "top_off_shoulder": "Off-shoulder Top",
-        "top_oversized_shirt": "Oversized Shirt",
-        "top_polo": "Polo Shirt",
-        "top_puff_sleeve": "Puff-sleeve Blouse",
-        "top_puffer": "Puffer Jacket",
-        "top_sports_bra": "Sports Bra",
-        "top_sweater": "Sweater",
-        "top_sweatshirt": "Sweatshirt",
-        "top_tshirt": "T-Shirt",
-        "top_tank": "Tank Top",
-        "top_trench": "Trench Coat",
-        "top_tube": "Tube Top",
-        "top_turtleneck": "Turtleneck",
-        "top_varsity": "Varsity Jacket",
-        "top_wrap": "Wrap Top",
-        # Bottom garments (A-Z)
-        "bottom_garment": "Bottom",
-        "bot_none": "— None (let fashion style decide) —",
-        "bot_a_line": "A-line Skirt",
-        "bot_baggy": "Baggy Jeans",
-        "bot_bike_shorts": "Bike Shorts",
-        "bot_cargo": "Cargo Pants",
-        "bot_cargo_skirt": "Cargo Skirt",
-        "bot_culottes": "Culottes",
-        "bot_denim_shorts": "Denim Shorts",
-        "bot_denim_skirt": "Denim Skirt",
-        "bot_flare": "Flare Jeans",
-        "bot_jeans": "Jeans",
-        "bot_joggers": "Joggers",
-        "bot_leggings": "Leggings",
-        "bot_maxi_skirt": "Maxi Skirt",
-        "bot_midi_skirt": "Midi Skirt",
-        "bot_mini_skirt": "Mini Skirt",
-        "bot_overalls": "Overalls",
-        "bot_palazzo": "Palazzo Pants",
-        "bot_parachute": "Parachute Pants",
-        "bot_pencil_skirt": "Pencil Skirt",
-        "bot_pleated_skirt": "Pleated Skirt",
-        "bot_ripped": "Ripped Jeans",
-        "bot_slip_skirt": "Satin Slip Skirt",
-        "bot_shorts": "Shorts",
-        "bot_skort": "Skort",
-        "bot_sweatpants": "Sweatpants",
-        "bot_trousers": "Tailored Trousers",
-        "bot_tennis_skirt": "Tennis Skirt",
-        "bot_tulle_skirt": "Tulle Skirt",
-        "bot_wide_leg": "Wide-leg Pants",
-        "bot_yoga": "Yoga Pants",
-        # Footwear (None first, then A-Z)
-        "footwear": "Footwear",
-        "sh_none": "— None —",
-        "sh_ankle_boots": "Ankle Boots",
-        "sh_ballet": "Ballet Flats",
-        "sh_barefoot": "Barefoot",
-        "sh_chelsea": "Chelsea Boots",
-        "sh_chunky": "Chunky Sneakers",
-        "sh_combat": "Combat Boots",
-        "sh_cowboy": "Cowboy Boots",
-        "sh_espadrilles": "Espadrilles",
-        "sh_flip_flops": "Flip-flops",
-        "sh_heels": "High Heels",
-        "sh_kitten_heels": "Kitten Heels",
-        "sh_knee_boots": "Knee-high Boots",
-        "sh_loafers": "Loafers",
-        "sh_mary_janes": "Mary Janes",
-        "sh_mules": "Mules",
-        "sh_oxford": "Oxford Shoes",
-        "sh_platform": "Platform Shoes",
-        "sh_running": "Running Shoes",
-        "sh_sandals": "Sandals",
-        "sh_sneakers": "Sneakers",
-        "attach_outfit_photo": "I will attach outfit reference photo",
-        "attach_outfit_note": "Prompt will instruct AI to recreate the attached outfit (mannequin or flat-lay images work too)",
-        # Fabric (A-Z) — separate for top & bottom
-        "top_fabric": "Top Fabric",
-        "bot_fabric": "Bottom Fabric",
-        "fab_none": "— Not specified —",
-        "fab_chiffon": "Chiffon",
-        "fab_cotton": "Cotton",
-        "fab_denim": "Denim",
-        "fab_lace": "Lace",
-        "fab_leather": "Leather",
-        "fab_linen": "Linen",
-        "fab_satin": "Satin",
-        "fab_sheer": "Sheer / Translucent",
-        "fab_silk": "Silk",
-        "fab_tweed": "Tweed",
-        "fab_velvet": "Velvet",
-        "fab_wool": "Wool Knit",
-        # Color palette (A-Z) — separate for top & bottom
-        "top_color": "Top Color",
-        "bot_color": "Bottom Color",
-        "col_none": "— Not specified —",
-        "col_black": "All Black",
-        "col_baby_blue": "Baby Blue",
-        "col_beige": "Beige & Nude",
-        "col_blue": "Blue",
-        "col_brown": "Brown & Chocolate",
-        "col_burgundy": "Burgundy & Wine",
-        "col_colorblock": "Colorblock (bold mix)",
-        "col_cool": "Cool Tones (blue, teal, silver)",
-        "col_coral": "Coral",
-        "col_earthy": "Earthy & Brown",
-        "col_gold": "Gold Metallic",
-        "col_green": "Green",
-        "col_hot_pink": "Hot Pink",
-        "col_khaki": "Khaki & Olive",
-        "col_lilac": "Lilac",
-        "col_mint": "Mint Green",
-        "col_mono": "Monochrome",
-        "col_navy": "Navy",
-        "col_orange": "Orange",
-        "col_pastel": "Pastel",
-        "col_peach": "Peach",
-        "col_pink": "Pink",
-        "col_purple": "Purple & Lavender",
-        "col_red": "Red",
-        "col_sage": "Sage Green",
-        "col_silver": "Silver Metallic",
-        "col_teal": "Teal",
-        "col_vibrant": "Vibrant & Neon",
-        "col_warm": "Warm Tones (red, orange, gold)",
-        "col_white": "White & Cream",
-        "col_yellow": "Yellow & Gold",
-
-        # ── Accessories (checkboxes) ──
-        "accessories": "Accessories (select all that apply)",
-        "acc_group_head": "Head Accessories",
-        "acc_group_body": "Body / Jewelry",
-        "acc_group_carried": "Carried Items",
-        "acc_beanie": "Beanie",
-        "acc_beret": "Beret",
-        "acc_bucket_hat": "Bucket Hat",
-        "acc_cap": "Cap",
-        "acc_glasses": "Prescription Glasses",
-        "acc_hair_clip": "Hair Clip",
-        "acc_ribbon": "Hair Ribbon Bow",
-        "acc_hat": "Hat",
-        "acc_headband": "Headband",
-        "acc_scrunchie": "Scrunchie",
-        "acc_sunglasses": "Sunglasses",
-        "acc_tiara": "Tiara / Crown",
-        "acc_anklet": "Anklet",
-        "acc_belt": "Belt",
-        "acc_bowtie": "Bow Tie",
-        "acc_bracelet": "Bracelet",
-        "acc_choker": "Choker",
-        "acc_earrings": "Earrings",
-        "acc_necklace": "Necklace",
-        "acc_necktie": "Necktie",
-        "acc_ring": "Ring",
-        "acc_scarf": "Scarf",
-        "acc_watch": "Watch",
-        "acc_backpack": "Backpack",
-        "acc_book": "Book",
-        "acc_camera": "Film Camera",
-        "acc_clutch": "Clutch Bag",
-        "acc_crossbody": "Crossbody Bag",
-        "acc_bouquet": "Flower Bouquet",
-        "acc_bag": "Handbag",
-        "acc_coffee": "Iced Coffee Cup",
-        "acc_phone": "Smartphone",
-        "acc_tote": "Tote Bag",
-        "acc_umbrella": "Umbrella",
-
-        # ── Scene ──
-        "exp_scene": "Scene & Lighting",
-        "scene_mode": "Location Input",
-        "scene_mode_preset": "Choose from List",
-        "scene_mode_custom": "Describe / Type",
-        "scene_mode_place": "Real Place / Travel",
-        "scene_custom_input": "Describe your location",
-        "scene_custom_placeholder": "e.g. Tokyo street at night with neon signs and wet pavement",
-        "attach_scene_photo": "I will attach scene/background reference photo",
-        "attach_scene_note": "Prompt will instruct AI to use the attached background",
-        "place_landmark": "Landmark / Tourist Attraction",
-        "place_landmark_placeholder": "e.g. Eiffel Tower, Grand Palace, Shibuya Crossing",
-        "place_city": "City",
-        "place_city_placeholder": "e.g. Paris, Bangkok, Tokyo",
-        "place_country": "Country",
-        "place_country_placeholder": "e.g. France, Thailand, Japan",
-        "location": "Location",
-        "loc_studio": "Photography Studio",
-        "loc_airport": "Airport Terminal",
-        "loc_amusement": "Amusement Park",
-        "loc_aquarium": "Aquarium",
-        "loc_art_gallery": "Art Gallery / Museum",
-        "loc_beach": "Beach / Seaside",
-        "loc_bridge": "Bridge / River View",
-        "loc_castle": "Castle / Palace",
-        "loc_cafe": "Coffee Shop / Café",
-        "loc_desert": "Desert Dunes",
-        "loc_old_town": "European Old Town",
-        "loc_flower_field": "Flower Field",
-        "loc_forest": "Forest / Nature",
-        "loc_garden": "Garden / Park",
-        "loc_stairs": "Grand Staircase",
-        "loc_gym": "Gym / Fitness Studio",
-        "loc_room": "Indoor Room / Bedroom",
-        "loc_lake": "Lakeside Pier",
-        "loc_library": "Library / Bookstore",
-        "loc_hotel_lobby": "Luxury Hotel Lobby",
-        "loc_mountain": "Mountain Viewpoint",
-        "loc_neon_alley": "Neon Alley (Cyberpunk)",
-        "loc_night_market": "Night Market",
-        "loc_brick_ruin": "Old Brick House with Ivy",
-        "loc_overgrown": "Overgrown Garden",
-        "loc_pool": "Poolside",
-        "loc_rice_field": "Rice Field / Countryside",
-        "loc_rooftop": "Rooftop / Cityscape",
-        "loc_shopping": "Shopping Street",
-        "loc_snow": "Snowy Landscape / Ski",
-        "loc_subway": "Subway Station",
-        "loc_temple": "Temple / Historic",
-        "loc_train": "Train Station",
-        "loc_university": "University Campus",
-        "loc_street": "Urban Street",
-        "loc_waterfall": "Waterfall",
-        "time_of_day": "Time of Day",
-        "tod_golden": "Golden Hour (Sunset)",
-        "tod_blue": "Blue Hour (Twilight)",
-        "tod_noon": "High Noon",
-        "tod_night": "Nighttime",
-        "tod_overcast": "Overcast / Cloudy",
-        "tod_sunrise": "Sunrise",
-        "season": "Season",
-        "season_none": "Not specified",
-        "season_spring": "Spring",
-        "season_summer": "Summer",
-        "season_autumn": "Autumn / Fall",
-        "season_winter": "Winter",
-        "season_rainy": "Rainy Season",
-        "lighting": "Lighting Style",
-        "lit_natural": "Natural / Ambient",
-        "lit_window": "Soft Window Light",
-        "lit_studio": "Studio Softbox",
-        "lit_rim": "Rim / Backlit",
-        "lit_neon": "Neon / Cyberpunk",
-        "lit_fairy": "Fairy / String Lights",
-        "lit_candle": "Candlelight / Warm",
-        "lit_dramatic": "Dramatic Chiaroscuro",
-        "lit_flash": "Direct Flash (Trendy)",
-        "lit_backlit": "Golden Backlight / Halo",
-        "lit_dappled": "Dappled Light (through leaves)",
-        "lit_blinds": "Window Blinds Shadows",
-        "lit_gel": "Color Gel (red/blue duotone)",
-        "lit_spotlight": "Stage Spotlight",
-        "lit_moonlight": "Moonlight",
-        "lit_bonfire": "Campfire Glow",
-        "lit_godrays": "Volumetric God Rays",
-
-        # ── Picture Style ──
-        "picture_style": "Picture Style / Filter",
-        "ps_none": "None (Default)",
-        "ps_dreamy": "Dreamy / Ethereal",
-        "ps_soft": "Soft / Gentle",
-        "ps_vivid": "Vivid / Saturated",
-        "ps_bw": "Black & White",
-        "ps_vintage": "Vintage / Retro Film",
-        "ps_nostalgic": "Warm Nostalgic Film",
-        "ps_cinematic": "Cinematic Color Grade",
-        "ps_moody": "Moody / Dark Tone",
-        "ps_pastel": "Pastel / Light Airy",
-        "ps_hdr": "HDR / High Contrast",
-        "ps_matte": "Matte Film Look",
-        "ps_commercial": "Clean Commercial",
-        "ps_editorial": "Editorial Magazine",
-        "ps_documentary": "Documentary / Street",
-        "ps_polaroid": "Polaroid Instant",
-        "ps_digicam": "Y2K Digicam Flash",
-        "ps_fantasy": "Ethereal Fantasy",
-        "ps_fairytale": "Dark Fairytale",
-        "ps_cyber": "Cyberpunk Neon",
-        "ps_vaporwave": "Vaporwave / Retrowave",
-        "ps_surreal": "Dreamcore Surreal",
-
-        # ── Shot Framing (NEW) ──
-        "shot_framing": "Shot Framing",
-        "sf_extreme_cu": "Extreme Close-up (face only)",
-        "sf_closeup": "Close-up (head & shoulders)",
-        "sf_medium_cu": "Medium Close-up (chest up)",
-        "sf_medium": "Medium Shot (waist up)",
-        "sf_cowboy": "Cowboy Shot (mid-thigh up)",
-        "sf_medium_full": "Medium Full (knees up)",
-        "sf_full": "Full Body",
-        "sf_wide": "Wide Shot (full body + environment)",
-
-
-        # ── Depth of Field (NEW) ──
-        "dof": "Depth of Field / Background",
-        "dof_sharp": "Everything Sharp (deep focus)",
-        "dof_portrait": "Portrait Bokeh (f/1.8, subject sharp, background blurred)",
-        "dof_shallow": "Shallow DOF (f/1.2, heavy bokeh, dreamy)",
-        "dof_tiltshift": "Tilt-shift (miniature effect)",
-        "dof_soft": "Soft / Dreamy Glow",
-        "dof_bokeh_lights": "Bokeh Light Orbs (night)",
-        "dof_motion": "Motion Blur Background",
-        "dof_fg_blur": "Blurred Foreground Framing",
-        "dof_clean_bg": "Clean Studio Background",
-
-        # ── Composition ──
-        "composition": "Composition",
-        "comp_center": "Center (Default)",
-        "comp_rot_left": "Rule of Thirds — Left",
-        "comp_rot_right": "Rule of Thirds — Right",
-        "comp_golden": "Golden Ratio",
-        "comp_leading": "Leading Lines",
-        "comp_framed": "Framed / Doorway",
-        "comp_negative_space": "Negative Space",
-        "comp_symmetry": "Symmetrical",
-        "comp_diagonal": "Diagonal Lines",
-        "comp_fill": "Fill the Frame",
-        "comp_reflection": "Reflection / Mirror",
-        "comp_depth": "Layered Depth (FG/MG/BG)",
-
-        # ── Pose ── (sorted A-Z)
-        "pose": "Action / Pose",
-        "pose_fix_jacket": "Adjusting Jacket / Collar",
-        "pose_adjust_glasses": "Adjusting Sunglasses",
-        "pose_arms_up": "Arms Above Head",
-        "pose_cross_arms": "Arms Crossed",
-        "pose_arms_open": "Arms Open Wide",
-        "pose_back_camera": "Back to Camera",
-        "pose_blow_kiss": "Blowing a Kiss",
-        "pose_candid": "Candid / Natural Motion",
-        "pose_chin_up": "Chin Up (Confident)",
-        "pose_cross_leg": "Cross-legged Sitting",
-        "pose_crouch": "Crouching",
-        "pose_dance": "Dancing",
-        "pose_dynamic": "Dynamic / Action Pose",
-        "pose_editorial": "Editorial Model Pose",
-        "pose_elegant": "Elegant Graceful Pose",
-        "pose_finger_heart": "Finger Heart (Korean)",
-        "pose_hair_flip": "Hair Flip",
-        "pose_hand_hair": "Hand in Hair",
-        "pose_hand_chin": "Hand on Chin",
-        "pose_hand_hip": "Hand on Hip",
-        "pose_hands_back": "Hands Behind Back",
-        "pose_arms_behind_head": "Hands Behind Head",
-        "pose_cheek_hands": "Hands Framing Face",
-        "pose_hands_pocket": "Hands in Pockets",
-        "pose_head_tilt": "Head Tilt (Cute)",
-        "pose_heart_hands": "Heart Hands",
-        "pose_high_fashion": "High-Fashion Stance",
-        "pose_hug_knees": "Hugging Knees",
-        "pose_jump": "Jumping",
-        "pose_kneel": "Kneeling",
-        "pose_lean": "Leaning Against Wall",
-        "pose_railing": "Leaning on Railing",
-        "pose_lean_forward": "Leaning Toward Camera",
-        "pose_looking_away": "Looking Away",
-        "pose_look_back_walk": "Looking Back While Walking",
-        "pose_over_shoulder": "Looking Over Shoulder",
-        "pose_look_up": "Looking Up (Dreamy)",
-        "pose_lying": "Lying Down",
-        "pose_mini_heart": "Mini Heart",
-        "pose_mirror_selfie": "Mirror Selfie",
-        "pose_peace": "Peace Sign",
-        "pose_peek_fingers": "Peeking Through Fingers",
-        "pose_reach_camera": "Reaching Toward Camera",
-        "pose_run": "Running",
-        "pose_runway": "Runway Walk",
-        "pose_s_curve": "S-Curve Standing",
-        "pose_shield_sun": "Shielding Eyes from Sun",
-        "pose_sit": "Sitting",
-        "pose_sit_stairs": "Sitting on Stairs",
-        "pose_legs_extended": "Sitting, Legs Extended",
-        "pose_stand": "Standing",
-        "pose_squat": "Streetwear Squat",
-        "pose_stretch": "Stretching Gracefully",
-        "pose_hold_hat": "Touching Hat Brim",
-        "pose_hair_tuck": "Tucking Hair Behind Ear",
-        "pose_twirl": "Twirling",
-        "pose_w_sit": "W-Sitting",
-        "pose_walk": "Walking",
-        "pose_walk_away": "Walking Away (Candid)",
-        "pose_wink": "Winking",
-
-        # ── Advanced ──
-        "exp_advanced": "Advanced & Technical",
-        "save_load_header": "Save / Load Look",
-        "save_look": "Save Look (JSON)",
-        "load_look": "Apply Look",
-        "load_look_paste": "Load a saved look — paste its JSON here",
-        "preset_loaded": "Look applied!",
-        "preset_invalid": "Could not read that look — paste the exact JSON saved from “Save Look”.",
-        "custom_prompt": "Custom additions (free text)",
-        "custom_placeholder": "e.g. cinematic color grading, lens flare, film grain",
-        "negative_prompt": "Negative Prompt (things to avoid)",
-        "negative_placeholder": "e.g. blurry, low quality, extra fingers, watermark",
-        "quality_tags": "Quality Boost Tags",
-        "qt_8k": "8K Ultra HD",
-        "qt_detail": "Highly Detailed",
-        "qt_sharp": "Sharp Focus",
-        "qt_pro": "Professional Photography",
-        "qt_award": "Award-winning",
-        "qt_magazine": "Magazine Quality",
-
-        # ── Reference reminders in output ──
-        "ref_images_header": "Reference Images to Attach",
-        "ref_instruction": "When sending the prompt, attach the reference images you selected above alongside the text in your AI tool.",
-        "ref_note_subject": "Attach: Your face/person reference photo",
-        "ref_note_outfit": "Attach: Outfit/clothing reference photo",
-        "ref_note_scene": "Attach: Scene/background reference photo",
-
-        # ── v5.5 — "Not specified" options ──
-        "age_none": "— Not specified —",
-        "eth_none": "— Not specified —",
-        "hair_none": "— Not specified —",
-        "hc_none": "— Not specified —",
-        "expr_none": "— Not specified —",
-        "bt_none": "— Not specified —",
-        "app_none": "— Not specified —",
-        "pose_none": "— None —",
-        "tod_none": "— Not specified —",
-        "lit_none": "— Not specified —",
-        "loc_none": "— Not specified —",
-        "sf_none": "— Not specified —",
-        "dof_none": "— Not specified —",
-        # ── v5.5 — Per-person gender / group mix ──
-        "group_mix": "Group Genders",
-        "gg_same": "Same as main gender",
-        "gg_mixed": "Mixed (men & women)",
-        # ── v5.5 — Makeup ──
-        "mu_editorial": "Editorial / Avant-garde",
-        "mu_freckles": "Faux Freckles",
-        "mu_goth": "Goth / Dark",
-        "mu_igari": "Igari Blush (Japanese)",
-        "mu_bronzed": "Sun-kissed Bronzed",
-        "mu_glitter": "Y2K Glitter",
-        # ── v5.5 — Expressions ──
-        "expr_wink": "Winking",
-        "expr_tongue": "Tongue Out (Playful)",
-        "expr_mischief": "Mischievous Grin",
-        "expr_fierce": "Fierce Gaze",
-        "expr_eyes_closed": "Eyes Closed (Serene)",
-        "expr_bored": "Bored / Nonchalant",
-        "expr_angry": "Angry / Glaring",
-        "expr_tearful": "Tearful / Teary Eyes",
-        # ── v5.5 — Fashion styles ──
-        "fs_basketball": "Basketball / Jersey",
-        "fs_beach_cover": "Beachwear / Cover-up",
-        "fs_bikini": "Bikini Swimwear",
-        "fs_cheer": "Cheerleader",
-        "fs_golf": "Golf Wear",
-        "fs_one_piece": "One-piece Swimsuit",
-        "fs_rashguard": "Rash Guard / Surf",
-        "fs_school": "School Uniform",
-        "fs_ski": "Ski / Snowboard Wear",
-        "fs_teen": "Teen / High-School Style",
-        "fs_tennis": "Tennis / Court Style",
-        "fs_yoga": "Yoga / Activewear",
-        # ── v5.5 — Locations ──
-        "loc_arcade": "Arcade / Game Center",
-        "loc_ballroom": "Ballroom / Grand Hall",
-        "loc_basketball": "Basketball Court",
-        "loc_cherry": "Cherry Blossom Park",
-        "loc_cliff": "Cliff / Ocean View",
-        "loc_convenience": "Convenience Store",
-        "loc_greenhouse": "Greenhouse / Botanical",
-        "loc_harbor": "Harbor / Marina",
-        "loc_ice_rink": "Ice Skating Rink",
-        "loc_skatepark": "Skate Park",
-        "loc_stadium": "Sports Stadium",
-        "loc_supermarket": "Supermarket Aisle",
-        "loc_vineyard": "Vineyard",
-        "loc_yacht": "Yacht Deck",
-        # ── v5.5 — Camera angles ──
-        # ── v5.5 — Lighting ──
-        "lit_silhouette": "Sunset Silhouette",
-        "lit_lowkey": "Low-key (dark & moody)",
-        "lit_highkey": "High-key (bright & airy)",
-        "lit_lantern": "Paper Lanterns",
-        "lit_fireworks": "Fireworks Glow",
-        "lit_screen": "Screen / TV Glow",
-        "lit_projector": "Projector Patterns",
-        "lit_disco": "Disco Ball Sparkle",
-        # ── v5.5 — Poses ──
-        "pose_boxing": "Boxing Stance",
-        "pose_cartwheel": "Cartwheel",
-        "pose_dribble": "Dribbling Basketball",
-        "pose_finger_frame": "Finger Frame",
-        "pose_meditate": "Meditating (Lotus)",
-        "pose_ok_sign": "OK Sign",
-        "pose_point_camera": "Pointing at Camera",
-        "pose_salute": "Playful Salute",
-        "pose_selfie": "Selfie (arm extended)",
-        "pose_shush": "Shush (finger to lips)",
-        "pose_skip": "Skipping",
-        "pose_thumbs_up": "Thumbs Up",
-        "pose_tiptoe": "Tiptoe Reach",
-        "pose_wave": "Waving Hello",
-        "pose_yoga": "Yoga Pose",
-        "pose_carefree_walk": "Carefree Walk, Arms Swinging",
-        "pose_touch_plants": "Crouching, Touching Plants",
-        "pose_hold_camera": "Holding a Film Camera",
-        "pose_grass_stalk": "Holding a Grass Stalk",
-        "pose_ear_wall": "Listening Against a Wall",
-        "pose_peek_tree": "Peeking from Behind a Tree",
-        "pose_pick_flower": "Picking a Flower",
-        "pose_smell_flower": "Smelling a Flower, Eyes Closed",
-
-        # ── Companion / Animal ──
-        "companion": "Companion / Animal",
-        "pet_none": "— None —",
-        "pet_bird": "Bird on Finger",
-        "pet_butterflies": "Butterflies Around",
-        "pet_cat": "Cat",
-        "pet_dog": "Dog",
-        "pet_kitten": "Kitten",
-        "pet_puppy": "Puppy",
-        "pet_rabbit": "Rabbit",
-
-        # ── Quick Themes ──
-        "themes_header": "Quick Themes",
-        "theme_select": "Theme",
-        "apply_theme_btn": "Apply Theme",
-        "theme_hint": "Sets a curated look & scene, then generates — your gender, age and identity stay as chosen.",
-        "theme_golden_garden": "🌾 Golden Hour Garden",
-        "theme_neon_night": "🌃 Neon City Night",
-        "theme_cafe_film": "☕ Cozy Café Film",
-        "theme_beach": "🏖️ Summer Beach",
-        "theme_studio": "🎬 Studio Editorial",
-        "theme_cherry": "🌸 Cherry Blossom Spring",
-
-        # ── Photo Set ──
-        "photo_set_btn": "Photo Set",
-        "photo_set_header": "Photo Set — same look, 6 shots",
-        "photo_set_hint": "Same subject, outfit and scene in every shot — only the pose, framing and camera angle change. Generate them all for a matching album.",
-        "photo_set_shot": "Shot",
-        "photo_set_download": "Download all shots",
-        # v5.7 — pose builder + outfit layers
-        "exp_pose": "Pose & Body Language",
-        "attach_pose_photo": "I will attach a pose reference image (e.g. a mannequin pose sheet)",
-        "attach_pose_note": "Prompt will instruct AI to copy only the body pose from the attached image — not its face, body or clothing. The pose pickers below are disabled.",
-        "ref_note_pose": "Attach: Pose reference image (mannequin / pose sheet)",
-        "pose_category": "Pose Category",
-        "pose_detail_header": "Fine-tune the pose",
-        "pose_detail_hint": "💡 Optional details layered on top of the pose — leave on “None” if they would contradict it (e.g. hands in pockets + heart hands).",
-        "body_dir": "Body Orientation",
-        "head_pos": "Head Position",
-        "gaze": "Gaze / Eye Direction",
-        "hands_pos": "Arms & Hands",
-        "legs_pos": "Legs & Stance",
-        "pose_energy": "Pose Mood / Energy",
-        "pose_text": "Describe the pose in your own words (optional)",
-        "pose_text_placeholder": "e.g. sitting on a swing, holding the ropes, legs stretched forward",
-        "outfit_mode": "Outfit Type",
-        "dress_garment": "Dress / One-piece",
-        "dress_fabric": "Dress Fabric",
-        "dress_color": "Dress Color",
-        "outfit_set": "Outfit Set",
-        "outfit_set_hint": "Each set is a complete, coordinated look (layers, legwear, shoes, bag, jewelry). Accessories below are added on top.",
-        "outer_layer": "Outer Layer",
-        "outer_color": "Outer Layer Color",
-        "fit": "Fit / Silhouette",
-        "legwear": "Socks & Legwear",
-        "details": "Design Details & Prints",
-        "details_help": "Pick a few — e.g. ruffles + ribbon bows + lace trim",
-        "om_separates": "Top + Bottom",
-        "om_dress": "Dress / One-piece",
-        "om_set": "Ready-made Outfit Set",
-        "pc_all": "All Poses",
-        "pc_standing": "Standing",
-        "pc_walking": "Walking & Motion",
-        "pc_sitting": "Sitting",
-        "pc_kneeling": "Kneeling",
-        "pc_lying": "Lying Down",
-        "pc_crouching": "Crouching & Bending",
-        "pc_cute": "Cute Hand Gestures",
-        "pc_social": "Social Media & Fashion",
-        "pc_props": "Nature & Props",
-        "pc_sport": "Sports & Action",
-        "pose_contrapposto": "Contrapposto, Weight on One Leg",
-        "pose_hands_hips": "Both Hands on Hips",
-        "pose_hands_nape": "Hands on Nape of Neck",
-        "pose_hand_collar": "Hand at Collarbone",
-        "pose_foot_kick": "One Foot Kicked Up Behind",
-        "pose_hair_both": "Both Hands Lifting Hair",
-        "pose_walk_toward": "Walking Toward Camera",
-        "pose_bag_strap": "Walking, Holding Bag Strap",
-        "pose_sit_side": "Side-Saddle Sitting",
-        "pose_sit_knee_up": "Sitting, One Knee Up",
-        "pose_sit_cheek_knee": "Sitting, Cheek on Knees",
-        "pose_sit_chair_back": "Sitting Backwards on a Chair",
-        "pose_sit_ledge": "Sitting on a Ledge, Legs Dangling",
-        "pose_sit_floor_cross": "Sitting Cross-legged on the Floor",
-        "pose_sit_hold_ankle": "Sitting, Holding Ankle",
-        "pose_wariza_hands": "Wariza, Hands on Floor in Front",
-        "pose_seiza": "Seiza (Sitting on Heels)",
-        "pose_kneel_upright": "Kneeling Upright, Hands on Thighs",
-        "pose_one_knee": "On One Knee",
-        "pose_kneel_look_up": "Kneeling, Looking Up",
-        "pose_kneel_hair": "Kneeling, Hand in Hair",
-        "pose_lie_stomach": "Lying on Stomach, Feet Up",
-        "pose_lie_side": "Lying on Side, Head on Hand",
-        "pose_lie_back_hair": "Lying on Back, Hair Spread Out",
-        "pose_lie_back_knee": "Lying on Back, One Knee Up",
-        "pose_lie_arm_pillow": "Lying on Stomach, Head on Arms",
-        "pose_crouch_chin": "Crouching, Chin in Hand",
-        "pose_crouch_look_back": "Crouching, Looking Back",
-        "pose_bend_knees": "Bending Forward, Hands on Knees",
-        "pose_bend_shoe": "Bending Down to Fix a Shoe",
-        "pose_double_peace": "Double Peace Under Chin",
-        "pose_gyaru_peace": "Gyaru Peace (Back of Hand)",
-        "pose_fist_cheeks": "Fists on Cheeks (Burikko)",
-        "pose_bunny_ears": "Bunny Ears Hands",
-        "pose_cat_paw": "Cat Paw Gesture",
-        "pose_rawr": "Rawr! Claw Pose",
-        "pose_poke_cheek": "Poking Own Cheek",
-        "pose_flower_chin": "Flower Pose (Chin on Palms)",
-        "pose_sweater_paws": "Sweater Paws Over Mouth",
-        "pose_please": "Pleading 'Please' Hands",
-        "pose_self_hug": "Shy Self-Hug",
-        "pose_big_heart": "Big Heart Above Head",
-        "pose_yawn": "Yawning Stretch",
-        "pose_coat_lapels": "Holding Coat Lapels",
-        "pose_phone_check": "Checking Phone Candidly",
-        "pose_skirt_hem": "Holding the Skirt Hem",
-        "pose_curtsy": "Curtsy",
-        "pose_umbrella": "Holding an Umbrella",
-        "pose_bouquet": "Holding a Bouquet",
-        "pose_read_book": "Reading a Book",
-        "pose_coffee": "Holding a Coffee Cup",
-        "pose_bicycle": "Standing with a Bicycle",
-        "pose_balloons": "Holding Balloons",
-        "pose_ballet": "Ballet Arabesque",
-        "pose_tennis_swing": "Tennis Swing",
-        "pose_skateboard": "Riding a Skateboard",
-        "pose_lunge": "Stretching Lunge",
-        "dir_none": "— None —",
-        "dir_back": "Back View",
-        "dir_back_look": "Back Turned, Looking Back",
-        "dir_front": "Facing the Camera",
-        "dir_side": "Side Profile",
-        "dir_slight": "Slightly Angled",
-        "dir_3q": "Three-Quarter Turn",
-        "head_none": "— None —",
-        "head_chin_down": "Chin Lowered",
-        "head_chin_up": "Chin Raised",
-        "head_shoulder": "Cheek Toward Shoulder",
-        "head_rest_hand": "Resting on Hand",
-        "head_back": "Tilted Back",
-        "head_tilt": "Tilted to One Side",
-        "head_turned": "Turned to the Side",
-        "gaze_none": "— None —",
-        "gaze_closed": "Eyes Closed",
-        "gaze_camera": "Looking at Camera",
-        "gaze_down": "Looking Down",
-        "gaze_away": "Looking Into the Distance",
-        "gaze_upward_glance": "Looking Up at Camera (Upward Glance)",
-        "gaze_up": "Looking Upward",
-        "gaze_side_glance": "Side Glance at Camera",
-        "hands_none": "— None —",
-        "hands_crossed": "Arms Crossed",
-        "hands_overhead": "Arms Raised Overhead",
-        "hands_relaxed": "Arms Relaxed at Sides",
-        "hands_both_hips": "Both Hands on Hips",
-        "hands_lips": "Finger to Lips",
-        "hands_hair": "Hand in Hair",
-        "hands_hip": "Hand on Hip",
-        "hands_neck": "Hand on Neck / Collarbone",
-        "hands_face": "Hand Touching Face",
-        "hands_behind": "Hands Clasped Behind Back",
-        "hands_clasped": "Hands Clasped in Front",
-        "hands_pockets": "Hands in Pockets",
-        "hands_strap": "Holding Bag Strap",
-        "hands_sleeve": "Tugging a Sleeve",
-        "legs_none": "— None —",
-        "legs_ankles_crossed": "Ankles Crossed",
-        "legs_kick_back": "Foot Kicked Up Behind",
-        "legs_knees_in": "Knees Together, Toes In",
-        "legs_crossed_knee": "Legs Crossed at the Knee",
-        "legs_cross_stand": "Legs Crossed While Standing",
-        "legs_extended": "Legs Stretched Out",
-        "legs_together": "Legs Together",
-        "legs_mid_stride": "Mid-Stride",
-        "legs_tiptoe": "On Tiptoe",
-        "legs_knee_bent": "One Knee Slightly Bent",
-        "legs_wide": "Wide Power Stance",
-        "pe_none": "— None —",
-        "pe_candid": "Candid, Unposed",
-        "pe_confident": "Confident Power Pose",
-        "pe_cool": "Cool & Nonchalant",
-        "pe_dynamic": "Dynamic, Mid-Motion",
-        "pe_elegant": "Elegant & Graceful",
-        "pe_playful": "Playful & Energetic",
-        "pe_relaxed": "Relaxed & Natural",
-        "pe_shy": "Shy & Soft",
-        "dress_none": "— None —",
-        "dress_babydoll": "Babydoll Dress",
-        "dress_ballgown": "Ball Gown",
-        "dress_bodycon": "Bodycon Dress",
-        "dress_corset": "Corset Dress",
-        "dress_jumpsuit": "Jumpsuit",
-        "dress_knit": "Knit Dress",
-        "dress_maxi": "Maxi Dress",
-        "dress_midi": "Midi Dress",
-        "dress_mini": "Mini Dress",
-        "dress_off_shoulder": "Off-Shoulder Dress",
-        "dress_pinafore": "Pinafore Dress",
-        "dress_qipao": "Qipao / Cheongsam",
-        "dress_romper": "Romper / Playsuit",
-        "dress_shirt": "Shirt Dress",
-        "dress_slip": "Slip Dress",
-        "dress_sundress": "Sundress",
-        "dress_tea": "Tea Dress (Vintage)",
-        "dress_tiered": "Tiered Ruffle Dress",
-        "dress_wrap": "Wrap Dress",
-        "out_none": "— None —",
-        "out_blazer": "Blazer",
-        "out_bolero": "Bolero / Shrug",
-        "out_cape": "Cape",
-        "out_cardigan": "Cardigan",
-        "out_cropped_cardigan": "Cropped Cardigan",
-        "out_denim_jacket": "Denim Jacket",
-        "out_faux_fur": "Faux Fur Coat",
-        "out_kimono": "Kimono-style Cardigan",
-        "out_leather": "Leather Jacket",
-        "out_wool_coat": "Long Wool Coat",
-        "out_open_shirt": "Open Button-up Shirt",
-        "out_puffer": "Puffer Jacket",
-        "out_shawl": "Shawl over Shoulders",
-        "out_trench": "Trench Coat",
-        "out_tweed": "Tweed Jacket",
-        "out_varsity": "Varsity Jacket",
-        "out_zip_hoodie": "Zip-up Hoodie",
-        "fit_none": "— Not specified —",
-        "fit_aline": "A-Line",
-        "fit_body": "Body-Hugging",
-        "fit_cropped": "Cropped & High-Waisted",
-        "fit_fitted": "Fitted",
-        "fit_flowy": "Flowy & Airy",
-        "fit_layered": "Layered",
-        "fit_oversized": "Oversized",
-        "fit_relaxed": "Relaxed Fit",
-        "fit_tailored": "Tailored",
-        "leg_none": "— None —",
-        "leg_ankle": "Ankle Socks",
-        "leg_crew": "Crew Socks",
-        "leg_fishnet": "Fishnet Tights",
-        "leg_frilly": "Frilly Lace-trim Socks",
-        "leg_knee": "Knee-high Socks",
-        "leg_warmers": "Leg Warmers",
-        "leg_loose": "Loose Socks (Japanese)",
-        "leg_opaque": "Opaque Black Tights",
-        "leg_patterned": "Patterned Tights",
-        "leg_sheer_black": "Sheer Black Tights",
-        "leg_nude": "Sheer Nude Stockings",
-        "leg_thigh": "Thigh-high Socks",
-        "leg_white_tights": "White Tights",
-        "det_corset": "Corset Lacing",
-        "det_embroidery": "Embroidery",
-        "det_floral": "Floral Print",
-        "det_gingham": "Gingham",
-        "det_lace_trim": "Lace Trim",
-        "det_off_shoulder": "Off-Shoulder Neckline",
-        "det_buttons": "Pearl Buttons",
-        "det_collar": "Peter Pan Collar",
-        "det_checks": "Plaid / Check Pattern",
-        "det_pleats": "Pleats",
-        "det_polka": "Polka Dots",
-        "det_puff": "Puff Sleeves",
-        "det_bows": "Ribbon Bows",
-        "det_frills": "Ruffles / Frills",
-        "det_sailor": "Sailor Collar",
-        "det_sequins": "Sequins / Sparkle",
-        "det_sheer_sleeves": "Sheer Sleeves",
-        "det_slit": "Side Slit",
-        "det_square_neck": "Square Neckline",
-        "det_stripes": "Stripes",
-        "det_tiered": "Tiered Layers",
-        "det_v_neck": "V-Neckline",
-        "os_none": "— None —",
-        "os_spr_frill_knit": "🌸 Spring · Frill Knit + Denim Mini + Coat",
-        "os_spr_floral_cami": "🌸 Spring · Floral Cami + Cardigan + Pleated Skirt",
-        "os_spr_floral_midi": "🌸 Spring · Floral Midi Dress + Denim Jacket",
-        "os_spr_ribbon_blouse": "🌸 Spring · Ribbon Blouse + Mint Midi Skirt",
-        "os_spr_shirt_dress": "🌸 Spring · Ribbon Shirt Dress + Tights",
-        "os_spr_lace_cami": "🌸 Spring · Lace Cami + Cardigan + Wide Pants",
-        "os_sum_linen": "☀️ Summer · Linen Shirt + Shorts",
-        "os_sum_sundress": "☀️ Summer · Eyelet Sundress + Straw Hat",
-        "os_sum_crop_denim": "☀️ Summer · Baby Tee + Denim Shorts",
-        "os_sum_halter_maxi": "☀️ Summer · Halter Maxi Dress",
-        "os_sum_gingham": "☀️ Summer · Gingham Puff Top + White Skirt",
-        "os_sum_resort": "☀️ Summer · Resort Shirt + Linen Trousers",
-        "os_aut_trench": "🍂 Autumn · Trench + Turtleneck + Jeans",
-        "os_aut_corduroy": "🍂 Autumn · Corduroy Pinafore + Knit + Beret",
-        "os_aut_plaid": "🍂 Autumn · Plaid Skirt + Chunky Cardigan",
-        "os_aut_leather": "🍂 Autumn · Leather Jacket + Satin Slip Skirt",
-        "os_aut_knit_dress": "🍂 Autumn · Knit Dress + Suede Boots",
-        "os_aut_blazer": "🍂 Autumn · Oversized Blazer + Wide Trousers",
-        "os_win_wool_coat": "❄️ Winter · Long Wool Coat + Chunky Scarf",
-        "os_win_puffer": "❄️ Winter · Puffer + Hoodie + Beanie",
-        "os_win_fur": "❄️ Winter · Faux Fur Coat + Black Knit Dress",
-        "os_win_tweed": "❄️ Winter · Tweed Jacket & Skirt Set + Pearls",
-        "os_win_overcoat": "❄️ Winter · Turtleneck + Overcoat",
-        "os_win_cozy": "❄️ Winter · Cozy Knit + Leg Warmers",
-        "os_par_sequin": "✨ Party · Sequin Mini Dress",
-        "os_par_satin_gown": "✨ Party · Satin Slip Gown",
-        "os_par_tulle": "✨ Party · Tulle Princess Dress",
-        "os_par_velvet_suit": "✨ Party · Velvet Suit",
-        "os_par_lbd": "✨ Party · Little Black Dress",
-        "fab_corduroy": "Corduroy",
-        "fab_crochet": "Crochet",
-        "fab_jersey": "Jersey",
-        "fab_knit": "Fine Knit",
-        "fab_organza": "Organza",
-        "fab_sequin": "Sequin",
-        "fab_tulle": "Tulle",
-        "col_butter": "Butter Yellow",
-        "col_grey": "Grey",
-        "col_ivory": "Ivory",
-        # v5.8 — subject details, character lock, camera & scene
-        "sub_identity": "Identity",
-        "sub_face": "Face Details",
-        "sub_hair": "Hair",
-        "sub_expression": "Expression, Makeup & Nails",
-        "sub_people": "People & Companion",
-        "skin_tone": "Skin Tone",
-        "face_shape": "Face Shape",
-        "eye_shape": "Eye Shape",
-        "eye_color": "Eye Color",
-        "brows": "Eyebrows",
-        "lips": "Lips",
-        "face_marks": "Facial Features & Charm Points",
-        "face_marks_help": "Pick a few — e.g. mole under eye + aegyo-sal + dimples",
-        "facial_hair": "Facial Hair",
-        "skin_finish": "Skin Finish",
-        "hair_finish": "Hair Finish & Styling",
-        "nails": "Nails",
-        "char_lock_header": "Character Lock",
-        "char_lock_hint": "Lock identity, face, body & hair so every prompt describes the same person — Random Look, themes and presets then only change styling, pose and scene.",
-        "char_name": "Character name (optional)",
-        "char_name_placeholder": "e.g. Mali",
-        "char_lock_btn": "Lock character",
-        "char_unlock_btn": "Unlock",
-        "char_locked_msg": "is locked — identity, face, body and hair stay fixed.",
-        "char_unnamed": "Character",
-        "char_download": "Download character (JSON)",
-        "char_library": "Saved characters (this session)",
-        "char_load_btn": "Load & lock",
-        "char_json_hint": "To reuse later, download the JSON and paste it into Advanced → Apply Look.",
-        "location_category": "Location Category",
-        "atmosphere": "Weather & Atmosphere",
-        "atmosphere_help": "Pick any — e.g. after-rain reflections + fog",
-        "bg_people": "Background People",
-        "sub_lighting": "Lighting",
-        "light_dir": "Light Direction",
-        "light_color": "Light Color",
-        "light_quality": "Light Quality",
-        "sub_camera": "Camera",
-        "cam_height": "Camera Height",
-        "cam_dir": "Camera Position (around subject)",
-        "cam_special": "Special Shot / Perspective",
-        "cam_hint": "💡 Height = how high the camera is · Position = where it stands around the subject (Body Orientation in the Pose section = where the subject faces) · Framing = how much of the body is shown.",
-        "cam_preview": "Camera in prompt:",
-        "camera_film": "Camera / Film Stock",
-        "lens_fx": "Lens & Film Effects",
-        "lens_fx_help": "Pick any — e.g. film grain + light leak",
-        "lcat_all": "All Locations",
-        "lcat_indoor": "Studio & Indoor",
-        "lcat_home": "Home & Bedroom",
-        "lcat_city": "City & Street",
-        "lcat_shops": "Cafés & Shops",
-        "lcat_nature": "Nature & Parks",
-        "lcat_water": "Beach & Water",
-        "lcat_luxury": "Luxury & Elegant",
-        "lcat_travel": "Landmarks & Travel",
-        "lcat_thai": "Thailand",
-        "lcat_asia": "Japan & Korea",
-        "lcat_leisure": "Sports & Leisure",
-        "st_none": "— Not specified —",
-        "st_porcelain": "Porcelain / Very Fair",
-        "st_fair": "Fair",
-        "st_light_warm": "Light, Warm Undertone",
-        "st_medium": "Medium / Wheatish",
-        "st_olive": "Olive",
-        "st_tan": "Tan / Sun-kissed",
-        "st_brown": "Brown",
-        "st_deep": "Deep",
-        "fsh_none": "— Not specified —",
-        "fsh_heart": "Heart-shaped",
-        "fsh_sharp": "High Cheekbones",
-        "fsh_oval": "Oval",
-        "fsh_round": "Round, Soft Cheeks",
-        "fsh_small": "Small Delicate Face",
-        "fsh_v": "V-line (Slim Jaw)",
-        "eye_none": "— Not specified —",
-        "eye_almond": "Almond-shaped",
-        "eye_big": "Big Round Eyes",
-        "eye_doe": "Doe Eyes",
-        "eye_double": "Double Eyelids",
-        "eye_monolid": "Monolid",
-        "eye_droopy": "Soft Droopy Puppy Eyes",
-        "eye_cat": "Upturned Cat Eyes",
-        "ec_none": "— Not specified —",
-        "ec_amber": "Amber",
-        "ec_black": "Black",
-        "ec_blue": "Blue",
-        "ec_dark_brown": "Dark Brown",
-        "ec_green": "Green",
-        "ec_grey": "Grey",
-        "ec_hazel": "Hazel / Light Brown",
-        "brow_none": "— Not specified —",
-        "brow_feathery": "Fluffy Feathered",
-        "brow_arched": "Softly Arched",
-        "brow_straight": "Straight K-Brows",
-        "brow_thick": "Thick Natural",
-        "brow_thin": "Thin & Defined",
-        "lip_none": "— Not specified —",
-        "lip_cat": "Cat Lips (Upturned Corners)",
-        "lip_full": "Full Lips",
-        "lip_heart": "Heart-shaped (Cupid's Bow)",
-        "lip_plump": "Plump & Glossy",
-        "lip_small": "Small Rosebud Lips",
-        "lip_thin": "Thin, Defined Lips",
-        "fm_aegyo": "Aegyo-sal (Puffy Under-eyes)",
-        "fm_mole_lip": "Beauty Mark Near Lips",
-        "fm_dimples": "Dimples",
-        "fm_high_nose": "High Nose Bridge",
-        "fm_lashes": "Long Natural Lashes",
-        "fm_mole_eye": "Mole Under Eye",
-        "fm_freckles": "Natural Freckles",
-        "fm_rosy": "Naturally Rosy Cheeks",
-        "fm_button_nose": "Small Button Nose",
-        "fm_snaggle": "Snaggletooth (Yaeba)",
-        "fh_none": "— Not specified —",
-        "fh_clean": "Clean-shaven",
-        "fh_full_beard": "Full Beard",
-        "fh_goatee": "Goatee",
-        "fh_stubble": "Light Stubble",
-        "fh_mustache": "Mustache",
-        "fh_short_beard": "Short Beard",
-        "skf_none": "— Not specified —",
-        "skf_dewy": "Dewy Glow",
-        "skf_porcelain": "Flawless Porcelain",
-        "skf_glass": "Glass Skin",
-        "skf_natural": "Natural, Lightly Textured",
-        "skf_matte": "Soft Matte",
-        "skf_sunkissed": "Sun-kissed Glow",
-        "skf_real": "Ultra-realistic Texture (Pores)",
-        "hf_none": "— Not specified —",
-        "hf_messy": "Effortlessly Messy",
-        "hf_strands": "Face-framing Strands",
-        "hf_glossy": "Glossy & Silky",
-        "hf_sleek": "Sleek & Polished",
-        "hf_tucked": "Tucked Behind Ears",
-        "hf_voluminous": "Voluminous",
-        "hf_wet": "Wet Look",
-        "hf_windswept": "Wind-swept",
-        "nl_none": "— Not specified —",
-        "nl_black": "Black Nails",
-        "nl_chrome": "Chrome / Glazed Donut",
-        "nl_red": "Classic Red",
-        "nl_natural": "Clean Natural Manicure",
-        "nl_french": "French Manicure",
-        "nl_glitter": "Glitter",
-        "nl_long": "Long Almond, Decorated",
-        "nl_nude": "Nude Gel",
-        "nl_pastel": "Pastel",
-        "ld_none": "— Not specified —",
-        "ld_back": "Backlight",
-        "ld_butterfly": "Butterfly / Paramount",
-        "ld_clamshell": "Clamshell (Beauty)",
-        "ld_front": "Front Light",
-        "ld_loop": "Loop Light",
-        "ld_rembrandt": "Rembrandt (45°)",
-        "ld_side": "Side Light",
-        "ld_split": "Split Light (Half Face)",
-        "ld_top": "Top Light",
-        "ld_under": "Under Light (Eerie)",
-        "lc_none": "— Not specified —",
-        "lc_amber": "Candlelit Amber",
-        "lc_cool": "Cool Blue",
-        "lc_green": "Green Fluorescent Tint",
-        "lc_red": "Moody Red",
-        "lc_neutral": "Neutral Daylight",
-        "lc_pink_blue": "Pink & Blue Mixed",
-        "lc_purple": "Purple & Magenta",
-        "lc_teal_orange": "Teal & Orange (Cinematic)",
-        "lc_warm": "Warm Golden",
-        "lq_none": "— Not specified —",
-        "lq_hard": "Hard, Crisp Shadows",
-        "lq_high_contrast": "High Contrast",
-        "lq_low_contrast": "Low Contrast, Airy",
-        "lq_soft": "Soft & Diffused",
-        "ch_none": "— Not specified —",
-        "ch_aerial": "Aerial / Drone (Very High)",
-        "ch_top": "Top-Down (Directly Overhead)",
-        "ch_high": "High Angle (Looking Down)",
-        "ch_slight_high": "Slightly Above Eye Level (Flattering)",
-        "ch_eye": "Eye Level",
-        "ch_chest": "Chest Level",
-        "ch_waist": "Waist Level",
-        "ch_slight_low": "Slightly Below Eye Level",
-        "ch_low": "Low Angle (Looking Up)",
-        "ch_ground": "Ground Level",
-        "ch_worm": "Worm's Eye (Straight Up)",
-        "cd_none": "— Not specified —",
-        "cd_front": "Front (Straight-on)",
-        "cd_front_3q": "Front Three-Quarter (45°)",
-        "cd_side": "Side (90° Profile)",
-        "cd_back_3q": "Rear Three-Quarter",
-        "cd_back": "Directly Behind",
-        "cd_over_shoulder": "Over the Shoulder",
-        "cs_none": "— None —",
-        "cs_telephoto": "Candid Telephoto (Paparazzi)",
-        "cs_cctv": "CCTV / Security Camera",
-        "cs_dutch": "Dutch Tilt",
-        "cs_pov": "First-person POV",
-        "cs_fisheye": "Fisheye Lens",
-        "cs_mirror": "Mirror Reflection",
-        "cs_selfie": "Selfie (Arm's Length)",
-        "cs_through": "Shot Through Foreground",
-        "cs_window": "Through a Window",
-        "cf_none": "— Not specified —",
-        "cf_digicam": "2000s Compact Digicam",
-        "cf_arri": "ARRI Alexa (Cinema)",
-        "cf_canon": "Canon EOS R5 (Clean Digital)",
-        "cf_cinestill": "CineStill 800T (Night Film)",
-        "cf_disposable": "Disposable Film Camera",
-        "cf_superia": "Fujifilm Superia 400 Film",
-        "cf_fuji": "Fujifilm X-T5 (Classic Chrome)",
-        "cf_hasselblad": "Hasselblad Medium Format",
-        "cf_ilford": "Ilford HP5 (B&W Film)",
-        "cf_instax": "Instax Mini (Instant)",
-        "cf_iphone": "iPhone (Smartphone)",
-        "cf_gold": "Kodak Gold 200 Film",
-        "cf_portra": "Kodak Portra 400 Film",
-        "cf_leica": "Leica M (Rangefinder)",
-        "cf_polaroid": "Polaroid Instant Film",
-        "cf_sony": "Sony A7R V (Sharp Digital)",
-        "atm_puddles": "After-Rain Reflections",
-        "atm_leaves": "Autumn Leaves Falling",
-        "atm_petals": "Cherry Petals Falling",
-        "atm_confetti": "Confetti",
-        "atm_dust": "Dust Particles in Light",
-        "atm_fireflies": "Fireflies",
-        "atm_fog": "Fog / Mist",
-        "atm_wind": "Gentle Breeze (Hair Blowing)",
-        "atm_sparkles": "Magical Sparkles",
-        "atm_rain": "Rain",
-        "atm_smoke": "Smoke / Haze",
-        "atm_snow": "Snow",
-        "atm_bubbles": "Soap Bubbles",
-        "atm_steam": "Steam",
-        "bgp_none": "— Not specified —",
-        "bgp_few": "A Few Passersby",
-        "bgp_crowd": "Blurred Bustling Crowd",
-        "bgp_empty": "No One Else (Empty)",
-        "lfx_chromatic": "Chromatic Aberration",
-        "lfx_double": "Double Exposure",
-        "lfx_date": "Film Date Stamp",
-        "lfx_grain": "Film Grain",
-        "lfx_halation": "Halation Glow",
-        "lfx_flare": "Lens Flare",
-        "lfx_leak": "Light Leak",
-        "lfx_motion": "Motion Blur",
-        "lfx_prism": "Prism Rainbow",
-        "lfx_bloom": "Soft Bloom",
-        "lfx_vignette": "Vignette",
-        "loc_dance_studio": "Dance Studio",
-        "loc_classroom": "Sunlit Classroom",
-        "loc_museum": "Museum Hall",
-        "loc_bedroom": "Cozy Bedroom",
-        "loc_kitchen": "Homey Kitchen",
-        "loc_living": "Living Room Sofa",
-        "loc_balcony": "Balcony with Plants",
-        "loc_window_seat": "Window Seat",
-        "loc_vanity": "Vanity Mirror",
-        "loc_crosswalk": "City Crosswalk",
-        "loc_railway": "Old Railway Tracks",
-        "loc_bus_stop": "Bus Stop",
-        "loc_flower_shop": "Flower Shop",
-        "loc_bookstore": "Bookstore",
-        "loc_bakery": "Pastel Bakery",
-        "loc_boutique": "Fashion Boutique",
-        "loc_record_store": "Vintage Record Store",
-        "loc_laundromat": "Retro Laundromat",
-        "loc_sunflower": "Sunflower Field",
-        "loc_lavender": "Lavender Field",
-        "loc_autumn_park": "Autumn Park",
-        "loc_meadow": "Wildflower Meadow",
-        "loc_lighthouse": "Seaside Lighthouse",
-        "loc_mansion": "Classic Mansion Interior",
-        "loc_fine_dining": "Fine Dining Restaurant",
-        "loc_santorini": "Santorini-style White Village",
-        "loc_venice": "Venice-style Canal",
-        "loc_th_wat": "Golden Thai Temple",
-        "loc_th_floating": "Floating Market",
-        "loc_th_chiangmai": "Chiang Mai Old Town Lane",
-        "loc_th_shophouse": "Old Shophouse Street",
-        "loc_th_island": "Thai Island Beach",
-        "loc_th_rooftop": "Bangkok Rooftop Bar",
-        "loc_th_tea": "Tea Plantation Hills",
-        "loc_th_tuktuk": "Tuk-tuk Street",
-        "loc_jp_torii": "Shrine with Torii Gates",
-        "loc_jp_street": "Tokyo Side Street",
-        "loc_jp_ryokan": "Ryokan Tatami Room",
-        "loc_bamboo": "Bamboo Forest",
-        "loc_kr_hanok": "Hanok Village",
-        "loc_kr_street": "Seoul Neighborhood Street",
-        "loc_photo_booth": "Photo Booth",
-        "loc_bowling": "Retro Bowling Alley",
-        "loc_carousel": "Vintage Carousel",
-        "loc_cinema": "Movie Theater",
-        "loc_karaoke": "Karaoke Room",
-        "loc_tennis": "Tennis Court",
-    },
-    "th": {
-        # ── Global ──
-        "app_title": "เครื่องสร้างพรอมต์ภาพ AI",
-        "app_subtitle": "สร้างพรอมต์สำหรับ Gemini · Imagen 3 · Midjourney",
-        "aspect_ratio": "อัตราส่วนภาพ",
-        "model_type": "ประเภทโมเดล",
-        "generate_btn": "สร้างพรอมต์",
-        "copy_btn": "คัดลอก",
-        "result_header": "พรอมต์ที่สร้างแล้ว",
-        "no_prompt_yet": "กด **สร้างพรอมต์** เพื่อดูผลลัพธ์",
-        "target_platform": "แพลตฟอร์ม AI เป้าหมาย",
-        "platform_universal": "ทั่วไป (Gemini · Imagen)",
-        "platform_midjourney": "Midjourney",
-        "platform_sd": "Stable Diffusion / SDXL",
-        "random_btn": "สุ่มลุค",
-        "random_scene_btn": "สุ่มฉาก",
-        "lens": "เลนส์ (เฉพาะโหมดภาพถ่าย)",
-        "lens_24": "24มม. (มุมกว้าง / เห็นสภาพแวดล้อม)",
-        "lens_35": "35มม. (คลาสสิก)",
-        "lens_50": "50มม. (มาตรฐาน)",
-        "lens_85": "85มม. (พอร์ตเทรต)",
-        "lens_135": "135มม. (เทเลโฟโต้)",
-        "mj_stylize": "Stylize (--stylize)",
-        "mj_seed": "Seed (--seed ใส่หรือไม่ก็ได้)",
-        "download_btn": "ดาวน์โหลด .txt",
-        "history_header": "ประวัติพรอมต์ (10 ล่าสุด)",
-        "chars_label": "ตัวอักษร",
-        "words_label": "คำ",
-
-        # Aspect Ratio
-        "ar_1_1": "1:1  (สี่เหลี่ยม · Instagram)",
-        "ar_16_9": "16:9 (แนวนอน · YouTube)",
-        "ar_9_16": "9:16 (แนวตั้ง · TikTok/Reels)",
-        "ar_4_5": "4:5  (แนวตั้ง · Instagram)",
-        "ar_3_2": "3:2  (แนวนอน · ภาพถ่ายคลาสสิก)",
-        "ar_2_3": "2:3  (แนวตั้ง · ภาพถ่ายคลาสสิก)",
-        "ar_4_3": "4:3  (แนวนอน · ภาพถ่ายมาตรฐาน)",
-        "ar_3_4": "3:4  (แนวตั้ง · ภาพถ่ายมาตรฐาน)",
-        "ar_iphone": "วอลเปเปอร์ iPhone",
-        "ar_android": "วอลเปเปอร์ Android",
-
-        # Model Type
-        "model_realistic": "ภาพถ่ายสมจริง",
-        "model_cinematic": "ภาพนิ่งสไตล์ภาพยนตร์",
-        "model_film": "ภาพถ่ายฟิล์มอนาล็อก",
-        "model_fashion": "แฟชั่นเอดิทอเรียล",
-        "model_anime": "อนิเมะ / ภาพวาด",
-        "model_digital_painting": "ดิจิทัลเพนต์ติ้ง",
-        "model_watercolor": "ภาพวาดสีน้ำ",
-        "model_comic": "การ์ตูน / มังงะ",
-        "model_3d": "3D เรนเดอร์ / CGI",
-
-        # ── Subject ──
-        "exp_subject": "ตัวละคร",
-        "attach_subject_photo": "จะแนบรูปอ้างอิงตัวเอง (ใบหน้า/ตัวตน)",
-        "attach_subject_note": "พรอมต์จะสั่งให้ AI อิงจากรูปใบหน้า/ตัวตนที่แนบมา",
-        "gender": "เพศ",
-        "gender_female": "หญิง",
-        "gender_male": "ชาย",
-        "gender_nb": "ไม่ระบุเพศ",
-        "age_group": "กลุ่มอายุ",
-        "age_5_9": "เด็ก (5-9)",
-        "age_10_14": "เด็กโต (10-14)",
-        "age_15_19": "วัยรุ่น (15-19)",
-        "age_20_25": "วัยหนุ่มสาว (20-25)",
-        "age_26_35": "ผู้ใหญ่ (26-35)",
-        "age_36_45": "วัยกลางคน (36-45)",
-        "age_46_60": "วัยกลางคนปลาย (46-60)",
-        "age_60plus": "ผู้อาวุโส (60+)",
-        "ethnicity": "เชื้อชาติ",
-        "eth_asian": "เอเชียตะวันออก",
-        "eth_se_asian": "เอเชียตะวันออกเฉียงใต้",
-        "eth_south_asian": "เอเชียใต้",
-        "eth_european": "ยุโรป / คอเคเชียน",
-        "eth_african": "แอฟริกัน",
-        "eth_latin": "ลาตินอเมริกัน",
-        "eth_middle_east": "ตะวันออกกลาง",
-        "eth_mixed": "เชื้อชาติผสม",
-        "num_subjects": "จำนวนคน",
-        "ns_solo": "เดี่ยว (1 คน)",
-        "ns_duo": "คู่ (2 คน)",
-        "ns_trio": "3 คน",
-        "ns_group": "กลุ่ม (5 คน)",
-        "person_2": "คนที่ 2 — ลุคเฉพาะตัว",
-        "person_3": "คนที่ 3 — ลุคเฉพาะตัว",
-        "multi_person_hint": "💡 เลือกเพศ ทรงผม สีผม และสีหน้าให้แต่ละคนต่างกันด้านล่าง เพื่อให้ AI แยกแต่ละคนออกจากกันได้",
-        "group_hint": "💡 พรอมต์แบบกลุ่มจะบรรยายคนตรงกลางอย่างละเอียด ส่วนคนอื่นๆ จะถูกสั่งให้มีลุคหลากหลายตามธรรมชาติ",
-        # Makeup styles (None first, then A-Z)
-        "makeup": "สไตล์เมคอัพ",
-        "mu_none": "— ไม่ระบุ —",
-        "mu_red_lip": "ลิปแดงคลาสสิก",
-        "mu_douyin": "โต่วอิน / C-beauty",
-        "mu_glam": "ฟูลแกลม",
-        "mu_gradient": "ปากไล่สี (เกาหลี)",
-        "mu_dewy": "ผิวโกลว์ฉ่ำแบบเกาหลี",
-        "mu_natural": "ธรรมชาติ / บางเบา",
-        "mu_no_makeup": "ลุคหน้าสด",
-        "mu_smoky": "ตาสโมคกี้",
-        "mu_soft_matte": "แมตต์เนื้อนุ่ม",
-        "hair_style": "ทรงผม",
-        # ทรงผมผู้หญิง
-        "hair_long": "ยาวสลวย",
-        "hair_straight": "ยาวตรง",
-        "hair_loose_waves": "ลอนหลวม",
-        "hair_curly": "หยิก",
-        "hair_wavy": "หยักศก",
-        "hair_layered": "ซอยเลเยอร์",
-        "hair_wolf_cut": "วูล์ฟคัท",
-        "hair_hush_cut": "ฮัชคัท",
-        "hair_hime": "ฮิเมะคัท",
-        "hair_bob": "บ็อบ",
-        "hair_lob": "ลองบ็อบ",
-        "hair_pixie": "พิกซี่",
-        "hair_ponytail": "หางม้า",
-        "hair_high_ponytail": "หางม้าสูง",
-        "hair_bun": "มวยผม",
-        "hair_messy_bun": "มวยผมหลวม",
-        "hair_space_buns": "มวยผมสองข้าง",
-        "hair_braids": "ถักเปีย",
-        "hair_french_braid": "เปียเฟรนช์",
-        "hair_twin_braids": "ถักเปียสองข้าง",
-        "hair_twintails": "มัดสองข้าง",
-        "hair_half_up": "มัดครึ่ง",
-        "hair_side_swept": "ปัดข้าง",
-        # ทรงผมผู้ชาย
-        "hair_short": "สั้น",
-        "hair_buzz": "บัซคัท / เกรียน",
-        "hair_crew_cut": "ทรงนักเรียน",
-        "hair_middle_part": "แสกกลาง (คอมม่าแฮร์)",
-        "hair_textured_crop": "ครอปเท็กซ์เจอร์",
-        "hair_undercut": "อันเดอร์คัท",
-        "hair_fade": "เฟด",
-        "hair_slick_back": "เสยไปด้านหลัง",
-        "hair_man_bun": "มัดจุก",
-        "hair_bald": "โล้น / โกนผม",
-        "hair_color": "สีผม",
-        "hc_black": "ดำ",
-        "hc_blue_black": "ดำอมน้ำเงิน",
-        "hc_dark_brown": "น้ำตาลเข้ม",
-        "hc_ash_brown": "น้ำตาลหม่น (แอชบราวน์)",
-        "hc_milk_tea": "น้ำตาลชานม",
-        "hc_light_brown": "น้ำตาลอ่อน",
-        "hc_honey_blonde": "บลอนด์น้ำผึ้ง",
-        "hc_blonde": "บลอนด์",
-        "hc_platinum": "บลอนด์แพลตินั่ม",
-        "hc_red": "แดง / ออเบิร์น",
-        "hc_burgundy": "แดงเบอร์กันดี / เชอร์รี่",
-        "hc_rose_gold": "โรสโกลด์",
-        "hc_pink": "ชมพู",
-        "hc_purple": "ม่วง / ลาเวนเดอร์",
-        "hc_blue": "น้ำเงิน",
-        "hc_silver": "เงิน / เทา",
-        "hc_white": "ขาว",
-        "hc_ombre": "ออมเบร (เข้มไล่อ่อน)",
-        "hc_highlights": "ไฮไลท์ / ทำเส้น",
-        "bangs": "หน้าม้า",
-        "bangs_none": "ไม่มี",
-        "bangs_straight": "หน้าม้าตรง",
-        "bangs_see_through": "หน้าม้าซีทรู",
-        "bangs_side": "หน้าม้าปัดข้าง",
-        "bangs_curtain": "หน้าม้าม่าน",
-        "bangs_wispy": "หน้าม้าบาง",
-        "bangs_micro": "หน้าม้าสั้น",
-        "bangs_hime": "หน้าม้าฮิเมะ (ไซด์ล็อค)",
-        "expression": "สีหน้า / อารมณ์",
-        "expr_smile": "ยิ้มอ่อน",
-        "expr_bright_smile": "ยิ้มสดใสเปล่งประกาย",
-        "expr_laugh": "หัวเราะ",
-        "expr_giggle": "ยิ้มคิกคัก",
-        "expr_soft_gaze": "สายตาอ่อนโยน",
-        "expr_doe_eyes": "ตากลมใสไร้เดียงสา",
-        "expr_pout": "ทำปากยื่นน่ารัก",
-        "expr_playful": "ขี้เล่น / ซุกซน",
-        "expr_shy": "เขินอาย",
-        "expr_confident": "มั่นใจ",
-        "expr_smirk": "ยิ้มมุมปาก",
-        "expr_dreamy": "เหม่อฝัน",
-        "expr_peaceful": "สงบ / เยือกเย็น",
-        "expr_neutral": "เฉยๆ / ปกติ",
-        "expr_pensive": "ครุ่นคิด",
-        "expr_serious": "จริงจัง / เข้มขรึม",
-        "expr_surprised": "ตกใจ / ประหลาดใจ",
-        "expr_sad": "เศร้า",
-        "expr_sultry": "เย้ายวน",
-
-        # ── Body Type ──
-        "body_type": "รูปร่าง",
-        "bt_slim": "ผอมเพรียว",
-        "bt_petite": "ตัวเล็กกะทัดรัด",
-        "bt_lean": "ผอมกระชับ / เฟิร์ม",
-        "bt_athletic": "กล้ามเนื้อ / ฟิต",
-        "bt_hourglass": "หุ่นนาฬิกาทราย",
-        "bt_curvy": "หุ่นโค้งเว้า",
-        "bt_tall": "สูง / หุ่นนางแบบ",
-        "bt_average": "ปกติทั่วไป",
-
-        # ── Appearance / Vibe ── (A-Z ตามภาษาอังกฤษ)
-        "appearance": "ลุค / ไวบ์ภาพรวม",
-        "app_beautiful": "สวยงาม / สวยหรู",
-        "app_cpop": "ดาราจีน / C-pop",
-        "app_charming": "มีเสน่ห์ / น่าหลงใหล",
-        "app_chic": "ชิค / คลาสซี่",
-        "app_cool": "เท่ / คูล",
-        "app_cute": "น่ารัก / คิ้วท์",
-        "app_doll": "หน้าตุ๊กตา",
-        "app_elegant": "สง่างาม / ดูแพง",
-        "app_fierce": "ดุดัน / เข้มขรึม",
-        "app_girl_next_door": "สาวข้างบ้าน / เฟรนด์ลี่",
-        "app_handsome": "หล่อ / มีเสน่ห์",
-        "app_jpop": "ไอดอล J-pop",
-        "app_kpop": "ไอดอล K-pop",
-        "app_natural": "ธรรมชาติ / สดใส",
-        "app_sweet": "หวาน / ใสซื่อ",
-        "app_youthful": "อ่อนเยาว์ / ผิวโกลว์",
-
-        # ── Section Labels (editable output) ──
-        "section_technical": "เทคนิค / คุณภาพ",
-        "section_subject": "ตัวละคร / บุคคล",
-        "section_outfit": "เสื้อผ้า & สไตล์",
-        "section_pose": "ท่าโพส",
-        "section_environment": "สภาพแวดล้อม",
-        "section_camera": "กล้อง & แสง",
-        "section_custom": "เพิ่มเติม",
-        "section_final": "พรอมต์รวมทั้งหมด",
-        "section_negative": "สิ่งที่ไม่ต้องการ",
-        "edit_hint": "แก้ไขแต่ละส่วนได้ตามต้องการ แล้วคัดลอกพรอมต์รวมด้านล่าง",
-
-        # ── Outfit ──
-        "exp_outfit": "เสื้อผ้าและสไตล์",
-        "outfit_input": "อธิบายชุด (พิมพ์เอง)",
-        "outfit_placeholder": "เช่น ชุดนักเรียนญี่ปุ่นผูกโบว์สีแดง",
-        "fashion_presets": "สไตล์แฟชั่น (เลือกได้หลายอัน)",
-        "fashion_presets_help": "เลือกสไตล์ผสมกันได้ หรือข้ามไปอธิบายเองด้านล่าง",
-        "outfit_clash_hint": "💡 เลือกสไตล์แฟชั่นแล้ว — แนะนำให้ปล่อยเสื้อ/ท่อนล่างเป็น “ไม่ระบุ” เพื่อให้สไตล์กำหนดชุดเอง หรือล้างสไตล์ออกแล้วจัดชุดเองก็ได้",
-        # Fashion presets (A-Z)
-        "fs_athleisure": "แอธเลเชอร์ / สปอร์ต",
-        "fs_barbiecore": "บาร์บี้คอร์ / ชมพูทั้งลุค",
-        "fs_bohemian": "โบฮีเมียน / โบโฮ",
-        "fs_office": "ออฟฟิศ / ทางการกึ่งลำลอง",
-        "fs_casual": "แคชชวล / ลุคทุกวัน",
-        "fs_clean_girl": "คลีนเกิร์ล",
-        "fs_coquette": "โคเค็ตต์ / บัลเล่ต์คอร์",
-        "fs_cottagecore": "คอตเทจคอร์ / ชนบท",
-        "fs_cyberpunk": "ไซเบอร์พังก์ / เทคแวร์",
-        "fs_dark_academia": "ดาร์กอะคาเดเมีย",
-        "fs_egirl": "อีเกิร์ล / อีบอย",
-        "fs_elegant": "เอเลแกนท์ / ทางการ",
-        "fs_gorpcore": "กอร์ปคอร์ / สายเอาท์ดอร์",
-        "fs_gothic": "โกธิค / ดาร์ค",
-        "fs_grunge": "กรันจ์ / ยุค 90",
-        "fs_japanese": "ฮาราจูกุ ญี่ปุ่น",
-        "fs_korean": "แฟชั่นเกาหลี (K-Style)",
-        "fs_light_academia": "ไลท์อะคาเดเมีย",
-        "fs_minimalist": "มินิมอล / สะอาดตา",
-        "fs_mob_wife": "ม็อบไวฟ์ / เฟอร์หรู",
-        "fs_old_money": "Old Money / หรูเงียบๆ",
-        "fs_parisian": "ปารีเซียงชิค",
-        "fs_preppy": "เพรปปี้ / นักเรียนอินเตอร์",
-        "fs_resort": "รีสอร์ต / วันหยุดพักร้อน",
-        "fs_rockstar": "ร็อคสตาร์ / สายวงดนตรี",
-        "fs_skater": "สเก็ตเตอร์",
-        "fs_streetwear": "สตรีทแวร์ / อเบอร์แบน",
-        "fs_thai": "ชุดไทยประยุกต์",
-        "fs_vintage": "วินเทจ / เรโทร",
-        "fs_western": "เวสเทิร์น / คาวบอย",
-        "fs_y2k": "Y2K / ยุค 2000",
-        # Top garments (A-Z)
-        "top_garment": "เสื้อ",
-        "top_none": "— ไม่ระบุ (ให้สไตล์แฟชั่นกำหนด) —",
-        "top_blazer": "เสื้อเบลเซอร์",
-        "top_blouse": "เสื้อเบลาส์",
-        "top_bodysuit": "บอดี้สูท",
-        "top_bomber": "แจ็คเก็ตบอมเบอร์",
-        "top_bralette": "บราเล็ต",
-        "top_button_shirt": "เสื้อเชิ้ต",
-        "top_camisole": "เสื้อสายเดี่ยว",
-        "top_cardigan": "เสื้อคาร์ดิแกน",
-        "top_corset": "เสื้อคอร์เซ็ต",
-        "top_crop": "ครอปท็อป",
-        "top_denim_jacket": "แจ็คเก็ตยีนส์",
-        "top_halter": "เสื้อคล้องคอ",
-        "top_hoodie": "เสื้อฮู้ด",
-        "top_knit_vest": "เสื้อกั๊กไหมพรม",
-        "top_leather_jacket": "แจ็คเก็ตหนัง",
-        "top_long_sleeve": "เสื้อยืดแขนยาว",
-        "top_off_shoulder": "เสื้อเปิดไหล่",
-        "top_oversized_shirt": "เชิ้ตโอเวอร์ไซซ์",
-        "top_polo": "เสื้อโปโล",
-        "top_puff_sleeve": "เสื้อแขนพอง",
-        "top_puffer": "แจ็คเก็ตพัฟเฟอร์",
-        "top_sports_bra": "สปอร์ตบรา",
-        "top_sweater": "เสื้อสเวตเตอร์",
-        "top_sweatshirt": "เสื้อสเวตเชิ้ต",
-        "top_tshirt": "เสื้อยืด",
-        "top_tank": "เสื้อกล้าม",
-        "top_trench": "เทรนช์โค้ท",
-        "top_tube": "เสื้อเกาะอก",
-        "top_turtleneck": "เสื้อคอเต่า",
-        "top_varsity": "แจ็คเก็ตวาร์ซิตี้",
-        "top_wrap": "เสื้อแบบผูก (Wrap)",
-        # Bottom garments (A-Z)
-        "bottom_garment": "ท่อนล่าง",
-        "bot_none": "— ไม่ระบุ (ให้สไตล์แฟชั่นกำหนด) —",
-        "bot_a_line": "กระโปรงทรงเอ",
-        "bot_baggy": "ยีนส์ทรงหลวม (แบ็กกี้)",
-        "bot_bike_shorts": "กางเกงไบค์เกอร์",
-        "bot_cargo": "กางเกงคาร์โก้",
-        "bot_cargo_skirt": "กระโปรงคาร์โก้",
-        "bot_culottes": "กางเกงคูล็อต",
-        "bot_denim_shorts": "กางเกงยีนส์ขาสั้น",
-        "bot_denim_skirt": "กระโปรงยีนส์",
-        "bot_flare": "ยีนส์ขาม้า",
-        "bot_jeans": "กางเกงยีนส์",
-        "bot_joggers": "กางเกงจ็อกเกอร์",
-        "bot_leggings": "เลกกิ้ง",
-        "bot_maxi_skirt": "กระโปรงยาว",
-        "bot_midi_skirt": "กระโปรงมิดิ",
-        "bot_mini_skirt": "กระโปรงสั้น",
-        "bot_overalls": "ชุดเอี๊ยม",
-        "bot_palazzo": "กางเกงพาลาซโซ",
-        "bot_parachute": "กางเกงพาราชูท",
-        "bot_pencil_skirt": "กระโปรงทรงดินสอ",
-        "bot_pleated_skirt": "กระโปรงพลีท",
-        "bot_ripped": "ยีนส์ขาด",
-        "bot_slip_skirt": "กระโปรงซาตินสลิป",
-        "bot_shorts": "กางเกงขาสั้น",
-        "bot_skort": "กระโปรงกางเกง (สเกิร์ต)",
-        "bot_sweatpants": "กางเกงวอร์ม",
-        "bot_trousers": "กางเกงสแล็ค",
-        "bot_tennis_skirt": "กระโปรงเทนนิส",
-        "bot_tulle_skirt": "กระโปรงผ้าทูล (โปร่ง)",
-        "bot_wide_leg": "กางเกงขาบาน",
-        "bot_yoga": "กางเกงโยคะ",
-        # Footwear (None first, then A-Z)
-        "footwear": "รองเท้า",
-        "sh_none": "— ไม่ระบุ —",
-        "sh_ankle_boots": "บูทหุ้มข้อ",
-        "sh_ballet": "บัลเล่ต์แฟลต",
-        "sh_barefoot": "เท้าเปล่า",
-        "sh_chelsea": "บูทเชลซี",
-        "sh_chunky": "สนีกเกอร์ทรงหนา",
-        "sh_combat": "บูทคอมแบท",
-        "sh_cowboy": "บูทคาวบอย",
-        "sh_espadrilles": "เอสพาดริล",
-        "sh_flip_flops": "รองเท้าแตะหูหนีบ",
-        "sh_heels": "ส้นสูง",
-        "sh_kitten_heels": "ส้นเตี้ยคิตเทนฮีล",
-        "sh_knee_boots": "บูทยาวถึงเข่า",
-        "sh_loafers": "โลฟเฟอร์",
-        "sh_mary_janes": "แมรี่เจน",
-        "sh_mules": "รองเท้ามิวล์",
-        "sh_oxford": "รองเท้าอ็อกซ์ฟอร์ด",
-        "sh_platform": "ส้นตึก",
-        "sh_running": "รองเท้าวิ่ง",
-        "sh_sandals": "รองเท้ารัดส้น",
-        "sh_sneakers": "รองเท้าผ้าใบ",
-        "attach_outfit_photo": "จะแนบรูปชุดอ้างอิง",
-        "attach_outfit_note": "พรอมต์จะสั่งให้ AI สร้างชุดตามรูปที่แนบ (ใช้ภาพหุ่นใส่ชุดหรือภาพวางชุดได้)",
-        # Fabric (A-Z) — separate for top & bottom
-        "top_fabric": "ผ้าเสื้อ",
-        "bot_fabric": "ผ้าท่อนล่าง",
-        "fab_none": "— ไม่ระบุ —",
-        "fab_chiffon": "ผ้าชีฟอง",
-        "fab_cotton": "ผ้าฝ้าย",
-        "fab_denim": "ผ้ายีนส์",
-        "fab_lace": "ลูกไม้",
-        "fab_leather": "หนัง",
-        "fab_linen": "ผ้าลินิน",
-        "fab_satin": "ผ้าซาติน",
-        "fab_sheer": "ผ้าบาง / โปร่ง",
-        "fab_silk": "ผ้าไหม",
-        "fab_tweed": "ผ้าทวีด",
-        "fab_velvet": "ผ้ากำมะหยี่",
-        "fab_wool": "ผ้าขนสัตว์ถัก",
-        # Color palette (A-Z) — separate for top & bottom
-        "top_color": "สีเสื้อ",
-        "bot_color": "สีท่อนล่าง",
-        "col_none": "— ไม่ระบุ —",
-        "col_black": "ดำล้วน",
-        "col_baby_blue": "ฟ้าอ่อน",
-        "col_beige": "เบจและนู้ด",
-        "col_blue": "น้ำเงิน",
-        "col_brown": "น้ำตาลช็อกโกแลต",
-        "col_burgundy": "เบอร์กันดีและแดงไวน์",
-        "col_colorblock": "คัลเลอร์บล็อก (สีตัดกัน)",
-        "col_cool": "โทนเย็น (น้ำเงิน, เขียวอมฟ้า, เงิน)",
-        "col_coral": "ส้มปะการัง",
-        "col_earthy": "โทนดินและน้ำตาล",
-        "col_gold": "ทองเมทัลลิก",
-        "col_green": "เขียว",
-        "col_hot_pink": "ชมพูช็อกกิ้งพิงก์",
-        "col_khaki": "กากีและเขียวมะกอก",
-        "col_lilac": "ม่วงไลแลค",
-        "col_mint": "เขียวมิ้นต์",
-        "col_mono": "โมโนโครม",
-        "col_navy": "กรมท่า",
-        "col_orange": "ส้ม",
-        "col_pastel": "พาสเทล",
-        "col_peach": "พีช",
-        "col_pink": "ชมพู",
-        "col_purple": "ม่วงและลาเวนเดอร์",
-        "col_red": "แดง",
-        "col_sage": "เขียวเสจ",
-        "col_silver": "เงินเมทัลลิก",
-        "col_teal": "เขียวนกเป็ดน้ำ (Teal)",
-        "col_vibrant": "สดใสและนีออน",
-        "col_warm": "โทนอุ่น (แดง, ส้ม, ทอง)",
-        "col_white": "ขาวและครีม",
-        "col_yellow": "เหลืองและทอง",
-
-        # ── Accessories ──
-        "accessories": "เครื่องประดับ (เลือกได้หลายอย่าง)",
-        "acc_group_head": "เครื่องประดับศีรษะ",
-        "acc_group_body": "เครื่องประดับร่างกาย / เครื่องเพชร",
-        "acc_group_carried": "ของที่ถือ",
-        "acc_beanie": "หมวกบีนนี่",
-        "acc_beret": "หมวกเบเร่ต์",
-        "acc_bucket_hat": "หมวกบักเก็ต",
-        "acc_cap": "แก๊ป",
-        "acc_glasses": "แว่นสายตา",
-        "acc_hair_clip": "กิ๊บติดผม",
-        "acc_ribbon": "โบว์ผูกผม",
-        "acc_hat": "หมวก",
-        "acc_headband": "ที่คาดผม",
-        "acc_scrunchie": "ยางมัดผมสครันชี่",
-        "acc_sunglasses": "แว่นกันแดด",
-        "acc_tiara": "มงกุฎ / เทียร่า",
-        "acc_anklet": "กำไลข้อเท้า",
-        "acc_belt": "เข็มขัด",
-        "acc_bowtie": "โบว์ไท",
-        "acc_bracelet": "สร้อยข้อมือ",
-        "acc_choker": "โชคเกอร์",
-        "acc_earrings": "ต่างหู",
-        "acc_necklace": "สร้อยคอ",
-        "acc_necktie": "เนคไท",
-        "acc_ring": "แหวน",
-        "acc_scarf": "ผ้าพันคอ",
-        "acc_watch": "นาฬิกา",
-        "acc_backpack": "เป้สะพายหลัง",
-        "acc_book": "หนังสือ",
-        "acc_camera": "กล้องฟิล์ม",
-        "acc_clutch": "กระเป๋าคลัตช์",
-        "acc_crossbody": "กระเป๋าสะพายข้าง",
-        "acc_bouquet": "ช่อดอกไม้",
-        "acc_bag": "กระเป๋าถือ",
-        "acc_coffee": "แก้วกาแฟเย็น",
-        "acc_phone": "สมาร์ทโฟน",
-        "acc_tote": "กระเป๋าโท้ต",
-        "acc_umbrella": "ร่ม",
-
-        # ── Scene ──
-        "exp_scene": "ฉากและแสง",
-        "scene_mode": "ระบุสถานที่",
-        "scene_mode_preset": "เลือกจากรายการ",
-        "scene_mode_custom": "พิมพ์อธิบายเอง",
-        "scene_mode_place": "สถานที่จริง / ท่องเที่ยว",
-        "scene_custom_input": "อธิบายสถานที่ / ฉากหลัง",
-        "scene_custom_placeholder": "เช่น ถนนในโตเกียวตอนกลางคืน มีป้ายนีออนและพื้นเปียกฝน",
-        "attach_scene_photo": "จะแนบรูปฉาก/แบ็คกราวด์อ้างอิง",
-        "attach_scene_note": "พรอมต์จะสั่งให้ AI ใช้ฉากหลังตามรูปที่แนบ",
-        "place_landmark": "สถานที่ท่องเที่ยว / แลนด์มาร์ค",
-        "place_landmark_placeholder": "เช่น หอไอเฟล, วัดพระแก้ว, แยกชิบูย่า",
-        "place_city": "เมือง",
-        "place_city_placeholder": "เช่น ปารีส, กรุงเทพ, โตเกียว",
-        "place_country": "ประเทศ",
-        "place_country_placeholder": "เช่น ฝรั่งเศส, ไทย, ญี่ปุ่น",
-        "location": "สถานที่",
-        "loc_studio": "สตูดิโอถ่ายภาพ",
-        "loc_airport": "สนามบิน / เทอร์มินอล",
-        "loc_amusement": "สวนสนุก",
-        "loc_aquarium": "อควาเรียม / พิพิธภัณฑ์สัตว์น้ำ",
-        "loc_art_gallery": "หอศิลป์ / พิพิธภัณฑ์",
-        "loc_beach": "ชายหาด / ทะเล",
-        "loc_bridge": "สะพาน / วิวแม่น้ำ",
-        "loc_castle": "ปราสาท / พระราชวัง",
-        "loc_cafe": "ร้านกาแฟ / คาเฟ่",
-        "loc_desert": "ทะเลทราย",
-        "loc_old_town": "ย่านเมืองเก่ายุโรป",
-        "loc_flower_field": "ทุ่งดอกไม้",
-        "loc_forest": "ป่า / ธรรมชาติ",
-        "loc_garden": "สวน / สวนสาธารณะ",
-        "loc_stairs": "บันไดหรูหรา",
-        "loc_gym": "ยิม / ฟิตเนส",
-        "loc_room": "ห้อง / ห้องนอน",
-        "loc_lake": "ท่าเรือริมทะเลสาบ",
-        "loc_library": "ห้องสมุด / ร้านหนังสือ",
-        "loc_hotel_lobby": "ล็อบบี้โรงแรมหรู",
-        "loc_mountain": "จุดชมวิวภูเขา",
-        "loc_neon_alley": "ตรอกไฟนีออน (ไซเบอร์พังก์)",
-        "loc_night_market": "ตลาดกลางคืน",
-        "loc_brick_ruin": "บ้านอิฐเก่าเลื้อยไม้เถา",
-        "loc_overgrown": "สวนรกครึ้มธรรมชาติ",
-        "loc_pool": "ริมสระว่ายน้ำ",
-        "loc_rice_field": "ทุ่งนา / ชนบท",
-        "loc_rooftop": "ดาดฟ้า / วิวเมือง",
-        "loc_shopping": "ถนนช้อปปิ้ง",
-        "loc_snow": "ภูมิทัศน์หิมะ / ลานสกี",
-        "loc_subway": "สถานีรถไฟฟ้าใต้ดิน",
-        "loc_temple": "วัด / สถานที่ประวัติศาสตร์",
-        "loc_train": "สถานีรถไฟ",
-        "loc_university": "มหาวิทยาลัย / แคมปัส",
-        "loc_street": "ถนนในเมือง",
-        "loc_waterfall": "น้ำตก",
-        "time_of_day": "ช่วงเวลา",
-        "tod_golden": "ชั่วโมงทอง (พระอาทิตย์ตก)",
-        "tod_blue": "ชั่วโมงฟ้า (สนธยา)",
-        "tod_noon": "เที่ยงวัน",
-        "tod_night": "กลางคืน",
-        "tod_overcast": "มีเมฆ / ครึ้มฟ้า",
-        "tod_sunrise": "พระอาทิตย์ขึ้น",
-        "season": "ฤดูกาล",
-        "season_none": "ไม่ระบุ",
-        "season_spring": "ฤดูใบไม้ผลิ",
-        "season_summer": "ฤดูร้อน",
-        "season_autumn": "ฤดูใบไม้ร่วง",
-        "season_winter": "ฤดูหนาว",
-        "season_rainy": "ฤดูฝน",
-        "lighting": "สไตล์แสง",
-        "lit_natural": "แสงธรรมชาติ",
-        "lit_window": "แสงหน้าต่างนุ่มนวล",
-        "lit_studio": "ซอฟต์บ็อกซ์สตูดิโอ",
-        "lit_rim": "แสงขอบ / แบ็คไลท์",
-        "lit_neon": "นีออน / ไซเบอร์พังก์",
-        "lit_fairy": "ไฟแฟรี่ / ไฟราว",
-        "lit_candle": "แสงเทียน / อบอุ่น",
-        "lit_dramatic": "ดราม่า เคียโรสกูโร",
-        "lit_flash": "แฟลชตรง (สไตล์เทรนดี้)",
-        "lit_backlit": "ย้อนแสงทอง / ฮาโล",
-        "lit_dappled": "แสงลอดใบไม้",
-        "lit_blinds": "เงามู่ลี่พาดผ่าน",
-        "lit_gel": "ไฟเจลสี (แดง/น้ำเงิน)",
-        "lit_spotlight": "สปอตไลท์เวที",
-        "lit_moonlight": "แสงจันทร์",
-        "lit_bonfire": "แสงกองไฟ",
-        "lit_godrays": "ลำแสงทะลุเมฆ (God Rays)",
-
-        # ── Picture Style ──
-        "picture_style": "สไตล์ภาพ / ฟิลเตอร์",
-        "ps_none": "ไม่ระบุ (ค่าเริ่มต้น)",
-        "ps_dreamy": "ฝันหวาน / อีเธอเรียล",
-        "ps_soft": "นุ่มนวล / อ่อนโยน",
-        "ps_vivid": "สดใส / อิ่มสี",
-        "ps_bw": "ขาวดำ",
-        "ps_vintage": "วินเทจ / ฟิล์มย้อนยุค",
-        "ps_nostalgic": "ฟิล์มโทนอุ่นชวนคิดถึง",
-        "ps_cinematic": "ซีนีมาติก / โทนภาพยนตร์",
-        "ps_moody": "มู้ดดี้ / โทนมืด",
-        "ps_pastel": "พาสเทล / โปร่งเบา",
-        "ps_hdr": "HDR / คอนทราสต์สูง",
-        "ps_matte": "แมตต์ / ฟิล์มลุค",
-        "ps_commercial": "คอมเมอร์เชียลสว่างสะอาด",
-        "ps_editorial": "เอดิทอเรียลนิตยสาร",
-        "ps_documentary": "สารคดี / สตรีท",
-        "ps_polaroid": "โพลารอยด์",
-        "ps_digicam": "กล้องดิจิตอล Y2K (แฟลชแรง)",
-        "ps_fantasy": "แฟนตาซีเรืองแสง",
-        "ps_fairytale": "เทพนิยายด้านมืด",
-        "ps_cyber": "ไซเบอร์พังก์นีออน",
-        "ps_vaporwave": "เวเปอร์เวฟ / เรโทรเวฟ",
-        "ps_surreal": "ดรีมคอร์เหนือจริง",
-
-        # ── Shot Framing ──
-        "shot_framing": "ระยะภาพ / เฟรมมิ่ง",
-        "sf_extreme_cu": "โคลสอัพมาก (ใบหน้าอย่างเดียว)",
-        "sf_closeup": "โคลสอัพ (ศีรษะและไหล่)",
-        "sf_medium_cu": "มีเดียมโคลสอัพ (หน้าอกขึ้นไป)",
-        "sf_medium": "ภาพครึ่งตัว (เอวขึ้นไป)",
-        "sf_cowboy": "คาวบอยช็อต (ต้นขาขึ้นไป)",
-        "sf_medium_full": "ภาพเกือบเต็มตัว (เข่าขึ้นไป)",
-        "sf_full": "ภาพเต็มตัว",
-        "sf_wide": "ภาพกว้าง (เต็มตัว + สิ่งแวดล้อม)",
-
-
-        # ── Depth of Field ──
-        "dof": "ความชัดลึก / พื้นหลัง",
-        "dof_sharp": "ชัดทั้งภาพ (Deep Focus)",
-        "dof_portrait": "หน้าชัดหลังเบลอ (Portrait f/1.8)",
-        "dof_shallow": "เบลอหนักมาก (f/1.2, โบเก้ฝัน)",
-        "dof_tiltshift": "Tilt-shift (เหมือนโมเดลจิ๋ว)",
-        "dof_soft": "นุ่มนวล / เรืองแสง (Dreamy)",
-        "dof_bokeh_lights": "โบเก้ดวงไฟกลม (กลางคืน)",
-        "dof_motion": "พื้นหลังเบลอเคลื่อนไหว",
-        "dof_fg_blur": "ฉากหน้าเบลอ (ถ่ายลอดวัตถุ)",
-        "dof_clean_bg": "พื้นหลังเรียบสตูดิโอ",
-
-        # ── Composition ──
-        "composition": "การจัดองค์ประกอบ",
-        "comp_center": "ตรงกลาง (ค่าเริ่มต้น)",
-        "comp_rot_left": "กฎสามส่วน — ซ้าย",
-        "comp_rot_right": "กฎสามส่วน — ขวา",
-        "comp_golden": "สัดส่วนทอง (Golden Ratio)",
-        "comp_leading": "เส้นนำสายตา",
-        "comp_framed": "กรอบภาพธรรมชาติ / ประตู",
-        "comp_negative_space": "เว้นพื้นที่ว่าง (Negative Space)",
-        "comp_symmetry": "สมมาตร (Symmetrical)",
-        "comp_diagonal": "เส้นทแยงมุม",
-        "comp_fill": "ซับเจกต์เต็มเฟรม",
-        "comp_reflection": "เงาสะท้อน / กระจก",
-        "comp_depth": "มิติหลายชั้น (หน้า-กลาง-หลัง)",
-
-        # ── Pose ── (sorted A-Z)
-        "pose": "ท่าโพส / แอคชั่น",
-        "pose_fix_jacket": "จัดปกเสื้อ / แจ็คเก็ต",
-        "pose_adjust_glasses": "จัดแว่นกันแดด",
-        "pose_arms_up": "ยกแขนเหนือศีรษะ",
-        "pose_cross_arms": "กอดอก",
-        "pose_arms_open": "กางแขนกว้าง",
-        "pose_back_camera": "หันหลังให้กล้อง",
-        "pose_blow_kiss": "ส่งจูบ",
-        "pose_candid": "แคนดิด / ท่าธรรมชาติ",
-        "pose_chin_up": "เชิดคางมั่นใจ",
-        "pose_cross_leg": "นั่งไขว่ห้าง",
-        "pose_crouch": "นั่งยอง",
-        "pose_dance": "เต้นรำ",
-        "pose_dynamic": "ท่าไดนามิก / แอคชั่น",
-        "pose_editorial": "ท่าแบบนิตยสารแฟชั่น",
-        "pose_elegant": "ท่าสง่างาม",
-        "pose_finger_heart": "ฟิงเกอร์ฮาร์ท (เกาหลี)",
-        "pose_hair_flip": "สะบัดผม",
-        "pose_hand_hair": "มือจับผม",
-        "pose_hand_chin": "มือจับคาง",
-        "pose_hand_hip": "มือเท้าเอวข้างเดียว",
-        "pose_hands_back": "มือไขว้หลัง",
-        "pose_arms_behind_head": "มือประสานหลังศีรษะ",
-        "pose_cheek_hands": "มือเท้าแก้ม",
-        "pose_hands_pocket": "มือในกระเป๋า",
-        "pose_head_tilt": "เอียงหัวน่ารัก",
-        "pose_heart_hands": "ทำมือรูปหัวใจ",
-        "pose_high_fashion": "ท่านางแบบไฮแฟชั่น",
-        "pose_hug_knees": "นั่งกอดเข่า",
-        "pose_jump": "กระโดด",
-        "pose_kneel": "คุกเข่า",
-        "pose_lean": "พิงกำแพง",
-        "pose_railing": "พิงราวระเบียง",
-        "pose_lean_forward": "โน้มตัวเข้าหากล้อง",
-        "pose_looking_away": "มองไปทางอื่น",
-        "pose_look_back_walk": "เดินแล้วหันกลับมามอง",
-        "pose_over_shoulder": "เหลียวมองข้ามไหล่",
-        "pose_look_up": "แหงนมองขึ้น (ชวนฝัน)",
-        "pose_lying": "นอน",
-        "pose_mini_heart": "มินิฮาร์ท",
-        "pose_mirror_selfie": "เซลฟี่หน้ากระจก",
-        "pose_peace": "ชูสองนิ้ว",
-        "pose_peek_fingers": "แอบมองผ่านนิ้ว",
-        "pose_reach_camera": "ยื่นมือเข้าหากล้อง (Follow Me)",
-        "pose_run": "วิ่ง",
-        "pose_runway": "เดินแบบรันเวย์",
-        "pose_s_curve": "ยืนโพสตัว S",
-        "pose_shield_sun": "ยกมือบังแดด",
-        "pose_sit": "นั่ง",
-        "pose_sit_stairs": "นั่งบนบันได",
-        "pose_legs_extended": "นั่งเหยียดขา",
-        "pose_stand": "ยืน",
-        "pose_squat": "นั่งยองสไตล์สตรีท",
-        "pose_stretch": "ท่ายืดตัวสวยงาม",
-        "pose_hold_hat": "จับปีกหมวก",
-        "pose_hair_tuck": "เกี่ยวผมหลังหู",
-        "pose_twirl": "หมุนตัว",
-        "pose_w_sit": "นั่งขารูป W",
-        "pose_walk": "เดิน",
-        "pose_walk_away": "เดินหันหลัง (แคนดิด)",
-        "pose_wink": "วิ้งก์ตา",
-
-        # ── Advanced ──
-        "exp_advanced": "ขั้นสูงและเทคนิค",
-        "save_load_header": "บันทึก / โหลดลุค",
-        "save_look": "บันทึกลุค (JSON)",
-        "load_look": "ใช้ลุคนี้",
-        "load_look_paste": "โหลดลุคที่บันทึกไว้ — วางโค้ด JSON ที่นี่",
-        "preset_loaded": "ใช้ลุคเรียบร้อยแล้ว!",
-        "preset_invalid": "อ่านลุคไม่ได้ — กรุณาวาง JSON ที่ได้จากปุ่ม “บันทึกลุค”",
-        "custom_prompt": "เพิ่มเติมเอง (พิมพ์ได้เลย)",
-        "custom_placeholder": "เช่น โทนภาพยนตร์, เลนส์แฟลร์, ฟิล์มเกรน",
-        "negative_prompt": "สิ่งที่ไม่ต้องการ (Negative Prompt)",
-        "negative_placeholder": "เช่น เบลอ, คุณภาพต่ำ, นิ้วเกิน, ลายน้ำ",
-        "quality_tags": "แท็กเพิ่มคุณภาพ",
-        "qt_8k": "8K อัลตร้า HD",
-        "qt_detail": "รายละเอียดสูงมาก",
-        "qt_sharp": "โฟกัสคมชัด",
-        "qt_pro": "ภาพถ่ายมืออาชีพ",
-        "qt_award": "ระดับรางวัล",
-        "qt_magazine": "คุณภาพนิตยสาร",
-
-        # ── Ref notes ──
-        "ref_images_header": "รูปอ้างอิงที่ต้องแนบ",
-        "ref_instruction": "ตอนส่งพรอมต์ ให้แนบรูปอ้างอิงที่เลือกไว้พร้อมกับข้อความใน AI ที่ใช้",
-        "ref_note_subject": "แนบ: รูปอ้างอิงใบหน้า/ตัวตน",
-        "ref_note_outfit": "แนบ: รูปอ้างอิงชุด/เสื้อผ้า",
-        "ref_note_scene": "แนบ: รูปอ้างอิงฉาก/แบ็คกราวด์",
-
-        # ── v5.5 — ตัวเลือก "ไม่ระบุ" ──
-        "age_none": "— ไม่ระบุ —",
-        "eth_none": "— ไม่ระบุ —",
-        "hair_none": "— ไม่ระบุ —",
-        "hc_none": "— ไม่ระบุ —",
-        "expr_none": "— ไม่ระบุ —",
-        "bt_none": "— ไม่ระบุ —",
-        "app_none": "— ไม่ระบุ —",
-        "pose_none": "— ไม่ระบุ —",
-        "tod_none": "— ไม่ระบุ —",
-        "lit_none": "— ไม่ระบุ —",
-        "loc_none": "— ไม่ระบุ —",
-        "sf_none": "— ไม่ระบุ —",
-        "dof_none": "— ไม่ระบุ —",
-        # ── v5.5 — เพศรายคน / กลุ่ม ──
-        "group_mix": "เพศของคนในกลุ่ม",
-        "gg_same": "เพศเดียวกับที่เลือกด้านบน",
-        "gg_mixed": "คละกัน (ชาย-หญิง)",
-        # ── v5.5 — เมคอัพ ──
-        "mu_editorial": "เมคอัพแฟชั่น / อาว็อง-การ์ด",
-        "mu_freckles": "แต้มกระน่ารัก",
-        "mu_goth": "โกธิค / สายดาร์ก",
-        "mu_igari": "บลัชอิการิ (ญี่ปุ่น)",
-        "mu_bronzed": "ผิวแทนโกลว์แดดสวย",
-        "mu_glitter": "กลิตเตอร์ Y2K",
-        # ── v5.5 — สีหน้า ──
-        "expr_wink": "ขยิบตา",
-        "expr_tongue": "แลบลิ้นขี้เล่น",
-        "expr_mischief": "ยิ้มมีเลศนัย",
-        "expr_fierce": "สายตาดุดัน",
-        "expr_eyes_closed": "หลับตาสงบ",
-        "expr_bored": "เบื่อๆ เฉยชา",
-        "expr_angry": "โกรธ / ถลึงตา",
-        "expr_tearful": "น้ำตาคลอ",
-        # ── v5.5 — สไตล์แฟชั่น ──
-        "fs_basketball": "บาสเกตบอล / เสื้อเจอร์ซีย์",
-        "fs_beach_cover": "ชุดชายหาด / ผ้าคลุม",
-        "fs_bikini": "ชุดว่ายน้ำบิกินี่",
-        "fs_cheer": "ชุดเชียร์ลีดเดอร์",
-        "fs_golf": "ชุดกอล์ฟ",
-        "fs_one_piece": "ชุดว่ายน้ำวันพีซ",
-        "fs_rashguard": "แรชการ์ด / ชุดเซิร์ฟ",
-        "fs_school": "ชุดนักเรียน",
-        "fs_ski": "ชุดสกี / สโนว์บอร์ด",
-        "fs_teen": "แฟชั่นวัยรุ่น / วัยเรียน",
-        "fs_tennis": "ชุดเทนนิส",
-        "fs_yoga": "ชุดโยคะ / ออกกำลังกาย",
-        # ── v5.5 — สถานที่ ──
-        "loc_arcade": "ร้านเกมอาร์เคด",
-        "loc_ballroom": "ห้องบอลรูมหรูหรา",
-        "loc_basketball": "สนามบาสเกตบอล",
-        "loc_cherry": "สวนซากุระบานสะพรั่ง",
-        "loc_cliff": "หน้าผาริมทะเล",
-        "loc_convenience": "ร้านสะดวกซื้อ",
-        "loc_greenhouse": "เรือนกระจก / สวนพฤกษศาสตร์",
-        "loc_harbor": "ท่าเรือ / มารีน่า",
-        "loc_ice_rink": "ลานสเก็ตน้ำแข็ง",
-        "loc_skatepark": "ลานสเก็ตบอร์ด",
-        "loc_stadium": "สนามกีฬาสเตเดียม",
-        "loc_supermarket": "ซูเปอร์มาร์เก็ต",
-        "loc_vineyard": "ไร่องุ่น",
-        "loc_yacht": "ดาดฟ้าเรือยอชท์",
-        # ── v5.5 — มุมกล้อง ──
-        # ── v5.5 — สไตล์แสง ──
-        "lit_silhouette": "เงาดำย้อนแสงอาทิตย์ตก",
-        "lit_lowkey": "โลว์คีย์ (มืดขรึม)",
-        "lit_highkey": "ไฮคีย์ (สว่างโปร่ง)",
-        "lit_lantern": "แสงโคมกระดาษ",
-        "lit_fireworks": "แสงพลุ / ดอกไม้ไฟ",
-        "lit_screen": "แสงจากหน้าจอ / ทีวี",
-        "lit_projector": "แสงโปรเจกเตอร์",
-        "lit_disco": "แสงดิสโก้บอล",
-        # ── v5.5 — ท่าโพส ──
-        "pose_boxing": "ท่าชกมวย",
-        "pose_cartwheel": "ตีลังกาล้อเกวียน",
-        "pose_dribble": "เลี้ยงลูกบาส",
-        "pose_finger_frame": "ทำกรอบรูปด้วยนิ้ว",
-        "pose_meditate": "นั่งสมาธิ",
-        "pose_ok_sign": "ทำมือโอเค",
-        "pose_point_camera": "ชี้มาที่กล้อง",
-        "pose_salute": "วันทยหัตถ์เล่นๆ",
-        "pose_selfie": "เซลฟี่ (ยื่นแขนถ่าย)",
-        "pose_shush": "ทำท่าจุ๊ๆ (นิ้วแตะปาก)",
-        "pose_skip": "ก้าวกระโดดร่าเริง",
-        "pose_thumbs_up": "ยกนิ้วโป้ง",
-        "pose_tiptoe": "เขย่งเท้าเอื้อมมือ",
-        "pose_wave": "โบกมือทักทาย",
-        "pose_yoga": "ท่าโยคะ",
-        "pose_carefree_walk": "เดินชิลแกว่งแขนสบายๆ",
-        "pose_touch_plants": "นั่งยองแตะใบไม้ใบหญ้า",
-        "pose_hold_camera": "ถือกล้องฟิล์มมองไปไกลๆ",
-        "pose_grass_stalk": "ถือดอกหญ้าข้างแก้ม",
-        "pose_ear_wall": "แนบหูฟังกำแพงเก่า",
-        "pose_peek_tree": "แอบมองจากหลังต้นไม้",
-        "pose_pick_flower": "เอื้อมเด็ดดอกไม้เล็กๆ",
-        "pose_smell_flower": "ดมดอกไม้หลับตายิ้ม",
-
-        # ── Companion / Animal ──
-        "companion": "เพื่อนร่วมเฟรม (สัตว์)",
-        "pet_none": "— ไม่มี —",
-        "pet_bird": "นกเกาะบนนิ้ว",
-        "pet_butterflies": "ผีเสื้อบินรอบตัว",
-        "pet_cat": "แมว",
-        "pet_dog": "สุนัข",
-        "pet_kitten": "ลูกแมว",
-        "pet_puppy": "ลูกสุนัข",
-        "pet_rabbit": "กระต่าย",
-
-        # ── Quick Themes ──
-        "themes_header": "ธีมสำเร็จรูป",
-        "theme_select": "เลือกธีม",
-        "apply_theme_btn": "ใช้ธีมนี้",
-        "theme_hint": "ตั้งค่าลุคและฉากที่จัดชุดไว้ให้ แล้วสร้างพรอมต์ทันที — เพศ อายุ และตัวตนที่เลือกไว้ไม่เปลี่ยน",
-        "theme_golden_garden": "🌾 สวนแดดทองยามเย็น",
-        "theme_neon_night": "🌃 เมืองนีออนยามค่ำคืน",
-        "theme_cafe_film": "☕ คาเฟ่อบอุ่นโทนฟิล์ม",
-        "theme_beach": "🏖️ ชายหาดหน้าร้อน",
-        "theme_studio": "🎬 สตูดิโอแฟชั่น",
-        "theme_cherry": "🌸 ซากุระฤดูใบไม้ผลิ",
-
-        # ── Photo Set ──
-        "photo_set_btn": "ชุดภาพถ่าย",
-        "photo_set_header": "ชุดภาพถ่าย — ลุคเดิม 6 ช็อต",
-        "photo_set_hint": "ตัวแบบ ชุด และฉากเหมือนกันทุกช็อต — เปลี่ยนเฉพาะท่าโพส ระยะภาพ และมุมกล้อง นำไปสร้างภาพเป็นอัลบั้มชุดเดียวกันได้เลย",
-        "photo_set_shot": "ช็อตที่",
-        "photo_set_download": "ดาวน์โหลดทุกช็อต",
-        # v5.7 — pose builder + outfit layers
-        "exp_pose": "ท่าโพสและภาษากาย",
-        "attach_pose_photo": "จะแนบรูปท่าโพสอ้างอิง (เช่น ภาพหุ่นท่าโพส)",
-        "attach_pose_note": "พรอมต์จะสั่งให้ AI เลียนแบบเฉพาะท่าทางจากรูปที่แนบ ไม่เอาหน้าตา รูปร่าง หรือเสื้อผ้า (ตัวเลือกท่าด้านล่างจะถูกปิดไว้)",
-        "ref_note_pose": "แนบ: รูปท่าโพสอ้างอิง (หุ่น / ภาพท่าโพส)",
-        "pose_category": "หมวดท่าโพส",
-        "pose_detail_header": "ปรับรายละเอียดท่า",
-        "pose_detail_hint": "💡 รายละเอียดเสริมที่ต่อท้ายท่าหลัก ปล่อยเป็น “ไม่ระบุ” ถ้าขัดกับท่าที่เลือก (เช่น มือล้วงกระเป๋า + ทำมือหัวใจ)",
-        "body_dir": "ทิศทางลำตัว",
-        "head_pos": "ตำแหน่งศีรษะ",
-        "gaze": "ทิศทางสายตา",
-        "hands_pos": "แขนและมือ",
-        "legs_pos": "ขาและการยืน",
-        "pose_energy": "อารมณ์ของท่าทาง",
-        "pose_text": "อธิบายท่าโพสเอง (ไม่บังคับ)",
-        "pose_text_placeholder": "เช่น นั่งชิงช้า มือจับเชือก เหยียดขาไปข้างหน้า",
-        "outfit_mode": "รูปแบบชุด",
-        "dress_garment": "เดรส / ชุดชิ้นเดียว",
-        "dress_fabric": "เนื้อผ้าเดรส",
-        "dress_color": "สีเดรส",
-        "outfit_set": "ชุดสำเร็จรูป",
-        "outfit_set_hint": "แต่ละชุดจัดมาครบแล้ว (เสื้อซ้อน ถุงเท้า รองเท้า กระเป๋า เครื่องประดับ) เครื่องประดับที่ติ๊กด้านล่างจะถูกเพิ่มเข้าไปอีก",
-        "outer_layer": "เสื้อคลุมชั้นนอก",
-        "outer_color": "สีเสื้อคลุม",
-        "fit": "ทรงชุด",
-        "legwear": "ถุงเท้าและถุงน่อง",
-        "details": "ดีเทลและลวดลาย",
-        "details_help": "เลือกได้หลายอย่าง เช่น ระบาย + โบว์ + ขอบลูกไม้",
-        "om_separates": "เสื้อ + ท่อนล่าง",
-        "om_dress": "เดรส / ชุดชิ้นเดียว",
-        "om_set": "ชุดสำเร็จรูปตามฤดู",
-        "pc_all": "ทุกท่า",
-        "pc_standing": "ยืน",
-        "pc_walking": "เดินและเคลื่อนไหว",
-        "pc_sitting": "นั่ง",
-        "pc_kneeling": "คุกเข่า",
-        "pc_lying": "นอน",
-        "pc_crouching": "นั่งยองและก้มตัว",
-        "pc_cute": "ท่ามือน่ารัก",
-        "pc_social": "โซเชียลและแฟชั่น",
-        "pc_props": "ธรรมชาติและพร็อพ",
-        "pc_sport": "กีฬาและแอคชั่น",
-        "pose_contrapposto": "ยืนลงน้ำหนักขาเดียว",
-        "pose_hands_hips": "เท้าเอวสองข้าง",
-        "pose_hands_nape": "มือแตะต้นคอสองข้าง",
-        "pose_hand_collar": "มือแตะไหปลาร้า",
-        "pose_foot_kick": "ยกเท้าไปด้านหลังข้างเดียว",
-        "pose_hair_both": "ยกผมขึ้นด้วยสองมือ",
-        "pose_walk_toward": "เดินเข้าหากล้อง",
-        "pose_bag_strap": "เดินจับสายกระเป๋า",
-        "pose_sit_side": "นั่งพับเพียบ",
-        "pose_sit_knee_up": "นั่งชันเข่าข้างเดียว",
-        "pose_sit_cheek_knee": "นั่งชันเข่าเอาแก้มพิง",
-        "pose_sit_chair_back": "นั่งคร่อมเก้าอี้กลับด้าน",
-        "pose_sit_ledge": "นั่งบนขอบ ห้อยขา",
-        "pose_sit_floor_cross": "นั่งขัดสมาธิสบายๆ",
-        "pose_sit_hold_ankle": "นั่งเอามือจับข้อเท้า",
-        "pose_wariza_hands": "นั่งพับขาแบบญี่ปุ่น มือวางด้านหน้า",
-        "pose_seiza": "นั่งคุกเข่าทับส้นเท้า (เซซะ)",
-        "pose_kneel_upright": "คุกเข่าตัวตรง มือวางบนต้นขา",
-        "pose_one_knee": "คุกเข่าข้างเดียว",
-        "pose_kneel_look_up": "คุกเข่าแหงนมอง",
-        "pose_kneel_hair": "คุกเข่า มือแตะผม",
-        "pose_lie_stomach": "นอนคว่ำ ยกเท้าขึ้น",
-        "pose_lie_side": "นอนตะแคง มือยันศีรษะ",
-        "pose_lie_back_hair": "นอนหงาย ผมสยาย",
-        "pose_lie_back_knee": "นอนหงายชันเข่า",
-        "pose_lie_arm_pillow": "นอนคว่ำหนุนแขน",
-        "pose_crouch_chin": "นั่งยองเท้าคาง",
-        "pose_crouch_look_back": "นั่งยองหันกลับมามอง",
-        "pose_bend_knees": "โน้มตัว มือวางบนเข่า",
-        "pose_bend_shoe": "ก้มลงจัดรองเท้า",
-        "pose_double_peace": "ชูสองนิ้วสองมือใต้คาง",
-        "pose_gyaru_peace": "ชูสองนิ้วกลับด้านแบบกยารุ",
-        "pose_fist_cheeks": "กำมือแนบแก้ม (บุริกโกะ)",
-        "pose_bunny_ears": "ทำมือหูกระต่าย",
-        "pose_cat_paw": "ทำมือแมวกวัก",
-        "pose_rawr": "ท่าเสือคำราม (กาโอ้)",
-        "pose_poke_cheek": "จิ้มแก้มตัวเอง",
-        "pose_flower_chin": "เท้าคางด้วยสองฝ่ามือ (ท่าดอกไม้)",
-        "pose_sweater_paws": "แขนเสื้อยาวปิดปาก",
-        "pose_please": "พนมมือขอร้องน่ารัก",
-        "pose_self_hug": "กอดตัวเองเขินๆ",
-        "pose_big_heart": "ทำหัวใจใหญ่เหนือหัว",
-        "pose_yawn": "หาวพร้อมบิดขี้เกียจ",
-        "pose_coat_lapels": "จับปกเสื้อโค้ทสองข้าง",
-        "pose_phone_check": "ก้มดูมือถือแบบแคนดิด",
-        "pose_skirt_hem": "จับชายกระโปรง",
-        "pose_curtsy": "ถอนสายบัว",
-        "pose_umbrella": "ถือร่ม",
-        "pose_bouquet": "ถือช่อดอกไม้",
-        "pose_read_book": "อ่านหนังสือ",
-        "pose_coffee": "ถือแก้วกาแฟสองมือ",
-        "pose_bicycle": "ยืนจูงจักรยาน",
-        "pose_balloons": "ถือลูกโป่ง",
-        "pose_ballet": "ท่าบัลเล่ต์อาราเบสก์",
-        "pose_tennis_swing": "ตีเทนนิส",
-        "pose_skateboard": "เล่นสเก็ตบอร์ด",
-        "pose_lunge": "ยืดเหยียดท่าลันจ์",
-        "dir_none": "— ไม่ระบุ —",
-        "dir_back": "หันหลังทั้งตัว",
-        "dir_back_look": "หันหลังแล้วเหลียวมอง",
-        "dir_front": "หันหน้าเข้ากล้อง",
-        "dir_side": "หันข้าง",
-        "dir_slight": "เฉียงเล็กน้อย",
-        "dir_3q": "หันเฉียง 3/4",
-        "head_none": "— ไม่ระบุ —",
-        "head_chin_down": "ก้มคางเล็กน้อย",
-        "head_chin_up": "เชิดคาง",
-        "head_shoulder": "ซบแก้มเข้าหาไหล่",
-        "head_rest_hand": "ศีรษะพิงมือ",
-        "head_back": "เงยศีรษะไปด้านหลัง",
-        "head_tilt": "เอียงศีรษะ",
-        "head_turned": "หันศีรษะไปด้านข้าง",
-        "gaze_none": "— ไม่ระบุ —",
-        "gaze_closed": "หลับตา",
-        "gaze_camera": "มองกล้อง",
-        "gaze_down": "มองลงต่ำ",
-        "gaze_away": "มองไปไกลๆ",
-        "gaze_upward_glance": "ช้อนตามองกล้อง",
-        "gaze_up": "มองขึ้นด้านบน",
-        "gaze_side_glance": "ชำเลืองมองกล้อง",
-        "hands_none": "— ไม่ระบุ —",
-        "hands_crossed": "กอดอก",
-        "hands_overhead": "ยกแขนเหนือศีรษะ",
-        "hands_relaxed": "ปล่อยแขนสบายๆ",
-        "hands_both_hips": "เท้าเอวสองข้าง",
-        "hands_lips": "นิ้วแตะริมฝีปาก",
-        "hands_hair": "มือแตะผม",
-        "hands_hip": "มือเท้าเอว",
-        "hands_neck": "มือแตะคอ / ไหปลาร้า",
-        "hands_face": "มือแตะใบหน้า",
-        "hands_behind": "ไขว้มือไว้ด้านหลัง",
-        "hands_clasped": "ประสานมือด้านหน้า",
-        "hands_pockets": "มือล้วงกระเป๋า",
-        "hands_strap": "จับสายกระเป๋า",
-        "hands_sleeve": "ดึงแขนเสื้อ",
-        "legs_none": "— ไม่ระบุ —",
-        "legs_ankles_crossed": "ไขว้ข้อเท้า",
-        "legs_kick_back": "ยกเท้าไปด้านหลัง",
-        "legs_knees_in": "เข่าชิด ปลายเท้าเข้า",
-        "legs_crossed_knee": "ไขว่ห้าง",
-        "legs_cross_stand": "ยืนไขว้ขา",
-        "legs_extended": "เหยียดขาออก",
-        "legs_together": "ขาชิด",
-        "legs_mid_stride": "กำลังก้าวเดิน",
-        "legs_tiptoe": "เขย่งปลายเท้า",
-        "legs_knee_bent": "งอเข่าข้างเดียวเล็กน้อย",
-        "legs_wide": "ยืนกางขามั่นใจ",
-        "pe_none": "— ไม่ระบุ —",
-        "pe_candid": "แคนดิด ไม่จัดท่า",
-        "pe_confident": "มั่นใจ ทรงพลัง",
-        "pe_cool": "เท่ นิ่งๆ",
-        "pe_dynamic": "ไดนามิก กำลังเคลื่อนไหว",
-        "pe_elegant": "สง่างาม อ่อนช้อย",
-        "pe_playful": "ขี้เล่น สดใส",
-        "pe_relaxed": "ผ่อนคลาย เป็นธรรมชาติ",
-        "pe_shy": "เขินอาย อ่อนโยน",
-        "dress_none": "— ไม่ระบุ —",
-        "dress_babydoll": "เดรสเบบี้ดอลล์",
-        "dress_ballgown": "ชุดราตรีบอลกาวน์",
-        "dress_bodycon": "เดรสรัดรูป",
-        "dress_corset": "เดรสคอร์เซ็ต",
-        "dress_jumpsuit": "จัมพ์สูท",
-        "dress_knit": "เดรสไหมพรม",
-        "dress_maxi": "เดรสยาว (แม็กซี่)",
-        "dress_midi": "เดรสยาวคลุมเข่า (มิดี้)",
-        "dress_mini": "มินิเดรส",
-        "dress_off_shoulder": "เดรสเปิดไหล่",
-        "dress_pinafore": "เดรสเอี๊ยม",
-        "dress_qipao": "กี่เพ้า",
-        "dress_romper": "รอมเปอร์ / จั๊มสูทขาสั้น",
-        "dress_shirt": "เชิ้ตเดรส",
-        "dress_slip": "สลิปเดรส",
-        "dress_sundress": "เดรสฤดูร้อน (ซันเดรส)",
-        "dress_tea": "เดรสวินเทจ (ทีเดรส)",
-        "dress_tiered": "เดรสระบายชั้น",
-        "dress_wrap": "เดรสป้าย",
-        "out_none": "— ไม่ระบุ —",
-        "out_blazer": "เบลเซอร์",
-        "out_bolero": "โบเลโร่ (เสื้อคลุมสั้น)",
-        "out_cape": "เสื้อคลุมเคป",
-        "out_cardigan": "คาร์ดิแกน",
-        "out_cropped_cardigan": "คาร์ดิแกนครอป",
-        "out_denim_jacket": "แจ็คเก็ตยีนส์",
-        "out_faux_fur": "โค้ทขนเฟอร์เทียม",
-        "out_kimono": "เสื้อคลุมทรงกิโมโน",
-        "out_leather": "แจ็คเก็ตหนัง",
-        "out_wool_coat": "โค้ทขนสัตว์ตัวยาว",
-        "out_open_shirt": "เชิ้ตปลดกระดุมคลุม",
-        "out_puffer": "แจ็คเก็ตบุนวม",
-        "out_shawl": "ผ้าคลุมไหล่",
-        "out_trench": "เทรนช์โค้ท",
-        "out_tweed": "แจ็คเก็ตผ้าทวีด",
-        "out_varsity": "แจ็คเก็ตวาร์ซิตี้",
-        "out_zip_hoodie": "ฮู้ดดี้ซิป",
-        "fit_none": "— ไม่ระบุ —",
-        "fit_aline": "ทรงเอ",
-        "fit_body": "รัดรูป",
-        "fit_cropped": "ครอปเอวสูง",
-        "fit_fitted": "พอดีตัว",
-        "fit_flowy": "พลิ้วไหว",
-        "fit_layered": "เลเยอร์ซ้อนชั้น",
-        "fit_oversized": "โอเวอร์ไซซ์",
-        "fit_relaxed": "ทรงหลวมสบาย",
-        "fit_tailored": "ทรงตัดเย็บเข้ารูป",
-        "leg_none": "— ไม่ระบุ —",
-        "leg_ankle": "ถุงเท้าข้อสั้น",
-        "leg_crew": "ถุงเท้าข้อกลาง",
-        "leg_fishnet": "ถุงน่องตาข่าย",
-        "leg_frilly": "ถุงเท้าระบายลูกไม้",
-        "leg_knee": "ถุงเท้ายาวถึงเข่า",
-        "leg_warmers": "ปลอกขาไหมพรม",
-        "leg_loose": "ถุงเท้าย้วย (สไตล์ญี่ปุ่น)",
-        "leg_opaque": "ถุงน่องดำทึบ",
-        "leg_patterned": "ถุงน่องลวดลาย",
-        "leg_sheer_black": "ถุงน่องดำแบบบาง",
-        "leg_nude": "ถุงน่องสีเนื้อ",
-        "leg_thigh": "ถุงเท้ายาวเหนือเข่า",
-        "leg_white_tights": "ถุงน่องสีขาว",
-        "det_corset": "เชือกผูกแบบคอร์เซ็ต",
-        "det_embroidery": "งานปัก",
-        "det_floral": "ลายดอกไม้",
-        "det_gingham": "ลายตารางกิงแฮม",
-        "det_lace_trim": "ขอบลูกไม้",
-        "det_off_shoulder": "คอปาดเปิดไหล่",
-        "det_buttons": "กระดุมมุก",
-        "det_collar": "ปกบัว",
-        "det_checks": "ลายสก็อต",
-        "det_pleats": "จีบพลีท",
-        "det_polka": "ลายจุด",
-        "det_puff": "แขนตุ๊กตา",
-        "det_bows": "โบว์ริบบิ้น",
-        "det_frills": "ระบาย",
-        "det_sailor": "ปกกะลาสี",
-        "det_sequins": "เลื่อม / วิบวับ",
-        "det_sheer_sleeves": "แขนผ้าโปร่ง",
-        "det_slit": "ผ่าข้าง",
-        "det_square_neck": "คอเหลี่ยม",
-        "det_stripes": "ลายทาง",
-        "det_tiered": "ระบายเป็นชั้น",
-        "det_v_neck": "คอวี",
-        "os_none": "— ไม่ระบุ —",
-        "os_spr_frill_knit": "🌸 ใบไม้ผลิ · ไหมพรมระบาย + มินิสเกิร์ตยีนส์ + โค้ท",
-        "os_spr_floral_cami": "🌸 ใบไม้ผลิ · สายเดี่ยวลายดอก + คาร์ดิแกน + กระโปรงพลีท",
-        "os_spr_floral_midi": "🌸 ใบไม้ผลิ · เดรสมิดี้ลายดอก + แจ็คเก็ตยีนส์",
-        "os_spr_ribbon_blouse": "🌸 ใบไม้ผลิ · เบลาส์ผูกโบว์ + กระโปรงมิดี้สีมิ้นต์",
-        "os_spr_shirt_dress": "🌸 ใบไม้ผลิ · เชิ้ตเดรสผูกโบว์ + ถุงน่อง",
-        "os_spr_lace_cami": "🌸 ใบไม้ผลิ · สายเดี่ยวลูกไม้ + คาร์ดิแกน + กางเกงขากว้าง",
-        "os_sum_linen": "☀️ ฤดูร้อน · เชิ้ตลินิน + กางเกงขาสั้น",
-        "os_sum_sundress": "☀️ ฤดูร้อน · เดรสผ้าฉลุ + หมวกสาน",
-        "os_sum_crop_denim": "☀️ ฤดูร้อน · เสื้อครอปเบบี้ที + ยีนส์ขาสั้น",
-        "os_sum_halter_maxi": "☀️ ฤดูร้อน · เดรสยาวคล้องคอ",
-        "os_sum_gingham": "☀️ ฤดูร้อน · เสื้อแขนตุ๊กตาลายกิงแฮม + กระโปรงขาว",
-        "os_sum_resort": "☀️ ฤดูร้อน · เชิ้ตรีสอร์ท + กางเกงลินิน",
-        "os_aut_trench": "🍂 ใบไม้ร่วง · เทรนช์โค้ท + คอเต่า + ยีนส์",
-        "os_aut_corduroy": "🍂 ใบไม้ร่วง · เอี๊ยมลูกฟูก + ไหมพรม + หมวกเบเร่ต์",
-        "os_aut_plaid": "🍂 ใบไม้ร่วง · กระโปรงลายสก็อต + คาร์ดิแกนหนา",
-        "os_aut_leather": "🍂 ใบไม้ร่วง · แจ็คเก็ตหนัง + กระโปรงซาติน",
-        "os_aut_knit_dress": "🍂 ใบไม้ร่วง · เดรสไหมพรม + บู๊ตหนังกลับ",
-        "os_aut_blazer": "🍂 ใบไม้ร่วง · เบลเซอร์โอเวอร์ไซซ์ + กางเกงขากว้าง",
-        "os_win_wool_coat": "❄️ ฤดูหนาว · โค้ทยาว + ผ้าพันคอหนา",
-        "os_win_puffer": "❄️ ฤดูหนาว · แจ็คเก็ตบุนวม + ฮู้ดดี้ + หมวกไหมพรม",
-        "os_win_fur": "❄️ ฤดูหนาว · โค้ทเฟอร์ + เดรสไหมพรมดำ",
-        "os_win_tweed": "❄️ ฤดูหนาว · เซ็ตทวีด + สร้อยมุก",
-        "os_win_overcoat": "❄️ ฤดูหนาว · คอเต่า + โอเวอร์โค้ท",
-        "os_win_cozy": "❄️ ฤดูหนาว · ไหมพรมอุ่นๆ + ปลอกขา",
-        "os_par_sequin": "✨ ปาร์ตี้ · มินิเดรสเลื่อม",
-        "os_par_satin_gown": "✨ ปาร์ตี้ · ชุดราตรีซาตินทรงสลิป",
-        "os_par_tulle": "✨ ปาร์ตี้ · เดรสเจ้าหญิงผ้าทูล",
-        "os_par_velvet_suit": "✨ ปาร์ตี้ · สูทกำมะหยี่",
-        "os_par_lbd": "✨ ปาร์ตี้ · เดรสดำตัวเล็ก (LBD)",
-        "fab_corduroy": "ผ้าลูกฟูก",
-        "fab_crochet": "ผ้าถักโครเชต์",
-        "fab_jersey": "ผ้ายืดเจอร์ซีย์",
-        "fab_knit": "ผ้าไหมพรมเนื้อละเอียด",
-        "fab_organza": "ผ้าแก้ว (ออร์แกนซ่า)",
-        "fab_sequin": "ผ้าเลื่อม",
-        "fab_tulle": "ผ้าทูล",
-        "col_butter": "เหลืองบัตเตอร์",
-        "col_grey": "เทา",
-        "col_ivory": "สีงาช้าง",
-        # v5.8 — subject details, character lock, camera & scene
-        "sub_identity": "ตัวตน",
-        "sub_face": "รายละเอียดใบหน้า",
-        "sub_hair": "ผม",
-        "sub_expression": "สีหน้า เมคอัพ และเล็บ",
-        "sub_people": "จำนวนคนและสัตว์เลี้ยง",
-        "skin_tone": "โทนสีผิว",
-        "face_shape": "รูปหน้า",
-        "eye_shape": "รูปตา",
-        "eye_color": "สีตา",
-        "brows": "คิ้ว",
-        "lips": "ริมฝีปาก",
-        "face_marks": "จุดเด่นบนใบหน้า",
-        "face_marks_help": "เลือกได้หลายอย่าง เช่น ไฝใต้ตา + ถุงใต้ตาน่ารัก + ลักยิ้ม",
-        "facial_hair": "หนวดเครา",
-        "skin_finish": "ลักษณะผิว",
-        "hair_finish": "ลักษณะเส้นผม",
-        "nails": "เล็บ",
-        "char_lock_header": "ล็อกตัวละคร",
-        "char_lock_hint": "ล็อกตัวตน ใบหน้า รูปร่าง และผม ให้ทุกพรอมต์เป็นคนเดิม ปุ่มสุ่มลุค ธีม และพรีเซ็ตจะเปลี่ยนแค่การแต่งตัว ท่าโพส และฉาก",
-        "char_name": "ชื่อตัวละคร (ไม่บังคับ)",
-        "char_name_placeholder": "เช่น มะลิ",
-        "char_lock_btn": "ล็อกตัวละคร",
-        "char_unlock_btn": "ปลดล็อก",
-        "char_locked_msg": "ถูกล็อกแล้ว ตัวตน ใบหน้า รูปร่าง และผมจะคงเดิม",
-        "char_unnamed": "ตัวละคร",
-        "char_download": "ดาวน์โหลดตัวละคร (JSON)",
-        "char_library": "ตัวละครที่บันทึกไว้ (เซสชันนี้)",
-        "char_load_btn": "โหลดและล็อก",
-        "char_json_hint": "ถ้าจะใช้ภายหลัง ให้ดาวน์โหลด JSON แล้ววางในส่วนขั้นสูง → ใช้ลุคนี้",
-        "location_category": "หมวดสถานที่",
-        "atmosphere": "สภาพอากาศและบรรยากาศ",
-        "atmosphere_help": "เลือกได้หลายอย่าง เช่น แอ่งน้ำหลังฝน + หมอก",
-        "bg_people": "ผู้คนในฉากหลัง",
-        "sub_lighting": "แสง",
-        "light_dir": "ทิศทางแสง",
-        "light_color": "สีของแสง",
-        "light_quality": "คุณภาพแสง",
-        "sub_camera": "กล้อง",
-        "cam_height": "ระดับความสูงกล้อง",
-        "cam_dir": "ตำแหน่งกล้อง (รอบตัวแบบ)",
-        "cam_special": "มุมพิเศษ / เปอร์สเปกทีฟ",
-        "cam_hint": "💡 ความสูง = กล้องอยู่สูงหรือต่ำ · ตำแหน่ง = กล้องยืนตรงไหนรอบตัวแบบ (ส่วน “ทิศทางลำตัว” ในท่าโพส = แบบหันไปทางไหน) · ระยะภาพ = เห็นตัวแบบมากแค่ไหน",
-        "cam_preview": "กล้องในพรอมต์:",
-        "camera_film": "กล้อง / ฟิล์ม",
-        "lens_fx": "เอฟเฟกต์เลนส์และฟิล์ม",
-        "lens_fx_help": "เลือกได้หลายอย่าง เช่น เกรนฟิล์ม + แสงรั่ว",
-        "lcat_all": "ทุกสถานที่",
-        "lcat_indoor": "สตูดิโอและในอาคาร",
-        "lcat_home": "ในบ้านและห้องนอน",
-        "lcat_city": "เมืองและถนน",
-        "lcat_shops": "คาเฟ่และร้านค้า",
-        "lcat_nature": "ธรรมชาติและสวน",
-        "lcat_water": "ทะเลและแหล่งน้ำ",
-        "lcat_luxury": "หรูหราและสง่างาม",
-        "lcat_travel": "สถานที่ท่องเที่ยว",
-        "lcat_thai": "ประเทศไทย",
-        "lcat_asia": "ญี่ปุ่นและเกาหลี",
-        "lcat_leisure": "กีฬาและสันทนาการ",
-        "st_none": "— ไม่ระบุ —",
-        "st_porcelain": "ขาวมาก (พอร์ซเลน)",
-        "st_fair": "ผิวขาว",
-        "st_light_warm": "ขาวเหลือง",
-        "st_medium": "ผิวสองสี",
-        "st_olive": "ผิวมะกอก (โอลีฟ)",
-        "st_tan": "ผิวแทน",
-        "st_brown": "ผิวน้ำตาล",
-        "st_deep": "ผิวเข้ม",
-        "fsh_none": "— ไม่ระบุ —",
-        "fsh_heart": "หน้ารูปหัวใจ",
-        "fsh_sharp": "โหนกแก้มสูง",
-        "fsh_oval": "หน้ารูปไข่",
-        "fsh_round": "หน้ากลม แก้มนุ่ม",
-        "fsh_small": "หน้าเล็ก",
-        "fsh_v": "หน้าวีเชฟ (คางเรียว)",
-        "eye_none": "— ไม่ระบุ —",
-        "eye_almond": "ตาอัลมอนด์",
-        "eye_big": "ตาโตกลม",
-        "eye_doe": "ตากวาง (ตาหวานโต)",
-        "eye_double": "ตาสองชั้น",
-        "eye_monolid": "ตาชั้นเดียว",
-        "eye_droopy": "ตาตก (ตาลูกหมา)",
-        "eye_cat": "ตาแมว (หางตาชี้ขึ้น)",
-        "ec_none": "— ไม่ระบุ —",
-        "ec_amber": "สีอำพัน",
-        "ec_black": "สีดำ",
-        "ec_blue": "สีฟ้า",
-        "ec_dark_brown": "น้ำตาลเข้ม",
-        "ec_green": "สีเขียว",
-        "ec_grey": "สีเทา",
-        "ec_hazel": "น้ำตาลอ่อน (เฮเซล)",
-        "brow_none": "— ไม่ระบุ —",
-        "brow_feathery": "คิ้วฟูขนนก",
-        "brow_arched": "คิ้วโก่งนิดๆ",
-        "brow_straight": "คิ้วตรงแบบเกาหลี",
-        "brow_thick": "คิ้วหนาธรรมชาติ",
-        "brow_thin": "คิ้วบางคม",
-        "lip_none": "— ไม่ระบุ —",
-        "lip_cat": "ปากแมว (มุมปากยกขึ้น)",
-        "lip_full": "ปากอิ่ม",
-        "lip_heart": "ปากรูปหัวใจ (กระจับชัด)",
-        "lip_plump": "ปากอวบฉ่ำ",
-        "lip_small": "ปากเล็กกุหลาบตูม",
-        "lip_thin": "ปากบางได้รูป",
-        "fm_aegyo": "ถุงใต้ตาน่ารัก (แอกโยซัล)",
-        "fm_mole_lip": "ไฝเสน่ห์ใกล้ริมฝีปาก",
-        "fm_dimples": "ลักยิ้ม",
-        "fm_high_nose": "สันจมูกโด่ง",
-        "fm_lashes": "ขนตายาวธรรมชาติ",
-        "fm_mole_eye": "ไฝใต้ตา",
-        "fm_freckles": "กระธรรมชาติ",
-        "fm_rosy": "แก้มแดงระเรื่อ",
-        "fm_button_nose": "จมูกเล็กน่ารัก",
-        "fm_snaggle": "ฟันเขี้ยวน่ารัก (ยาเอบะ)",
-        "fh_none": "— ไม่ระบุ —",
-        "fh_clean": "โกนเกลี้ยง",
-        "fh_full_beard": "เคราเต็มหน้า",
-        "fh_goatee": "เคราแพะ",
-        "fh_stubble": "หนวดเคราเขียวๆ",
-        "fh_mustache": "หนวด",
-        "fh_short_beard": "เคราสั้น",
-        "skf_none": "— ไม่ระบุ —",
-        "skf_dewy": "ผิวฉ่ำโกลว์",
-        "skf_porcelain": "ผิวเนียนกริบไร้ที่ติ",
-        "skf_glass": "ผิวกระจก (Glass Skin)",
-        "skf_natural": "ผิวธรรมชาติ มีเท็กซ์เจอร์นิดๆ",
-        "skf_matte": "ผิวแมตต์นุ่ม",
-        "skf_sunkissed": "ผิวโกลว์รับแดด",
-        "skf_real": "ผิวสมจริงสุดๆ (เห็นรูขุมขน)",
-        "hf_none": "— ไม่ระบุ —",
-        "hf_messy": "ยุ่งนิดๆ แบบตั้งใจ",
-        "hf_strands": "ปอยผมกรอบหน้า",
-        "hf_glossy": "เงาสลวย",
-        "hf_sleek": "เรียบแปล้",
-        "hf_tucked": "ทัดหู",
-        "hf_voluminous": "ผมพองมีวอลลุ่ม",
-        "hf_wet": "ผมเปียก",
-        "hf_windswept": "ผมปลิวลม",
-        "nl_none": "— ไม่ระบุ —",
-        "nl_black": "เล็บดำ",
-        "nl_chrome": "เล็บโครม (เกลซโดนัท)",
-        "nl_red": "เล็บแดงคลาสสิก",
-        "nl_natural": "เล็บธรรมชาติสะอาด",
-        "nl_french": "เล็บเฟรนช์",
-        "nl_glitter": "เล็บกากเพชร",
-        "nl_long": "เล็บยาวทรงอัลมอนด์แต่งลาย",
-        "nl_nude": "เล็บเจลสีนู้ด",
-        "nl_pastel": "เล็บพาสเทล",
-        "ld_none": "— ไม่ระบุ —",
-        "ld_back": "แสงย้อน",
-        "ld_butterfly": "แสงผีเสื้อ (บนหน้าตรง)",
-        "ld_clamshell": "แสงหอยลาย (บิวตี้)",
-        "ld_front": "แสงหน้าตรง",
-        "ld_loop": "แสงลูป",
-        "ld_rembrandt": "แสงเรมบรันต์ (45°)",
-        "ld_side": "แสงข้าง",
-        "ld_split": "แสงครึ่งหน้า",
-        "ld_top": "แสงจากด้านบน",
-        "ld_under": "แสงจากด้านล่าง (ลึกลับ)",
-        "lc_none": "— ไม่ระบุ —",
-        "lc_amber": "อำพันแสงเทียน",
-        "lc_cool": "โทนเย็นอมฟ้า",
-        "lc_green": "อมเขียวแสงฟลูออเรสเซนต์",
-        "lc_red": "แดงมีมูด",
-        "lc_neutral": "แสงกลางวันเป็นกลาง",
-        "lc_pink_blue": "ชมพูผสมฟ้า",
-        "lc_purple": "ม่วงและบานเย็น",
-        "lc_teal_orange": "ทีลและส้ม (ภาพยนตร์)",
-        "lc_warm": "โทนอุ่นสีทอง",
-        "lq_none": "— ไม่ระบุ —",
-        "lq_hard": "แสงแข็ง เงาคม",
-        "lq_high_contrast": "คอนทราสต์สูง",
-        "lq_low_contrast": "คอนทราสต์ต่ำ โปร่งสบาย",
-        "lq_soft": "แสงนุ่ม กระจายตัว",
-        "ch_none": "— ไม่ระบุ —",
-        "ch_aerial": "มุมสูงมาก (โดรน)",
-        "ch_top": "มุมบนลงล่างตรงๆ",
-        "ch_high": "มุมสูง (กดลง)",
-        "ch_slight_high": "สูงกว่าระดับตาเล็กน้อย (ถ่ายแล้วสวย)",
-        "ch_eye": "ระดับสายตา",
-        "ch_chest": "ระดับอก",
-        "ch_waist": "ระดับเอว",
-        "ch_slight_low": "ต่ำกว่าระดับตาเล็กน้อย",
-        "ch_low": "มุมต่ำ (เงยขึ้น)",
-        "ch_ground": "ระดับพื้น",
-        "ch_worm": "มุมหนอน (เงยตั้งฉาก)",
-        "cd_none": "— ไม่ระบุ —",
-        "cd_front": "ด้านหน้าตรง",
-        "cd_front_3q": "เฉียงด้านหน้า 45°",
-        "cd_side": "ด้านข้าง 90°",
-        "cd_back_3q": "เฉียงด้านหลัง",
-        "cd_back": "ด้านหลังตรง",
-        "cd_over_shoulder": "ข้ามไหล่",
-        "cs_none": "— ไม่ระบุ —",
-        "cs_telephoto": "เทเลโฟโต้แอบถ่าย (ปาปารัสซี่)",
-        "cs_cctv": "กล้องวงจรปิด",
-        "cs_dutch": "เอียงกล้อง (Dutch Angle)",
-        "cs_pov": "มุมมองบุคคลที่หนึ่ง (POV)",
-        "cs_fisheye": "เลนส์ฟิชอาย",
-        "cs_mirror": "ภาพสะท้อนในกระจก",
-        "cs_selfie": "เซลฟี่ (ยื่นแขน)",
-        "cs_through": "ถ่ายลอดฉากหน้า",
-        "cs_window": "ถ่ายผ่านกระจกหน้าต่าง",
-        "cf_none": "— ไม่ระบุ —",
-        "cf_digicam": "กล้องดิจิทัลคอมแพคยุค 2000",
-        "cf_arri": "ARRI Alexa (กล้องภาพยนตร์)",
-        "cf_canon": "Canon EOS R5 (ดิจิทัลคมชัด)",
-        "cf_cinestill": "CineStill 800T (ฟิล์มกลางคืน)",
-        "cf_disposable": "กล้องฟิล์มใช้แล้วทิ้ง",
-        "cf_superia": "ฟิล์ม Fujifilm Superia 400",
-        "cf_fuji": "Fujifilm X-T5 (Classic Chrome)",
-        "cf_hasselblad": "Hasselblad มีเดียมฟอร์แมต",
-        "cf_ilford": "ฟิล์มขาวดำ Ilford HP5",
-        "cf_instax": "Instax Mini (ฟิล์มโพลารอยด์เล็ก)",
-        "cf_iphone": "iPhone (มือถือ)",
-        "cf_gold": "ฟิล์ม Kodak Gold 200",
-        "cf_portra": "ฟิล์ม Kodak Portra 400",
-        "cf_leica": "Leica M (เรนจ์ไฟน์เดอร์)",
-        "cf_polaroid": "ฟิล์มโพลารอยด์",
-        "cf_sony": "Sony A7R V (ดิจิทัลคมชัด)",
-        "atm_puddles": "พื้นเปียกสะท้อนแสงหลังฝน",
-        "atm_leaves": "ใบไม้ร่วงปลิว",
-        "atm_petals": "กลีบซากุระร่วง",
-        "atm_confetti": "กระดาษสีโปรยปราย",
-        "atm_dust": "ฝุ่นละอองในลำแสง",
-        "atm_fireflies": "หิ่งห้อย",
-        "atm_fog": "หมอก",
-        "atm_wind": "ลมพัดเบาๆ (ผมปลิว)",
-        "atm_sparkles": "ประกายวิบวับ",
-        "atm_rain": "ฝนตก",
-        "atm_smoke": "ควัน / หมอกควัน",
-        "atm_snow": "หิมะตก",
-        "atm_bubbles": "ฟองสบู่",
-        "atm_steam": "ไอน้ำ",
-        "bgp_none": "— ไม่ระบุ —",
-        "bgp_few": "มีคนเดินผ่านเล็กน้อย",
-        "bgp_crowd": "ฝูงชนพลุกพล่าน (เบลอ)",
-        "bgp_empty": "ไม่มีคนอื่นในฉาก",
-        "lfx_chromatic": "ขอบสีเหลื่อม",
-        "lfx_double": "ภาพซ้อน (Double Exposure)",
-        "lfx_date": "ตัวเลขวันที่แบบกล้องฟิล์ม",
-        "lfx_grain": "เกรนฟิล์ม",
-        "lfx_halation": "แสงฟุ้งรอบไฟ (Halation)",
-        "lfx_flare": "แสงแฟลร์",
-        "lfx_leak": "แสงรั่ว (Light Leak)",
-        "lfx_motion": "ภาพเบลอจากการเคลื่อนไหว",
-        "lfx_prism": "ปริซึมสายรุ้ง",
-        "lfx_bloom": "ฟุ้งนุ่ม (Bloom)",
-        "lfx_vignette": "ขอบภาพมืด (Vignette)",
-        "loc_dance_studio": "สตูดิโอเต้น",
-        "loc_classroom": "ห้องเรียนแสงแดดส่อง",
-        "loc_museum": "ห้องโถงพิพิธภัณฑ์",
-        "loc_bedroom": "ห้องนอนอบอุ่น",
-        "loc_kitchen": "ห้องครัวในบ้าน",
-        "loc_living": "โซฟาห้องนั่งเล่น",
-        "loc_balcony": "ระเบียงต้นไม้",
-        "loc_window_seat": "มุมนั่งริมหน้าต่าง",
-        "loc_vanity": "โต๊ะเครื่องแป้ง",
-        "loc_crosswalk": "ทางม้าลายกลางเมือง",
-        "loc_railway": "รางรถไฟเก่า",
-        "loc_bus_stop": "ป้ายรถเมล์",
-        "loc_flower_shop": "ร้านดอกไม้",
-        "loc_bookstore": "ร้านหนังสือ",
-        "loc_bakery": "ร้านเบเกอรี่โทนพาสเทล",
-        "loc_boutique": "ร้านเสื้อผ้าบูติก",
-        "loc_record_store": "ร้านแผ่นเสียงวินเทจ",
-        "loc_laundromat": "ร้านซักผ้าเรโทร",
-        "loc_sunflower": "ทุ่งทานตะวัน",
-        "loc_lavender": "ทุ่งลาเวนเดอร์",
-        "loc_autumn_park": "สวนสาธารณะฤดูใบไม้ร่วง",
-        "loc_meadow": "ทุ่งดอกไม้ป่า",
-        "loc_lighthouse": "ประภาคารริมทะเล",
-        "loc_mansion": "คฤหาสน์คลาสสิก",
-        "loc_fine_dining": "ร้านอาหารหรู",
-        "loc_santorini": "หมู่บ้านสีขาวสไตล์ซานโตรินี",
-        "loc_venice": "คลองสไตล์เวนิส",
-        "loc_th_wat": "วัดไทยสีทอง",
-        "loc_th_floating": "ตลาดน้ำ",
-        "loc_th_chiangmai": "ซอยเมืองเก่าเชียงใหม่",
-        "loc_th_shophouse": "ย่านตึกแถวชิโนโปรตุกีส",
-        "loc_th_island": "ชายหาดเกาะไทย",
-        "loc_th_rooftop": "รูฟท็อปบาร์กรุงเทพ",
-        "loc_th_tea": "ไร่ชาบนเขา",
-        "loc_th_tuktuk": "ถนนกับรถตุ๊กตุ๊ก",
-        "loc_jp_torii": "ศาลเจ้าซุ้มโทริอิ",
-        "loc_jp_street": "ซอยในโตเกียว",
-        "loc_jp_ryokan": "ห้องเรียวกังเสื่อทาทามิ",
-        "loc_bamboo": "ป่าไผ่",
-        "loc_kr_hanok": "หมู่บ้านฮันอก",
-        "loc_kr_street": "ย่านเก๋ในโซล",
-        "loc_photo_booth": "ตู้ถ่ายรูป",
-        "loc_bowling": "โบว์ลิ่งเรโทร",
-        "loc_carousel": "ม้าหมุนวินเทจ",
-        "loc_cinema": "โรงภาพยนตร์",
-        "loc_karaoke": "ห้องคาราโอเกะ",
-        "loc_tennis": "สนามเทนนิส",
-    },
-}
+from translations import TRANSLATIONS  # UI strings (EN/TH) live in translations.py
 
 # ═══════════════════════════════════════════════════════════════════════════
 #  2. ENGLISH-VALUE LOOKUP
 # ═══════════════════════════════════════════════════════════════════════════
 
-ENGLISH_VALUES = {
-    # Gender
-    "gender_female": "Female", "gender_male": "Male", "gender_nb": "Non-binary person",
-    # Age
-    "age_5_9": "child (5-9 years old)", "age_10_14": "preteen (10-14 years old)",
-    "age_15_19": "teenager (15-19 years old)", "age_20_25": "young adult (20-25 years old)",
-    "age_26_35": "adult (26-35 years old)", "age_36_45": "mature adult (36-45 years old)",
-    "age_46_60": "middle-aged adult (46-60 years old)", "age_60plus": "senior (60+ years old)",
-    # Ethnicity
-    "eth_asian": "East-Asian", "eth_se_asian": "Southeast-Asian",
-    "eth_south_asian": "South-Asian", "eth_european": "European Caucasian",
-    "eth_african": "African", "eth_latin": "Latin American",
-    "eth_middle_east": "Middle-Eastern", "eth_mixed": "mixed-race",
-    # Hair Style — Women's
-    "hair_long": "long flowing hair", "hair_straight": "long straight hair",
-    "hair_loose_waves": "long loose wavy hair", "hair_curly": "curly hair",
-    "hair_wavy": "wavy hair",
-    "hair_layered": "layered haircut with soft face-framing layers",
-    "hair_wolf_cut": "trendy wolf cut with shaggy layers",
-    "hair_hush_cut": "Korean hush cut with soft airy layers",
-    "hair_hime": "Japanese hime cut with straight sidelocks",
-    "hair_bob": "bob cut",
-    "hair_lob": "long bob lob hairstyle", "hair_pixie": "pixie cut",
-    "hair_ponytail": "ponytail", "hair_high_ponytail": "high ponytail",
-    "hair_bun": "hair bun", "hair_messy_bun": "messy bun",
-    "hair_space_buns": "cute space buns",
-    "hair_braids": "braids", "hair_french_braid": "french braid",
-    "hair_twin_braids": "twin braids", "hair_twintails": "twin tails",
-    "hair_half_up": "half up half down hairstyle", "hair_side_swept": "side swept hair",
-    # Hair Style — Men's
-    "hair_short": "short hair", "hair_buzz": "buzz cut",
-    "hair_crew_cut": "crew cut",
-    "hair_middle_part": "Korean middle-part comma hair",
-    "hair_textured_crop": "textured crop haircut with messy fringe",
-    "hair_undercut": "undercut hairstyle",
-    "hair_fade": "fade haircut", "hair_slick_back": "slicked back hair",
-    "hair_man_bun": "man bun", "hair_bald": "bald head",
-    # Hair Color
-    "hc_black": "black hair", "hc_blue_black": "blue-black hair",
-    "hc_dark_brown": "dark brown hair", "hc_ash_brown": "ash brown hair",
-    "hc_milk_tea": "milk tea brown hair", "hc_light_brown": "light brown hair",
-    "hc_honey_blonde": "honey blonde hair", "hc_blonde": "blonde hair",
-    "hc_platinum": "platinum blonde hair", "hc_red": "red auburn hair",
-    "hc_burgundy": "burgundy cherry red hair", "hc_rose_gold": "rose gold hair",
-    "hc_pink": "pink hair", "hc_purple": "purple lavender hair",
-    "hc_blue": "blue hair", "hc_silver": "silver gray hair",
-    "hc_white": "white hair",
-    "hc_ombre": "ombre hair transitioning dark to light",
-    "hc_highlights": "hair with highlights and streaks",
-    # Bangs
-    "bangs_none": "", "bangs_straight": "with straight bangs",
-    "bangs_see_through": "with Korean see-through bangs",
-    "bangs_side": "with side-swept bangs", "bangs_curtain": "with curtain bangs",
-    "bangs_wispy": "with wispy bangs", "bangs_micro": "with micro bangs",
-    "bangs_hime": "with hime-cut sidelocks framing the face",
-    # Expression
-    "expr_smile": "gentle smile",
-    "expr_bright_smile": "bright beaming smile with sparkling eyes",
-    "expr_laugh": "laughing joyfully",
-    "expr_giggle": "giggling cutely with hand near mouth",
-    "expr_soft_gaze": "soft gentle gaze with warm eyes",
-    "expr_doe_eyes": "wide innocent doe eyes",
-    "expr_pout": "cute playful pout",
-    "expr_confident": "confident expression", "expr_serious": "serious stoic expression",
-    "expr_smirk": "confident charming smirk",
-    "expr_neutral": "neutral expression", "expr_pensive": "pensive thoughtful expression",
-    "expr_shy": "shy bashful expression", "expr_surprised": "surprised expression",
-    "expr_sad": "sad melancholic expression",
-    "expr_dreamy": "dreamy wistful expression", "expr_playful": "playful mischievous expression",
-    "expr_sultry": "sultry seductive expression", "expr_peaceful": "peaceful serene expression",
-    # Number of People (solo is the implicit "a ..." phrasing)
-    "ns_solo": "", "ns_duo": "two", "ns_trio": "three", "ns_group": "a group of five",
-    # Makeup
-    "mu_none": "",
-    "mu_red_lip": "elegant makeup with classic bold red lipstick",
-    "mu_douyin": "Douyin-style C-beauty makeup with aegyo-sal, precise brows and vivid lips",
-    "mu_glam": "full glam makeup with sculpted contour, defined eyes and bold lashes",
-    "mu_gradient": "Korean gradient lip makeup with soft blurred lip color",
-    "mu_dewy": "Korean-style dewy makeup with luminous glowing skin",
-    "mu_natural": "natural light makeup with subtle enhancement",
-    "mu_no_makeup": "no-makeup makeup look with bare fresh skin",
-    "mu_smoky": "smoky eye makeup with dark blended eyeshadow",
-    "mu_soft_matte": "soft matte makeup with a velvet finish",
-    # Body Type
-    "bt_slim": "slim slender body", "bt_petite": "petite small body frame",
-    "bt_lean": "lean toned body", "bt_athletic": "athletic fit toned body",
-    "bt_hourglass": "hourglass figure with balanced proportions",
-    "bt_curvy": "curvy body with feminine proportions",
-    "bt_tall": "tall model-like body proportions", "bt_average": "average body build",
-    # Appearance / Vibe
-    "app_beautiful": "beautiful gorgeous striking features",
-    "app_charming": "charming lovely aura with a warm captivating presence",
-    "app_chic": "chic classy polished look with effortless style",
-    "app_cool": "cool edgy sharp features with confident attitude",
-    "app_cute": "cute adorable baby-faced features",
-    "app_doll": "doll-like delicate features with porcelain skin and long lashes",
-    "app_elegant": "elegant sophisticated refined features",
-    "app_fierce": "fierce bold intense striking features",
-    "app_girl_next_door": "approachable girl-next-door charm with a warm friendly smile",
-    "app_handsome": "handsome chiseled jawline and sharp features",
-    "app_natural": "natural fresh-faced dewy skin look",
-    "app_sweet": "sweet innocent youthful features",
-    "app_youthful": "youthful glowing look with radiant luminous skin",
-    "app_kpop": "youthful K-pop idol look with flawless porcelain skin, soft dewy makeup, and delicate features",
-    "app_jpop": "cute J-pop idol look with soft round features, big expressive eyes, and light natural makeup",
-    "app_cpop": "elegant C-pop star look with refined features, luminous glass skin, and graceful beauty",
-    # Fashion Presets
-    "fs_streetwear": "streetwear urban fashion with oversized hoodie and sneakers",
-    "fs_korean": "Korean K-fashion style with clean modern silhouette",
-    "fs_japanese": "Japanese Harajuku street fashion with bold colorful layers",
-    "fs_minimalist": "minimalist clean fashion with neutral tones and simple lines",
-    "fs_bohemian": "bohemian boho style with flowing fabrics and layered accessories",
-    "fs_vintage": "vintage retro fashion with classic patterns and nostalgic details",
-    "fs_gothic": "gothic dark fashion with black clothing and edgy details",
-    "fs_preppy": "preppy academic style with collared shirt and pleated skirt",
-    "fs_athleisure": "athleisure sporty fashion with fitted activewear",
-    "fs_elegant": "elegant formal fashion with sophisticated tailoring",
-    "fs_cottagecore": "cottagecore pastoral fashion with floral dress and natural fabrics",
-    "fs_cyberpunk": "cyberpunk techwear fashion with futuristic tactical elements",
-    "fs_y2k": "Y2K 2000s fashion with low-rise pants and butterfly clips",
-    "fs_old_money": "old money quiet luxury fashion with cashmere and understated elegance",
-    "fs_grunge": "90s grunge fashion with flannel shirt and ripped jeans",
-    "fs_casual": "casual everyday fashion with a comfortable relaxed fit",
-    "fs_coquette": "coquette balletcore fashion with ribbons, bows and soft feminine details",
-    "fs_office": "polished business casual office fashion",
-    "fs_resort": "breezy resort vacation fashion with light summer fabrics",
-    "fs_barbiecore": "Barbiecore fashion in head-to-toe pink with playful glamour",
-    "fs_clean_girl": "clean girl aesthetic with slicked-back hair, minimal gold jewelry and effortless basics",
-    "fs_dark_academia": "dark academia fashion with tweed blazer, turtleneck and vintage scholarly details",
-    "fs_egirl": "e-girl alternative fashion with layered chains, striped sleeves and bold eyeliner",
-    "fs_gorpcore": "gorpcore outdoor fashion with technical fleece, puffer vest and hiking details",
-    "fs_light_academia": "light academia fashion in cream and beige with soft scholarly elegance",
-    "fs_mob_wife": "mob wife aesthetic with faux fur coat, gold jewelry and bold sunglasses",
-    "fs_parisian": "effortless Parisian chic with breton stripes, trench coat and timeless elegance",
-    "fs_rockstar": "rockstar fashion with leather jacket, band tee and studded details",
-    "fs_skater": "skater style with baggy pants, graphic tee and skate shoes",
-    "fs_thai": "elegant Thai traditional dress with silk fabric and gold accents",
-    "fs_western": "western cowboy fashion with denim, boots and fringe details",
-    # Fabric
-    "fab_none": "",
-    "fab_cotton": "cotton fabric", "fab_silk": "silk fabric",
-    "fab_denim": "denim", "fab_leather": "leather",
-    "fab_lace": "lace fabric", "fab_satin": "satin fabric",
-    "fab_wool": "wool knit", "fab_sheer": "sheer translucent fabric",
-    "fab_chiffon": "chiffon fabric", "fab_linen": "linen fabric",
-    "fab_tweed": "tweed fabric", "fab_velvet": "velvet fabric",
-    # Top Garment
-    "top_none": "",
-    "top_tshirt": "wearing a t-shirt", "top_crop": "wearing a crop top",
-    "top_blouse": "wearing a blouse", "top_button_shirt": "wearing a button-up shirt",
-    "top_tank": "wearing a tank top", "top_sweater": "wearing a sweater",
-    "top_hoodie": "wearing a hoodie",
-    "top_turtleneck": "wearing a turtleneck", "top_off_shoulder": "wearing an off-shoulder top",
-    "top_camisole": "wearing a camisole", "top_cardigan": "wearing a cardigan",
-    "top_blazer": "wearing a tailored blazer", "top_corset": "wearing a corset top",
-    "top_denim_jacket": "wearing a denim jacket", "top_halter": "wearing a halter top",
-    "top_puff_sleeve": "wearing a puff-sleeve blouse", "top_sweatshirt": "wearing a sweatshirt",
-    "top_bodysuit": "wearing a fitted bodysuit",
-    "top_bomber": "wearing a bomber jacket",
-    "top_bralette": "wearing a bralette top",
-    "top_knit_vest": "wearing a knitted sweater vest",
-    "top_leather_jacket": "wearing a leather jacket",
-    "top_long_sleeve": "wearing a long-sleeve t-shirt",
-    "top_oversized_shirt": "wearing an oversized button-down shirt",
-    "top_polo": "wearing a polo shirt",
-    "top_puffer": "wearing a puffer jacket",
-    "top_sports_bra": "wearing a sports bra",
-    "top_trench": "wearing a trench coat",
-    "top_tube": "wearing a tube top",
-    "top_varsity": "wearing a varsity jacket",
-    "top_wrap": "wearing a wrap top",
-    # Bottom Garment
-    "bot_none": "",
-    "bot_jeans": "wearing jeans", "bot_mini_skirt": "wearing a mini skirt",
-    "bot_maxi_skirt": "wearing a maxi skirt", "bot_pleated_skirt": "wearing a pleated skirt",
-    "bot_shorts": "wearing shorts", "bot_wide_leg": "wearing wide-leg pants",
-    "bot_cargo": "wearing cargo pants", "bot_leggings": "wearing leggings",
-    "bot_pencil_skirt": "wearing a pencil skirt", "bot_a_line": "wearing an A-line skirt",
-    "bot_sweatpants": "wearing sweatpants", "bot_trousers": "wearing tailored trousers",
-    "bot_denim_shorts": "wearing denim shorts", "bot_overalls": "wearing overalls",
-    "bot_slip_skirt": "wearing a satin slip skirt", "bot_tennis_skirt": "wearing a pleated tennis skirt",
-    "bot_baggy": "wearing baggy jeans",
-    "bot_bike_shorts": "wearing biker shorts",
-    "bot_cargo_skirt": "wearing a cargo skirt",
-    "bot_culottes": "wearing culottes",
-    "bot_denim_skirt": "wearing a denim skirt",
-    "bot_flare": "wearing flared jeans",
-    "bot_joggers": "wearing jogger pants",
-    "bot_midi_skirt": "wearing a midi skirt",
-    "bot_palazzo": "wearing flowing palazzo pants",
-    "bot_parachute": "wearing parachute pants",
-    "bot_ripped": "wearing ripped jeans",
-    "bot_skort": "wearing a skort",
-    "bot_tulle_skirt": "wearing a layered tulle skirt",
-    "bot_yoga": "wearing yoga pants",
-    # Footwear
-    "sh_none": "",
-    "sh_ankle_boots": "wearing ankle boots",
-    "sh_ballet": "wearing ballet flats",
-    "sh_combat": "wearing chunky combat boots",
-    "sh_heels": "wearing high heels",
-    "sh_knee_boots": "wearing knee-high boots",
-    "sh_loafers": "wearing polished leather loafers",
-    "sh_mary_janes": "wearing mary jane shoes",
-    "sh_platform": "wearing platform shoes",
-    "sh_sandals": "wearing strappy sandals",
-    "sh_sneakers": "wearing clean white sneakers",
-    "sh_barefoot": "barefoot",
-    "sh_chelsea": "wearing chelsea boots",
-    "sh_chunky": "wearing chunky dad sneakers",
-    "sh_cowboy": "wearing cowboy boots",
-    "sh_espadrilles": "wearing espadrilles",
-    "sh_flip_flops": "wearing flip-flops",
-    "sh_kitten_heels": "wearing kitten heels",
-    "sh_mules": "wearing mule shoes",
-    "sh_oxford": "wearing oxford shoes",
-    "sh_running": "wearing athletic running shoes",
-    # Lens (photographic model types only)
-    "lens_24": "shot on 24mm wide-angle lens",
-    "lens_35": "shot on 35mm lens",
-    "lens_50": "shot on 50mm lens",
-    "lens_85": "shot on 85mm portrait lens with beautiful compression",
-    "lens_135": "shot on 135mm telephoto lens with strong background compression",
-    # Color Palette
-    "col_none": "",
-    "col_red": "red color tones", "col_pink": "pink color tones",
-    "col_orange": "orange color tones", "col_yellow": "yellow and gold color tones",
-    "col_green": "green color tones", "col_blue": "blue color tones",
-    "col_purple": "purple and lavender color tones",
-    "col_white": "white and cream color tones", "col_black": "all black color tones",
-    "col_beige": "beige and nude color tones", "col_pastel": "pastel colors",
-    "col_mono": "monochrome black and white",
-    "col_earthy": "earthy brown and natural tones",
-    "col_warm": "warm color tones of red orange and gold",
-    "col_cool": "cool color tones of blue teal and silver",
-    "col_vibrant": "vibrant neon colors",
-    "col_burgundy": "burgundy and wine color tones",
-    "col_navy": "navy blue color tones",
-    "col_sage": "sage green color tones",
-    "col_baby_blue": "soft baby blue color tones",
-    "col_brown": "brown and chocolate color tones",
-    "col_colorblock": "a bold colorblock combination of contrasting colors",
-    "col_coral": "coral color tones",
-    "col_gold": "shimmering gold metallic tones",
-    "col_hot_pink": "vibrant hot pink color tones",
-    "col_khaki": "khaki and olive green color tones",
-    "col_lilac": "soft lilac color tones",
-    "col_mint": "fresh mint green color tones",
-    "col_peach": "soft peach color tones",
-    "col_silver": "shimmering silver metallic tones",
-    "col_teal": "deep teal color tones",
-    # Accessories — Head
-    "acc_beanie": "wearing a beanie",
-    "acc_beret": "wearing a beret",
-    "acc_bucket_hat": "wearing a bucket hat",
-    "acc_cap": "wearing a cap",
-    "acc_glasses": "wearing prescription glasses",
-    "acc_hair_clip": "wearing a hair clip",
-    "acc_ribbon": "wearing a ribbon bow in hair",
-    "acc_hat": "wearing a hat",
-    "acc_headband": "wearing a headband",
-    "acc_scrunchie": "wearing a scrunchie",
-    "acc_sunglasses": "wearing stylish sunglasses",
-    "acc_tiara": "wearing a tiara",
-    # Accessories — Body / Jewelry
-    "acc_anklet": "wearing an anklet",
-    "acc_belt": "wearing a belt",
-    "acc_bowtie": "wearing a bow tie",
-    "acc_bracelet": "wearing a bracelet",
-    "acc_choker": "wearing a choker",
-    "acc_earrings": "wearing earrings",
-    "acc_necklace": "wearing a necklace",
-    "acc_necktie": "wearing a necktie",
-    "acc_ring": "wearing a ring",
-    "acc_scarf": "wearing a scarf",
-    "acc_watch": "wearing a wristwatch",
-    # Accessories — Carried Items
-    "acc_backpack": "carrying a backpack",
-    "acc_book": "holding a book",
-    "acc_camera": "holding a vintage film camera",
-    "acc_clutch": "carrying a clutch bag",
-    "acc_crossbody": "wearing a crossbody bag",
-    "acc_bouquet": "holding a flower bouquet",
-    "acc_bag": "carrying a handbag",
-    "acc_coffee": "holding an iced coffee cup",
-    "acc_phone": "holding a smartphone",
-    "acc_tote": "carrying a tote bag",
-    "acc_umbrella": "holding an umbrella",
-    # Location
-    "loc_studio": "in a professional photography studio with seamless backdrop",
-    "loc_street": "on an urban city street with buildings",
-    "loc_cafe": "inside a cozy coffee shop",
-    "loc_beach": "on a tropical beach with ocean waves",
-    "loc_forest": "in a lush green forest surrounded by trees",
-    "loc_rooftop": "on a rooftop overlooking the city skyline",
-    "loc_room": "in a stylish modern indoor room",
-    "loc_temple": "at an ancient temple with historic architecture",
-    "loc_garden": "in a beautiful garden with flowers and greenery",
-    "loc_amusement": "at a colorful amusement park with a ferris wheel in the background",
-    "loc_flower_field": "in a blooming flower field stretching to the horizon",
-    "loc_library": "in a cozy library surrounded by tall bookshelves",
-    "loc_night_market": "at a vibrant night market with glowing street food stalls",
-    "loc_brick_ruin": "beside an old abandoned red-brick building overgrown with ivy, surrounded by tall wild grass and lush trees",
-    "loc_overgrown": "in a lush overgrown garden with tall wild grass, ferns and dappled greenery",
-    "loc_pool": "at a luxurious poolside with clear blue water",
-    "loc_shopping": "on a lively shopping street with stylish storefronts",
-    "loc_train": "at a scenic train station platform",
-    "loc_airport": "at a modern airport terminal with large glass windows and departure boards",
-    "loc_aquarium": "inside an aquarium hall glowing with blue light from giant fish tanks",
-    "loc_art_gallery": "in a minimalist art gallery with white walls and framed artwork",
-    "loc_bridge": "on a scenic bridge overlooking the river and city skyline",
-    "loc_castle": "at a majestic castle with grand historic European architecture",
-    "loc_desert": "among golden desert sand dunes under a vast open sky",
-    "loc_old_town": "on a charming old European town street with cobblestones and classic facades",
-    "loc_stairs": "on a grand elegant staircase with ornate railings",
-    "loc_gym": "in a modern gym with sleek fitness equipment",
-    "loc_lake": "on a wooden pier by a calm lake with mountain reflections",
-    "loc_hotel_lobby": "in a luxurious hotel lobby with marble floors and chandeliers",
-    "loc_mountain": "at a mountain viewpoint overlooking rolling peaks and valleys",
-    "loc_neon_alley": "in a narrow city alley glowing with colorful neon signs",
-    "loc_rice_field": "in a lush green rice field in the peaceful countryside",
-    "loc_snow": "in a snowy winter landscape covered in fresh white powder snow",
-    "loc_subway": "in a modern subway station with clean architectural lines",
-    "loc_university": "on a university campus with classic collegiate architecture",
-    "loc_waterfall": "at a tropical waterfall surrounded by lush greenery and misty spray",
-    # Time of Day
-    "tod_golden": "during golden hour with warm sunset light",
-    "tod_blue": "during blue hour twilight",
-    "tod_noon": "at high noon with bright overhead sunlight",
-    "tod_night": "at nighttime with city lights",
-    "tod_overcast": "under overcast cloudy sky with soft diffused light",
-    "tod_sunrise": "at sunrise with warm morning light",
-    # Season
-    "season_none": "", "season_spring": "in spring with cherry blossoms and fresh greenery",
-    "season_summer": "in summer with bright warm sunshine",
-    "season_autumn": "in autumn with warm-toned foliage background",
-    "season_winter": "in winter with cold crisp atmosphere",
-    "season_rainy": "during rainy season with overcast wet atmosphere",
-    # Lighting
-    "lit_natural": "natural ambient lighting", "lit_studio": "professional studio softbox lighting",
-    "lit_window": "soft natural window light",
-    "lit_rim": "dramatic rim lighting from behind",
-    "lit_neon": "colorful neon lights with cyberpunk atmosphere",
-    "lit_fairy": "warm glowing fairy string lights",
-    "lit_candle": "warm candlelight illumination",
-    "lit_dramatic": "dramatic chiaroscuro lighting with deep shadows",
-    "lit_flash": "direct on-camera flash photography look",
-    "lit_backlit": "golden backlighting creating a glowing halo around the subject",
-    "lit_dappled": "dappled sunlight filtering through leaves",
-    "lit_blinds": "dramatic shadow stripes from window blinds falling across the scene",
-    "lit_gel": "cinematic red and blue color gel lighting in duotone",
-    "lit_spotlight": "a single dramatic stage spotlight from above",
-    "lit_moonlight": "soft cool moonlight illumination",
-    "lit_bonfire": "warm flickering campfire glow",
-    "lit_godrays": "volumetric god rays streaming through the atmosphere",
-    # Picture Style
-    "ps_none": "", "ps_dreamy": "dreamy ethereal atmosphere with soft glow and hazy light",
-    "ps_soft": "soft gentle tones with smooth gradients and muted colors",
-    "ps_vivid": "vivid highly saturated colors with rich contrast",
-    "ps_bw": "black and white monochrome photography with rich tonal range",
-    "ps_vintage": "vintage retro film look with warm faded tones and slight grain",
-    "ps_nostalgic": "warm nostalgic film tone with golden sunlit hues, soft grain, muted greens and a gentle hazy glow, evoking fond summer memories",
-    "ps_cinematic": "cinematic color grading with teal and orange tones",
-    "ps_moody": "moody dark atmospheric tones with deep shadows",
-    "ps_pastel": "pastel light airy color palette with soft delicate hues",
-    "ps_hdr": "HDR high dynamic range with vivid detail in highlights and shadows",
-    "ps_matte": "matte film finish with reduced contrast and desaturated highlights",
-    "ps_commercial": "clean bright commercial photography style with crisp neutral tones",
-    "ps_editorial": "high-end editorial magazine aesthetic with refined color grading",
-    "ps_documentary": "authentic documentary street photography style capturing natural imperfect moments",
-    "ps_polaroid": "instant polaroid photo look with soft faded colors",
-    "ps_digicam": "early-2000s digicam aesthetic with harsh flash and slight overexposure",
-    "ps_fantasy": "ethereal fantasy atmosphere with magical glowing particles and soft iridescent light",
-    "ps_fairytale": "dark fairytale mood with mysterious enchanted atmosphere",
-    "ps_cyber": "cyberpunk aesthetic with saturated neon glow and futuristic haze",
-    "ps_vaporwave": "vaporwave retrowave aesthetic with pink-purple gradients and 80s glow",
-    "ps_surreal": "surreal dreamcore atmosphere with an uncanny dreamlike quality",
-    # Shot Framing
-    "sf_extreme_cu": "extreme close-up of face only",
-    "sf_closeup": "close-up portrait shot showing head and shoulders",
-    "sf_medium_cu": "medium close-up from chest up",
-    "sf_medium": "medium shot from waist up",
-    "sf_cowboy": "cowboy shot from mid-thigh up",
-    "sf_medium_full": "medium full shot from knees up",
-    "sf_full": "full body shot",
-    "sf_wide": "wide shot showing full body and surrounding environment",
-    # Depth of Field
-    "dof_sharp": "deep focus with everything sharp",
-    "dof_portrait": "shallow depth of field at f/1.8 with subject in sharp focus and beautifully blurred bokeh background",
-    "dof_shallow": "very shallow depth of field at f/1.2 with heavy creamy bokeh and dreamy atmosphere",
-    "dof_tiltshift": "tilt-shift effect creating miniature model appearance",
-    "dof_soft": "soft dreamy glow with gentle diffusion",
-    "dof_bokeh_lights": "shallow depth of field with glowing round bokeh light orbs in the background",
-    "dof_motion": "subject in sharp focus with motion-blurred background conveying movement",
-    "dof_fg_blur": "shot through blurred foreground elements creating a dreamy layered frame",
-    "dof_clean_bg": "clean minimal seamless background with the subject in crisp focus",
-    # Composition
-    "comp_center": "",
-    "comp_rot_left": "rule of thirds composition with subject positioned on the left third of the frame",
-    "comp_rot_right": "rule of thirds composition with subject positioned on the right third of the frame",
-    "comp_golden": "golden ratio composition with subject at the golden spiral focal point",
-    "comp_leading": "composition with leading lines drawing the eye toward the subject",
-    "comp_framed": "subject framed through a natural foreground frame like a doorway or foliage",
-    "comp_negative_space": "composed with generous negative space around the subject",
-    "comp_symmetry": "symmetrical composition with subject centered along the axis of symmetry",
-    "comp_diagonal": "dynamic composition built on strong diagonal lines",
-    "comp_fill": "tight composition with the subject filling the entire frame",
-    "comp_reflection": "creative reflection composition using a mirror or water surface",
-    "comp_depth": "layered composition with distinct foreground, midground and background depth",
-    # Pose (sorted A-Z)
-    "pose_arms_up": "with arms raised above head",
-    "pose_cross_arms": "with arms crossed",
-    "pose_back_camera": "facing away from camera showing back",
-    "pose_blow_kiss": "blowing a kiss toward the camera",
-    "pose_cross_leg": "sitting with legs crossed elegantly",
-    "pose_crouch": "crouching down",
-    "pose_dynamic": "in a dynamic action pose",
-    "pose_hand_hair": "with hand running through hair",
-    "pose_hand_chin": "resting chin on hand thoughtfully",
-    "pose_hands_back": "standing sweetly with hands clasped behind back",
-    "pose_cheek_hands": "with both hands framing the face cutely",
-    "pose_hands_pocket": "with hands in pockets casually",
-    "pose_heart_hands": "making a heart shape with both hands toward the camera",
-    "pose_hug_knees": "sitting hugging knees to chest",
-    "pose_jump": "jumping in the air",
-    "pose_kneel": "kneeling on the ground",
-    "pose_lean": "leaning against a wall",
-    "pose_looking_away": "looking away from camera",
-    "pose_over_shoulder": "looking back over shoulder",
-    "pose_lying": "lying down relaxed",
-    "pose_mini_heart": "making a mini heart gesture with thumb and index finger",
-    "pose_peace": "flashing a cute peace sign",
-    "pose_run": "running in motion",
-    "pose_s_curve": "standing in an S-curve pose with weight on one hip",
-    "pose_sit": "sitting comfortably",
-    "pose_stand": "standing elegantly",
-    "pose_hair_tuck": "gently tucking hair behind ear",
-    "pose_twirl": "twirling with movement in clothing",
-    "pose_w_sit": "sitting in a W-sit position with legs folded to the sides",
-    "pose_walk": "walking naturally",
-    "pose_wink": "winking playfully at the camera",
-    "pose_fix_jacket": "adjusting jacket collar with a confident look",
-    "pose_adjust_glasses": "stylishly adjusting sunglasses",
-    "pose_finger_heart": "making a cute Korean finger heart gesture",
-    "pose_hair_flip": "flipping hair dramatically in motion",
-    "pose_arms_behind_head": "with hands clasped behind head, relaxed",
-    "pose_railing": "leaning casually on a railing",
-    "pose_look_back_walk": "walking away and glancing back over shoulder at the camera",
-    "pose_mirror_selfie": "taking a mirror selfie with a smartphone",
-    "pose_peek_fingers": "peeking playfully through fingers held near the eyes",
-    "pose_reach_camera": "reaching one hand out toward the camera, follow-me style",
-    "pose_shield_sun": "raising one hand to shield eyes from the sun",
-    "pose_legs_extended": "sitting on the ground with legs extended, leaning back on hands",
-    "pose_squat": "posing in a low streetwear squat",
-    "pose_hold_hat": "touching the brim of a hat stylishly",
-    "pose_walk_away": "walking away from the camera candidly",
-    "pose_arms_open": "with arms open wide in a joyful welcoming gesture",
-    "pose_candid": "captured candidly in natural unposed movement",
-    "pose_chin_up": "with chin tilted up in a confident poised stance",
-    "pose_dance": "dancing gracefully with flowing movement",
-    "pose_editorial": "striking an avant-garde editorial fashion pose with angular arm placement",
-    "pose_elegant": "posing with elegant graceful posture and refined hand gestures",
-    "pose_hand_hip": "standing with one hand on hip",
-    "pose_head_tilt": "tilting head cutely to one side",
-    "pose_high_fashion": "in a high-fashion model stance with strong confident body lines",
-    "pose_lean_forward": "leaning toward the camera playfully",
-    "pose_look_up": "gazing upward with a dreamy expression",
-    "pose_runway": "walking a runway stride with confident model attitude",
-    "pose_sit_stairs": "sitting casually on a set of stairs",
-    "pose_stretch": "stretching arms overhead in a graceful pose",
-    # Model Type
-    "model_realistic": "Photorealistic",
-    "model_cinematic": "cinematic film still with movie-quality production",
-    "model_film": "analog film photograph with natural grain, Kodak Portra 400",
-    "model_fashion": "high-fashion editorial photography",
-    "model_anime": "Anime illustration style",
-    "model_digital_painting": "detailed digital painting artwork",
-    "model_watercolor": "soft watercolor painting with delicate brush strokes",
-    "model_comic": "comic manga style illustration with clean line art",
-    "model_3d": "3D rendered CGI",
-    # Quality
-    "qt_8k": "8K UHD", "qt_detail": "highly detailed", "qt_sharp": "sharp focus",
-    "qt_pro": "professional photography", "qt_award": "award-winning", "qt_magazine": "magazine quality",
-    # Aspect Ratio
-    "ar_1_1": "--ar 1:1", "ar_16_9": "--ar 16:9", "ar_9_16": "--ar 9:16", "ar_4_5": "--ar 4:5",
-    "ar_3_2": "--ar 3:2", "ar_2_3": "--ar 2:3",
-    "ar_4_3": "--ar 4:3", "ar_3_4": "--ar 3:4",
-    "ar_iphone": "--ar 1179:2556", "ar_android": "--ar 1080:2400",
-    # v5.5 — "Not specified" options (emit nothing in the prompt)
-    "age_none": "", "eth_none": "", "hair_none": "", "hc_none": "",
-    "expr_none": "", "bt_none": "", "app_none": "", "pose_none": "",
-    "tod_none": "", "lit_none": "", "loc_none": "", "sf_none": "",
-    "dof_none": "",
-    # v5.5 — Makeup
-    "mu_editorial": "avant-garde editorial makeup with bold graphic artistic accents",
-    "mu_freckles": "fresh natural makeup with cute faux freckles scattered across the nose and cheeks",
-    "mu_goth": "gothic dark makeup with deep dark lips and dramatic black eyeliner",
-    "mu_igari": "Japanese igari-style makeup with soft flushed blush swept across the cheeks",
-    "mu_bronzed": "sun-kissed bronzed makeup with a golden glow and highlighted cheekbones",
-    "mu_glitter": "playful Y2K glitter makeup with sparkly eyeshadow and glossy lips",
-    # v5.5 — Expressions
-    "expr_wink": "winking playfully with one eye closed",
-    "expr_tongue": "sticking tongue out playfully",
-    "expr_mischief": "mischievous impish grin",
-    "expr_fierce": "fierce intense piercing gaze",
-    "expr_eyes_closed": "eyes gently closed with a serene blissful face",
-    "expr_bored": "bored nonchalant expression",
-    "expr_angry": "angry intense glare",
-    "expr_tearful": "tearful glistening eyes with an emotional expression",
-    # v5.5 — Fashion styles
-    "fs_basketball": "sporty basketball style with an oversized jersey and athletic shorts",
-    "fs_beach_cover": "breezy beachwear with a flowing sarong cover-up over a swimsuit",
-    "fs_bikini": "stylish two-piece bikini swimwear",
-    "fs_cheer": "cheerleader uniform with a pleated skirt and pom-poms",
-    "fs_golf": "modern golf wear with a polo shirt and pleated golf skirt",
-    "fs_one_piece": "elegant one-piece swimsuit",
-    "fs_rashguard": "sporty long-sleeve rash guard surf wear",
-    "fs_school": "neat school uniform with a pleated skirt and ribbon tie",
-    "fs_ski": "stylish ski wear with an insulated jacket and snow goggles",
-    "fs_teen": "trendy teen fashion with a playful youthful mix of casual pieces",
-    "fs_tennis": "sporty tennis outfit with a pleated tennis skirt and fitted polo top",
-    "fs_yoga": "form-fitting yoga activewear set with leggings and a sports top",
-    # v5.5 — Locations
-    "loc_arcade": "inside a retro arcade glowing with colorful game machines",
-    "loc_ballroom": "in an opulent grand ballroom with crystal chandeliers and gilded details",
-    "loc_basketball": "on an outdoor basketball court with painted lines and a chain-link fence",
-    "loc_cherry": "in a park full of blooming cherry blossom trees with petals drifting in the air",
-    "loc_cliff": "on a dramatic coastal cliff overlooking the open ocean",
-    "loc_convenience": "outside a brightly lit convenience storefront",
-    "loc_greenhouse": "inside a lush botanical greenhouse filled with tropical plants",
-    "loc_harbor": "at a scenic harbor marina with yachts and sailboats",
-    "loc_ice_rink": "at an ice skating rink with a glossy reflective surface",
-    "loc_skatepark": "at a concrete skate park with ramps and street art",
-    "loc_stadium": "in a large sports stadium with floodlights and sweeping stands",
-    "loc_supermarket": "in a colorful supermarket aisle with neatly stocked shelves",
-    "loc_vineyard": "in a sun-drenched vineyard with rolling rows of grapevines",
-    "loc_yacht": "on the deck of a luxury yacht surrounded by sparkling blue water",
-    # v5.5 — Camera angles
-    # v5.5 — Lighting
-    "lit_silhouette": "dramatic silhouette backlighting against a glowing sunset sky",
-    "lit_lowkey": "low-key lighting with deep shadows and a single soft key light",
-    "lit_highkey": "bright high-key lighting with soft even illumination and minimal shadows",
-    "lit_lantern": "warm glow of traditional paper lanterns",
-    "lit_fireworks": "colorful fireworks bursting in the night sky lighting the scene",
-    "lit_screen": "cool blue screen glow illuminating the face in a dark room",
-    "lit_projector": "projector light casting colorful patterns across the subject",
-    "lit_disco": "sparkling disco ball reflections scattering spots of light",
-    # v5.5 — Poses
-    "pose_boxing": "in a playful boxing stance with fists raised",
-    "pose_cartwheel": "captured mid-cartwheel in dynamic motion",
-    "pose_dribble": "dribbling a basketball in mid-move",
-    "pose_finger_frame": "framing the shot with a finger-frame gesture toward the camera",
-    "pose_meditate": "sitting cross-legged in a peaceful lotus meditation pose",
-    "pose_ok_sign": "making a cute OK hand sign",
-    "pose_point_camera": "pointing playfully straight at the camera",
-    "pose_salute": "giving a cheeky two-finger salute",
-    "pose_selfie": "taking a selfie with one arm outstretched",
-    "pose_shush": "holding one finger to the lips in a playful shush gesture",
-    "pose_skip": "skipping forward with a light joyful bounce",
-    "pose_thumbs_up": "giving a cheerful thumbs up",
-    "pose_tiptoe": "standing on tiptoes reaching upward",
-    "pose_wave": "waving hello at the camera cheerfully",
-    "pose_yoga": "balancing gracefully in a yoga tree pose",
-    "pose_carefree_walk": "walking carefree with arms swinging loosely out to the sides, looking down at the ground with a soft smile",
-    "pose_touch_plants": "crouching down and gently touching small plants and leaves on the ground",
-    "pose_hold_camera": "holding a vintage film camera at chest level while gazing up and away thoughtfully",
-    "pose_grass_stalk": "playfully holding a stalk of wild grass up beside their face",
-    "pose_ear_wall": "leaning close to an old wall with a hand cupped behind the ear, as if listening to it",
-    "pose_peek_tree": "peeking out playfully from behind a tree trunk with a bright smile",
-    "pose_pick_flower": "reaching down to pick a small flower from the grass",
-    "pose_smell_flower": "holding a small wildflower up to their nose with both hands, eyes closed with a soft blissful smile",
-    "pet_none": "",
-    "pet_bird": "with a small bird perched on their outstretched finger",
-    "pet_butterflies": "with colorful butterflies fluttering around them",
-    "pet_cat": "gently reaching out to a cute cat, about to touch its nose",
-    "pet_dog": "accompanied by a friendly dog, petting it affectionately",
-    "pet_kitten": "cradling a tiny kitten in their hands",
-    "pet_puppy": "playing with an adorable puppy",
-    "pet_rabbit": "holding a fluffy white rabbit",
-    # v5.7 — pose builder + outfit layers
-    "pose_contrapposto": "standing in a relaxed contrapposto stance with weight shifted onto one leg and one hand resting on the hip",
-    "pose_hands_hips": "standing confidently with both hands on the hips",
-    "pose_hands_nape": "standing with both hands lifted to the nape of the neck, elbows raised and chest open",
-    "pose_hand_collar": "standing with one hand lightly touching the collarbone and the other resting on the thigh",
-    "pose_foot_kick": "standing on one leg with the other foot playfully kicked up behind",
-    "pose_hair_both": "lifting their hair up with both hands, elbows raised",
-    "pose_walk_toward": "walking confidently toward the camera",
-    "pose_bag_strap": "walking with one hand holding the strap of a shoulder bag",
-    "pose_sit_side": "sitting side-saddle on the floor with legs folded to one side and one hand resting on the ground",
-    "pose_sit_knee_up": "sitting on the ground with one knee drawn up and an arm resting casually across it",
-    "pose_sit_cheek_knee": "sitting with knees drawn up and one cheek resting softly on the knees",
-    "pose_sit_chair_back": "sitting backwards on a chair with arms folded over the backrest",
-    "pose_sit_ledge": "sitting on a low ledge with legs dangling and hands resting beside them",
-    "pose_sit_floor_cross": "sitting cross-legged on the floor with hands resting on the knees",
-    "pose_sit_hold_ankle": "sitting with legs bent to one side and one hand gently holding the ankle",
-    "pose_wariza_hands": "sitting in a cute wariza with knees together and both hands placed on the floor in front",
-    "pose_seiza": "kneeling in seiza, sitting back on the heels with hands resting in the lap",
-    "pose_kneel_upright": "kneeling upright with hands resting on the thighs",
-    "pose_one_knee": "kneeling on one knee with a forearm resting on the raised knee",
-    "pose_kneel_look_up": "kneeling on one knee and looking up toward the sky",
-    "pose_kneel_hair": "kneeling upright with one hand in the hair and the other on the hip",
-    "pose_lie_stomach": "lying on the stomach propped on the elbows, chin in the hands, feet kicked up playfully behind",
-    "pose_lie_side": "lying on one side with the head propped up on one hand",
-    "pose_lie_back_hair": "lying on the back with arms resting above the head and hair spread out around them",
-    "pose_lie_back_knee": "lying on the back, relaxed, with one knee raised",
-    "pose_lie_arm_pillow": "lying on the stomach with the head resting on folded arms",
-    "pose_crouch_chin": "crouching down with elbows on the knees and chin resting in one hand",
-    "pose_crouch_look_back": "crouching low and glancing back over the shoulder",
-    "pose_bend_knees": "bending forward slightly with hands on the knees, looking up at the camera",
-    "pose_bend_shoe": "bending down to adjust a shoe strap",
-    "pose_double_peace": "making double peace signs under the chin",
-    "pose_gyaru_peace": "making a gyaru peace sign with the back of the hand facing out beside the face",
-    "pose_fist_cheeks": "pressing small fists cutely against both cheeks",
-    "pose_bunny_ears": "holding both hands above the head like bunny ears",
-    "pose_cat_paw": "making a playful cat-paw gesture with loosely curled hands near the face",
-    "pose_rawr": "doing a playful 'rawr' pose with hands curled like little claws",
-    "pose_poke_cheek": "poking their own cheek with an index finger and a cute smile",
-    "pose_flower_chin": "resting the chin on both open palms like a blooming flower",
-    "pose_sweater_paws": "covering the mouth shyly with long sweater-paw sleeves",
-    "pose_please": "pressing palms together in a cute pleading 'please' gesture",
-    "pose_self_hug": "shyly hugging themselves with both arms",
-    "pose_big_heart": "making a big heart shape with both arms above the head",
-    "pose_yawn": "yawning cutely with one hand over the mouth while stretching",
-    "pose_coat_lapels": "holding the lapels of their coat with both hands",
-    "pose_phone_check": "looking down at a smartphone candidly",
-    "pose_skirt_hem": "lightly holding the hem of the skirt with both hands",
-    "pose_curtsy": "dipping into a graceful curtsy",
-    "pose_umbrella": "holding an open umbrella resting over one shoulder",
-    "pose_bouquet": "holding a bouquet of flowers close to the chest",
-    "pose_read_book": "reading an open book, absorbed in it",
-    "pose_coffee": "holding a coffee cup close with both hands",
-    "pose_bicycle": "standing beside a bicycle with one hand on the handlebar",
-    "pose_balloons": "holding a bunch of balloons",
-    "pose_ballet": "balancing in a graceful ballet arabesque",
-    "pose_tennis_swing": "swinging a tennis racket mid-stroke",
-    "pose_skateboard": "riding a skateboard mid-glide",
-    "pose_lunge": "stretching in a deep lunge",
-    "dir_none": "",
-    "dir_back": "seen from behind with the back to the camera",
-    "dir_back_look": "back turned to the camera, looking back over the shoulder",
-    "dir_front": "body facing the camera squarely",
-    "dir_side": "body turned sideways in full profile",
-    "dir_slight": "body angled slightly away from the camera",
-    "dir_3q": "body turned three-quarters to the camera",
-    "head_none": "",
-    "head_chin_down": "chin lowered slightly",
-    "head_chin_up": "chin raised slightly",
-    "head_shoulder": "cheek tipped toward the shoulder",
-    "head_rest_hand": "head resting against one hand",
-    "head_back": "head tilted back",
-    "head_tilt": "head tilted gently to one side",
-    "head_turned": "head turned to the side",
-    "gaze_none": "",
-    "gaze_closed": "eyes gently closed",
-    "gaze_camera": "looking directly at the camera with engaging eye contact",
-    "gaze_down": "eyes cast downward",
-    "gaze_away": "gazing off into the distance",
-    "gaze_upward_glance": "glancing up at the camera through the lashes",
-    "gaze_up": "eyes looking upward",
-    "gaze_side_glance": "giving the camera a sideways glance",
-    "hands_none": "",
-    "hands_crossed": "arms crossed",
-    "hands_overhead": "arms raised overhead",
-    "hands_relaxed": "arms relaxed naturally at the sides",
-    "hands_both_hips": "both hands on the hips",
-    "hands_lips": "a fingertip resting lightly on the lips",
-    "hands_hair": "one hand running through the hair",
-    "hands_hip": "one hand on the hip",
-    "hands_neck": "one hand resting at the neck and collarbone",
-    "hands_face": "one hand softly touching the face",
-    "hands_behind": "hands clasped behind the back",
-    "hands_clasped": "hands clasped loosely in front",
-    "hands_pockets": "hands tucked casually into the pockets",
-    "hands_strap": "one hand holding a bag strap",
-    "hands_sleeve": "fingers tugging lightly at a sleeve",
-    "legs_none": "",
-    "legs_ankles_crossed": "ankles crossed",
-    "legs_kick_back": "one foot kicked up behind",
-    "legs_knees_in": "knees together with toes turned slightly inward",
-    "legs_crossed_knee": "legs crossed at the knee",
-    "legs_cross_stand": "legs crossed while standing",
-    "legs_extended": "legs stretched out long",
-    "legs_together": "legs held neatly together",
-    "legs_mid_stride": "caught mid-stride",
-    "legs_tiptoe": "up on tiptoe",
-    "legs_knee_bent": "one knee slightly bent",
-    "legs_wide": "feet planted in a wide power stance",
-    "pe_none": "",
-    "pe_candid": "with candid, unposed body language",
-    "pe_confident": "with strong, confident body language",
-    "pe_cool": "with cool, nonchalant body language",
-    "pe_dynamic": "captured mid-motion with dynamic energy",
-    "pe_elegant": "with graceful, elegant posture",
-    "pe_playful": "with playful, energetic body language",
-    "pe_relaxed": "with relaxed, natural body language",
-    "pe_shy": "with shy, soft body language",
-    "dress_none": "",
-    "dress_babydoll": "wearing a babydoll dress",
-    "dress_ballgown": "wearing a ball gown",
-    "dress_bodycon": "wearing a bodycon dress",
-    "dress_corset": "wearing a corset dress",
-    "dress_jumpsuit": "wearing a jumpsuit",
-    "dress_knit": "wearing a knit dress",
-    "dress_maxi": "wearing a flowing maxi dress",
-    "dress_midi": "wearing a midi dress",
-    "dress_mini": "wearing a mini dress",
-    "dress_off_shoulder": "wearing an off-shoulder dress",
-    "dress_pinafore": "wearing a pinafore dress over a simple top",
-    "dress_qipao": "wearing a qipao cheongsam dress",
-    "dress_romper": "wearing a romper playsuit",
-    "dress_shirt": "wearing a shirt dress",
-    "dress_slip": "wearing a slip dress",
-    "dress_sundress": "wearing a sundress",
-    "dress_tea": "wearing a vintage tea dress",
-    "dress_tiered": "wearing a tiered ruffle dress",
-    "dress_wrap": "wearing a wrap dress",
-    "out_none": "",
-    "out_blazer": "a tailored blazer",
-    "out_bolero": "a cropped bolero shrug",
-    "out_cape": "a cape",
-    "out_cardigan": "a soft knit cardigan",
-    "out_cropped_cardigan": "a cropped knit cardigan",
-    "out_denim_jacket": "a denim jacket",
-    "out_faux_fur": "a fluffy faux-fur coat",
-    "out_kimono": "a flowing kimono-style cardigan",
-    "out_leather": "a leather jacket",
-    "out_wool_coat": "a long wool coat",
-    "out_open_shirt": "an unbuttoned shirt worn open",
-    "out_puffer": "a puffer jacket",
-    "out_shawl": "a soft shawl draped over the shoulders",
-    "out_trench": "a trench coat",
-    "out_tweed": "a tweed jacket",
-    "out_varsity": "a varsity jacket",
-    "out_zip_hoodie": "an open zip-up hoodie",
-    "fit_none": "",
-    "fit_aline": "an A-line silhouette",
-    "fit_body": "a body-hugging silhouette",
-    "fit_cropped": "a cropped, high-waisted silhouette",
-    "fit_fitted": "a neatly fitted silhouette",
-    "fit_flowy": "a flowy, airy silhouette",
-    "fit_layered": "a layered silhouette",
-    "fit_oversized": "an oversized, relaxed silhouette",
-    "fit_relaxed": "a relaxed-fit silhouette",
-    "fit_tailored": "a sharply tailored silhouette",
-    "leg_none": "",
-    "leg_ankle": "white ankle socks",
-    "leg_crew": "crew socks",
-    "leg_fishnet": "fishnet tights",
-    "leg_frilly": "frilly lace-trimmed socks",
-    "leg_knee": "knee-high socks",
-    "leg_warmers": "knit leg warmers",
-    "leg_loose": "slouchy Japanese loose socks",
-    "leg_opaque": "opaque black tights",
-    "leg_patterned": "patterned tights",
-    "leg_sheer_black": "sheer black tights",
-    "leg_nude": "sheer nude stockings",
-    "leg_thigh": "thigh-high socks",
-    "leg_white_tights": "white tights",
-    "det_corset": "a corset-style lace-up bodice",
-    "det_embroidery": "delicate embroidery",
-    "det_floral": "a floral print",
-    "det_gingham": "a gingham pattern",
-    "det_lace_trim": "lace trim",
-    "det_off_shoulder": "an off-shoulder neckline",
-    "det_buttons": "pearl buttons",
-    "det_collar": "a rounded Peter Pan collar",
-    "det_checks": "a plaid check pattern",
-    "det_pleats": "crisp pleats",
-    "det_polka": "a polka-dot pattern",
-    "det_puff": "puff sleeves",
-    "det_bows": "ribbon bow accents",
-    "det_frills": "ruffled frill trims",
-    "det_sailor": "a sailor collar",
-    "det_sequins": "sparkling sequins",
-    "det_sheer_sleeves": "sheer sleeves",
-    "det_slit": "a side slit",
-    "det_square_neck": "a square neckline",
-    "det_stripes": "stripes",
-    "det_tiered": "tiered layers",
-    "det_v_neck": "a V-neckline",
-    "os_none": "",
-    "os_spr_frill_knit": "wearing an ivory frill-trimmed knit top, a denim mini skirt and a light beige spring coat, with white crew socks and white sneakers",
-    "os_spr_floral_cami": "wearing a yellow floral camisole under a soft pink cardigan and a pink pleated mini skirt, with ivory socks, mary jane shoes and a small ribbon-trimmed shoulder bag",
-    "os_spr_floral_midi": "wearing a pink floral midi dress with a cropped denim jacket, white ankle socks, strappy sandals and a mini bag",
-    "os_spr_ribbon_blouse": "wearing a cream ribbon-tie blouse and a mint green pleated midi skirt, with beige pumps, a small handbag and a delicate gold necklace",
-    "os_spr_shirt_dress": "wearing a sage green shirt dress with a ribbon tie at the collar, sheer beige tights, low sandals and a mini bag on a gold chain",
-    "os_spr_lace_cami": "wearing a blue lace-trimmed camisole layered under a cropped knit cardigan and cream wide-leg pants, with pointed pumps and a pearl necklace",
-    "os_sum_linen": "wearing an oversized white linen shirt with rolled sleeves and beige linen shorts, with leather slide sandals, a straw tote bag and thin gold hoop earrings",
-    "os_sum_sundress": "wearing a white cotton eyelet sundress and a wide-brim straw hat, with flat strappy sandals and a woven basket bag",
-    "os_sum_crop_denim": "wearing a fitted baby-tee crop top and high-waisted light-wash denim shorts, with white ankle socks, chunky sneakers and a mini shoulder bag",
-    "os_sum_halter_maxi": "wearing a flowing printed halter-neck maxi dress, with flat sandals, layered gold anklets and oversized sunglasses",
-    "os_sum_gingham": "wearing a red gingham puff-sleeve top and a white tiered mini skirt, with white canvas sneakers and a cherry hair clip",
-    "os_sum_resort": "wearing a short-sleeve printed resort shirt and relaxed cream linen trousers, with leather loafers and round sunglasses",
-    "os_aut_trench": "wearing a classic beige trench coat over a fine-knit cream turtleneck and straight-leg blue jeans, with brown leather loafers and a structured shoulder bag",
-    "os_aut_corduroy": "wearing a brown corduroy pinafore dress over a cream ribbed knit top, with opaque black tights, mary jane shoes and a wool beret",
-    "os_aut_plaid": "wearing a burgundy plaid pleated skirt and a white collared shirt under a chunky cream cardigan, with knee-high socks and chunky penny loafers",
-    "os_aut_leather": "wearing a black leather biker jacket over a grey ribbed tank and a champagne satin slip midi skirt, with black ankle boots",
-    "os_aut_knit_dress": "wearing a camel ribbed knit midi dress with a thin belt, knee-high brown suede boots and a small gold pendant necklace",
-    "os_aut_blazer": "wearing an oversized grey wool blazer over a white t-shirt and pleated wide-leg trousers, with white leather sneakers and a black tote bag",
-    "os_win_wool_coat": "wearing a long camel wool coat over a cream cable-knit sweater and a knit mini skirt, with a chunky knit scarf, black tights and knee-high leather boots",
-    "os_win_puffer": "wearing a cropped white puffer jacket over a grey hoodie and relaxed sweatpants, with a soft knit beanie and chunky winter sneakers",
-    "os_win_fur": "wearing a fluffy faux-fur coat over a fitted black knit dress, with sheer black tights, heeled ankle boots and pearl earrings",
-    "os_win_tweed": "wearing a matching cream tweed jacket and mini skirt set with gold buttons, a pearl necklace, white tights and black ballet flats",
-    "os_win_overcoat": "wearing a charcoal wool overcoat over a black turtleneck sweater and tailored grey trousers, with leather chelsea boots and a cashmere scarf",
-    "os_win_cozy": "wearing an oversized fluffy knit sweater and a pleated mini skirt, with cream knit leg warmers, fuzzy earmuffs and suede boots",
-    "os_par_sequin": "wearing a sparkling silver sequin mini dress, with strappy heeled sandals, a small metallic clutch and statement drop earrings",
-    "os_par_satin_gown": "wearing a floor-length champagne satin slip gown with a cowl neckline, delicate strappy heels and a thin diamond necklace",
-    "os_par_tulle": "wearing a pastel pink tulle princess dress with a fitted bodice and layered full skirt, satin ribbon details, pearl hair accessories and ballet flats",
-    "os_par_velvet_suit": "wearing a tailored deep green velvet suit with a black silk shirt, polished oxford shoes and a slim watch",
-    "os_par_lbd": "wearing a classic little black dress with a square neckline, sheer black tights, black pointed pumps and pearl stud earrings",
-    "fab_corduroy": "corduroy fabric",
-    "fab_crochet": "crochet knit",
-    "fab_jersey": "soft jersey fabric",
-    "fab_knit": "fine-gauge knit",
-    "fab_organza": "organza fabric",
-    "fab_sequin": "sequin fabric",
-    "fab_tulle": "tulle fabric",
-    "col_butter": "soft butter yellow color tones",
-    "col_grey": "grey color tones",
-    "col_ivory": "soft ivory color tones",
-    # v5.8 — subject details, camera & scene
-    "st_none": "",
-    "st_porcelain": "porcelain fair skin",
-    "st_fair": "fair skin",
-    "st_light_warm": "light warm-toned skin",
-    "st_medium": "medium wheat-toned skin",
-    "st_olive": "olive skin",
-    "st_tan": "sun-kissed tan skin",
-    "st_brown": "warm brown skin",
-    "st_deep": "deep rich dark skin",
-    "fsh_none": "",
-    "fsh_heart": "a heart-shaped face",
-    "fsh_sharp": "high sculpted cheekbones",
-    "fsh_oval": "an oval face",
-    "fsh_round": "a soft round face with full cheeks",
-    "fsh_small": "a small delicate face",
-    "fsh_v": "a slim V-line jaw",
-    "eye_none": "",
-    "eye_almond": "almond-shaped",
-    "eye_big": "big round",
-    "eye_doe": "large doe",
-    "eye_double": "double-lidded",
-    "eye_monolid": "monolid",
-    "eye_droopy": "soft droopy puppy-like",
-    "eye_cat": "upturned cat-like",
-    "ec_none": "",
-    "ec_amber": "amber",
-    "ec_black": "deep black",
-    "ec_blue": "blue",
-    "ec_dark_brown": "dark brown",
-    "ec_green": "green",
-    "ec_grey": "grey",
-    "ec_hazel": "warm hazel",
-    "brow_none": "",
-    "brow_feathery": "fluffy feathered brows",
-    "brow_arched": "softly arched brows",
-    "brow_straight": "soft straight brows",
-    "brow_thick": "thick natural brows",
-    "brow_thin": "thin defined brows",
-    "lip_none": "",
-    "lip_cat": "cat-like lips with naturally upturned corners",
-    "lip_full": "full lips",
-    "lip_heart": "heart-shaped lips with a defined cupid's bow",
-    "lip_plump": "plump glossy lips",
-    "lip_small": "small rosebud lips",
-    "lip_thin": "thin, well-defined lips",
-    "fm_aegyo": "puffy aegyo-sal under the eyes",
-    "fm_mole_lip": "a beauty mark near the lips",
-    "fm_dimples": "cute dimples",
-    "fm_high_nose": "a high nose bridge",
-    "fm_lashes": "long natural lashes",
-    "fm_mole_eye": "a small beauty mark under one eye",
-    "fm_freckles": "light natural freckles across the nose",
-    "fm_rosy": "naturally rosy cheeks",
-    "fm_button_nose": "a small button nose",
-    "fm_snaggle": "a cute snaggletooth",
-    "fh_none": "",
-    "fh_clean": "clean-shaven",
-    "fh_full_beard": "a full well-groomed beard",
-    "fh_goatee": "a goatee",
-    "fh_stubble": "light stubble",
-    "fh_mustache": "a mustache",
-    "fh_short_beard": "a short trimmed beard",
-    "skf_none": "",
-    "skf_dewy": "with dewy glowing skin",
-    "skf_porcelain": "with flawless porcelain-smooth skin",
-    "skf_glass": "with luminous glass skin",
-    "skf_natural": "with natural, lightly textured skin",
-    "skf_matte": "with smooth soft-matte skin",
-    "skf_sunkissed": "with sun-kissed glowing skin",
-    "skf_real": "with ultra-realistic skin texture showing pores and fine details",
-    "hf_none": "",
-    "hf_messy": "effortlessly messy hair",
-    "hf_strands": "loose face-framing strands",
-    "hf_glossy": "glossy silky hair",
-    "hf_sleek": "sleek polished hair",
-    "hf_tucked": "hair tucked behind the ears",
-    "hf_voluminous": "voluminous hair",
-    "hf_wet": "wet-look hair",
-    "hf_windswept": "wind-swept hair",
-    "nl_none": "",
-    "nl_black": "with glossy black nails",
-    "nl_chrome": "with glazed chrome nails",
-    "nl_red": "with classic red nails",
-    "nl_natural": "with clean natural manicured nails",
-    "nl_french": "with a French manicure",
-    "nl_glitter": "with sparkly glitter nails",
-    "nl_long": "with long almond-shaped decorated nails",
-    "nl_nude": "with nude gel nails",
-    "nl_pastel": "with pastel nails",
-    "ld_none": "",
-    "ld_back": "backlighting from behind the subject",
-    "ld_butterfly": "butterfly lighting from above and in front, flattering the cheekbones",
-    "ld_clamshell": "clamshell beauty lighting with a soft fill from below and minimal shadows",
-    "ld_front": "soft front lighting",
-    "ld_loop": "loop lighting casting a soft small nose shadow",
-    "ld_rembrandt": "Rembrandt lighting with a small triangle of light on the shadowed cheek",
-    "ld_side": "directional side lighting sculpting the face",
-    "ld_split": "split lighting with half the face in shadow",
-    "ld_top": "overhead top light",
-    "ld_under": "dramatic underlighting from below",
-    "lc_none": "",
-    "lc_amber": "deep amber candlelit tones",
-    "lc_cool": "cool bluish color temperature",
-    "lc_green": "a greenish fluorescent tint",
-    "lc_red": "moody red light",
-    "lc_neutral": "neutral daylight color balance",
-    "lc_pink_blue": "mixed pink and blue lighting",
-    "lc_purple": "purple and magenta toned light",
-    "lc_teal_orange": "cinematic teal and orange color contrast",
-    "lc_warm": "warm golden color temperature",
-    "lq_none": "",
-    "lq_hard": "hard light with crisp defined shadows",
-    "lq_high_contrast": "high-contrast lighting",
-    "lq_low_contrast": "low-contrast airy lighting",
-    "lq_soft": "soft diffused light",
-    "ch_none": "",
-    "ch_aerial": "aerial drone view from high above the scene",
-    "ch_top": "top-down shot from directly overhead",
-    "ch_high": "high-angle shot with the camera well above the subject looking down",
-    "ch_slight_high": "camera slightly above eye level angled gently down, a flattering portrait angle",
-    "ch_eye": "camera at eye level, looking straight at the subject",
-    "ch_chest": "camera held at chest level",
-    "ch_waist": "camera held at waist level, looking slightly up",
-    "ch_slight_low": "camera slightly below eye level angled gently upward",
-    "ch_low": "low-angle shot with the camera below the subject looking up, making them look tall and powerful",
-    "ch_ground": "camera placed at ground level, close to the floor",
-    "ch_worm": "worm's eye view from the ground looking straight up",
-    "cd_none": "",
-    "cd_front": "camera directly in front of the subject",
-    "cd_front_3q": "camera at a 45-degree angle to the front of the subject",
-    "cd_side": "camera to the side of the subject for a profile view",
-    "cd_back_3q": "camera behind and to one side of the subject, showing the back and a partial profile",
-    "cd_back": "camera directly behind the subject",
-    "cd_over_shoulder": "over-the-shoulder framing",
-    "cs_none": "",
-    "cs_telephoto": "candid telephoto shot from a distance, as if unnoticed",
-    "cs_cctv": "elevated security-camera viewpoint from a high corner",
-    "cs_dutch": "dutch angle tilted composition",
-    "cs_pov": "first-person POV shot",
-    "cs_fisheye": "shot up close with playful fisheye lens distortion",
-    "cs_mirror": "captured as a reflection in a mirror",
-    "cs_selfie": "selfie angle shot from arm's length slightly above eye level",
-    "cs_through": "shot through foreground elements such as leaves or a doorway framing the subject",
-    "cs_window": "shot through a window pane with soft reflections",
-    "cf_none": "",
-    "cf_digicam": "shot on an early-2000s compact digital camera",
-    "cf_arri": "shot on an ARRI Alexa cinema camera",
-    "cf_canon": "shot on a Canon EOS R5",
-    "cf_cinestill": "shot on CineStill 800T film with red halation around lights",
-    "cf_disposable": "shot on a disposable film camera with on-camera flash",
-    "cf_superia": "shot on Fujifilm Superia 400 film with cool green tones",
-    "cf_fuji": "shot on a Fujifilm X-T5 with Classic Chrome film simulation",
-    "cf_hasselblad": "shot on a Hasselblad medium format camera",
-    "cf_ilford": "shot on Ilford HP5 black and white film",
-    "cf_instax": "shot on Fujifilm Instax Mini instant film",
-    "cf_iphone": "shot on an iPhone with a natural smartphone photo look",
-    "cf_gold": "shot on Kodak Gold 200 film with warm nostalgic colors",
-    "cf_portra": "shot on Kodak Portra 400 film with soft natural skin tones",
-    "cf_leica": "shot on a Leica M rangefinder",
-    "cf_polaroid": "shot on Polaroid instant film",
-    "cf_sony": "shot on a Sony A7R V",
-    "atm_puddles": "with wet ground and puddles reflecting the lights after rain",
-    "atm_leaves": "with red and golden autumn leaves falling through the air",
-    "atm_petals": "with pink cherry blossom petals drifting through the air",
-    "atm_confetti": "with colorful confetti falling",
-    "atm_dust": "with dust particles glittering in the light beams",
-    "atm_fireflies": "with glowing fireflies floating around",
-    "atm_fog": "with soft fog and mist hanging in the air",
-    "atm_wind": "with a gentle breeze blowing, hair and clothes fluttering softly in the wind",
-    "atm_sparkles": "with tiny magical sparkles in the air",
-    "atm_rain": "with rain falling from the sky",
-    "atm_smoke": "with drifting smoke and haze",
-    "atm_snow": "with snow gently falling",
-    "atm_bubbles": "with iridescent soap bubbles floating in the air",
-    "atm_steam": "with soft rising steam",
-    "bgp_none": "",
-    "bgp_few": "with a few passersby in the background",
-    "bgp_crowd": "with a bustling crowd blurred in the background",
-    "bgp_empty": "with no other people in the scene",
-    "lfx_chromatic": "slight chromatic aberration",
-    "lfx_double": "a double exposure effect",
-    "lfx_date": "an orange date stamp in the corner like an old film camera",
-    "lfx_grain": "fine film grain",
-    "lfx_halation": "soft halation glow around highlights",
-    "lfx_flare": "subtle lens flare",
-    "lfx_leak": "warm light leaks",
-    "lfx_motion": "motion blur conveying movement",
-    "lfx_prism": "prism rainbow light refractions",
-    "lfx_bloom": "dreamy soft bloom",
-    "lfx_vignette": "a gentle vignette",
-    "loc_dance_studio": "in a dance studio with wall mirrors and a wooden floor",
-    "loc_classroom": "in a sunlit classroom with wooden desks",
-    "loc_museum": "in a grand museum hall with high ceilings",
-    "loc_bedroom": "in a cozy bedroom with soft bedding and warm decor",
-    "loc_kitchen": "in a bright homey kitchen",
-    "loc_living": "on a sofa in a stylish living room",
-    "loc_balcony": "on a sunny apartment balcony filled with potted plants",
-    "loc_window_seat": "on a cushioned window seat bathed in soft daylight",
-    "loc_vanity": "at a vanity table with a lit mirror",
-    "loc_crosswalk": "on a busy city crosswalk",
-    "loc_railway": "along old railway tracks stretching into the distance",
-    "loc_bus_stop": "at a city bus stop",
-    "loc_flower_shop": "in a charming flower shop overflowing with blooms",
-    "loc_bookstore": "in a cozy independent bookstore",
-    "loc_bakery": "in a sweet pastel bakery with display cases of pastries",
-    "loc_boutique": "in a chic fashion boutique with clothing racks",
-    "loc_record_store": "in a vintage record store",
-    "loc_laundromat": "in a retro laundromat with rows of washing machines",
-    "loc_sunflower": "in a vast sunflower field",
-    "loc_lavender": "in a purple lavender field",
-    "loc_autumn_park": "in a park with golden autumn trees and fallen leaves",
-    "loc_meadow": "in a wildflower meadow at the edge of the woods",
-    "loc_lighthouse": "by a white lighthouse on the seashore",
-    "loc_mansion": "inside a classic mansion with tall windows and ornate moldings",
-    "loc_fine_dining": "in an upscale fine dining restaurant with candlelit tables",
-    "loc_santorini": "in a Santorini-style village with white walls and blue domes",
-    "loc_venice": "beside a Venice-style canal with gondolas",
-    "loc_th_wat": "at a golden Thai Buddhist temple with ornate tiered roofs",
-    "loc_th_floating": "at a bustling Thai floating market with wooden boats full of fruit and flowers",
-    "loc_th_chiangmai": "on a quiet lane in Chiang Mai old town with old wooden houses and bougainvillea",
-    "loc_th_shophouse": "on a street of old Sino-Portuguese shophouses with colorful facades",
-    "loc_th_island": "on a white-sand Thai island beach with longtail boats and limestone cliffs",
-    "loc_th_rooftop": "at a rooftop bar overlooking the glittering Bangkok skyline at night",
-    "loc_th_tea": "on rolling terraced green tea plantation hills",
-    "loc_th_tuktuk": "on a lively Bangkok street beside a colorful tuk-tuk",
-    "loc_jp_torii": "under rows of vermilion torii gates at a Japanese shrine",
-    "loc_jp_street": "on a narrow Tokyo side street with vending machines and hanging signs",
-    "loc_jp_ryokan": "in a traditional Japanese ryokan room with tatami mats and shoji screens",
-    "loc_bamboo": "in a towering bamboo forest",
-    "loc_kr_hanok": "in a traditional Korean hanok village with curved tiled roofs",
-    "loc_kr_street": "on a trendy Seoul neighborhood street lined with cafés",
-    "loc_photo_booth": "inside a photo booth with a colorful curtain",
-    "loc_bowling": "at a retro bowling alley",
-    "loc_carousel": "beside a glowing vintage carousel",
-    "loc_cinema": "in a movie theater with red velvet seats",
-    "loc_karaoke": "in a karaoke room glowing with colorful LED lights",
-    "loc_tennis": "on a tennis court",
-}
+from prompt_values import (  # English prompt text lives in prompt_values.py
+    ENGLISH_VALUES, COMPACT_VALUES, COMPACT_STRIP_SUFFIXES,
+    SHORT_VALUES, SHORT_DROP_PREFIXES, SHORT_CUTS)
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -3892,8 +46,42 @@ def t(key: str) -> str:
     lang = st.session_state.get("lang", "en")
     return TRANSLATIONS.get(lang, TRANSLATIONS["en"]).get(key, key)
 
+# Prompt length (sidebar). The chosen option key is mirrored into
+# "prompt_len_key" so the choice survives a language switch.
+PL_KEYS = ["pl_short", "pl_standard", "pl_detailed"]
+
+
+def prompt_len() -> str:
+    return st.session_state.get("prompt_len_key", "pl_standard")
+
+
 def eng(key: str) -> str:
-    return ENGLISH_VALUES.get(key, "")
+    """English prompt text for an option key, worded for the selected prompt
+    length: Detailed = ENGLISH_VALUES as written; Standard = tighter wording
+    (COMPACT_VALUES) with default settings left unsaid; Short = essentials."""
+    full = ENGLISH_VALUES.get(key, "")
+    mode = prompt_len()
+    if not full or mode == "pl_detailed":
+        return full
+    short = mode == "pl_short"
+    if short and key.startswith(SHORT_DROP_PREFIXES):
+        return ""
+    if short and key in SHORT_VALUES:
+        return SHORT_VALUES[key]
+    val = COMPACT_VALUES.get(key, full)
+    for prefix, suffix in COMPACT_STRIP_SUFFIXES.items():
+        if key.startswith(prefix) and val.endswith(suffix):
+            val = val[:-len(suffix)]
+    if short:
+        for prefix, sep in SHORT_CUTS.items():
+            if key.startswith(prefix):
+                val = val.split(sep)[0]
+    return val
+
+
+def request_generate():
+    """Widget callback: rebuild the prompt in this rerun."""
+    st.session_state["force_generate"] = True
 
 def look_desc(hr_k, hc_k, bn_k=None, ex_k=None, mu_k=None, hf_k=None):
     """Hair/bangs/expression/makeup description for one person.
@@ -3990,12 +178,39 @@ HR_KEYS_WOMEN = [
     "hair_space_buns", "hair_braids", "hair_french_braid",
     "hair_twin_braids", "hair_twintails",
     "hair_half_up", "hair_side_swept",
+    # v5.9
+    "hair_butterfly",
+    "hair_shag",
+    "hair_jellyfish",
+    "hair_scurl",
+    "hair_hollywood",
+    "hair_french_bob",
+    "hair_bubble_pony",
+    "hair_low_pigtails",
+    "hair_low_bun",
+    "hair_half_bun",
+    "hair_claw_clip",
+    "hair_box_braids",
+    "hair_flower_updo",
+    "hair_thai_chignon",
+    "hair_jp_updo",
+    "hair_kr_daenggi",
+    "hair_cn_updo",
 ]
 HR_KEYS_MEN = [
     "hair_none",
     "hair_short", "hair_buzz", "hair_crew_cut", "hair_middle_part",
     "hair_textured_crop", "hair_undercut", "hair_fade", "hair_slick_back",
     "hair_man_bun", "hair_bald",
+    # v5.9
+    "hair_two_block",
+    "hair_curtain_m",
+    "hair_side_part",
+    "hair_quiff",
+    "hair_perm_m",
+    "hair_mullet",
+    "hair_long_m",
+    "hair_topknot",
 ]
 # Full list (used for non-binary and as the language-reset superset)
 HR_KEYS = HR_KEYS_WOMEN + HR_KEYS_MEN[1:]  # skip duplicate hair_none
@@ -4032,17 +247,17 @@ MU_KEYS = ["mu_none", "mu_red_lip", "mu_douyin", "mu_editorial", "mu_freckles",
            "mu_glam", "mu_goth", "mu_gradient", "mu_igari", "mu_dewy",
            "mu_natural", "mu_no_makeup", "mu_smoky", "mu_soft_matte",
            "mu_bronzed", "mu_glitter"]
-FS_KEYS = ["fs_athleisure", "fs_barbiecore", "fs_basketball", "fs_beach_cover",
+FS_KEYS = ["fs_ao_dai", "fs_athleisure", "fs_barbiecore", "fs_basketball", "fs_beach_cover",
            "fs_bikini", "fs_bohemian", "fs_office",
            "fs_casual", "fs_cheer", "fs_clean_girl", "fs_coquette", "fs_cottagecore",
            "fs_cyberpunk", "fs_dark_academia", "fs_egirl", "fs_elegant",
-           "fs_golf", "fs_gorpcore", "fs_gothic", "fs_grunge", "fs_japanese",
-           "fs_korean", "fs_light_academia", "fs_minimalist", "fs_mob_wife",
+           "fs_golf", "fs_gorpcore", "fs_gothic", "fs_grunge", "fs_hanbok", "fs_hanfu", "fs_japanese",
+           "fs_kimono", "fs_korean", "fs_light_academia", "fs_minimalist", "fs_mob_wife",
            "fs_old_money", "fs_one_piece", "fs_parisian", "fs_preppy",
            "fs_rashguard", "fs_resort",
-           "fs_rockstar", "fs_school", "fs_skater", "fs_ski", "fs_streetwear",
+           "fs_rockstar", "fs_saree", "fs_school", "fs_skater", "fs_ski", "fs_streetwear",
            "fs_teen", "fs_tennis", "fs_thai",
-           "fs_vintage", "fs_western", "fs_y2k", "fs_yoga"]
+           "fs_vintage", "fs_western", "fs_y2k", "fs_yoga", "fs_yukata"]
 FB_KEYS = ["fab_none", "fab_chiffon", "fab_corduroy", "fab_cotton", "fab_crochet",
            "fab_denim", "fab_knit", "fab_jersey", "fab_lace", "fab_leather",
            "fab_linen", "fab_organza", "fab_satin", "fab_sequin", "fab_sheer",
@@ -4103,11 +318,49 @@ LOC_CATEGORIES = {
     "lcat_luxury": ["loc_ballroom", "loc_mansion", "loc_fine_dining", "loc_stairs",
             "loc_hotel_lobby", "loc_yacht"],
     "lcat_travel": ["loc_airport", "loc_castle", "loc_old_town", "loc_santorini", "loc_temple",
-            "loc_venice"],
+            "loc_venice",
+            "loc_hoi_an",
+            "loc_bali",
+            "loc_india_palace",
+            "loc_morocco",
+            "loc_paris",
+            "loc_nyc",
+            "loc_london"],
     "lcat_thai": ["loc_th_rooftop", "loc_th_chiangmai", "loc_th_floating", "loc_th_wat",
-            "loc_th_shophouse", "loc_th_tea", "loc_th_island", "loc_th_tuktuk"],
+            "loc_th_shophouse", "loc_th_tea", "loc_th_island", "loc_th_tuktuk",
+            "loc_th_palace",
+            "loc_th_ruins",
+            "loc_th_river_temple",
+            "loc_th_white_temple",
+            "loc_th_teak",
+            "loc_th_sala",
+            "loc_th_lotus",
+            "loc_th_lantern",
+            "loc_th_krathong",
+            "loc_th_chinatown",
+            "loc_th_canal",
+            "loc_th_street_food",
+            "loc_th_rice_terrace"],
     "lcat_asia": ["loc_bamboo", "loc_kr_hanok", "loc_jp_ryokan", "loc_kr_street", "loc_jp_torii",
-            "loc_jp_street"],
+            "loc_jp_street",
+            "loc_jp_castle",
+            "loc_jp_zen",
+            "loc_jp_tea_house",
+            "loc_jp_gion",
+            "loc_jp_fuji",
+            "loc_jp_izakaya",
+            "loc_jp_shibuya",
+            "loc_jp_matsuri",
+            "loc_jp_onsen",
+            "loc_jp_station",
+            "loc_jp_school",
+            "loc_kr_palace",
+            "loc_kr_han_river",
+            "loc_kr_pocha",
+            "loc_cn_garden",
+            "loc_cn_lantern_street",
+            "loc_cn_water_town",
+            "loc_cn_great_wall"],
     "lcat_leisure": ["loc_amusement", "loc_aquarium", "loc_arcade", "loc_basketball", "loc_gym",
             "loc_ice_rink", "loc_karaoke", "loc_cinema", "loc_photo_booth",
             "loc_bowling", "loc_skatepark", "loc_stadium", "loc_tennis", "loc_carousel"],
@@ -4251,7 +504,7 @@ POSE_CATEGORIES = {
             "pose_crouch_look_back", "pose_lean_forward", "pose_squat"],
     "pc_cute": ["pose_big_heart", "pose_blow_kiss", "pose_bunny_ears", "pose_cat_paw",
             "pose_double_peace", "pose_finger_frame", "pose_finger_heart",
-            "pose_fist_cheeks", "pose_flower_chin", "pose_gyaru_peace",
+            "pose_fist_cheeks", "pose_flower_chin", "pose_gyaru_peace", "pose_sleeve_smile",
             "pose_hand_chin", "pose_cheek_hands", "pose_head_tilt", "pose_heart_hands",
             "pose_mini_heart", "pose_ok_sign", "pose_peace", "pose_peek_fingers",
             "pose_salute", "pose_please", "pose_point_camera", "pose_poke_cheek",
@@ -4260,11 +513,11 @@ POSE_CATEGORIES = {
     "pc_social": ["pose_fix_jacket", "pose_adjust_glasses", "pose_phone_check", "pose_curtsy",
             "pose_editorial", "pose_high_fashion", "pose_coat_lapels", "pose_skirt_hem",
             "pose_mirror_selfie", "pose_reach_camera", "pose_selfie", "pose_shield_sun",
-            "pose_hold_hat"],
+            "pose_hold_hat", "pose_wai", "pose_bow"],
     "pc_props": ["pose_touch_plants", "pose_bouquet", "pose_coffee", "pose_hold_camera",
             "pose_grass_stalk", "pose_umbrella", "pose_balloons", "pose_ear_wall",
             "pose_peek_tree", "pose_pick_flower", "pose_read_book", "pose_smell_flower",
-            "pose_bicycle"],
+            "pose_bicycle", "pose_parasol"],
     "pc_sport": ["pose_ballet", "pose_boxing", "pose_cartwheel", "pose_dribble", "pose_dynamic",
             "pose_skateboard", "pose_lunge", "pose_tennis_swing", "pose_yoga"],
 }
@@ -4330,7 +583,132 @@ OSET_KEYS = ["os_none", "os_spr_frill_knit", "os_spr_floral_cami",
              "os_aut_leather", "os_aut_knit_dress", "os_aut_blazer",
              "os_win_wool_coat", "os_win_puffer", "os_win_fur", "os_win_tweed",
              "os_win_overcoat", "os_win_cozy", "os_par_sequin", "os_par_satin_gown",
-             "os_par_tulle", "os_par_velvet_suit", "os_par_lbd"]
+             "os_par_tulle", "os_par_velvet_suit", "os_par_lbd",
+             # v5.9 — national / traditional costumes
+             "os_nat_th_chakkri",
+             "os_nat_th_chong_kraben",
+             "os_nat_th_lace",
+             "os_nat_th_lanna",
+             "os_nat_th_isan",
+             "os_nat_th_male",
+             "os_nat_jp_furisode",
+             "os_nat_jp_yukata",
+             "os_nat_jp_hakama",
+             "os_nat_jp_miko",
+             "os_nat_jp_male",
+             "os_nat_jp_yukata_m",
+             "os_nat_kr_hanbok",
+             "os_nat_kr_male",
+             "os_nat_cn_hanfu",
+             "os_nat_cn_qipao",
+             "os_nat_cn_tang",
+             "os_nat_vn_ao_dai",
+             "os_nat_in_saree",
+             "os_nat_in_lehenga",
+             "os_nat_id_kebaya",
+             "os_nat_de_dirndl"]
+# Random Look only draws everyday sets: a national costume needs a matching
+# scene, so those are picked by hand or through a theme.
+OSET_RANDOM_KEYS = [k for k in OSET_KEYS[1:] if not k.startswith("os_nat_")]
+# Set categories (first-level picker) — a set's category is its key prefix
+OSCAT_KEYS = ["oscat_all", "oscat_spring", "oscat_summer", "oscat_autumn",
+              "oscat_winter", "oscat_party", "oscat_national"]
+OSCAT_PREFIXES = {"oscat_spring": "os_spr_", "oscat_summer": "os_sum_",
+                  "oscat_autumn": "os_aut_", "oscat_winter": "os_win_",
+                  "oscat_party": "os_par_", "oscat_national": "os_nat_"}
+
+
+def oset_keys_for_category(oscat_key: str):
+    """Outfit-set option pool for the selected set category (None stays first)."""
+    prefix = OSCAT_PREFIXES.get(oscat_key)
+    if prefix:
+        return ["os_none"] + [k for k in OSET_KEYS[1:] if k.startswith(prefix)]
+    return OSET_KEYS
+
+
+# Random Look style (sidebar): everyday looks, or a national costume paired
+# with a matching location, hairstyle, pose and light.
+RS_KEYS = ["rs_everyday", "rs_national", "rs_thai", "rs_japan", "rs_korea", "rs_china"]
+CULTURE_LOOKS = {
+    "th": {
+        "sets_f": ["os_nat_th_chakkri", "os_nat_th_chong_kraben", "os_nat_th_lace",
+                   "os_nat_th_lanna", "os_nat_th_isan"],
+        "sets_m": ["os_nat_th_male"],
+        "locs": ["loc_th_wat", "loc_th_palace", "loc_th_ruins", "loc_th_river_temple",
+                 "loc_th_white_temple", "loc_th_teak", "loc_th_sala", "loc_th_lotus",
+                 "loc_th_floating", "loc_th_chiangmai", "loc_th_krathong",
+                 "loc_th_lantern"],
+        "hair": ["hair_thai_chignon", "hair_flower_updo", "hair_low_bun"],
+        "poses": ["pose_wai", "pose_elegant", "pose_stand", "pose_sit_side",
+                  "pose_over_shoulder"],
+    },
+    "jp": {
+        "sets_f": ["os_nat_jp_furisode", "os_nat_jp_yukata", "os_nat_jp_hakama",
+                   "os_nat_jp_miko"],
+        "sets_m": ["os_nat_jp_male", "os_nat_jp_yukata_m"],
+        "locs": ["loc_jp_torii", "loc_jp_ryokan", "loc_jp_castle", "loc_jp_zen",
+                 "loc_jp_tea_house", "loc_jp_gion", "loc_jp_onsen", "loc_jp_fuji",
+                 "loc_bamboo", "loc_cherry", "loc_jp_matsuri"],
+        "hair": ["hair_jp_updo", "hair_low_bun", "hair_flower_updo", "hair_hime"],
+        "poses": ["pose_bow", "pose_parasol", "pose_sleeve_smile", "pose_seiza",
+                  "pose_look_back_walk", "pose_stand"],
+    },
+    "kr": {
+        "sets_f": ["os_nat_kr_hanbok"], "sets_m": ["os_nat_kr_male"],
+        "locs": ["loc_kr_hanok", "loc_kr_palace"],
+        "hair": ["hair_kr_daenggi", "hair_low_bun"],
+        "poses": ["pose_bow", "pose_skirt_hem", "pose_twirl", "pose_walk", "pose_stand"],
+    },
+    "cn": {
+        "sets_f": ["os_nat_cn_hanfu", "os_nat_cn_qipao"], "sets_m": ["os_nat_cn_tang"],
+        "locs": ["loc_cn_garden", "loc_cn_lantern_street", "loc_cn_water_town",
+                 "loc_cn_great_wall", "loc_bamboo"],
+        "hair": ["hair_cn_updo", "hair_low_bun", "hair_flower_updo"],
+        "poses": ["pose_parasol", "pose_sleeve_smile", "pose_elegant", "pose_twirl",
+                  "pose_over_shoulder"],
+    },
+    "vn": {
+        "sets_f": ["os_nat_vn_ao_dai"], "sets_m": [],
+        "locs": ["loc_hoi_an", "loc_rice_field", "loc_th_lotus"],
+        "hair": ["hair_straight", "hair_low_bun"],
+        "poses": ["pose_walk", "pose_stand", "pose_over_shoulder", "pose_bicycle"],
+    },
+    "in": {
+        "sets_f": ["os_nat_in_saree", "os_nat_in_lehenga"], "sets_m": [],
+        "locs": ["loc_india_palace"],
+        "hair": ["hair_braids", "hair_low_bun", "hair_flower_updo"],
+        "poses": ["pose_elegant", "pose_twirl", "pose_stand", "pose_over_shoulder"],
+    },
+    "id": {
+        "sets_f": ["os_nat_id_kebaya"], "sets_m": [],
+        "locs": ["loc_bali", "loc_rice_field"],
+        "hair": ["hair_low_bun", "hair_flower_updo"],
+        "poses": ["pose_elegant", "pose_stand", "pose_over_shoulder"],
+    },
+    "de": {
+        "sets_f": ["os_nat_de_dirndl"], "sets_m": [],
+        "locs": ["loc_old_town", "loc_castle", "loc_meadow"],
+        "hair": ["hair_twin_braids", "hair_french_braid"],
+        "poses": ["pose_twirl", "pose_skirt_hem", "pose_stand", "pose_walk"],
+    },
+}
+RS_CULTURES = {"rs_national": list(CULTURE_LOOKS), "rs_thai": ["th"],
+               "rs_japan": ["jp"], "rs_korea": ["kr"], "rs_china": ["cn"]}
+# Locations whose text already says "night" — they get night time + lantern light
+CULTURE_NIGHT_LOCS = {"loc_th_krathong", "loc_th_lantern", "loc_jp_matsuri",
+                      "loc_cn_lantern_street"}
+# Calm, natural pools so a costume look never gets disco light or pink hair
+CULTURE_POOLS = {
+    "w_tod": ["tod_golden", "tod_noon", "tod_overcast", "tod_sunrise"],
+    "w_lighting": ["lit_natural", "lit_backlit", "lit_dappled", "lit_godrays"],
+    "w_pstyle": ["ps_none", "ps_soft", "ps_cinematic", "ps_editorial",
+                 "ps_nostalgic", "ps_vivid", "ps_dreamy"],
+    "w_makeup": ["mu_none", "mu_natural", "mu_dewy", "mu_red_lip", "mu_soft_matte"],
+    "w_hair_color": ["hc_none", "hc_black", "hc_blue_black", "hc_dark_brown"],
+    "w_hair_finish": ["hf_none", "hf_glossy", "hf_sleek"],
+    "w_light_color": ["lc_none", "lc_warm", "lc_neutral"],
+    "w_pose_energy": ["pe_none", "pe_elegant", "pe_relaxed", "pe_candid", "pe_shy"],
+}
 OM_KEYS = ["om_separates", "om_dress", "om_set"]
 
 # Widget key → option key list, for the Random Look button.
@@ -4420,6 +798,7 @@ PRESET_WIDGETS = {
     "w_outfit_mode": OM_KEYS, "w_dress": DR_KEYS,
     "dress_fabric_sel": FB_KEYS, "dress_color_sel": CP_KEYS,
     "w_outfit_set": OSET_KEYS, "w_outer": OUT_KEYS, "outer_color_sel": CP_KEYS,
+    "w_set_cat": OSCAT_KEYS,
     "w_fit": FIT_KEYS, "w_legwear": LEG_KEYS,
     "w_skin_tone": ST_KEYS, "w_face_shape": FSH_KEYS, "w_eye_shape": EYE_KEYS,
     "w_eye_color": EC_KEYS, "w_brows": BROW_KEYS, "w_lips": LIP_KEYS,
@@ -4438,7 +817,8 @@ MULTI_WIDGETS = {
 
 # Widgets whose stored value is a translated label — must be reset when the
 # UI language changes, otherwise the stale label is no longer a valid option.
-LANG_DEPENDENT_WIDGETS = list(PRESET_WIDGETS) + list(MULTI_WIDGETS) + ["w_theme"]
+LANG_DEPENDENT_WIDGETS = (list(PRESET_WIDGETS) + list(MULTI_WIDGETS)
+                          + ["w_theme", "w_random_style", "w_prompt_len"])
 
 # Character Lock: identity, face, body and hair. While a character is locked
 # these widgets are disabled and re-set from the lock on every run, so Random
@@ -4458,6 +838,7 @@ LOOK_BASE = {
     "w_outfit_mode": "om_separates", "w_dress": "dress_none",
     "dress_fabric_sel": "fab_none", "dress_color_sel": "col_none",
     "w_outfit_set": "os_none", "w_outer": "out_none", "outer_color_sel": "col_none",
+    "w_set_cat": "oscat_all",
     "w_fit": "fit_none", "w_legwear": "leg_none", "detail_multi": [],
 }
 
@@ -4516,9 +897,245 @@ def enforce_character_lock():
             st.session_state[wk] = label
 
 
+# Character library + prompt history are mirrored into the browser's
+# localStorage through a tiny static component (browser_store/index.html), so
+# they survive a refresh. Nothing is stored on the server.
+_browser_store = components.declare_component(
+    "browser_store", path=str(Path(__file__).parent / "browser_store"))
+
+
+def _valid_library_entry(entry):
+    """True if a stored character only uses known widgets and option keys."""
+    if not (isinstance(entry, dict) and isinstance(entry.get("name"), str)
+            and isinstance(entry.get("data"), dict)):
+        return False
+    for wk, val in entry["data"].items():
+        if wk not in CHAR_WIDGETS:
+            return False
+        if wk in MULTI_WIDGETS:
+            if not (isinstance(val, list) and all(v in MULTI_WIDGETS[wk] for v in val)):
+                return False
+        elif val not in PRESET_WIDGETS[wk]:
+            return False
+    return True
+
+
+def sync_browser_store():
+    """Load the saved library/history once per session, then keep the browser
+    copy up to date. Called at the end of every run."""
+    loaded = st.session_state.get("_store_loaded", False)
+    payload = None
+    if loaded:
+        payload = json.dumps({
+            "char_library": st.session_state.get("char_library", {}),
+            "prompt_history": st.session_state.get("prompt_history", []),
+        }, ensure_ascii=False, sort_keys=True)
+    stored = _browser_store(payload=payload, key="browser_store", default=None)
+    if loaded or not isinstance(stored, dict):
+        return
+    st.session_state["_store_loaded"] = True
+    try:
+        data = json.loads(stored.get("data") or "{}")
+    except (TypeError, ValueError):
+        data = {}
+    if not isinstance(data, dict):
+        data = {}
+    changed = False
+    library = st.session_state.setdefault("char_library", {})
+    saved_library = data.get("char_library")
+    for name, entry in (saved_library.items() if isinstance(saved_library, dict) else []):
+        if isinstance(name, str) and name not in library and _valid_library_entry(entry):
+            library[name] = entry
+            changed = True
+    history = st.session_state.get("prompt_history", [])
+    saved_history = data.get("prompt_history")
+    for item in (saved_history if isinstance(saved_history, list) else []):
+        if isinstance(item, str) and item not in history and len(history) < 10:
+            history.append(item)
+            changed = True
+    st.session_state["prompt_history"] = history
+    if changed:
+        st.rerun()
+
+
+# ── Simple mode ────────────────────────────────────────────────────────────
+# (real widget key, label key, option keys — None = hair pool by gender,
+#  default index of the real widget). Each simple picker is a mirror: it shows
+#  the real widget's current value and writes changes back to it.
+SIMPLE_ROWS = [
+    [("w_gender", "gender", GD_KEYS, 0), ("w_age", "age_group", AG_KEYS, 1),
+     ("w_hair", "hair_style", None, 1), ("w_hair_color", "hair_color", HC_KEYS, 1)],
+    [("w_expr", "expression", EX_KEYS, 1), ("OUTFIT", "simple_outfit", None, 0),
+     ("w_pose", "pose", PO_KEYS, 0)],
+    [("w_location", "location", LO_KEYS, 1), ("w_tod", "time_of_day", TD_KEYS, 1),
+     ("w_lighting", "lighting", LT_KEYS, 1)],
+    [("w_framing", "shot_framing", SF_KEYS, 2), ("w_pstyle", "picture_style", PS_KEYS, 0)],
+]
+OUTFIT_NONE_WIDGETS = (("w_top", "top_none"), ("w_bottom", "bot_none"),
+                       ("top_fabric_sel", "fab_none"), ("bot_fabric_sel", "fab_none"),
+                       ("top_color_sel", "col_none"), ("bot_color_sel", "col_none"),
+                       ("w_shoes", "sh_none"))
+
+
+def sync_simple(real_key):
+    """A simple-mode picker changed — copy its value to the real widget."""
+    st.session_state[real_key] = st.session_state[f"sm_{real_key}"]
+    if real_key == "w_gender":
+        reset_hair_on_gender_change()
+    elif real_key == "w_location":
+        st.session_state["w_loc_cat"] = t("lcat_all")
+        st.session_state["scene_mode_radio"] = t("scene_mode_preset")
+        st.session_state["attach_scene"] = False
+    elif real_key == "w_pose":
+        st.session_state["w_pose_cat"] = t("pc_all")
+        st.session_state["attach_pose"] = False
+
+
+def _simple_outfit_key():
+    """Which single outfit the full editor currently describes: a fashion
+    style key, an outfit set key, "os_none", or None for anything richer
+    (garments, a dress, several styles) that the simple list can't show."""
+    mode = widget_option_value("w_outfit_mode") or "om_separates"
+    styles = widget_option_value("fashion_multi")
+    garment_widgets = {"om_separates": (("w_top", "top_none"), ("w_bottom", "bot_none")),
+                       "om_dress": (("w_dress", "dress_none"),)}.get(mode, ())
+    if any(widget_option_value(wk) not in (None, none_key)
+           for wk, none_key in garment_widgets):
+        return None
+    if mode == "om_set":
+        set_key = widget_option_value("w_outfit_set")
+        if set_key is None or (set_key != "os_none" and styles):
+            return None
+        if set_key != "os_none":
+            return set_key
+    if len(styles) > 1:
+        return None
+    return styles[0] if styles else "os_none"
+
+
+def sync_simple_outfit():
+    """Simple-mode outfit picker: one fashion style or one ready-made set."""
+    label = st.session_state.get("sm_outfit")
+    key = next((k for k in ["os_none"] + FS_KEYS + OSET_KEYS[1:] if t(k) == label), None)
+    if key is None:  # the "custom" entry — leave the outfit as it is
+        return
+    for widget_key, val in LOOK_BASE.items():
+        if widget_key.startswith(("w_pose", "w_gaze")) or widget_key in POSE_DETAIL_WIDGETS:
+            continue
+        st.session_state[widget_key] = val if isinstance(val, list) else t(val)
+    for widget_key, none_key in OUTFIT_NONE_WIDGETS:
+        st.session_state[widget_key] = t(none_key)
+    st.session_state["fashion_multi"] = [t(key)] if key in FS_KEYS else []
+    st.session_state["attach_outfit"] = False
+    if key in OSET_KEYS[1:]:
+        st.session_state["w_outfit_mode"] = t("om_set")
+        st.session_state["w_outfit_set"] = t(key)
+
+
+def render_simple_panel():
+    """The simple-mode pickers. Runs before the (hidden) full editor."""
+    locked = bool(st.session_state.get("char_lock"))
+    enforce_character_lock()
+    # A filtered category with no stored pick would default differently here
+    # and in the full editor — fall back to the full lists
+    if "w_location" not in st.session_state:
+        st.session_state["w_loc_cat"] = t("lcat_all")
+    if "w_pose" not in st.session_state:
+        st.session_state["w_pose_cat"] = t("pc_all")
+    gd_label = st.session_state.get("w_gender", t("gender_female"))
+    for row in SIMPLE_ROWS:
+        for col, (real_key, label_key, keys, default) in zip(st.columns(len(row)), row):
+            with col:
+                if real_key == "OUTFIT":
+                    current = _simple_outfit_key()
+                    labels = [t(k) for k in ["os_none"] + FS_KEYS + OSET_KEYS[1:]]
+                    if current is None:
+                        labels.insert(0, t("simple_outfit_custom"))
+                    st.session_state["sm_outfit"] = labels[0] if current is None else t(current)
+                    st.selectbox(t(label_key), labels, key="sm_outfit",
+                                 on_change=sync_simple_outfit)
+                    continue
+                labels = [t(k) for k in (keys or hair_pool_for_label(gd_label))]
+                mirror = f"sm_{real_key}"
+                if st.session_state.get(real_key) in labels:
+                    st.session_state[mirror] = st.session_state[real_key]
+                else:  # real widget not set yet → both show the same default
+                    st.session_state.pop(mirror, None)
+                st.selectbox(t(label_key), labels, index=default, key=mirror,
+                             on_change=sync_simple, args=(real_key,),
+                             disabled=locked and real_key in CHAR_WIDGETS)
+    st.caption(t("simple_caption"))
+
+
+def reset_all():
+    """Back to a clean start: every picker, accessory and reference toggle.
+    A locked character and the saved library/history are kept."""
+    for key in list(st.session_state):
+        if (key in LANG_DEPENDENT_WIDGETS or key.startswith(("acc_", "attach_", "sm_"))
+                or key in ("scene_mode_radio", "photo_set_prompts")):
+            st.session_state.pop(key, None)
+
+
 def reset_pose_on_category_change():
     """Pose category changed — the old pose may not be in the new pool."""
     st.session_state.pop("w_pose", None)
+
+
+def reset_set_on_category_change():
+    """Set category changed — the old outfit set may not be in the new pool."""
+    st.session_state.pop("w_outfit_set", None)
+
+
+def delete_library_character():
+    """Remove the selected character from the saved library."""
+    st.session_state.get("char_library", {}).pop(st.session_state.get("w_char_lib"), None)
+    st.session_state.pop("w_char_lib", None)
+
+
+def clear_prompt_history():
+    st.session_state["prompt_history"] = []
+
+
+def _pick_culture(gd_key):
+    """Culture code for the selected Random Look style, or None for everyday
+    looks. Only cultures that have a costume for this gender are eligible."""
+    label = st.session_state.get("w_random_style")
+    rs_key = next((k for k in RS_KEYS if t(k) == label), "rs_everyday")
+    eligible = [c for c in RS_CULTURES.get(rs_key, []) if _culture_sets(c, gd_key)]
+    return random.choice(eligible) if eligible else None
+
+
+def _culture_sets(culture, gd_key):
+    look = CULTURE_LOOKS[culture]
+    if gd_key == "gender_female":
+        return look["sets_f"]
+    if gd_key == "gender_male":
+        return look["sets_m"]
+    return look["sets_f"] + look["sets_m"]
+
+
+def _apply_culture_look(culture, gd_key):
+    """National costume + matching location, hairstyle, pose and calm light.
+    Runs after the generic randomization, overriding the parts that matter."""
+    look = CULTURE_LOOKS[culture]
+    for widget_key, pool in CULTURE_POOLS.items():
+        st.session_state[widget_key] = t(random.choice(pool))
+    st.session_state["w_outfit_mode"] = t("om_set")
+    st.session_state["w_outfit_set"] = t(random.choice(_culture_sets(culture, gd_key)))
+    loc = random.choice(look["locs"])
+    st.session_state["w_location"] = t(loc)
+    st.session_state["w_season"] = t("season_none")
+    st.session_state["w_nails"] = t("nl_none")
+    if loc in CULTURE_NIGHT_LOCS:
+        st.session_state["w_tod"] = t("tod_night")
+        st.session_state["w_lighting"] = t("lit_lantern")
+        st.session_state["w_light_color"] = t("lc_warm")
+    st.session_state["w_pose"] = t(random.choice(look["poses"]))
+    # Traditional hairstyles are in the women's pool; men keep their random cut
+    hair = [k for k in look["hair"] if k in hair_keys_for_gender(gd_key)]
+    if hair:
+        st.session_state["w_hair"] = t(random.choice(hair))
+        st.session_state["w_bangs"] = t("bangs_none")
 
 
 def reset_location_on_category_change():
@@ -4570,6 +1187,12 @@ def randomize_look():
                                  ("w_shoes", "sh_none")):
         st.session_state[widget_key] = t(none_key)
     st.session_state["fashion_multi"] = []
+    st.session_state["force_generate"] = True
+    gd_key = next((k for k in GD_KEYS if t(k) == gd_label), "gender_female")
+    culture = _pick_culture(gd_key)
+    if culture:
+        _apply_culture_look(culture, gd_key)
+        return
     roll = random.random()
     if roll < 0.3:
         st.session_state["fashion_multi"] = [t(k) for k in random.sample(FS_KEYS, random.randint(1, 2))]
@@ -4596,7 +1219,7 @@ def randomize_look():
         st.session_state["w_shoes"] = t(random.choice(SH_KEYS[1:]))
     else:
         st.session_state["w_outfit_mode"] = t("om_set")
-        st.session_state["w_outfit_set"] = t(random.choice(OSET_KEYS[1:]))
+        st.session_state["w_outfit_set"] = t(random.choice(OSET_RANDOM_KEYS))
     st.session_state["force_generate"] = True
 
 
@@ -4654,6 +1277,11 @@ def _apply_preset_dict(data):
         lcat_key = next((k for k in LCAT_KEYS if t(k) == lcat_label), "lcat_all")
         if loc not in loc_keys_for_category(lcat_key):
             st.session_state["w_loc_cat"] = t("lcat_all")
+    # A loaded outfit set must be selectable in the current set category
+    oset = data.get("w_outfit_set")
+    if oset in OSET_KEYS and oset not in oset_keys_for_category(
+            widget_option_value("w_set_cat") or "oscat_all"):
+        st.session_state["w_set_cat"] = t("oscat_all")
     # A loaded pose must be selectable in the (possibly loaded) pose category
     pose = data.get("w_pose")
     if pose in PO_KEYS:
@@ -4820,6 +1448,59 @@ THEME_PRESETS = {
         "w_comp": "comp_depth", "w_pose": "pose_look_back_walk",
         "w_pose_energy": "pe_playful",
     },
+    "theme_thai_temple": {
+        "w_hair": "hair_thai_chignon", "w_hair_color": "hc_black",
+        "w_bangs": "bangs_none", "w_expr": "expr_smile",
+        "w_makeup": "mu_natural", "fashion_multi": [],
+        "w_top": "top_none", "top_fabric_sel": "fab_none",
+        "top_color_sel": "col_none",
+        "w_bottom": "bot_none", "bot_fabric_sel": "fab_none",
+        "bot_color_sel": "col_none", "w_shoes": "sh_none",
+        "w_outfit_mode": "om_set", "w_outfit_set": "os_nat_th_chakkri",
+        "w_location": "loc_th_wat", "w_tod": "tod_golden",
+        "w_lighting": "lit_natural", "w_season": "season_none",
+        "w_pstyle": "ps_editorial", "w_framing": "sf_medium_full",
+        "w_cam_height": "ch_eye", "w_dof": "dof_portrait",
+        "w_light_color": "lc_warm", "w_light_quality": "lq_soft",
+        "w_comp": "comp_symmetry", "w_pose": "pose_wai",
+        "w_gaze": "gaze_camera", "w_pose_energy": "pe_elegant",
+    },
+    "theme_kyoto_kimono": {
+        "w_hair": "hair_jp_updo", "w_hair_color": "hc_black",
+        "w_bangs": "bangs_none", "w_expr": "expr_soft_gaze",
+        "w_makeup": "mu_natural", "fashion_multi": [],
+        "w_top": "top_none", "top_fabric_sel": "fab_none",
+        "top_color_sel": "col_none",
+        "w_bottom": "bot_none", "bot_fabric_sel": "fab_none",
+        "bot_color_sel": "col_none", "w_shoes": "sh_none",
+        "w_outfit_mode": "om_set", "w_outfit_set": "os_nat_jp_furisode",
+        "w_location": "loc_jp_gion", "w_tod": "tod_overcast",
+        "w_lighting": "lit_natural", "w_season": "season_autumn",
+        "w_pstyle": "ps_nostalgic", "w_framing": "sf_full",
+        "w_cam_height": "ch_eye", "w_cam_dir": "cd_front_3q", "w_dof": "dof_shallow",
+        "w_light_quality": "lq_soft", "w_camera_film": "cf_fuji",
+        "atm_multi": ["atm_leaves"],
+        "w_comp": "comp_leading", "w_pose": "pose_parasol",
+        "w_gaze": "gaze_away", "w_pose_energy": "pe_elegant",
+    },
+    "theme_matsuri": {
+        "w_hair": "hair_low_bun", "w_hair_color": "hc_dark_brown",
+        "w_bangs": "bangs_wispy", "w_expr": "expr_bright_smile",
+        "w_makeup": "mu_dewy", "fashion_multi": [],
+        "w_top": "top_none", "top_fabric_sel": "fab_none",
+        "top_color_sel": "col_none",
+        "w_bottom": "bot_none", "bot_fabric_sel": "fab_none",
+        "bot_color_sel": "col_none", "w_shoes": "sh_none",
+        "w_outfit_mode": "om_set", "w_outfit_set": "os_nat_jp_yukata",
+        "w_location": "loc_jp_matsuri", "w_tod": "tod_night",
+        "w_lighting": "lit_lantern", "w_season": "season_none",
+        "w_pstyle": "ps_cinematic", "w_framing": "sf_medium",
+        "w_cam_height": "ch_eye", "w_dof": "dof_bokeh_lights",
+        "w_light_color": "lc_warm", "w_camera_film": "cf_cinestill",
+        "w_bg_people": "bgp_few", "lfx_multi": ["lfx_halation"],
+        "w_comp": "comp_depth", "w_pose": "pose_look_back_walk",
+        "w_pose_energy": "pe_playful",
+    },
 }
 
 
@@ -4919,6 +1600,13 @@ def main():
         pf_labels, _ = make_option(pf_keys)
         pf_sel = st.selectbox(t("target_platform"), pf_labels, index=0)
         pf_selected_key = pf_keys[pf_labels.index(pf_sel)]
+        # Prompt length: how wordy each option is in the generated prompt
+        pl_labels = [t(k) for k in PL_KEYS]
+        pl_sel = st.selectbox(t("prompt_len"), pl_labels,
+                              index=PL_KEYS.index(prompt_len()),
+                              key="w_prompt_len", on_change=request_generate,
+                              help=t("prompt_len_hint"))
+        st.session_state["prompt_len_key"] = PL_KEYS[pl_labels.index(pl_sel)]
 
         # Midjourney-only knobs, appended to the --ar parameter block
         mj_stylize = 100
@@ -4937,8 +1625,14 @@ def main():
                   use_container_width=True)
         st.caption(t("theme_hint"))
 
+        # ── Random Look style: everyday, or culture-matched national costumes ──
         st.divider()
-        st.caption("v5.8 — AI Prompt Generator")
+        st.markdown(f"**{t('random_style_header')}**")
+        st.selectbox(t("random_style"), [t(k) for k in RS_KEYS], key="w_random_style")
+        st.caption(t("random_style_hint"))
+
+        st.divider()
+        st.caption("v6.2 — AI Prompt Generator")
 
     # ── Header ───────────────────────────────────────────────────────────
     st.markdown(
@@ -4947,580 +1641,615 @@ def main():
         unsafe_allow_html=True,
     )
 
-    # ══════════════════════════════════════════════════════════════════════
-    #  EXPANDER 1 — Subject
-    # ══════════════════════════════════════════════════════════════════════
-    with st.expander(f"👤  {t('exp_subject')}", expanded=True):
-        # ── Character Lock ──
-        enforce_character_lock()
-        char_lock = st.session_state.get("char_lock")
-        locked = bool(char_lock)
-        st.markdown(f"**🔒 {t('char_lock_header')}**")
-        if locked:
-            lock_name = char_lock["name"] or t("char_unnamed")
-            st.markdown(f'<div class="ref-attached">🔒 <b>{html_mod.escape(lock_name)}</b> '
-                        f'{t("char_locked_msg")}</div>', unsafe_allow_html=True)
-            cl1, cl2 = st.columns(2)
-            with cl1:
-                st.button(f"🔓 {t('char_unlock_btn')}", on_click=unlock_character,
-                          use_container_width=True)
-            with cl2:
-                st.download_button(f"💾 {t('char_download')}",
-                                   json.dumps({"char_name": char_lock["name"], **char_lock["data"]},
-                                              indent=2, ensure_ascii=False),
-                                   file_name="character.json", mime="application/json",
-                                   use_container_width=True)
-            st.caption(t("char_json_hint"))
-        else:
-            st.caption(t("char_lock_hint"))
-            cl1, cl2 = st.columns([2, 1])
-            with cl1:
-                st.text_input(t("char_name"), placeholder=t("char_name_placeholder"),
-                              key="char_name_input")
-            with cl2:
-                st.markdown("<div style='height:1.75rem'></div>", unsafe_allow_html=True)
-                st.button(f"🔒 {t('char_lock_btn')}", on_click=lock_character,
-                          use_container_width=True)
-            library = st.session_state.get("char_library", {})
-            if library:
-                lb1, lb2 = st.columns([2, 1])
-                with lb1:
-                    st.selectbox(t("char_library"), list(library), key="w_char_lib")
-                with lb2:
-                    st.markdown("<div style='height:1.75rem'></div>", unsafe_allow_html=True)
-                    st.button(f"📂 {t('char_load_btn')}", on_click=load_library_character,
+    # ── Simple mode: a short panel of essentials; the full editor below
+    # stays mounted (hidden by CSS) so themes, Random Look and every
+    # non-shown option keep working exactly as in full mode ──
+    sm_col, reset_col = st.columns([3, 1])
+    with sm_col:
+        simple_mode = st.toggle(t("simple_mode"), value=True, key="simple_mode",
+                                help=t("simple_hint"))
+    with reset_col:
+        st.button(f"↺ {t('reset_all')}", on_click=reset_all, use_container_width=True)
+    if simple_mode:
+        st.markdown("<style>.st-key-full_ui{display:none}</style>", unsafe_allow_html=True)
+        render_simple_panel()
+
+    with st.container(key="full_ui"):
+        # ══════════════════════════════════════════════════════════════════════
+        #  EXPANDER 1 — Subject
+        # ══════════════════════════════════════════════════════════════════════
+        with st.expander(f"👤  {t('exp_subject')}", expanded=True):
+            # ── Character Lock ──
+            enforce_character_lock()
+            char_lock = st.session_state.get("char_lock")
+            locked = bool(char_lock)
+            st.markdown(f"**🔒 {t('char_lock_header')}**")
+            if locked:
+                lock_name = char_lock["name"] or t("char_unnamed")
+                st.markdown(f'<div class="ref-attached">🔒 <b>{html_mod.escape(lock_name)}</b> '
+                            f'{t("char_locked_msg")}</div>', unsafe_allow_html=True)
+                cl1, cl2 = st.columns(2)
+                with cl1:
+                    st.button(f"🔓 {t('char_unlock_btn')}", on_click=unlock_character,
                               use_container_width=True)
-        st.markdown("---")
+                with cl2:
+                    st.download_button(f"💾 {t('char_download')}",
+                                       json.dumps({"char_name": char_lock["name"], **char_lock["data"]},
+                                                  indent=2, ensure_ascii=False),
+                                       file_name="character.json", mime="application/json",
+                                       use_container_width=True)
+                st.caption(t("char_json_hint"))
+            else:
+                st.caption(t("char_lock_hint"))
+                cl1, cl2 = st.columns([2, 1])
+                with cl1:
+                    st.text_input(t("char_name"), placeholder=t("char_name_placeholder"),
+                                  key="char_name_input")
+                with cl2:
+                    st.markdown("<div style='height:1.75rem'></div>", unsafe_allow_html=True)
+                    st.button(f"🔒 {t('char_lock_btn')}", on_click=lock_character,
+                              use_container_width=True)
+                library = st.session_state.get("char_library", {})
+                if library:
+                    lb1, lb2, lb3 = st.columns([2, 1, 1])
+                    with lb1:
+                        st.selectbox(t("char_library"), list(library), key="w_char_lib")
+                    with lb2:
+                        st.markdown("<div style='height:1.75rem'></div>", unsafe_allow_html=True)
+                        st.button(f"📂 {t('char_load_btn')}", on_click=load_library_character,
+                                  use_container_width=True)
+                    with lb3:
+                        st.markdown("<div style='height:1.75rem'></div>", unsafe_allow_html=True)
+                        st.button(f"🗑️ {t('char_delete_btn')}", on_click=delete_library_character,
+                                  use_container_width=True)
+                    st.caption(t("saved_in_browser"))
+            st.markdown("---")
 
-        # Reference photo checkbox (no file uploader — just a toggle)
-        attach_subject = st.checkbox(t("attach_subject_photo"), key="attach_subject")
-        if attach_subject:
-            st.markdown(f'<div class="ref-attached">📎 {t("attach_subject_note")}</div>', unsafe_allow_html=True)
+            # Reference photo checkbox (no file uploader — just a toggle)
+            attach_subject = st.checkbox(t("attach_subject_photo"), key="attach_subject")
+            if attach_subject:
+                st.markdown(f'<div class="ref-attached">📎 {t("attach_subject_note")}</div>', unsafe_allow_html=True)
 
-        def pick(keys, label_key, widget_key, index=0, **kw):
-            """Selectbox over option keys → selected key (locked if part of the character)."""
-            labels, _ = make_option(keys)
-            sel = st.selectbox(t(label_key), labels, index=index, key=widget_key,
-                               disabled=locked and widget_key in CHAR_WIDGETS, **kw)
-            return keys[labels.index(sel)]
+            def pick(keys, label_key, widget_key, index=0, **kw):
+                """Selectbox over option keys → selected key (locked if part of the character)."""
+                labels, _ = make_option(keys)
+                sel = st.selectbox(t(label_key), labels, index=index, key=widget_key,
+                                   disabled=locked and widget_key in CHAR_WIDGETS, **kw)
+                return keys[labels.index(sel)]
 
-        # ── Identity ──
-        st.markdown(f"**{t('sub_identity')}**")
-        col1, col2, col3 = st.columns(3)
-        with col1:
-            gd_key = pick(GD_KEYS, "gender", "w_gender", on_change=reset_hair_on_gender_change)
-            gd_labels, _ = make_option(GD_KEYS)
-        with col2:
-            ag_key = pick(AG_KEYS, "age_group", "w_age", index=1)
-        with col3:
-            et_key = pick(ET_KEYS, "ethnicity", "w_eth", index=1)
-        col_st, col_bt, col_ap = st.columns(3)
-        with col_st:
-            st_key = pick(ST_KEYS, "skin_tone", "w_skin_tone")
-        with col_bt:
-            bt_key = pick(BT_KEYS, "body_type", "w_body", index=1)
-        with col_ap:
-            ap_key = pick(AP_KEYS, "appearance", "w_appearance", index=1)
+            # ── Identity ──
+            st.markdown(f"**{t('sub_identity')}**")
+            col1, col2, col3 = st.columns(3)
+            with col1:
+                gd_key = pick(GD_KEYS, "gender", "w_gender", on_change=reset_hair_on_gender_change)
+                gd_labels, _ = make_option(GD_KEYS)
+            with col2:
+                ag_key = pick(AG_KEYS, "age_group", "w_age", index=1)
+            with col3:
+                et_key = pick(ET_KEYS, "ethnicity", "w_eth", index=1)
+            col_st, col_bt, col_ap = st.columns(3)
+            with col_st:
+                st_key = pick(ST_KEYS, "skin_tone", "w_skin_tone")
+            with col_bt:
+                bt_key = pick(BT_KEYS, "body_type", "w_body", index=1)
+            with col_ap:
+                ap_key = pick(AP_KEYS, "appearance", "w_appearance", index=1)
 
-        # ── Face details (all optional) ──
-        st.markdown(f"**{t('sub_face')}**")
-        fc1, fc2, fc3 = st.columns(3)
-        with fc1:
-            fsh_key = pick(FSH_KEYS, "face_shape", "w_face_shape")
-        with fc2:
-            eye_key = pick(EYE_KEYS, "eye_shape", "w_eye_shape")
-        with fc3:
-            ec_key = pick(EC_KEYS, "eye_color", "w_eye_color")
-        fc4, fc5, fc6 = st.columns(3)
-        with fc4:
-            brow_key = pick(BROW_KEYS, "brows", "w_brows")
-        with fc5:
-            lip_key = pick(LIP_KEYS, "lips", "w_lips")
-        with fc6:
-            skf_key = pick(SKF_KEYS, "skin_finish", "w_skin_finish")
-        fm_labels = [t(k) for k in FM_KEYS]
-        fm_selected = st.multiselect(t("face_marks"), fm_labels, default=[], key="face_marks",
-                                     help=t("face_marks_help"), disabled=locked)
-        fm_keys = [FM_KEYS[fm_labels.index(lbl)] for lbl in fm_selected]
-        fh_key = "fh_none"
-        if gd_key != "gender_female":
-            col_fh, _ = st.columns(2)
-            with col_fh:
-                fh_key = pick(FH_KEYS, "facial_hair", "w_facial_hair")
+            # ── Face details (all optional) ──
+            st.markdown(f"**{t('sub_face')}**")
+            fc1, fc2, fc3 = st.columns(3)
+            with fc1:
+                fsh_key = pick(FSH_KEYS, "face_shape", "w_face_shape")
+            with fc2:
+                eye_key = pick(EYE_KEYS, "eye_shape", "w_eye_shape")
+            with fc3:
+                ec_key = pick(EC_KEYS, "eye_color", "w_eye_color")
+            fc4, fc5, fc6 = st.columns(3)
+            with fc4:
+                brow_key = pick(BROW_KEYS, "brows", "w_brows")
+            with fc5:
+                lip_key = pick(LIP_KEYS, "lips", "w_lips")
+            with fc6:
+                skf_key = pick(SKF_KEYS, "skin_finish", "w_skin_finish")
+            fm_labels = [t(k) for k in FM_KEYS]
+            fm_selected = st.multiselect(t("face_marks"), fm_labels, default=[], key="face_marks",
+                                         help=t("face_marks_help"), disabled=locked)
+            fm_keys = [FM_KEYS[fm_labels.index(lbl)] for lbl in fm_selected]
+            fh_key = "fh_none"
+            if gd_key != "gender_female":
+                col_fh, _ = st.columns(2)
+                with col_fh:
+                    fh_key = pick(FH_KEYS, "facial_hair", "w_facial_hair")
 
-        # ── Hair ──
-        st.markdown(f"**{t('sub_hair')}**")
-        col4, col5 = st.columns(2)
-        with col4:
-            hr_key = pick(hair_keys_for_gender(gd_key), "hair_style", "w_hair", index=1)
-        with col5:
-            hc_key = pick(HC_KEYS, "hair_color", "w_hair_color", index=1)
-        col_bn, col_hf = st.columns(2)
-        with col_bn:
-            bn_key = pick(BN_KEYS, "bangs", "w_bangs")
-        with col_hf:
-            hf_key = pick(HF_KEYS, "hair_finish", "w_hair_finish")
+            # ── Hair ──
+            st.markdown(f"**{t('sub_hair')}**")
+            col4, col5 = st.columns(2)
+            with col4:
+                hr_key = pick(hair_keys_for_gender(gd_key), "hair_style", "w_hair", index=1)
+            with col5:
+                hc_key = pick(HC_KEYS, "hair_color", "w_hair_color", index=1)
+            col_bn, col_hf = st.columns(2)
+            with col_bn:
+                bn_key = pick(BN_KEYS, "bangs", "w_bangs")
+            with col_hf:
+                hf_key = pick(HF_KEYS, "hair_finish", "w_hair_finish")
 
-        # ── Expression, makeup & nails ──
-        st.markdown(f"**{t('sub_expression')}**")
-        col_ex, col_mu, col_nl = st.columns(3)
-        with col_ex:
-            ex_key = pick(EX_KEYS, "expression", "w_expr", index=1)
-        with col_mu:
-            mu_key = pick(MU_KEYS, "makeup", "w_makeup")
-        with col_nl:
-            nl_key = pick(NL_KEYS, "nails", "w_nails")
+            # ── Expression, makeup & nails ──
+            st.markdown(f"**{t('sub_expression')}**")
+            col_ex, col_mu, col_nl = st.columns(3)
+            with col_ex:
+                ex_key = pick(EX_KEYS, "expression", "w_expr", index=1)
+            with col_mu:
+                mu_key = pick(MU_KEYS, "makeup", "w_makeup")
+            with col_nl:
+                nl_key = pick(NL_KEYS, "nails", "w_nails")
 
-        # ── People & companion ──
-        st.markdown(f"**{t('sub_people')}**")
-        col_ns, col_pet = st.columns(2)
-        with col_ns:
-            ns_labels, _ = make_option(NS_KEYS)
-            ns_sel = st.selectbox(t("num_subjects"), ns_labels)
-            ns_key = NS_KEYS[ns_labels.index(ns_sel)]
-        with col_pet:
-            pet_key = pick(PET_KEYS, "companion", "w_pet")
+            # ── People & companion ──
+            st.markdown(f"**{t('sub_people')}**")
+            col_ns, col_pet = st.columns(2)
+            with col_ns:
+                ns_labels, _ = make_option(NS_KEYS)
+                ns_sel = st.selectbox(t("num_subjects"), ns_labels)
+                ns_key = NS_KEYS[ns_labels.index(ns_sel)]
+            with col_pet:
+                pet_key = pick(PET_KEYS, "companion", "w_pet")
 
-        # Per-person looks so a duo/trio doesn't come out as identical clones.
-        # Person 1 uses the main selectors above; each extra person gets their
-        # own gender / hair / hair color / expression (staggered defaults on
-        # purpose). The hairstyle pool follows that person's own gender.
-        extra_person_keys = []
-        gm_key = "gg_same"
-        if ns_key in ("ns_duo", "ns_trio"):
-            st.caption(t("multi_person_hint"))
-            for pi in range(2, 3 if ns_key == "ns_duo" else 4):
-                st.markdown(f"**{t(f'person_{pi}')}**")
-                pc0, pc1, pc2, pc3 = st.columns(4)
-                with pc0:
-                    p_gd_sel = st.selectbox(
-                        t("gender"), gd_labels,
-                        index=GD_KEYS.index(gd_key),
-                        key=f"w_gender_p{pi}",
-                        on_change=reset_person_hair,
-                        args=(f"w_hair_p{pi}",))
-                    p_gd_key = GD_KEYS[gd_labels.index(p_gd_sel)]
-                with pc1:
-                    p_hr_options = hair_keys_for_gender(p_gd_key)
-                    p_hr_labels, _ = make_option(p_hr_options)
-                    p_hr_sel = st.selectbox(
-                        t("hair_style"), p_hr_labels,
-                        index=min(1 + 3 * (pi - 1), len(p_hr_options) - 1),
-                        key=f"w_hair_p{pi}")
-                    p_hr_key = p_hr_options[p_hr_labels.index(p_hr_sel)]
-                with pc2:
-                    p_hc_labels, _ = make_option(HC_KEYS)
-                    p_hc_sel = st.selectbox(
-                        t("hair_color"), p_hc_labels,
-                        index=min(1 + 6 * (pi - 1), len(HC_KEYS) - 1),
-                        key=f"w_hair_color_p{pi}")
-                    p_hc_key = HC_KEYS[p_hc_labels.index(p_hc_sel)]
-                with pc3:
-                    p_ex_labels, _ = make_option(EX_KEYS)
-                    p_ex_sel = st.selectbox(
-                        t("expression"), p_ex_labels,
-                        index=min(2 + 9 * (pi - 2), len(EX_KEYS) - 1),
-                        key=f"w_expr_p{pi}")
-                    p_ex_key = EX_KEYS[p_ex_labels.index(p_ex_sel)]
-                extra_person_keys.append((p_gd_key, p_hr_key, p_hc_key, p_ex_key))
-        elif ns_key == "ns_group":
-            st.caption(t("group_hint"))
-            col_gm, _ = st.columns(2)
-            with col_gm:
-                gm_labels, _ = make_option(GM_KEYS)
-                gm_sel = st.selectbox(t("group_mix"), gm_labels, key="w_group_mix")
-                gm_key = GM_KEYS[gm_labels.index(gm_sel)]
+            # Per-person looks so a duo/trio doesn't come out as identical clones.
+            # Person 1 uses the main selectors above; each extra person gets their
+            # own gender / hair / hair color / expression (staggered defaults on
+            # purpose). The hairstyle pool follows that person's own gender.
+            extra_person_keys = []
+            gm_key = "gg_same"
+            if ns_key in ("ns_duo", "ns_trio"):
+                st.caption(t("multi_person_hint"))
+                for pi in range(2, 3 if ns_key == "ns_duo" else 4):
+                    st.markdown(f"**{t(f'person_{pi}')}**")
+                    pc0, pc1, pc2, pc3 = st.columns(4)
+                    with pc0:
+                        p_gd_sel = st.selectbox(
+                            t("gender"), gd_labels,
+                            index=GD_KEYS.index(gd_key),
+                            key=f"w_gender_p{pi}",
+                            on_change=reset_person_hair,
+                            args=(f"w_hair_p{pi}",))
+                        p_gd_key = GD_KEYS[gd_labels.index(p_gd_sel)]
+                    with pc1:
+                        p_hr_options = hair_keys_for_gender(p_gd_key)
+                        p_hr_labels, _ = make_option(p_hr_options)
+                        p_hr_sel = st.selectbox(
+                            t("hair_style"), p_hr_labels,
+                            index=min(1 + 3 * (pi - 1), len(p_hr_options) - 1),
+                            key=f"w_hair_p{pi}")
+                        p_hr_key = p_hr_options[p_hr_labels.index(p_hr_sel)]
+                    with pc2:
+                        p_hc_labels, _ = make_option(HC_KEYS)
+                        p_hc_sel = st.selectbox(
+                            t("hair_color"), p_hc_labels,
+                            index=min(1 + 6 * (pi - 1), len(HC_KEYS) - 1),
+                            key=f"w_hair_color_p{pi}")
+                        p_hc_key = HC_KEYS[p_hc_labels.index(p_hc_sel)]
+                    with pc3:
+                        p_ex_labels, _ = make_option(EX_KEYS)
+                        p_ex_sel = st.selectbox(
+                            t("expression"), p_ex_labels,
+                            index=min(2 + 9 * (pi - 2), len(EX_KEYS) - 1),
+                            key=f"w_expr_p{pi}")
+                        p_ex_key = EX_KEYS[p_ex_labels.index(p_ex_sel)]
+                    extra_person_keys.append((p_gd_key, p_hr_key, p_hc_key, p_ex_key))
+            elif ns_key == "ns_group":
+                st.caption(t("group_hint"))
+                col_gm, _ = st.columns(2)
+                with col_gm:
+                    gm_labels, _ = make_option(GM_KEYS)
+                    gm_sel = st.selectbox(t("group_mix"), gm_labels, key="w_group_mix")
+                    gm_key = GM_KEYS[gm_labels.index(gm_sel)]
 
-    # ══════════════════════════════════════════════════════════════════════
-    #  EXPANDER 2 — Outfit & Style
-    # ══════════════════════════════════════════════════════════════════════
-    with st.expander(f"👗  {t('exp_outfit')}", expanded=True):
-        # Fashion presets (A-Z)
-        fs_labels = [t(k) for k in FS_KEYS]
-        fs_selected_labels = st.multiselect(t("fashion_presets"), fs_labels, default=[],
-                                             help=t("fashion_presets_help"), key="fashion_multi")
-        fs_selected_keys = [FS_KEYS[fs_labels.index(lbl)] for lbl in fs_selected_labels]
+        # ══════════════════════════════════════════════════════════════════════
+        #  EXPANDER 2 — Outfit & Style
+        # ══════════════════════════════════════════════════════════════════════
+        with st.expander(f"👗  {t('exp_outfit')}", expanded=True):
+            # Fashion presets (A-Z)
+            fs_labels = [t(k) for k in FS_KEYS]
+            fs_selected_labels = st.multiselect(t("fashion_presets"), fs_labels, default=[],
+                                                 help=t("fashion_presets_help"), key="fashion_multi")
+            fs_selected_keys = [FS_KEYS[fs_labels.index(lbl)] for lbl in fs_selected_labels]
 
-        st.markdown("---")
+            st.markdown("---")
 
-        # Outfit type: separates (top + bottom), a dress / one-piece, or a
-        # ready-made seasonal set. Only the active type's garments are used.
-        om_labels, _ = make_option(OM_KEYS)
-        om_sel = st.radio(t("outfit_mode"), om_labels, horizontal=True, key="w_outfit_mode")
-        om_key = OM_KEYS[om_labels.index(om_sel)]
+            # Outfit type: separates (top + bottom), a dress / one-piece, or a
+            # ready-made seasonal set. Only the active type's garments are used.
+            om_labels, _ = make_option(OM_KEYS)
+            om_sel = st.radio(t("outfit_mode"), om_labels, horizontal=True, key="w_outfit_mode")
+            om_key = OM_KEYS[om_labels.index(om_sel)]
 
-        top_key, top_fb_key, top_cp_key = "top_none", "fab_none", "col_none"
-        bot_key, bot_fb_key, bot_cp_key = "bot_none", "fab_none", "col_none"
-        dr_key, dr_fb_key, dr_cp_key = "dress_none", "fab_none", "col_none"
-        os_key = "os_none"
-        out_key, out_cp_key = "out_none", "col_none"
-        fit_key, leg_key, sh_key = "fit_none", "leg_none", "sh_none"
-        det_selected_keys = []
+            top_key, top_fb_key, top_cp_key = "top_none", "fab_none", "col_none"
+            bot_key, bot_fb_key, bot_cp_key = "bot_none", "fab_none", "col_none"
+            dr_key, dr_fb_key, dr_cp_key = "dress_none", "fab_none", "col_none"
+            os_key = "os_none"
+            out_key, out_cp_key = "out_none", "col_none"
+            fit_key, leg_key, sh_key = "fit_none", "leg_none", "sh_none"
+            det_selected_keys = []
 
-        # Garments default to "None" so a fashion preset alone fully defines
-        # the outfit; fabric/color pickers only appear once a garment is chosen.
-        if om_key == "om_separates":
-            col_top, col_bot = st.columns(2)
-            with col_top:
-                top_key, top_fb_key, top_cp_key = garment_picker(
-                    TOP_KEYS, "top_garment", "w_top",
-                    "top_fabric", "top_fabric_sel", "top_color", "top_color_sel")
-            with col_bot:
-                bot_key, bot_fb_key, bot_cp_key = garment_picker(
-                    BOT_KEYS, "bottom_garment", "w_bottom",
-                    "bot_fabric", "bot_fabric_sel", "bot_color", "bot_color_sel")
-        elif om_key == "om_dress":
-            col_dr, _ = st.columns(2)
-            with col_dr:
-                dr_key, dr_fb_key, dr_cp_key = garment_picker(
-                    DR_KEYS, "dress_garment", "w_dress",
-                    "dress_fabric", "dress_fabric_sel", "dress_color", "dress_color_sel")
-        else:
-            os_labels, _ = make_option(OSET_KEYS)
-            os_sel = st.selectbox(t("outfit_set"), os_labels, index=1, key="w_outfit_set")
-            os_key = OSET_KEYS[os_labels.index(os_sel)]
-            st.caption(t("outfit_set_hint"))
+            # Garments default to "None" so a fashion preset alone fully defines
+            # the outfit; fabric/color pickers only appear once a garment is chosen.
+            if om_key == "om_separates":
+                col_top, col_bot = st.columns(2)
+                with col_top:
+                    top_key, top_fb_key, top_cp_key = garment_picker(
+                        TOP_KEYS, "top_garment", "w_top",
+                        "top_fabric", "top_fabric_sel", "top_color", "top_color_sel")
+                with col_bot:
+                    bot_key, bot_fb_key, bot_cp_key = garment_picker(
+                        BOT_KEYS, "bottom_garment", "w_bottom",
+                        "bot_fabric", "bot_fabric_sel", "bot_color", "bot_color_sel")
+            elif om_key == "om_dress":
+                col_dr, _ = st.columns(2)
+                with col_dr:
+                    dr_key, dr_fb_key, dr_cp_key = garment_picker(
+                        DR_KEYS, "dress_garment", "w_dress",
+                        "dress_fabric", "dress_fabric_sel", "dress_color", "dress_color_sel")
+            else:
+                # Two-level picker: category → set ("All" lists everything)
+                col_sc, col_os = st.columns(2)
+                with col_sc:
+                    oscat_labels, _ = make_option(OSCAT_KEYS)
+                    oscat_sel = st.selectbox(t("outfit_set_category"), oscat_labels,
+                                             key="w_set_cat",
+                                             on_change=reset_set_on_category_change)
+                    oscat_key = OSCAT_KEYS[oscat_labels.index(oscat_sel)]
+                with col_os:
+                    os_options = oset_keys_for_category(oscat_key)
+                    os_labels, _ = make_option(os_options)
+                    if st.session_state.get("w_outfit_set") not in os_labels:
+                        st.session_state.pop("w_outfit_set", None)
+                    os_sel = st.selectbox(t("outfit_set"), os_labels, index=1, key="w_outfit_set")
+                    os_key = os_options[os_labels.index(os_sel)]
+                st.caption(t("outfit_set_hint"))
 
-        # Gentle warning when a preset style and explicit garments are mixed
-        if fs_selected_keys and (top_key != "top_none" or bot_key != "bot_none"
-                                 or dr_key != "dress_none" or os_key != "os_none"):
-            st.caption(t("outfit_clash_hint"))
+            # Gentle warning when a preset style and explicit garments are mixed
+            if fs_selected_keys and (top_key != "top_none" or bot_key != "bot_none"
+                                     or dr_key != "dress_none" or os_key != "os_none"):
+                st.caption(t("outfit_clash_hint"))
 
-        # Layers & finishing — a ready-made set already includes all of these
-        if om_key != "om_set":
-            col_out, col_outc = st.columns(2)
-            with col_out:
-                out_labels, _ = make_option(OUT_KEYS)
-                out_sel = st.selectbox(t("outer_layer"), out_labels, key="w_outer")
-                out_key = OUT_KEYS[out_labels.index(out_sel)]
-            with col_outc:
-                if out_key != "out_none":
-                    out_cp_labels, _ = make_option(CP_KEYS)
-                    out_cp_sel = st.selectbox(t("outer_color"), out_cp_labels, key="outer_color_sel")
-                    out_cp_key = CP_KEYS[out_cp_labels.index(out_cp_sel)]
-            col_fit, col_leg, col_sh = st.columns(3)
-            with col_fit:
-                fit_labels, _ = make_option(FIT_KEYS)
-                fit_sel = st.selectbox(t("fit"), fit_labels, key="w_fit")
-                fit_key = FIT_KEYS[fit_labels.index(fit_sel)]
-            with col_leg:
-                leg_labels, _ = make_option(LEG_KEYS)
-                leg_sel = st.selectbox(t("legwear"), leg_labels, key="w_legwear")
-                leg_key = LEG_KEYS[leg_labels.index(leg_sel)]
-            with col_sh:
-                sh_labels, _ = make_option(SH_KEYS)
-                sh_sel = st.selectbox(t("footwear"), sh_labels, key="w_shoes")
-                sh_key = SH_KEYS[sh_labels.index(sh_sel)]
-            det_labels = [t(k) for k in DET_KEYS]
-            det_selected_labels = st.multiselect(t("details"), det_labels, default=[],
-                                                 help=t("details_help"), key="detail_multi")
-            det_selected_keys = [DET_KEYS[det_labels.index(lbl)] for lbl in det_selected_labels]
+            # Layers & finishing — a ready-made set already includes all of these
+            if om_key != "om_set":
+                col_out, col_outc = st.columns(2)
+                with col_out:
+                    out_labels, _ = make_option(OUT_KEYS)
+                    out_sel = st.selectbox(t("outer_layer"), out_labels, key="w_outer")
+                    out_key = OUT_KEYS[out_labels.index(out_sel)]
+                with col_outc:
+                    if out_key != "out_none":
+                        out_cp_labels, _ = make_option(CP_KEYS)
+                        out_cp_sel = st.selectbox(t("outer_color"), out_cp_labels, key="outer_color_sel")
+                        out_cp_key = CP_KEYS[out_cp_labels.index(out_cp_sel)]
+                col_fit, col_leg, col_sh = st.columns(3)
+                with col_fit:
+                    fit_labels, _ = make_option(FIT_KEYS)
+                    fit_sel = st.selectbox(t("fit"), fit_labels, key="w_fit")
+                    fit_key = FIT_KEYS[fit_labels.index(fit_sel)]
+                with col_leg:
+                    leg_labels, _ = make_option(LEG_KEYS)
+                    leg_sel = st.selectbox(t("legwear"), leg_labels, key="w_legwear")
+                    leg_key = LEG_KEYS[leg_labels.index(leg_sel)]
+                with col_sh:
+                    sh_labels, _ = make_option(SH_KEYS)
+                    sh_sel = st.selectbox(t("footwear"), sh_labels, key="w_shoes")
+                    sh_key = SH_KEYS[sh_labels.index(sh_sel)]
+                det_labels = [t(k) for k in DET_KEYS]
+                det_selected_labels = st.multiselect(t("details"), det_labels, default=[],
+                                                     help=t("details_help"), key="detail_multi")
+                det_selected_keys = [DET_KEYS[det_labels.index(lbl)] for lbl in det_selected_labels]
 
-        st.markdown("---")
-        outfit_text = st.text_input(t("outfit_input"), placeholder=t("outfit_placeholder"))
+            st.markdown("---")
+            outfit_text = st.text_input(t("outfit_input"), placeholder=t("outfit_placeholder"))
 
-        # Outfit reference checkbox
-        attach_outfit = st.checkbox(t("attach_outfit_photo"), key="attach_outfit")
-        if attach_outfit:
-            st.markdown(f'<div class="ref-attached">📎 {t("attach_outfit_note")}</div>', unsafe_allow_html=True)
+            # Outfit reference checkbox
+            attach_outfit = st.checkbox(t("attach_outfit_photo"), key="attach_outfit")
+            if attach_outfit:
+                st.markdown(f'<div class="ref-attached">📎 {t("attach_outfit_note")}</div>', unsafe_allow_html=True)
 
-        # ── Accessories: grouped checkboxes ──
-        st.markdown(f"**{t('accessories')}**")
-        acc_selected = []
+            # ── Accessories: grouped checkboxes ──
+            st.markdown(f"**{t('accessories')}**")
+            acc_selected = []
 
-        acc_head_keys = ["acc_beanie", "acc_beret", "acc_bucket_hat", "acc_cap",
-                         "acc_glasses", "acc_hair_clip", "acc_ribbon", "acc_hat",
-                         "acc_headband", "acc_scrunchie", "acc_sunglasses", "acc_tiara"]
-        acc_body_keys = ["acc_anklet", "acc_belt", "acc_bowtie", "acc_bracelet",
-                         "acc_choker", "acc_earrings", "acc_necklace", "acc_necktie",
-                         "acc_ring", "acc_scarf", "acc_watch"]
-        acc_carried_keys = ["acc_backpack", "acc_book", "acc_camera", "acc_clutch",
-                            "acc_crossbody", "acc_bouquet", "acc_bag", "acc_coffee",
-                            "acc_phone", "acc_tote", "acc_umbrella"]
+            acc_head_keys = ["acc_beanie", "acc_beret", "acc_bucket_hat", "acc_cap",
+                             "acc_flower_hair",
+                             "acc_glasses", "acc_hair_clip", "acc_ribbon", "acc_hat",
+                             "acc_headband", "acc_scrunchie", "acc_sunglasses", "acc_tiara"]
+            acc_body_keys = ["acc_anklet", "acc_belt", "acc_bowtie", "acc_bracelet",
+                             "acc_choker", "acc_earrings", "acc_necklace", "acc_necktie",
+                             "acc_ring", "acc_scarf", "acc_watch"]
+            acc_carried_keys = ["acc_backpack", "acc_book", "acc_camera", "acc_clutch",
+                                "acc_crossbody", "acc_bouquet", "acc_fan", "acc_bag", "acc_coffee",
+                                "acc_parasol",
+                                "acc_phone", "acc_tote", "acc_umbrella"]
 
-        st.caption(t("acc_group_head"))
-        head_cols = st.columns(4)
-        for i, ak in enumerate(acc_head_keys):
-            with head_cols[i % 4]:
-                if st.checkbox(t(ak), key=f"acc_{ak}"):
-                    acc_selected.append(ak)
+            st.caption(t("acc_group_head"))
+            head_cols = st.columns(4)
+            for i, ak in enumerate(acc_head_keys):
+                with head_cols[i % 4]:
+                    if st.checkbox(t(ak), key=f"acc_{ak}"):
+                        acc_selected.append(ak)
 
-        st.caption(t("acc_group_body"))
-        body_cols = st.columns(4)
-        for i, ak in enumerate(acc_body_keys):
-            with body_cols[i % 4]:
-                if st.checkbox(t(ak), key=f"acc_{ak}"):
-                    acc_selected.append(ak)
+            st.caption(t("acc_group_body"))
+            body_cols = st.columns(4)
+            for i, ak in enumerate(acc_body_keys):
+                with body_cols[i % 4]:
+                    if st.checkbox(t(ak), key=f"acc_{ak}"):
+                        acc_selected.append(ak)
 
-        st.caption(t("acc_group_carried"))
-        carried_cols = st.columns(4)
-        for i, ak in enumerate(acc_carried_keys):
-            with carried_cols[i % 4]:
-                if st.checkbox(t(ak), key=f"acc_{ak}"):
-                    acc_selected.append(ak)
+            st.caption(t("acc_group_carried"))
+            carried_cols = st.columns(4)
+            for i, ak in enumerate(acc_carried_keys):
+                with carried_cols[i % 4]:
+                    if st.checkbox(t(ak), key=f"acc_{ak}"):
+                        acc_selected.append(ak)
 
-    # ══════════════════════════════════════════════════════════════════════
-    #  EXPANDER 3 — Pose & Body Language
-    # ══════════════════════════════════════════════════════════════════════
-    with st.expander(f"🕺  {t('exp_pose')}", expanded=True):
-        # Pose reference (e.g. a mannequin pose sheet) — copies only the body
-        # position, so the pose pickers are disabled while it's on
-        attach_pose = st.checkbox(t("attach_pose_photo"), key="attach_pose")
-        if attach_pose:
-            st.markdown(f'<div class="ref-attached">📎 {t("attach_pose_note")}</div>', unsafe_allow_html=True)
+        # ══════════════════════════════════════════════════════════════════════
+        #  EXPANDER 3 — Pose & Body Language
+        # ══════════════════════════════════════════════════════════════════════
+        with st.expander(f"🕺  {t('exp_pose')}", expanded=True):
+            # Pose reference (e.g. a mannequin pose sheet) — copies only the body
+            # position, so the pose pickers are disabled while it's on
+            attach_pose = st.checkbox(t("attach_pose_photo"), key="attach_pose")
+            if attach_pose:
+                st.markdown(f'<div class="ref-attached">📎 {t("attach_pose_note")}</div>', unsafe_allow_html=True)
 
-        # Two-level picker: category → pose (category "All" shows every pose)
-        col_pc, col_po = st.columns(2)
-        with col_pc:
-            pc_labels, _ = make_option(PC_KEYS)
-            pc_sel = st.selectbox(t("pose_category"), pc_labels, key="w_pose_cat",
-                                  on_change=reset_pose_on_category_change,
-                                  disabled=attach_pose)
-            pc_key = PC_KEYS[pc_labels.index(pc_sel)]
-        with col_po:
-            po_options = pose_keys_for_category(pc_key)
-            po_labels, _ = make_option(po_options)
-            if st.session_state.get("w_pose") not in po_labels:
-                st.session_state.pop("w_pose", None)
-            po_sel = st.selectbox(t("pose"), po_labels, key="w_pose", disabled=attach_pose)
-            po_key = po_options[po_labels.index(po_sel)]
+            # Two-level picker: category → pose (category "All" shows every pose)
+            col_pc, col_po = st.columns(2)
+            with col_pc:
+                pc_labels, _ = make_option(PC_KEYS)
+                pc_sel = st.selectbox(t("pose_category"), pc_labels, key="w_pose_cat",
+                                      on_change=reset_pose_on_category_change,
+                                      disabled=attach_pose)
+                pc_key = PC_KEYS[pc_labels.index(pc_sel)]
+            with col_po:
+                po_options = pose_keys_for_category(pc_key)
+                po_labels, _ = make_option(po_options)
+                if st.session_state.get("w_pose") not in po_labels:
+                    st.session_state.pop("w_pose", None)
+                po_sel = st.selectbox(t("pose"), po_labels, key="w_pose", disabled=attach_pose)
+                po_key = po_options[po_labels.index(po_sel)]
 
-        # Fine-tuning: orientation / head / hands / legs are pose-specific;
-        # gaze and mood apply to any pose (and to every Photo Set shot)
-        st.markdown(f"**{t('pose_detail_header')}**")
-        st.caption(t("pose_detail_hint"))
-        pose_detail_keys = {}
-        detail_specs = [("w_body_dir", "body_dir"), ("w_head", "head_pos"),
-                        ("w_hands", "hands_pos"), ("w_legs", "legs_pos")]
-        detail_cols = st.columns(4)
-        for col, (wk, label_key) in zip(detail_cols, detail_specs):
-            with col:
-                opts = POSE_DETAIL_WIDGETS[wk]
-                d_labels, _ = make_option(opts)
-                d_sel = st.selectbox(t(label_key), d_labels, key=wk, disabled=attach_pose)
-                pose_detail_keys[wk] = opts[d_labels.index(d_sel)]
-        col_gz, col_pe = st.columns(2)
-        with col_gz:
-            gz_labels, _ = make_option(GZ_KEYS)
-            gz_sel = st.selectbox(t("gaze"), gz_labels, key="w_gaze")
-            gz_key = GZ_KEYS[gz_labels.index(gz_sel)]
-        with col_pe:
-            pe_labels, _ = make_option(PE_KEYS)
-            pe_sel = st.selectbox(t("pose_energy"), pe_labels, key="w_pose_energy")
-            pe_key = PE_KEYS[pe_labels.index(pe_sel)]
-        pose_text = st.text_input(t("pose_text"), placeholder=t("pose_text_placeholder"),
-                                  key="pose_text_input")
+            # Fine-tuning: orientation / head / hands / legs are pose-specific;
+            # gaze and mood apply to any pose (and to every Photo Set shot)
+            st.markdown(f"**{t('pose_detail_header')}**")
+            st.caption(t("pose_detail_hint"))
+            pose_detail_keys = {}
+            detail_specs = [("w_body_dir", "body_dir"), ("w_head", "head_pos"),
+                            ("w_hands", "hands_pos"), ("w_legs", "legs_pos")]
+            detail_cols = st.columns(4)
+            for col, (wk, label_key) in zip(detail_cols, detail_specs):
+                with col:
+                    opts = POSE_DETAIL_WIDGETS[wk]
+                    d_labels, _ = make_option(opts)
+                    d_sel = st.selectbox(t(label_key), d_labels, key=wk, disabled=attach_pose)
+                    pose_detail_keys[wk] = opts[d_labels.index(d_sel)]
+            col_gz, col_pe = st.columns(2)
+            with col_gz:
+                gz_labels, _ = make_option(GZ_KEYS)
+                gz_sel = st.selectbox(t("gaze"), gz_labels, key="w_gaze")
+                gz_key = GZ_KEYS[gz_labels.index(gz_sel)]
+            with col_pe:
+                pe_labels, _ = make_option(PE_KEYS)
+                pe_sel = st.selectbox(t("pose_energy"), pe_labels, key="w_pose_energy")
+                pe_key = PE_KEYS[pe_labels.index(pe_sel)]
+            pose_text = st.text_input(t("pose_text"), placeholder=t("pose_text_placeholder"),
+                                      key="pose_text_input")
 
-    # ══════════════════════════════════════════════════════════════════════
-    #  EXPANDER 4 — Scene & Lighting
-    # ══════════════════════════════════════════════════════════════════════
-    with st.expander(f"🌅  {t('exp_scene')}", expanded=True):
-        # Scene reference checkbox
-        attach_scene = st.checkbox(t("attach_scene_photo"), key="attach_scene")
-        if attach_scene:
-            st.markdown(f'<div class="ref-attached">📎 {t("attach_scene_note")}</div>', unsafe_allow_html=True)
+        # ══════════════════════════════════════════════════════════════════════
+        #  EXPANDER 4 — Scene & Lighting
+        # ══════════════════════════════════════════════════════════════════════
+        with st.expander(f"🌅  {t('exp_scene')}", expanded=True):
+            # Scene reference checkbox
+            attach_scene = st.checkbox(t("attach_scene_photo"), key="attach_scene")
+            if attach_scene:
+                st.markdown(f'<div class="ref-attached">📎 {t("attach_scene_note")}</div>', unsafe_allow_html=True)
 
-        # Location mode
-        scene_mode_labels = [t("scene_mode_preset"), t("scene_mode_custom"), t("scene_mode_place")]
-        scene_mode = st.radio(t("scene_mode"), scene_mode_labels, index=0, horizontal=True, key="scene_mode_radio")
+            # Location mode
+            scene_mode_labels = [t("scene_mode_preset"), t("scene_mode_custom"), t("scene_mode_place")]
+            scene_mode = st.radio(t("scene_mode"), scene_mode_labels, index=0, horizontal=True, key="scene_mode_radio")
 
-        lo_key = "loc_studio"
-        scene_custom_text = ""
-        place_landmark = ""
-        place_city = ""
-        place_country = ""
+            lo_key = "loc_studio"
+            scene_custom_text = ""
+            place_landmark = ""
+            place_city = ""
+            place_country = ""
 
-        if scene_mode == scene_mode_labels[0]:
-            # Two-level picker: category → location ("All" lists everything)
-            col_lc, col_lo = st.columns(2)
-            with col_lc:
-                lcat_labels, _ = make_option(LCAT_KEYS)
-                lcat_sel = st.selectbox(t("location_category"), lcat_labels, key="w_loc_cat",
-                                        on_change=reset_location_on_category_change)
-                lcat_key = LCAT_KEYS[lcat_labels.index(lcat_sel)]
-            with col_lo:
-                lo_options = loc_keys_for_category(lcat_key)
-                lo_labels, _ = make_option(lo_options)
-                if st.session_state.get("w_location") not in lo_labels:
-                    st.session_state.pop("w_location", None)
-                lo_sel = st.selectbox(t("location"), lo_labels, index=1, key="w_location")
-                lo_key = lo_options[lo_labels.index(lo_sel)]
-        elif scene_mode == scene_mode_labels[1]:
-            scene_custom_text = st.text_area(t("scene_custom_input"),
-                                              placeholder=t("scene_custom_placeholder"),
-                                              height=80, key="scene_custom_ta")
-        else:
-            col_pl1, col_pl2, col_pl3 = st.columns(3)
-            with col_pl1:
-                place_landmark = st.text_input(t("place_landmark"),
-                                               placeholder=t("place_landmark_placeholder"),
-                                               key="place_landmark_input")
-            with col_pl2:
-                place_city = st.text_input(t("place_city"),
-                                           placeholder=t("place_city_placeholder"),
-                                           key="place_city_input")
-            with col_pl3:
-                place_country = st.text_input(t("place_country"),
-                                              placeholder=t("place_country_placeholder"),
-                                              key="place_country_input")
+            if scene_mode == scene_mode_labels[0]:
+                # Two-level picker: category → location ("All" lists everything)
+                col_lc, col_lo = st.columns(2)
+                with col_lc:
+                    lcat_labels, _ = make_option(LCAT_KEYS)
+                    lcat_sel = st.selectbox(t("location_category"), lcat_labels, key="w_loc_cat",
+                                            on_change=reset_location_on_category_change)
+                    lcat_key = LCAT_KEYS[lcat_labels.index(lcat_sel)]
+                with col_lo:
+                    lo_options = loc_keys_for_category(lcat_key)
+                    lo_labels, _ = make_option(lo_options)
+                    if st.session_state.get("w_location") not in lo_labels:
+                        st.session_state.pop("w_location", None)
+                    lo_sel = st.selectbox(t("location"), lo_labels, index=1, key="w_location")
+                    lo_key = lo_options[lo_labels.index(lo_sel)]
+            elif scene_mode == scene_mode_labels[1]:
+                scene_custom_text = st.text_area(t("scene_custom_input"),
+                                                  placeholder=t("scene_custom_placeholder"),
+                                                  height=80, key="scene_custom_ta")
+            else:
+                col_pl1, col_pl2, col_pl3 = st.columns(3)
+                with col_pl1:
+                    place_landmark = st.text_input(t("place_landmark"),
+                                                   placeholder=t("place_landmark_placeholder"),
+                                                   key="place_landmark_input")
+                with col_pl2:
+                    place_city = st.text_input(t("place_city"),
+                                               placeholder=t("place_city_placeholder"),
+                                               key="place_city_input")
+                with col_pl3:
+                    place_country = st.text_input(t("place_country"),
+                                                  placeholder=t("place_country_placeholder"),
+                                                  key="place_country_input")
 
-        st.markdown("---")
-        col10, col_season, col_bgp = st.columns(3)
-        with col10:
-            td_labels, _ = make_option(TD_KEYS)
-            td_sel = st.selectbox(t("time_of_day"), td_labels, index=1, key="w_tod")
-            td_key = TD_KEYS[td_labels.index(td_sel)]
-        with col_season:
-            sn_labels, _ = make_option(SN_KEYS)
-            sn_sel = st.selectbox(t("season"), sn_labels, key="w_season")
-            sn_key = SN_KEYS[sn_labels.index(sn_sel)]
-        with col_bgp:
-            bgp_labels, _ = make_option(BGP_KEYS)
-            bgp_sel = st.selectbox(t("bg_people"), bgp_labels, key="w_bg_people")
-            bgp_key = BGP_KEYS[bgp_labels.index(bgp_sel)]
-        atm_labels = [t(k) for k in ATM_KEYS]
-        atm_selected = st.multiselect(t("atmosphere"), atm_labels, default=[],
-                                      help=t("atmosphere_help"), key="atm_multi")
-        atm_keys = [ATM_KEYS[atm_labels.index(lbl)] for lbl in atm_selected]
+            st.markdown("---")
+            col10, col_season, col_bgp = st.columns(3)
+            with col10:
+                td_labels, _ = make_option(TD_KEYS)
+                td_sel = st.selectbox(t("time_of_day"), td_labels, index=1, key="w_tod")
+                td_key = TD_KEYS[td_labels.index(td_sel)]
+            with col_season:
+                sn_labels, _ = make_option(SN_KEYS)
+                sn_sel = st.selectbox(t("season"), sn_labels, key="w_season")
+                sn_key = SN_KEYS[sn_labels.index(sn_sel)]
+            with col_bgp:
+                bgp_labels, _ = make_option(BGP_KEYS)
+                bgp_sel = st.selectbox(t("bg_people"), bgp_labels, key="w_bg_people")
+                bgp_key = BGP_KEYS[bgp_labels.index(bgp_sel)]
+            atm_labels = [t(k) for k in ATM_KEYS]
+            atm_selected = st.multiselect(t("atmosphere"), atm_labels, default=[],
+                                          help=t("atmosphere_help"), key="atm_multi")
+            atm_keys = [ATM_KEYS[atm_labels.index(lbl)] for lbl in atm_selected]
 
-        # ── Lighting: style + direction + color + quality ──
-        st.markdown(f"**{t('sub_lighting')}**")
-        col11, col_ld, col_lc2, col_lq = st.columns(4)
-        with col11:
-            lt_labels, _ = make_option(LT_KEYS)
-            lt_sel = st.selectbox(t("lighting"), lt_labels, index=1, key="w_lighting")
-            lt_key = LT_KEYS[lt_labels.index(lt_sel)]
-        with col_ld:
-            ld_labels, _ = make_option(LD_KEYS)
-            ld_sel = st.selectbox(t("light_dir"), ld_labels, key="w_light_dir")
-            ld_key = LD_KEYS[ld_labels.index(ld_sel)]
-        with col_lc2:
-            lc_labels, _ = make_option(LC_KEYS)
-            lc_sel = st.selectbox(t("light_color"), lc_labels, key="w_light_color")
-            lc_key = LC_KEYS[lc_labels.index(lc_sel)]
-        with col_lq:
-            lq_labels, _ = make_option(LQ_KEYS)
-            lq_sel = st.selectbox(t("light_quality"), lq_labels, key="w_light_quality")
-            lq_key = LQ_KEYS[lq_labels.index(lq_sel)]
+            # ── Lighting: style + direction + color + quality ──
+            st.markdown(f"**{t('sub_lighting')}**")
+            col11, col_ld, col_lc2, col_lq = st.columns(4)
+            with col11:
+                lt_labels, _ = make_option(LT_KEYS)
+                lt_sel = st.selectbox(t("lighting"), lt_labels, index=1, key="w_lighting")
+                lt_key = LT_KEYS[lt_labels.index(lt_sel)]
+            with col_ld:
+                ld_labels, _ = make_option(LD_KEYS)
+                ld_sel = st.selectbox(t("light_dir"), ld_labels, key="w_light_dir")
+                ld_key = LD_KEYS[ld_labels.index(ld_sel)]
+            with col_lc2:
+                lc_labels, _ = make_option(LC_KEYS)
+                lc_sel = st.selectbox(t("light_color"), lc_labels, key="w_light_color")
+                lc_key = LC_KEYS[lc_labels.index(lc_sel)]
+            with col_lq:
+                lq_labels, _ = make_option(LQ_KEYS)
+                lq_sel = st.selectbox(t("light_quality"), lq_labels, key="w_light_quality")
+                lq_key = LQ_KEYS[lq_labels.index(lq_sel)]
 
-        # ── Camera: framing + height + position + special shot ──
-        st.markdown(f"**{t('sub_camera')}**")
-        st.caption(t("cam_hint"))
-        col12, col_ch, col_cd, col_cs = st.columns(4)
-        with col12:
-            sf_labels, _ = make_option(SF_KEYS)
-            sf_sel = st.selectbox(t("shot_framing"), sf_labels, index=2, key="w_framing")
-            sf_key = SF_KEYS[sf_labels.index(sf_sel)]
-        with col_ch:
-            ch_labels, _ = make_option(CH_KEYS)
-            ch_sel = st.selectbox(t("cam_height"), ch_labels,
-                                  index=CH_KEYS.index("ch_eye"), key="w_cam_height")
-            ch_key = CH_KEYS[ch_labels.index(ch_sel)]
-        with col_cd:
-            cd_labels, _ = make_option(CD_KEYS)
-            cd_sel = st.selectbox(t("cam_dir"), cd_labels, key="w_cam_dir")
-            cd_key = CD_KEYS[cd_labels.index(cd_sel)]
-        with col_cs:
-            cs_labels, _ = make_option(CS_KEYS)
-            cs_sel = st.selectbox(t("cam_special"), cs_labels, key="w_cam_special")
-            cs_key = CS_KEYS[cs_labels.index(cs_sel)]
-        cam_preview = " · ".join(eng(k) for k in (sf_key, ch_key, cd_key, cs_key) if eng(k))
-        if cam_preview:
-            st.caption(f"📷 {t('cam_preview')} *{cam_preview}*")
+            # ── Camera: framing + height + position + special shot ──
+            st.markdown(f"**{t('sub_camera')}**")
+            st.caption(t("cam_hint"))
+            col12, col_ch, col_cd, col_cs = st.columns(4)
+            with col12:
+                sf_labels, _ = make_option(SF_KEYS)
+                sf_sel = st.selectbox(t("shot_framing"), sf_labels, index=2, key="w_framing")
+                sf_key = SF_KEYS[sf_labels.index(sf_sel)]
+            with col_ch:
+                ch_labels, _ = make_option(CH_KEYS)
+                ch_sel = st.selectbox(t("cam_height"), ch_labels,
+                                      index=CH_KEYS.index("ch_eye"), key="w_cam_height")
+                ch_key = CH_KEYS[ch_labels.index(ch_sel)]
+            with col_cd:
+                cd_labels, _ = make_option(CD_KEYS)
+                cd_sel = st.selectbox(t("cam_dir"), cd_labels, key="w_cam_dir")
+                cd_key = CD_KEYS[cd_labels.index(cd_sel)]
+            with col_cs:
+                cs_labels, _ = make_option(CS_KEYS)
+                cs_sel = st.selectbox(t("cam_special"), cs_labels, key="w_cam_special")
+                cs_key = CS_KEYS[cs_labels.index(cs_sel)]
+            cam_preview = " · ".join(eng(k) for k in (sf_key, ch_key, cd_key, cs_key) if eng(k))
+            if cam_preview:
+                st.caption(f"📷 {t('cam_preview')} *{cam_preview}*")
 
-        col14, col15, col_ps = st.columns(3)
-        with col14:
-            dof_labels, _ = make_option(DOF_KEYS)
-            dof_sel = st.selectbox(t("dof"), dof_labels, index=2, key="w_dof")
-            dof_key = DOF_KEYS[dof_labels.index(dof_sel)]
-        with col15:
-            cmp_labels, _ = make_option(CMP_KEYS)
-            cmp_sel = st.selectbox(t("composition"), cmp_labels, key="w_comp")
-            cmp_key = CMP_KEYS[cmp_labels.index(cmp_sel)]
-        with col_ps:
-            ps_labels, _ = make_option(PS_KEYS)
-            ps_sel = st.selectbox(t("picture_style"), ps_labels, key="w_pstyle")
-            ps_key = PS_KEYS[ps_labels.index(ps_sel)]
+            col14, col15, col_ps = st.columns(3)
+            with col14:
+                dof_labels, _ = make_option(DOF_KEYS)
+                dof_sel = st.selectbox(t("dof"), dof_labels, index=2, key="w_dof")
+                dof_key = DOF_KEYS[dof_labels.index(dof_sel)]
+            with col15:
+                cmp_labels, _ = make_option(CMP_KEYS)
+                cmp_sel = st.selectbox(t("composition"), cmp_labels, key="w_comp")
+                cmp_key = CMP_KEYS[cmp_labels.index(cmp_sel)]
+            with col_ps:
+                ps_labels, _ = make_option(PS_KEYS)
+                ps_sel = st.selectbox(t("picture_style"), ps_labels, key="w_pstyle")
+                ps_key = PS_KEYS[ps_labels.index(ps_sel)]
 
-        # Camera body / film stock only makes sense for photographic models
-        cf_key = "cf_none"
-        col_cf, col_lfx = st.columns([1, 2])
-        if mt_selected_key in PHOTO_MODEL_KEYS:
-            with col_cf:
-                cf_labels, _ = make_option(CF_KEYS)
-                cf_sel = st.selectbox(t("camera_film"), cf_labels, key="w_camera_film")
-                cf_key = CF_KEYS[cf_labels.index(cf_sel)]
-        with col_lfx:
-            lfx_labels = [t(k) for k in LFX_KEYS]
-            lfx_selected = st.multiselect(t("lens_fx"), lfx_labels, default=[],
-                                          help=t("lens_fx_help"), key="lfx_multi")
-            lfx_keys = [LFX_KEYS[lfx_labels.index(lbl)] for lbl in lfx_selected]
+            # Camera body / film stock only makes sense for photographic models
+            cf_key = "cf_none"
+            col_cf, col_lfx = st.columns([1, 2])
+            if mt_selected_key in PHOTO_MODEL_KEYS:
+                with col_cf:
+                    cf_labels, _ = make_option(CF_KEYS)
+                    cf_sel = st.selectbox(t("camera_film"), cf_labels, key="w_camera_film")
+                    cf_key = CF_KEYS[cf_labels.index(cf_sel)]
+            with col_lfx:
+                lfx_labels = [t(k) for k in LFX_KEYS]
+                lfx_selected = st.multiselect(t("lens_fx"), lfx_labels, default=[],
+                                              help=t("lens_fx_help"), key="lfx_multi")
+                lfx_keys = [LFX_KEYS[lfx_labels.index(lbl)] for lbl in lfx_selected]
 
-    # ══════════════════════════════════════════════════════════════════════
-    #  EXPANDER 5 — Advanced
-    # ══════════════════════════════════════════════════════════════════════
-    with st.expander(f"⚙️  {t('exp_advanced')}", expanded=False):
-        custom_text = st.text_area(t("custom_prompt"), placeholder=t("custom_placeholder"), height=80)
-        negative_text = st.text_area(t("negative_prompt"), placeholder=t("negative_placeholder"), height=80)
-        st.markdown(f"**{t('quality_tags')}**")
-        qt_keys = ["qt_8k", "qt_detail", "qt_sharp", "qt_pro", "qt_award", "qt_magazine"]
-        qt_cols = st.columns(3)
-        qt_selected = []
-        for i, qk in enumerate(qt_keys):
-            with qt_cols[i % 3]:
-                if st.checkbox(t(qk), value=(qk in ("qt_8k", "qt_detail", "qt_sharp"))):
-                    qt_selected.append(qk)
+        # ══════════════════════════════════════════════════════════════════════
+        #  EXPANDER 5 — Advanced
+        # ══════════════════════════════════════════════════════════════════════
+        with st.expander(f"⚙️  {t('exp_advanced')}", expanded=False):
+            custom_text = st.text_area(t("custom_prompt"), placeholder=t("custom_placeholder"), height=80)
+            negative_text = st.text_area(t("negative_prompt"), placeholder=t("negative_placeholder"), height=80)
+            st.markdown(f"**{t('quality_tags')}**")
+            qt_keys = ["qt_8k", "qt_detail", "qt_sharp", "qt_pro", "qt_award", "qt_magazine"]
+            qt_cols = st.columns(3)
+            qt_selected = []
+            for i, qk in enumerate(qt_keys):
+                with qt_cols[i % 3]:
+                    if st.checkbox(t(qk), value=(qk in ("qt_8k", "qt_detail", "qt_sharp"))):
+                        qt_selected.append(qk)
 
-        # ── Save / Load Look ──
-        # Presets store language-independent option KEYS, so a look saved in
-        # Thai loads fine in English (and vice versa).
-        st.markdown("---")
-        st.markdown(f"**💾 {t('save_load_header')}**")
-        current_look = {
-            "w_gender": gd_key, "w_age": ag_key, "w_eth": et_key,
-            "w_hair": hr_key, "w_hair_color": hc_key, "w_bangs": bn_key,
-            "w_expr": ex_key, "w_body": bt_key, "w_appearance": ap_key,
-            "w_makeup": mu_key,
-            "w_top": top_key, "top_fabric_sel": top_fb_key, "top_color_sel": top_cp_key,
-            "w_bottom": bot_key, "bot_fabric_sel": bot_fb_key, "bot_color_sel": bot_cp_key,
-            "w_shoes": sh_key, "fashion_multi": fs_selected_keys,
-            "w_group_mix": gm_key, "w_pet": pet_key,
-            "w_location": lo_key, "w_tod": td_key, "w_lighting": lt_key,
-            "w_season": sn_key, "w_pstyle": ps_key, "w_framing": sf_key,
-            "w_dof": dof_key, "w_comp": cmp_key, "w_pose": po_key,
-            "w_pose_cat": pc_key, "w_gaze": gz_key, "w_pose_energy": pe_key,
-            **pose_detail_keys,
-            "w_outfit_mode": om_key, "w_dress": dr_key,
-            "dress_fabric_sel": dr_fb_key, "dress_color_sel": dr_cp_key,
-            "w_outfit_set": os_key, "w_outer": out_key, "outer_color_sel": out_cp_key,
-            "w_fit": fit_key, "w_legwear": leg_key, "detail_multi": det_selected_keys,
-            "w_skin_tone": st_key, "w_face_shape": fsh_key, "w_eye_shape": eye_key,
-            "w_eye_color": ec_key, "w_brows": brow_key, "w_lips": lip_key,
-            "face_marks": fm_keys, "w_facial_hair": fh_key, "w_skin_finish": skf_key,
-            "w_hair_finish": hf_key, "w_nails": nl_key,
-            "w_cam_height": ch_key, "w_cam_dir": cd_key, "w_cam_special": cs_key,
-            "w_camera_film": cf_key, "w_light_dir": ld_key, "w_light_color": lc_key,
-            "w_light_quality": lq_key, "w_bg_people": bgp_key,
-            "atm_multi": atm_keys, "lfx_multi": lfx_keys,
-        }
-        if scene_mode == scene_mode_labels[0]:
-            current_look["w_loc_cat"] = lcat_key
-        # Extra persons (duo/trio) — only present while those rows are shown
-        for pi, (p_gd, p_hr, p_hc, p_ex) in enumerate(extra_person_keys, start=2):
-            current_look[f"w_gender_p{pi}"] = p_gd
-            current_look[f"w_hair_p{pi}"] = p_hr
-            current_look[f"w_hair_color_p{pi}"] = p_hc
-            current_look[f"w_expr_p{pi}"] = p_ex
-        st.download_button(f"💾 {t('save_look')}",
-                           json.dumps(current_look, indent=2),
-                           file_name="look.json", mime="application/json")
-        st.text_area(t("load_look_paste"), height=80, key="preset_paste")
-        st.button(f"📂 {t('load_look')}", on_click=apply_look_preset)
-        preset_status = st.session_state.pop("preset_status", None)
-        if preset_status == "ok":
-            st.success(t("preset_loaded"))
-        elif preset_status == "error":
-            st.error(t("preset_invalid"))
+            # ── Save / Load Look ──
+            # Presets store language-independent option KEYS, so a look saved in
+            # Thai loads fine in English (and vice versa).
+            st.markdown("---")
+            st.markdown(f"**💾 {t('save_load_header')}**")
+            current_look = {
+                "w_gender": gd_key, "w_age": ag_key, "w_eth": et_key,
+                "w_hair": hr_key, "w_hair_color": hc_key, "w_bangs": bn_key,
+                "w_expr": ex_key, "w_body": bt_key, "w_appearance": ap_key,
+                "w_makeup": mu_key,
+                "w_top": top_key, "top_fabric_sel": top_fb_key, "top_color_sel": top_cp_key,
+                "w_bottom": bot_key, "bot_fabric_sel": bot_fb_key, "bot_color_sel": bot_cp_key,
+                "w_shoes": sh_key, "fashion_multi": fs_selected_keys,
+                "w_group_mix": gm_key, "w_pet": pet_key,
+                "w_location": lo_key, "w_tod": td_key, "w_lighting": lt_key,
+                "w_season": sn_key, "w_pstyle": ps_key, "w_framing": sf_key,
+                "w_dof": dof_key, "w_comp": cmp_key, "w_pose": po_key,
+                "w_pose_cat": pc_key, "w_gaze": gz_key, "w_pose_energy": pe_key,
+                **pose_detail_keys,
+                "w_outfit_mode": om_key, "w_dress": dr_key,
+                "dress_fabric_sel": dr_fb_key, "dress_color_sel": dr_cp_key,
+                "w_outfit_set": os_key, "w_outer": out_key, "outer_color_sel": out_cp_key,
+                "w_fit": fit_key, "w_legwear": leg_key, "detail_multi": det_selected_keys,
+                "w_skin_tone": st_key, "w_face_shape": fsh_key, "w_eye_shape": eye_key,
+                "w_eye_color": ec_key, "w_brows": brow_key, "w_lips": lip_key,
+                "face_marks": fm_keys, "w_facial_hair": fh_key, "w_skin_finish": skf_key,
+                "w_hair_finish": hf_key, "w_nails": nl_key,
+                "w_cam_height": ch_key, "w_cam_dir": cd_key, "w_cam_special": cs_key,
+                "w_camera_film": cf_key, "w_light_dir": ld_key, "w_light_color": lc_key,
+                "w_light_quality": lq_key, "w_bg_people": bgp_key,
+                "atm_multi": atm_keys, "lfx_multi": lfx_keys,
+            }
+            if scene_mode == scene_mode_labels[0]:
+                current_look["w_loc_cat"] = lcat_key
+            if om_key == "om_set":
+                current_look["w_set_cat"] = oscat_key
+            # Extra persons (duo/trio) — only present while those rows are shown
+            for pi, (p_gd, p_hr, p_hc, p_ex) in enumerate(extra_person_keys, start=2):
+                current_look[f"w_gender_p{pi}"] = p_gd
+                current_look[f"w_hair_p{pi}"] = p_hr
+                current_look[f"w_hair_color_p{pi}"] = p_hc
+                current_look[f"w_expr_p{pi}"] = p_ex
+            st.download_button(f"💾 {t('save_look')}",
+                               json.dumps(current_look, indent=2),
+                               file_name="look.json", mime="application/json")
+            st.text_area(t("load_look_paste"), height=80, key="preset_paste")
+            st.button(f"📂 {t('load_look')}", on_click=apply_look_preset)
+            preset_status = st.session_state.pop("preset_status", None)
+            if preset_status == "ok":
+                st.success(t("preset_loaded"))
+            elif preset_status == "error":
+                st.error(t("preset_invalid"))
 
     # ══════════════════════════════════════════════════════════════════════
     #  6. GENERATE
@@ -5552,7 +2281,7 @@ def main():
             specs.append(eng(cf_key))
         for qk in qt_selected:
             specs.append(eng(qk))
-        technical = ", ".join(specs)
+        technical = ", ".join(s for s in specs if s)
 
         # Subject (with skin tone + body type + appearance).
         # Every field may be "None / Not specified" — empty parts are skipped.
@@ -5617,7 +2346,9 @@ def main():
         if eng(skf_key):
             subject += f", {eng(skf_key)}"
         if locked:
-            subject += ", the same recurring character with a consistent face and identity in every image"
+            subject += (", the same recurring character with a consistent face and identity in every image"
+                        if prompt_len() == "pl_detailed" else
+                        ", the same recurring character with a consistent face")
         if eng(pet_key):
             subject += f", {eng(pet_key)}"
 
@@ -5949,6 +2680,10 @@ def main():
         with st.expander(f"🕘 {t('history_header')}", expanded=False):
             for item in history:
                 st.code(item, language=None)
+            st.button(f"🗑️ {t('history_clear')}", on_click=clear_prompt_history)
+            st.caption(t("saved_in_browser"))
+
+    sync_browser_store()
 
 
 if __name__ == "__main__":

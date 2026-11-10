@@ -1,0 +1,31 @@
+<!doctype html>
+<!-- Tiny Streamlit component (no build step): keeps the character library and
+     prompt history in this browser's localStorage so they survive a refresh.
+     Python sends `payload` (JSON string) to save; the stored value is sent
+     back once, on first render. Nothing leaves the browser. -->
+<html>
+<body>
+<script>
+const KEY = "promptmaker_store_v1";
+let sent = false;
+function send(type, data) {
+  window.parent.postMessage(Object.assign({ isStreamlitMessage: true, type: type }, data), "*");
+}
+window.addEventListener("message", function (e) {
+  if (e.source !== window.parent || !e.data || e.data.type !== "streamlit:render") return;
+  const args = e.data.args || {};
+  let stored = null;
+  try { stored = localStorage.getItem(KEY); } catch (err) {}
+  if (typeof args.payload === "string" && args.payload !== stored) {
+    try { localStorage.setItem(KEY, args.payload); } catch (err) {}
+  }
+  if (!sent) {
+    sent = true;
+    send("streamlit:setComponentValue", { value: { data: stored || "" }, dataType: "json" });
+  }
+});
+send("streamlit:componentReady", { apiVersion: 1 });
+send("streamlit:setFrameHeight", { height: 0 });
+</script>
+</body>
+</html>
