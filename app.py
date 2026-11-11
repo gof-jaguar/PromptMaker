@@ -1818,7 +1818,7 @@ def main():
         st.caption(t("random_style_hint"))
 
         st.divider()
-        st.caption("v6.2 — AI Prompt Generator")
+        st.caption("v6.3 — AI Prompt Generator")
 
     # ── Header ───────────────────────────────────────────────────────────
     st.markdown(
