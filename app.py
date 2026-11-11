@@ -169,49 +169,37 @@ NS_KEYS = ["ns_solo", "ns_duo", "ns_trio", "ns_group"]
 # Companion animal (None-first, A-Z) — appended to the subject section
 PET_KEYS = ["pet_none", "pet_bird", "pet_butterflies", "pet_cat", "pet_dog",
             "pet_kitten", "pet_puppy", "pet_rabbit"]
-HR_KEYS_WOMEN = [
-    "hair_none",
-    "hair_long", "hair_straight", "hair_loose_waves",
-    "hair_curly", "hair_wavy", "hair_layered", "hair_wolf_cut",
-    "hair_hush_cut", "hair_hime", "hair_bob", "hair_lob", "hair_pixie",
-    "hair_ponytail", "hair_high_ponytail", "hair_bun", "hair_messy_bun",
-    "hair_space_buns", "hair_braids", "hair_french_braid",
-    "hair_twin_braids", "hair_twintails",
-    "hair_half_up", "hair_side_swept",
-    # v5.9
-    "hair_butterfly",
-    "hair_shag",
-    "hair_jellyfish",
-    "hair_scurl",
-    "hair_hollywood",
-    "hair_french_bob",
-    "hair_bubble_pony",
-    "hair_low_pigtails",
-    "hair_low_bun",
-    "hair_half_bun",
-    "hair_claw_clip",
-    "hair_box_braids",
-    "hair_flower_updo",
-    "hair_thai_chignon",
-    "hair_jp_updo",
-    "hair_kr_daenggi",
-    "hair_cn_updo",
-]
-HR_KEYS_MEN = [
-    "hair_none",
-    "hair_short", "hair_buzz", "hair_crew_cut", "hair_middle_part",
-    "hair_textured_crop", "hair_undercut", "hair_fade", "hair_slick_back",
-    "hair_man_bun", "hair_bald",
-    # v5.9
-    "hair_two_block",
-    "hair_curtain_m",
-    "hair_side_part",
-    "hair_quiff",
-    "hair_perm_m",
-    "hair_mullet",
-    "hair_long_m",
-    "hair_topknot",
-]
+# Hairstyles are grouped (long → short → tied → braids → traditional); the
+# groups only show as an emoji in front of each option (see OPTION_EMOJI).
+HAIR_GROUPS_WOMEN = {
+    "hg_long": ["hair_long", "hair_straight", "hair_loose_waves", "hair_wavy",
+                "hair_beach_waves", "hair_mermaid", "hair_hollywood", "hair_scurl",
+                "hair_curly", "hair_afro", "hair_layered", "hair_butterfly",
+                "hair_hush_cut", "hair_hime", "hair_jellyfish", "hair_wet_slick"],
+    "hg_short": ["hair_mid_length", "hair_c_curl", "hair_lob", "hair_bob",
+                 "hair_french_bob", "hair_wavy_bob", "hair_wolf_cut", "hair_shag",
+                 "hair_pixie"],
+    "hg_tied": ["hair_ponytail", "hair_high_ponytail", "hair_low_pony",
+                "hair_ribbon_pony", "hair_bubble_pony", "hair_twintails",
+                "hair_half_twin", "hair_low_pigtails", "hair_half_up", "hair_half_bun",
+                "hair_bun", "hair_messy_bun", "hair_low_bun", "hair_ballerina",
+                "hair_space_buns", "hair_claw_clip"],
+    "hg_braid": ["hair_braids", "hair_french_braid", "hair_side_braid",
+                 "hair_twin_braids", "hair_fishtail", "hair_crown_braid",
+                 "hair_box_braids"],
+    "hg_trad": ["hair_flower_updo", "hair_thai_chignon", "hair_jp_updo",
+                "hair_kr_daenggi", "hair_cn_updo"],
+}
+HAIR_GROUPS_MEN = {
+    "hgm_short": ["hair_short", "hair_buzz", "hair_crew_cut", "hair_ivy", "hair_fade",
+                  "hair_textured_crop", "hair_undercut", "hair_side_part", "hair_bald"],
+    "hgm_mid": ["hair_middle_part", "hair_two_block", "hair_dandy", "hair_curtain_m",
+                "hair_quiff", "hair_slick_back", "hair_perm_m", "hair_curly_fringe",
+                "hair_messy_m", "hair_wolf_m", "hair_mullet"],
+    "hgm_long": ["hair_long_m", "hair_man_bun", "hair_topknot", "hair_dreads"],
+}
+HR_KEYS_WOMEN = ["hair_none"] + [k for g in HAIR_GROUPS_WOMEN.values() for k in g]
+HR_KEYS_MEN = ["hair_none"] + [k for g in HAIR_GROUPS_MEN.values() for k in g]
 # Full list (used for non-binary and as the language-reset superset)
 HR_KEYS = HR_KEYS_WOMEN + HR_KEYS_MEN[1:]  # skip duplicate hair_none
 
@@ -222,21 +210,35 @@ def hair_keys_for_gender(gd_key: str):
     if gd_key == "gender_male":
         return HR_KEYS_MEN
     return HR_KEYS
-HC_KEYS = ["hc_none", "hc_black", "hc_blue_black", "hc_dark_brown", "hc_ash_brown",
-           "hc_milk_tea", "hc_light_brown", "hc_honey_blonde", "hc_blonde",
-           "hc_platinum", "hc_red", "hc_burgundy", "hc_rose_gold",
-           "hc_pink", "hc_purple", "hc_blue", "hc_silver", "hc_white",
-           "hc_ombre", "hc_highlights"]
+# Hair color: natural dark → blonde & light → red → fashion → multi-tone
+HC_GROUPS = {
+    "hcg_dark": ["hc_black", "hc_blue_black", "hc_dark_brown", "hc_chocolate",
+                 "hc_ash_brown", "hc_milk_tea", "hc_caramel", "hc_light_brown"],
+    "hcg_light": ["hc_honey_blonde", "hc_blonde", "hc_ash_blonde", "hc_strawberry",
+                  "hc_platinum", "hc_silver", "hc_white", "hc_salt_pepper"],
+    "hcg_red": ["hc_copper", "hc_red", "hc_burgundy", "hc_rose_gold"],
+    "hcg_fashion": ["hc_pink", "hc_peach", "hc_purple", "hc_blue", "hc_mint"],
+    "hcg_multi": ["hc_ombre", "hc_balayage", "hc_highlights", "hc_money_piece",
+                  "hc_peekaboo", "hc_split"],
+}
+HC_KEYS = ["hc_none"] + [k for g in HC_GROUPS.values() for k in g]
 BN_KEYS = ["bangs_none", "bangs_straight", "bangs_see_through", "bangs_side",
            "bangs_curtain", "bangs_wispy", "bangs_micro", "bangs_hime"]
-EX_KEYS = ["expr_none", "expr_smile", "expr_bright_smile", "expr_laugh",
-           "expr_giggle", "expr_wink", "expr_tongue",
-           "expr_soft_gaze", "expr_doe_eyes", "expr_pout", "expr_playful",
-           "expr_mischief", "expr_shy", "expr_confident", "expr_smirk",
-           "expr_fierce", "expr_dreamy",
-           "expr_peaceful", "expr_eyes_closed", "expr_neutral", "expr_bored",
-           "expr_pensive", "expr_serious", "expr_surprised",
-           "expr_angry", "expr_sad", "expr_tearful", "expr_sultry"]
+# Expressions: happy → cute & playful → calm → cool & bold → moody
+EX_GROUPS = {
+    "exg_happy": ["expr_smile", "expr_bright_smile", "expr_grin", "expr_laugh",
+                  "expr_candid_laugh", "expr_giggle", "expr_excited"],
+    "exg_cute": ["expr_wink", "expr_tongue", "expr_pout", "expr_puff", "expr_kiss",
+                 "expr_doe_eyes", "expr_playful", "expr_shy", "expr_blush",
+                 "expr_sleepy", "expr_curious"],
+    "exg_calm": ["expr_soft_gaze", "expr_lips_parted", "expr_neutral", "expr_peaceful",
+                 "expr_eyes_closed", "expr_dreamy", "expr_pensive", "expr_longing"],
+    "exg_cool": ["expr_confident", "expr_smirk", "expr_brow_raise", "expr_fierce",
+                 "expr_cold", "expr_serious", "expr_determined", "expr_sultry"],
+    "exg_moody": ["expr_surprised", "expr_bored", "expr_sulky", "expr_sad",
+                  "expr_tearful"],
+}
+EX_KEYS = ["expr_none"] + [k for g in EX_GROUPS.values() for k in g]
 BT_KEYS = ["bt_none", "bt_slim", "bt_petite", "bt_lean", "bt_athletic",
            "bt_hourglass", "bt_curvy", "bt_tall", "bt_average"]
 AP_KEYS = ["app_none", "app_beautiful", "app_cpop", "app_charming", "app_chic",
@@ -247,17 +249,30 @@ MU_KEYS = ["mu_none", "mu_red_lip", "mu_douyin", "mu_editorial", "mu_freckles",
            "mu_glam", "mu_goth", "mu_gradient", "mu_igari", "mu_dewy",
            "mu_natural", "mu_no_makeup", "mu_smoky", "mu_soft_matte",
            "mu_bronzed", "mu_glitter"]
-FS_KEYS = ["fs_ao_dai", "fs_athleisure", "fs_barbiecore", "fs_basketball", "fs_beach_cover",
-           "fs_bikini", "fs_bohemian", "fs_office",
-           "fs_casual", "fs_cheer", "fs_clean_girl", "fs_coquette", "fs_cottagecore",
-           "fs_cyberpunk", "fs_dark_academia", "fs_egirl", "fs_elegant",
-           "fs_golf", "fs_gorpcore", "fs_gothic", "fs_grunge", "fs_hanbok", "fs_hanfu", "fs_japanese",
-           "fs_kimono", "fs_korean", "fs_light_academia", "fs_minimalist", "fs_mob_wife",
-           "fs_old_money", "fs_one_piece", "fs_parisian", "fs_preppy",
-           "fs_rashguard", "fs_resort",
-           "fs_rockstar", "fs_saree", "fs_school", "fs_skater", "fs_ski", "fs_streetwear",
-           "fs_teen", "fs_tennis", "fs_thai",
-           "fs_vintage", "fs_western", "fs_y2k", "fs_yoga", "fs_yukata"]
+# Fashion styles by group (A-Z inside each group)
+FS_GROUPS = {
+    "fsg_daily": ["fs_casual", "fs_minimalist", "fs_korean", "fs_streetwear",
+                  "fs_smart_casual", "fs_office", "fs_suit", "fs_elegant",
+                  "fs_date_night", "fs_cozy", "fs_all_black", "fs_all_white",
+                  "fs_denim", "fs_tomboy", "fs_cityboy", "fs_resort", "fs_vintage",
+                  "fs_preppy", "fs_teen"],
+    "fsg_trend": ["fs_clean_girl", "fs_old_money", "fs_coquette", "fs_cottagecore",
+                  "fs_soft_girl", "fs_fairycore", "fs_y2k", "fs_acubi",
+                  "fs_office_siren", "fs_blokette", "fs_dark_academia",
+                  "fs_light_academia", "fs_parisian", "fs_barbiecore", "fs_bohemian",
+                  "fs_japanese", "fs_grunge", "fs_gothic", "fs_egirl", "fs_rockstar",
+                  "fs_biker", "fs_racing", "fs_skater", "fs_gorpcore", "fs_cyberpunk",
+                  "fs_western"],
+    "fsg_event": ["fs_idol_stage", "fs_festival", "fs_dance", "fs_evening",
+                  "fs_wedding", "fs_school", "fs_cheer"],
+    "fsg_sport": ["fs_athleisure", "fs_yoga", "fs_tennis", "fs_golf", "fs_basketball",
+                  "fs_ski", "fs_bikini", "fs_one_piece", "fs_beach_cover", "fs_swim_m"],
+    "fsg_trad": ["fs_thai", "fs_kimono", "fs_yukata", "fs_hanbok", "fs_hanfu",
+                 "fs_ao_dai", "fs_saree"],
+}
+for _keys in FS_GROUPS.values():
+    _keys.sort(key=lambda k: TRANSLATIONS["en"][k].lower())
+FS_KEYS = [k for g in FS_GROUPS.values() for k in g]
 FB_KEYS = ["fab_none", "fab_chiffon", "fab_corduroy", "fab_cotton", "fab_crochet",
            "fab_denim", "fab_knit", "fab_jersey", "fab_lace", "fab_leather",
            "fab_linen", "fab_organza", "fab_satin", "fab_sequin", "fab_sheer",
@@ -294,80 +309,81 @@ SH_KEYS = ["sh_none", "sh_ankle_boots", "sh_ballet", "sh_barefoot",
            "sh_oxford", "sh_platform", "sh_running", "sh_sandals",
            "sh_sneakers"]
 # Location categories (first-level picker). Every location belongs to exactly
-# one category; LO_KEYS is derived: None, Studio (default), then A-Z.
+# one category; LO_KEYS is derived from this map.
 LCAT_KEYS = ["lcat_all", "lcat_indoor", "lcat_home", "lcat_city", "lcat_shops",
             "lcat_nature", "lcat_water", "lcat_luxury", "lcat_travel", "lcat_thai",
-            "lcat_asia", "lcat_leisure"]
+            "lcat_asia", "lcat_leisure", "lcat_fantasy"]
 LOC_CATEGORIES = {
-    "lcat_indoor": ["loc_art_gallery", "loc_dance_studio", "loc_library", "loc_museum",
-            "loc_studio", "loc_classroom"],
-    "lcat_home": ["loc_balcony", "loc_bedroom", "loc_kitchen", "loc_room", "loc_living",
-            "loc_vanity", "loc_window_seat"],
-    "lcat_city": ["loc_bridge", "loc_bus_stop", "loc_crosswalk", "loc_neon_alley",
-            "loc_night_market", "loc_railway", "loc_rooftop", "loc_shopping",
-            "loc_subway", "loc_train", "loc_university", "loc_street"],
-    "lcat_shops": ["loc_bookstore", "loc_cafe", "loc_convenience", "loc_boutique",
+    "lcat_indoor": [
+            "loc_art_gallery", "loc_dance_studio", "loc_library", "loc_studio",
+            "loc_classroom", "loc_white_studio", "loc_color_backdrop", "loc_elevator",
+            "loc_parking", "loc_office", "loc_stage", "loc_backstage"],
+    "lcat_home": [
+            "loc_balcony", "loc_bedroom", "loc_kitchen", "loc_living", "loc_vanity",
+            "loc_window_seat", "loc_desk", "loc_closet", "loc_backyard"],
+    "lcat_city": [
+            "loc_bridge", "loc_bus_stop", "loc_crosswalk", "loc_neon_alley",
+            "loc_night_market", "loc_railway", "loc_rooftop", "loc_shopping", "loc_subway",
+            "loc_train", "loc_university", "loc_street", "loc_graffiti", "loc_skywalk",
+            "loc_car", "loc_gas_station", "loc_rain_street", "loc_skyline", "loc_bus",
+            "loc_subway_car"],
+    "lcat_shops": [
+            "loc_bookstore", "loc_cafe", "loc_convenience", "loc_boutique",
             "loc_flower_shop", "loc_bakery", "loc_laundromat", "loc_supermarket",
-            "loc_record_store"],
-    "lcat_nature": ["loc_autumn_park", "loc_cherry", "loc_desert", "loc_flower_field",
-            "loc_forest", "loc_garden", "loc_greenhouse", "loc_lavender",
-            "loc_mountain", "loc_brick_ruin", "loc_overgrown", "loc_rice_field",
-            "loc_snow", "loc_sunflower", "loc_vineyard", "loc_meadow"],
-    "lcat_water": ["loc_beach", "loc_cliff", "loc_harbor", "loc_lake", "loc_pool",
-            "loc_lighthouse", "loc_waterfall"],
-    "lcat_luxury": ["loc_ballroom", "loc_mansion", "loc_fine_dining", "loc_stairs",
-            "loc_hotel_lobby", "loc_yacht"],
-    "lcat_travel": ["loc_airport", "loc_castle", "loc_old_town", "loc_santorini", "loc_temple",
-            "loc_venice",
-            "loc_hoi_an",
-            "loc_bali",
-            "loc_india_palace",
-            "loc_morocco",
-            "loc_paris",
-            "loc_nyc",
-            "loc_london"],
-    "lcat_thai": ["loc_th_rooftop", "loc_th_chiangmai", "loc_th_floating", "loc_th_wat",
+            "loc_record_store", "loc_bar", "loc_thrift", "loc_bubble_tea", "loc_ice_cream",
+            "loc_diner", "loc_mall"],
+    "lcat_nature": [
+            "loc_autumn_park", "loc_cherry", "loc_desert", "loc_flower_field",
+            "loc_forest", "loc_garden", "loc_greenhouse", "loc_lavender", "loc_mountain",
+            "loc_brick_ruin", "loc_overgrown", "loc_rice_field", "loc_snow",
+            "loc_sunflower", "loc_vineyard", "loc_meadow", "loc_tulip", "loc_pampas",
+            "loc_pine", "loc_starry_field", "loc_country_road", "loc_aurora"],
+    "lcat_water": [
+            "loc_beach", "loc_cliff", "loc_harbor", "loc_lake", "loc_pool",
+            "loc_lighthouse", "loc_waterfall", "loc_boat", "loc_river", "loc_underwater",
+            "loc_infinity_pool", "loc_tropical"],
+    "lcat_luxury": [
+            "loc_ballroom", "loc_mansion", "loc_fine_dining", "loc_stairs",
+            "loc_hotel_lobby", "loc_yacht", "loc_penthouse", "loc_private_jet",
+            "loc_sports_car", "loc_opera", "loc_red_carpet"],
+    "lcat_travel": [
+            "loc_airport", "loc_castle", "loc_old_town", "loc_santorini", "loc_temple",
+            "loc_venice", "loc_hoi_an", "loc_bali", "loc_india_palace", "loc_morocco",
+            "loc_paris", "loc_nyc", "loc_london", "loc_cappadocia", "loc_swiss",
+            "loc_amalfi", "loc_rome", "loc_pyramids", "loc_maldives", "loc_singapore",
+            "loc_la"],
+    "lcat_thai": [
+            "loc_th_rooftop", "loc_th_chiangmai", "loc_th_floating", "loc_th_wat",
             "loc_th_shophouse", "loc_th_tea", "loc_th_island", "loc_th_tuktuk",
-            "loc_th_palace",
-            "loc_th_ruins",
-            "loc_th_river_temple",
-            "loc_th_white_temple",
-            "loc_th_teak",
-            "loc_th_sala",
-            "loc_th_lotus",
-            "loc_th_lantern",
-            "loc_th_krathong",
-            "loc_th_chinatown",
-            "loc_th_canal",
-            "loc_th_street_food",
-            "loc_th_rice_terrace"],
-    "lcat_asia": ["loc_bamboo", "loc_kr_hanok", "loc_jp_ryokan", "loc_kr_street", "loc_jp_torii",
-            "loc_jp_street",
-            "loc_jp_castle",
-            "loc_jp_zen",
-            "loc_jp_tea_house",
-            "loc_jp_gion",
-            "loc_jp_fuji",
-            "loc_jp_izakaya",
-            "loc_jp_shibuya",
-            "loc_jp_matsuri",
-            "loc_jp_onsen",
-            "loc_jp_station",
-            "loc_jp_school",
-            "loc_kr_palace",
-            "loc_kr_han_river",
-            "loc_kr_pocha",
-            "loc_cn_garden",
-            "loc_cn_lantern_street",
-            "loc_cn_water_town",
-            "loc_cn_great_wall"],
-    "lcat_leisure": ["loc_amusement", "loc_aquarium", "loc_arcade", "loc_basketball", "loc_gym",
-            "loc_ice_rink", "loc_karaoke", "loc_cinema", "loc_photo_booth",
-            "loc_bowling", "loc_skatepark", "loc_stadium", "loc_tennis", "loc_carousel"],
+            "loc_th_palace", "loc_th_ruins", "loc_th_river_temple", "loc_th_white_temple",
+            "loc_th_teak", "loc_th_sala", "loc_th_lotus", "loc_th_lantern",
+            "loc_th_krathong", "loc_th_chinatown", "loc_th_canal", "loc_th_street_food",
+            "loc_th_rice_terrace", "loc_th_bts", "loc_th_songkran", "loc_th_phuket_old",
+            "loc_th_flower_market", "loc_th_fresh_market"],
+    "lcat_asia": [
+            "loc_bamboo", "loc_kr_hanok", "loc_jp_ryokan", "loc_kr_street", "loc_jp_torii",
+            "loc_jp_street", "loc_jp_castle", "loc_jp_zen", "loc_jp_tea_house",
+            "loc_jp_gion", "loc_jp_fuji", "loc_jp_izakaya", "loc_jp_shibuya",
+            "loc_jp_matsuri", "loc_jp_onsen", "loc_jp_station", "loc_jp_school",
+            "loc_kr_palace", "loc_kr_han_river", "loc_kr_pocha", "loc_cn_garden",
+            "loc_cn_lantern_street", "loc_cn_water_town", "loc_cn_great_wall",
+            "loc_jp_vending", "loc_jp_sakura_river", "loc_jp_snow_village", "loc_kr_cafe",
+            "loc_cn_bund", "loc_hk_neon", "loc_tw_jiufen"],
+    "lcat_leisure": [
+            "loc_amusement", "loc_aquarium", "loc_arcade", "loc_basketball", "loc_gym",
+            "loc_ice_rink", "loc_karaoke", "loc_cinema", "loc_photo_booth", "loc_bowling",
+            "loc_skatepark", "loc_stadium", "loc_tennis", "loc_carousel", "loc_concert",
+            "loc_camp", "loc_picnic", "loc_golf", "loc_ferris", "loc_club", "loc_football"],
+    "lcat_fantasy": [
+            "loc_clouds", "loc_fairy_forest", "loc_flower_room", "loc_space",
+            "loc_cyber_city", "loc_candy", "loc_mirror_room", "loc_balloon_room",
+            "loc_ice_palace"],
 }
-LO_KEYS = ["loc_none", "loc_studio"] + sorted(
-    (k for keys in LOC_CATEGORIES.values() for k in keys if k != "loc_studio"),
-    key=lambda k: TRANSLATIONS["en"][k].lower())
+# None, Studio (the default), then category by category, A-Z inside each
+LO_KEYS = ["loc_none", "loc_studio"] + [
+    k for keys in LOC_CATEGORIES.values()
+    for k in sorted(keys, key=lambda k: TRANSLATIONS["en"][k].lower())
+    if k != "loc_studio"]
 
 
 def loc_keys_for_category(lcat_key: str):
@@ -376,24 +392,51 @@ def loc_keys_for_category(lcat_key: str):
         return ["loc_none"] + [k for k in LO_KEYS if k in LOC_CATEGORIES[lcat_key]]
     return LO_KEYS
 
-TD_KEYS = ["tod_none", "tod_golden", "tod_blue", "tod_noon", "tod_night",
-           "tod_overcast", "tod_sunrise"]
-LT_KEYS = ["lit_none", "lit_natural", "lit_window", "lit_studio",
-           "lit_highkey", "lit_lowkey", "lit_rim", "lit_silhouette",
-           "lit_neon", "lit_fairy", "lit_lantern", "lit_candle",
-           "lit_dramatic", "lit_flash",
-           "lit_backlit", "lit_dappled", "lit_blinds", "lit_gel",
-           "lit_spotlight", "lit_moonlight", "lit_bonfire", "lit_fireworks",
-           "lit_screen", "lit_projector", "lit_disco", "lit_godrays"]
+# Time of day runs chronologically (dawn → night), not A-Z
+TD_GROUPS = {
+    "tdg_morning": ["tod_dawn", "tod_sunrise", "tod_morning"],
+    "tdg_day": ["tod_noon", "tod_afternoon", "tod_overcast"],
+    "tdg_evening": ["tod_golden", "tod_sunset", "tod_blue", "tod_dusk"],
+    "tdg_night": ["tod_night", "tod_midnight", "tod_starry"],
+}
+TD_KEYS = ["tod_none"] + [k for g in TD_GROUPS.values() for k in g]
+TD_DEFAULT = TD_KEYS.index("tod_golden")
+# Lighting: natural light → studio → night & ambient
+LT_GROUPS = {
+    "ltg_natural": ["lit_natural", "lit_window", "lit_golden", "lit_backlit",
+                    "lit_overcast", "lit_open_shade", "lit_hard_sun", "lit_dappled",
+                    "lit_blinds", "lit_godrays", "lit_silhouette", "lit_moonlight"],
+    "ltg_studio": ["lit_studio", "lit_highkey", "lit_lowkey", "lit_beauty", "lit_ring",
+                   "lit_rim", "lit_dramatic", "lit_cinematic", "lit_flash", "lit_gel",
+                   "lit_spotlight"],
+    "ltg_night": ["lit_neon", "lit_signage", "lit_streetlamp", "lit_headlights",
+                  "lit_lamp", "lit_fairy", "lit_lantern", "lit_candle", "lit_bonfire",
+                  "lit_fireworks", "lit_screen", "lit_disco"],
+}
+LT_KEYS = ["lit_none"] + [k for g in LT_GROUPS.values() for k in g]
 SN_KEYS = ["season_none", "season_spring", "season_summer",
            "season_autumn", "season_winter", "season_rainy"]
-PS_KEYS = ["ps_none", "ps_dreamy", "ps_soft", "ps_vivid", "ps_bw",
-           "ps_vintage", "ps_nostalgic", "ps_cinematic", "ps_moody", "ps_pastel",
-           "ps_hdr", "ps_matte", "ps_commercial", "ps_editorial",
-           "ps_documentary", "ps_polaroid", "ps_digicam", "ps_fantasy",
-           "ps_fairytale", "ps_cyber", "ps_vaporwave", "ps_surreal"]
-SF_KEYS = ["sf_none", "sf_extreme_cu", "sf_closeup", "sf_medium_cu", "sf_medium",
-           "sf_cowboy", "sf_medium_full", "sf_full", "sf_wide"]
+# Picture style: clean & realistic → film & retro → cinematic → dreamy & fantasy
+PS_GROUPS = {
+    "psg_clean": ["ps_natural", "ps_commercial", "ps_editorial", "ps_bright_airy",
+                  "ps_minimal", "ps_soft", "ps_vivid", "ps_documentary", "ps_bw"],
+    "psg_film": ["ps_vintage", "ps_nostalgic", "ps_jfilm", "ps_matte", "ps_polaroid",
+                 "ps_digicam", "ps_90s", "ps_70s", "ps_vhs"],
+    "psg_cine": ["ps_cinematic", "ps_kdrama", "ps_moody", "ps_dark_luxe", "ps_noir",
+                 "ps_hk_cinema"],
+    "psg_dream": ["ps_dreamy", "ps_glow", "ps_pastel", "ps_storybook", "ps_fantasy",
+                  "ps_fairytale", "ps_cyber", "ps_vaporwave", "ps_surreal"],
+}
+PS_KEYS = ["ps_none"] + [k for g in PS_GROUPS.values() for k in g]
+# Framing runs tight → wide (a scale, not A-Z); the detail shot comes last
+SF_GROUPS = {
+    "sfg_close": ["sf_extreme_cu", "sf_closeup", "sf_medium_cu"],
+    "sfg_half": ["sf_medium", "sf_cowboy", "sf_medium_full"],
+    "sfg_full": ["sf_full", "sf_ootd"],
+    "sfg_wide": ["sf_wide", "sf_extreme_wide"],
+    "sfg_detail": ["sf_detail"],
+}
+SF_KEYS = ["sf_none"] + [k for g in SF_GROUPS.values() for k in g]
 # Subject: skin tone (light → dark), face details, skin & hair finish, nails
 ST_KEYS = ["st_none", "st_porcelain", "st_fair", "st_light_warm", "st_medium",
            "st_olive", "st_tan", "st_brown", "st_deep"]
@@ -476,54 +519,75 @@ CMP_KEYS = ["comp_center", "comp_rot_left", "comp_rot_right",
             "comp_negative_space", "comp_symmetry", "comp_diagonal",
             "comp_fill", "comp_reflection", "comp_depth"]
 # Pose categories (first-level picker). Every pose belongs to exactly one
-# category; PO_KEYS is derived from this map, sorted A-Z by English label.
+# category; PO_KEYS is derived from this map: category by category, A-Z inside.
 PC_KEYS = ["pc_all", "pc_standing", "pc_walking", "pc_sitting", "pc_kneeling",
-          "pc_lying", "pc_crouching", "pc_cute", "pc_social", "pc_props",
+          "pc_lying", "pc_crouching", "pc_cute", "pc_social", "pc_daily", "pc_props",
           "pc_sport"]
 POSE_CATEGORIES = {
-    "pc_standing": ["pose_arms_up", "pose_cross_arms", "pose_arms_open", "pose_back_camera",
+    "pc_standing": [
+            "pose_arms_up", "pose_cross_arms", "pose_arms_open", "pose_back_camera",
             "pose_hair_both", "pose_hands_hips", "pose_chin_up", "pose_contrapposto",
             "pose_elegant", "pose_hand_collar", "pose_hand_hair", "pose_hand_hip",
             "pose_hands_back", "pose_arms_behind_head", "pose_hands_pocket",
             "pose_hands_nape", "pose_lean", "pose_railing", "pose_looking_away",
             "pose_over_shoulder", "pose_look_up", "pose_foot_kick", "pose_s_curve",
-            "pose_stand", "pose_stretch", "pose_tiptoe"],
-    "pc_walking": ["pose_candid", "pose_carefree_walk", "pose_dance", "pose_hair_flip",
+            "pose_stand", "pose_stretch", "pose_tiptoe", "pose_wall_foot", "pose_doorway",
+            "pose_hold_hair_wind", "pose_look_down_smile"],
+    "pc_walking": [
+            "pose_candid", "pose_carefree_walk", "pose_dance", "pose_hair_flip",
             "pose_jump", "pose_look_back_walk", "pose_run", "pose_runway", "pose_skip",
             "pose_twirl", "pose_walk", "pose_walk_away", "pose_walk_toward",
-            "pose_bag_strap"],
-    "pc_sitting": ["pose_cross_leg", "pose_hug_knees", "pose_meditate", "pose_sit_side",
+            "pose_bag_strap", "pose_puddle_hop", "pose_run_laugh", "pose_stairs_down"],
+    "pc_sitting": [
+            "pose_cross_leg", "pose_hug_knees", "pose_meditate", "pose_sit_side",
             "pose_sit", "pose_sit_chair_back", "pose_sit_floor_cross", "pose_sit_ledge",
-            "pose_sit_stairs", "pose_sit_cheek_knee", "pose_sit_hold_ankle",
-            "pose_legs_extended", "pose_sit_knee_up", "pose_w_sit", "pose_wariza_hands"],
-    "pc_kneeling": ["pose_kneel", "pose_kneel_upright", "pose_kneel_hair", "pose_kneel_look_up",
+            "pose_sit_stairs", "pose_sit_cheek_knee", "pose_legs_extended",
+            "pose_sit_knee_up", "pose_w_sit", "pose_sit_bed_edge", "pose_sit_window",
+            "pose_sit_table_chin", "pose_sit_floor_lean", "pose_sit_swing"],
+    "pc_kneeling": [
+            "pose_kneel", "pose_kneel_upright", "pose_kneel_hair", "pose_kneel_look_up",
             "pose_one_knee", "pose_seiza"],
-    "pc_lying": ["pose_lying", "pose_lie_back_hair", "pose_lie_back_knee", "pose_lie_side",
-            "pose_lie_stomach", "pose_lie_arm_pillow"],
-    "pc_crouching": ["pose_bend_shoe", "pose_bend_knees", "pose_crouch", "pose_crouch_chin",
-            "pose_crouch_look_back", "pose_lean_forward", "pose_squat"],
-    "pc_cute": ["pose_big_heart", "pose_blow_kiss", "pose_bunny_ears", "pose_cat_paw",
+    "pc_lying": [
+            "pose_lying", "pose_lie_back_hair", "pose_lie_back_knee", "pose_lie_side",
+            "pose_lie_stomach", "pose_lie_arm_pillow", "pose_lie_flowers"],
+    "pc_crouching": [
+            "pose_bend_knees", "pose_crouch", "pose_crouch_chin", "pose_crouch_look_back",
+            "pose_lean_forward", "pose_squat"],
+    "pc_cute": [
+            "pose_big_heart", "pose_blow_kiss", "pose_bunny_ears", "pose_cat_paw",
             "pose_double_peace", "pose_finger_frame", "pose_finger_heart",
-            "pose_fist_cheeks", "pose_flower_chin", "pose_gyaru_peace", "pose_sleeve_smile",
-            "pose_hand_chin", "pose_cheek_hands", "pose_head_tilt", "pose_heart_hands",
-            "pose_mini_heart", "pose_ok_sign", "pose_peace", "pose_peek_fingers",
-            "pose_salute", "pose_please", "pose_point_camera", "pose_poke_cheek",
-            "pose_rawr", "pose_shush", "pose_self_hug", "pose_sweater_paws",
-            "pose_thumbs_up", "pose_hair_tuck", "pose_wave", "pose_wink", "pose_yawn"],
-    "pc_social": ["pose_fix_jacket", "pose_adjust_glasses", "pose_phone_check", "pose_curtsy",
+            "pose_fist_cheeks", "pose_flower_chin", "pose_sleeve_smile", "pose_hand_chin",
+            "pose_cheek_hands", "pose_head_tilt", "pose_heart_hands", "pose_mini_heart",
+            "pose_ok_sign", "pose_peace", "pose_peek_fingers", "pose_salute",
+            "pose_please", "pose_point_camera", "pose_poke_cheek", "pose_rawr",
+            "pose_shush", "pose_self_hug", "pose_sweater_paws", "pose_thumbs_up",
+            "pose_hair_tuck", "pose_wave", "pose_wink", "pose_yawn", "pose_peace_eye",
+            "pose_cheek_heart", "pose_finger_gun_chin", "pose_cover_laugh"],
+    "pc_social": [
+            "pose_fix_jacket", "pose_adjust_glasses", "pose_phone_check", "pose_curtsy",
             "pose_editorial", "pose_high_fashion", "pose_coat_lapels", "pose_skirt_hem",
             "pose_mirror_selfie", "pose_reach_camera", "pose_selfie", "pose_shield_sun",
-            "pose_hold_hat", "pose_wai", "pose_bow"],
-    "pc_props": ["pose_touch_plants", "pose_bouquet", "pose_coffee", "pose_hold_camera",
-            "pose_grass_stalk", "pose_umbrella", "pose_balloons", "pose_ear_wall",
-            "pose_peek_tree", "pose_pick_flower", "pose_read_book", "pose_smell_flower",
-            "pose_bicycle", "pose_parasol"],
-    "pc_sport": ["pose_ballet", "pose_boxing", "pose_cartwheel", "pose_dribble", "pose_dynamic",
-            "pose_skateboard", "pose_lunge", "pose_tennis_swing", "pose_yoga"],
+            "pose_hold_hat", "pose_wai", "pose_bow", "pose_05x", "pose_follow_me",
+            "pose_ootd"],
+    "pc_daily": [
+            "pose_eat", "pose_drink_straw", "pose_ice_cream", "pose_bubble_gum",
+            "pose_cook", "pose_laptop", "pose_write", "pose_headphones", "pose_phone_call",
+            "pose_shopping", "pose_makeup", "pose_tie_hair", "pose_guitar", "pose_paint",
+            "pose_watering", "pose_hug_plush", "pose_rain_hand", "pose_suitcase",
+            "pose_sing_mic", "pose_drive"],
+    "pc_props": [
+            "pose_touch_plants", "pose_bouquet", "pose_coffee", "pose_hold_camera",
+            "pose_umbrella", "pose_balloons", "pose_peek_tree", "pose_pick_flower",
+            "pose_read_book", "pose_smell_flower", "pose_bicycle", "pose_parasol"],
+    "pc_sport": [
+            "pose_ballet", "pose_boxing", "pose_dribble", "pose_dynamic",
+            "pose_skateboard", "pose_lunge", "pose_tennis_swing", "pose_yoga", "pose_jog",
+            "pose_golf_swing", "pose_kpop_dance", "pose_high_kick", "pose_bike_ride",
+            "pose_badminton", "pose_football"],
 }
-PO_KEYS = ["pose_none"] + sorted(
-    (k for keys in POSE_CATEGORIES.values() for k in keys),
-    key=lambda k: TRANSLATIONS["en"][k].lower())
+PO_KEYS = ["pose_none"] + [
+    k for keys in POSE_CATEGORIES.values()
+    for k in sorted(keys, key=lambda k: TRANSLATIONS["en"][k].lower())]
 
 
 def pose_keys_for_category(pc_key: str):
@@ -575,7 +639,7 @@ DET_KEYS = ["det_corset", "det_embroidery", "det_floral", "det_gingham",
             "det_slit", "det_square_neck", "det_stripes", "det_tiered",
             "det_v_neck"]
 # Ready-made seasonal outfit sets (outfit type "Set"), grouped by season
-OSET_KEYS = ["os_none", "os_spr_frill_knit", "os_spr_floral_cami",
+_OSET_ALL = ["os_spr_frill_knit", "os_spr_floral_cami",
              "os_spr_floral_midi", "os_spr_ribbon_blouse", "os_spr_shirt_dress",
              "os_spr_lace_cami", "os_sum_linen", "os_sum_sundress",
              "os_sum_crop_denim", "os_sum_halter_maxi", "os_sum_gingham",
@@ -606,16 +670,38 @@ OSET_KEYS = ["os_none", "os_spr_frill_knit", "os_spr_floral_cami",
              "os_nat_in_saree",
              "os_nat_in_lehenga",
              "os_nat_id_kebaya",
-             "os_nat_de_dirndl"]
-# Random Look only draws everyday sets: a national costume needs a matching
-# scene, so those are picked by hand or through a theme.
-OSET_RANDOM_KEYS = [k for k in OSET_KEYS[1:] if not k.startswith("os_nat_")]
+             "os_nat_de_dirndl",
+             # v6.3 — everyday, men's and extra seasonal / party sets
+             "os_day_tee_jeans", "os_day_cardigan_mini", "os_day_oversized_tee",
+             "os_day_blazer_jeans", "os_day_sweatsuit", "os_day_tank_cargo",
+             "os_day_shirt_skirt", "os_day_pajamas",
+             "os_men_tee_jeans", "os_men_shirt_chinos", "os_men_street",
+             "os_men_suit", "os_men_coat", "os_men_leather", "os_men_korean",
+             "os_men_resort",
+             "os_sum_tank_linen", "os_sum_bikini_shirt", "os_aut_varsity",
+             "os_win_knit_set", "os_par_blazer_dress", "os_par_corset"]
 # Set categories (first-level picker) — a set's category is its key prefix
-OSCAT_KEYS = ["oscat_all", "oscat_spring", "oscat_summer", "oscat_autumn",
-              "oscat_winter", "oscat_party", "oscat_national"]
-OSCAT_PREFIXES = {"oscat_spring": "os_spr_", "oscat_summer": "os_sum_",
-                  "oscat_autumn": "os_aut_", "oscat_winter": "os_win_",
-                  "oscat_party": "os_par_", "oscat_national": "os_nat_"}
+OSCAT_KEYS = ["oscat_all", "oscat_daily", "oscat_spring", "oscat_summer",
+              "oscat_autumn", "oscat_winter", "oscat_party", "oscat_men",
+              "oscat_national"]
+OSCAT_PREFIXES = {"oscat_daily": "os_day_", "oscat_spring": "os_spr_",
+                  "oscat_summer": "os_sum_", "oscat_autumn": "os_aut_",
+                  "oscat_winter": "os_win_", "oscat_party": "os_par_",
+                  "oscat_men": "os_men_", "oscat_national": "os_nat_"}
+OSET_KEYS = ["os_none"] + [k for prefix in OSCAT_PREFIXES.values()
+                           for k in _OSET_ALL if k.startswith(prefix)]
+# Random Look only draws everyday sets: a national costume needs a matching
+# scene, so those are picked by hand or through a theme. The men's sets are
+# drawn for a male subject only, and are the only sets a male subject gets.
+OSET_RANDOM_KEYS = [k for k in OSET_KEYS[1:] if not k.startswith("os_nat_")]
+
+
+def random_set_keys(gd_key: str):
+    """Everyday outfit sets Random Look may draw for this gender."""
+    if gd_key == "gender_nb":
+        return OSET_RANDOM_KEYS
+    return [k for k in OSET_RANDOM_KEYS
+            if k.startswith("os_men_") == (gd_key == "gender_male")]
 
 
 def oset_keys_for_category(oscat_key: str):
@@ -624,6 +710,59 @@ def oset_keys_for_category(oscat_key: str):
     if prefix:
         return ["os_none"] + [k for k in OSET_KEYS[1:] if k.startswith(prefix)]
     return OSET_KEYS
+
+
+# Simple mode's outfit type picker: every fashion-style group and set category
+SOC_KEYS = ["soc_all"] + list(FS_GROUPS) + OSCAT_KEYS[1:]
+
+
+def simple_outfit_keys(soc_key: str):
+    """Fashion styles or outfit sets listed under a simple-mode outfit type."""
+    if soc_key in FS_GROUPS:
+        return FS_GROUPS[soc_key]
+    if soc_key in OSCAT_PREFIXES:
+        return oset_keys_for_category(soc_key)[1:]
+    return FS_KEYS + OSET_KEYS[1:]
+
+
+# ── Group markers ──────────────────────────────────────────────────────────
+# Long lists are ordered group by group and every option shows its group's
+# emoji in front (via format_func, so stored values stay plain labels).
+GROUP_EMOJI = {
+    "hg_long": "💇", "hg_short": "✂️", "hg_tied": "🎀", "hg_braid": "🪢", "hg_trad": "👘",
+    "hgm_short": "💈", "hgm_mid": "🌀", "hgm_long": "🧔",
+    "hcg_dark": "🌰", "hcg_light": "🌼", "hcg_red": "🍒", "hcg_fashion": "🌈",
+    "hcg_multi": "🎨",
+    "exg_happy": "😊", "exg_cute": "🥰", "exg_calm": "😌", "exg_cool": "😎",
+    "exg_moody": "😢",
+    "fsg_daily": "👕", "fsg_trend": "💅", "fsg_event": "🎤", "fsg_sport": "🏃",
+    "fsg_trad": "🏮",
+    "tdg_morning": "🌅", "tdg_day": "☀️", "tdg_evening": "🌇", "tdg_night": "🌙",
+    "ltg_natural": "☀️", "ltg_studio": "💡", "ltg_night": "🌃",
+    "psg_clean": "📷", "psg_film": "🎞️", "psg_cine": "🎬", "psg_dream": "✨",
+    "sfg_close": "🙂", "sfg_half": "👤", "sfg_full": "🧍", "sfg_wide": "🏞️",
+    "sfg_detail": "🔍",
+    "pc_standing": "🧍", "pc_walking": "🚶", "pc_sitting": "🪑", "pc_kneeling": "🧎",
+    "pc_lying": "🛌", "pc_crouching": "🙇", "pc_cute": "✌️", "pc_social": "🤳",
+    "pc_daily": "☕", "pc_props": "💐", "pc_sport": "⚽",
+    "lcat_indoor": "📸", "lcat_home": "🏠", "lcat_city": "🏙️", "lcat_shops": "🛍️",
+    "lcat_nature": "🌿", "lcat_water": "🌊", "lcat_luxury": "💎", "lcat_travel": "✈️",
+    "lcat_thai": "🛕", "lcat_asia": "⛩️", "lcat_leisure": "🎡", "lcat_fantasy": "🔮",
+}
+# option key (or group key, for category pickers) → emoji
+OPTION_EMOJI = dict(GROUP_EMOJI)
+for _groups in (HAIR_GROUPS_WOMEN, HAIR_GROUPS_MEN, HC_GROUPS, EX_GROUPS, FS_GROUPS,
+                TD_GROUPS, LT_GROUPS, PS_GROUPS, SF_GROUPS, POSE_CATEGORIES,
+                LOC_CATEGORIES):
+    for _group, _keys in _groups.items():
+        OPTION_EMOJI.update({k: GROUP_EMOJI[_group] for k in _keys})
+
+
+def grouped(keys):
+    """format_func for a selectbox/multiselect over `keys`: shows each label
+    with its group's emoji in front. Options without a group stay as they are."""
+    table = {t(k): f"{OPTION_EMOJI[k]} {t(k)}" for k in keys if k in OPTION_EMOJI}
+    return lambda label: table.get(label, label)
 
 
 # Random Look style (sidebar): everyday looks, or a national costume paired
@@ -648,7 +787,8 @@ CULTURE_LOOKS = {
         "sets_m": ["os_nat_jp_male", "os_nat_jp_yukata_m"],
         "locs": ["loc_jp_torii", "loc_jp_ryokan", "loc_jp_castle", "loc_jp_zen",
                  "loc_jp_tea_house", "loc_jp_gion", "loc_jp_onsen", "loc_jp_fuji",
-                 "loc_bamboo", "loc_cherry", "loc_jp_matsuri"],
+                 "loc_bamboo", "loc_cherry", "loc_jp_matsuri", "loc_jp_sakura_river",
+                 "loc_jp_snow_village"],
         "hair": ["hair_jp_updo", "hair_low_bun", "hair_flower_updo", "hair_hime"],
         "poses": ["pose_bow", "pose_parasol", "pose_sleeve_smile", "pose_seiza",
                   "pose_look_back_walk", "pose_stand"],
@@ -755,7 +895,13 @@ PHOTO_SET_CH_KEYS = ["ch_high", "ch_slight_high", "ch_eye", "ch_chest",
 PHOTO_SET_CD_KEYS = ["cd_front", "cd_front_3q", "cd_side", "cd_back_3q",
                      "cd_over_shoulder"]
 PHOTO_SET_POSE_EXCLUDE = ({"pose_none", "pose_meditate", "pose_mirror_selfie",
-                           "pose_selfie", "pose_phone_check"}
+                           "pose_selfie", "pose_phone_check", "pose_05x",
+                           "pose_cook", "pose_laptop", "pose_write", "pose_drive",
+                           "pose_makeup", "pose_suitcase", "pose_phone_call",
+                           "pose_sing_mic", "pose_guitar", "pose_paint",
+                           "pose_watering", "pose_sit_bed_edge", "pose_sit_window",
+                           "pose_sit_swing", "pose_lie_flowers", "pose_stairs_down",
+                           "pose_puddle_hop"}
                           | set(POSE_CATEGORIES["pc_sport"]))
 PHOTO_SET_SIZE = 6
 
@@ -965,11 +1111,13 @@ def sync_browser_store():
 SIMPLE_ROWS = [
     [("w_gender", "gender", GD_KEYS, 0), ("w_age", "age_group", AG_KEYS, 1),
      ("w_hair", "hair_style", None, 1), ("w_hair_color", "hair_color", HC_KEYS, 1)],
-    [("w_expr", "expression", EX_KEYS, 1), ("OUTFIT", "simple_outfit", None, 0),
-     ("w_pose", "pose", PO_KEYS, 0)],
-    [("w_location", "location", LO_KEYS, 1), ("w_tod", "time_of_day", TD_KEYS, 1),
-     ("w_lighting", "lighting", LT_KEYS, 1)],
-    [("w_framing", "shot_framing", SF_KEYS, 2), ("w_pstyle", "picture_style", PS_KEYS, 0)],
+    [("w_expr", "expression", EX_KEYS, 1), ("OUTFIT_CAT", "simple_outfit_cat", None, 0),
+     ("OUTFIT", "simple_outfit", None, 0)],
+    [("w_pose_cat", "pose_category", PC_KEYS, 0), ("w_pose", "pose", None, 0),
+     ("w_framing", "shot_framing", SF_KEYS, 2)],
+    [("w_loc_cat", "location_category", LCAT_KEYS, 0), ("w_location", "location", None, 1),
+     ("w_tod", "time_of_day", TD_KEYS, TD_DEFAULT)],
+    [("w_lighting", "lighting", LT_KEYS, 1), ("w_pstyle", "picture_style", PS_KEYS, 0)],
 ]
 OUTFIT_NONE_WIDGETS = (("w_top", "top_none"), ("w_bottom", "bot_none"),
                        ("top_fabric_sel", "fab_none"), ("bot_fabric_sel", "fab_none"),
@@ -982,13 +1130,24 @@ def sync_simple(real_key):
     st.session_state[real_key] = st.session_state[f"sm_{real_key}"]
     if real_key == "w_gender":
         reset_hair_on_gender_change()
-    elif real_key == "w_location":
-        st.session_state["w_loc_cat"] = t("lcat_all")
+    elif real_key in ("w_location", "w_loc_cat"):
+        if real_key == "w_loc_cat":
+            reset_location_on_category_change()
         st.session_state["scene_mode_radio"] = t("scene_mode_preset")
         st.session_state["attach_scene"] = False
-    elif real_key == "w_pose":
-        st.session_state["w_pose_cat"] = t("pc_all")
+    elif real_key in ("w_pose", "w_pose_cat"):
+        if real_key == "w_pose_cat":
+            reset_pose_on_category_change()
         st.session_state["attach_pose"] = False
+
+
+def _simple_keys(real_key):
+    """Option keys of a simple picker whose list depends on another pick."""
+    if real_key == "w_pose":
+        return pose_keys_for_category(widget_option_value("w_pose_cat") or "pc_all")
+    if real_key == "w_location":
+        return loc_keys_for_category(widget_option_value("w_loc_cat") or "lcat_all")
+    return hair_pool_for_label(st.session_state.get("w_gender", t("gender_female")))
 
 
 def _simple_outfit_key():
@@ -1013,12 +1172,14 @@ def _simple_outfit_key():
     return styles[0] if styles else "os_none"
 
 
-def sync_simple_outfit():
-    """Simple-mode outfit picker: one fashion style or one ready-made set."""
-    label = st.session_state.get("sm_outfit")
-    key = next((k for k in ["os_none"] + FS_KEYS + OSET_KEYS[1:] if t(k) == label), None)
-    if key is None:  # the "custom" entry — leave the outfit as it is
-        return
+def _simple_outfit_cat():
+    """Outfit type currently picked in simple mode ("soc_all" by default)."""
+    label = st.session_state.get("sm_outfit_cat")
+    return next((k for k in SOC_KEYS if t(k) == label), "soc_all")
+
+
+def _set_simple_outfit(key):
+    """Replace the whole outfit with one fashion style, one set, or nothing."""
     for widget_key, val in LOOK_BASE.items():
         if widget_key.startswith(("w_pose", "w_gaze")) or widget_key in POSE_DETAIL_WIDGETS:
             continue
@@ -1032,36 +1193,59 @@ def sync_simple_outfit():
         st.session_state["w_outfit_set"] = t(key)
 
 
+def sync_simple_outfit():
+    """Simple-mode outfit picker: one fashion style or one ready-made set."""
+    label = st.session_state.get("sm_outfit")
+    key = next((k for k in ["os_none"] + FS_KEYS + OSET_KEYS[1:] if t(k) == label), None)
+    if key is not None:  # None = the "custom" entry — leave the outfit as it is
+        _set_simple_outfit(key)
+
+
+def sync_simple_outfit_cat():
+    """Outfit type changed — an outfit from another type no longer fits."""
+    current = _simple_outfit_key()
+    if current not in (None, "os_none") and current not in simple_outfit_keys(_simple_outfit_cat()):
+        _set_simple_outfit("os_none")
+
+
 def render_simple_panel():
     """The simple-mode pickers. Runs before the (hidden) full editor."""
     locked = bool(st.session_state.get("char_lock"))
     enforce_character_lock()
-    # A filtered category with no stored pick would default differently here
-    # and in the full editor — fall back to the full lists
-    if "w_location" not in st.session_state:
-        st.session_state["w_loc_cat"] = t("lcat_all")
-    if "w_pose" not in st.session_state:
-        st.session_state["w_pose_cat"] = t("pc_all")
-    gd_label = st.session_state.get("w_gender", t("gender_female"))
     for row in SIMPLE_ROWS:
         for col, (real_key, label_key, keys, default) in zip(st.columns(len(row)), row):
             with col:
+                if real_key == "OUTFIT_CAT":
+                    # Themes / Random Look may have set an outfit of another type
+                    current = _simple_outfit_key()
+                    cat = _simple_outfit_cat()
+                    if current not in (None, "os_none") and current not in simple_outfit_keys(cat):
+                        cat = "soc_all"
+                    st.session_state["sm_outfit_cat"] = t(cat)
+                    st.selectbox(t(label_key), [t(k) for k in SOC_KEYS], key="sm_outfit_cat",
+                                 format_func=grouped(SOC_KEYS),
+                                 on_change=sync_simple_outfit_cat)
+                    continue
                 if real_key == "OUTFIT":
                     current = _simple_outfit_key()
-                    labels = [t(k) for k in ["os_none"] + FS_KEYS + OSET_KEYS[1:]]
+                    outfit_keys = ["os_none"] + simple_outfit_keys(_simple_outfit_cat())
+                    labels = [t(k) for k in outfit_keys]
                     if current is None:
                         labels.insert(0, t("simple_outfit_custom"))
                     st.session_state["sm_outfit"] = labels[0] if current is None else t(current)
                     st.selectbox(t(label_key), labels, key="sm_outfit",
+                                 format_func=grouped(outfit_keys),
                                  on_change=sync_simple_outfit)
                     continue
-                labels = [t(k) for k in (keys or hair_pool_for_label(gd_label))]
+                keys = keys or _simple_keys(real_key)
+                labels = [t(k) for k in keys]
                 mirror = f"sm_{real_key}"
                 if st.session_state.get(real_key) in labels:
                     st.session_state[mirror] = st.session_state[real_key]
                 else:  # real widget not set yet → both show the same default
                     st.session_state.pop(mirror, None)
                 st.selectbox(t(label_key), labels, index=default, key=mirror,
+                             format_func=grouped(keys),
                              on_change=sync_simple, args=(real_key,),
                              disabled=locked and real_key in CHAR_WIDGETS)
     st.caption(t("simple_caption"))
@@ -1194,6 +1378,8 @@ def randomize_look():
         _apply_culture_look(culture, gd_key)
         return
     roll = random.random()
+    if gd_key == "gender_male" and 0.6 <= roll < 0.85:
+        roll = 0.5  # the dress branch → separates
     if roll < 0.3:
         st.session_state["fashion_multi"] = [t(k) for k in random.sample(FS_KEYS, random.randint(1, 2))]
     elif roll < 0.85:
@@ -1219,7 +1405,7 @@ def randomize_look():
         st.session_state["w_shoes"] = t(random.choice(SH_KEYS[1:]))
     else:
         st.session_state["w_outfit_mode"] = t("om_set")
-        st.session_state["w_outfit_set"] = t(random.choice(OSET_RANDOM_KEYS))
+        st.session_state["w_outfit_set"] = t(random.choice(random_set_keys(gd_key)))
     st.session_state["force_generate"] = True
 
 
@@ -1714,6 +1900,7 @@ def main():
                 """Selectbox over option keys → selected key (locked if part of the character)."""
                 labels, _ = make_option(keys)
                 sel = st.selectbox(t(label_key), labels, index=index, key=widget_key,
+                                   format_func=grouped(keys),
                                    disabled=locked and widget_key in CHAR_WIDGETS, **kw)
                 return keys[labels.index(sel)]
 
@@ -1819,6 +2006,7 @@ def main():
                         p_hr_sel = st.selectbox(
                             t("hair_style"), p_hr_labels,
                             index=min(1 + 3 * (pi - 1), len(p_hr_options) - 1),
+                            format_func=grouped(p_hr_options),
                             key=f"w_hair_p{pi}")
                         p_hr_key = p_hr_options[p_hr_labels.index(p_hr_sel)]
                     with pc2:
@@ -1826,6 +2014,7 @@ def main():
                         p_hc_sel = st.selectbox(
                             t("hair_color"), p_hc_labels,
                             index=min(1 + 6 * (pi - 1), len(HC_KEYS) - 1),
+                            format_func=grouped(HC_KEYS),
                             key=f"w_hair_color_p{pi}")
                         p_hc_key = HC_KEYS[p_hc_labels.index(p_hc_sel)]
                     with pc3:
@@ -1833,6 +2022,7 @@ def main():
                         p_ex_sel = st.selectbox(
                             t("expression"), p_ex_labels,
                             index=min(2 + 9 * (pi - 2), len(EX_KEYS) - 1),
+                            format_func=grouped(EX_KEYS),
                             key=f"w_expr_p{pi}")
                         p_ex_key = EX_KEYS[p_ex_labels.index(p_ex_sel)]
                     extra_person_keys.append((p_gd_key, p_hr_key, p_hc_key, p_ex_key))
@@ -1848,10 +2038,11 @@ def main():
         #  EXPANDER 2 — Outfit & Style
         # ══════════════════════════════════════════════════════════════════════
         with st.expander(f"👗  {t('exp_outfit')}", expanded=True):
-            # Fashion presets (A-Z)
+            # Fashion presets (grouped: everyday, trend, occasions, sport, traditional)
             fs_labels = [t(k) for k in FS_KEYS]
             fs_selected_labels = st.multiselect(t("fashion_presets"), fs_labels, default=[],
-                                                 help=t("fashion_presets_help"), key="fashion_multi")
+                                                 help=t("fashion_presets_help"), key="fashion_multi",
+                                                 format_func=grouped(FS_KEYS))
             fs_selected_keys = [FS_KEYS[fs_labels.index(lbl)] for lbl in fs_selected_labels]
 
             st.markdown("---")
@@ -2001,6 +2192,7 @@ def main():
             with col_pc:
                 pc_labels, _ = make_option(PC_KEYS)
                 pc_sel = st.selectbox(t("pose_category"), pc_labels, key="w_pose_cat",
+                                      format_func=grouped(PC_KEYS),
                                       on_change=reset_pose_on_category_change,
                                       disabled=attach_pose)
                 pc_key = PC_KEYS[pc_labels.index(pc_sel)]
@@ -2009,7 +2201,8 @@ def main():
                 po_labels, _ = make_option(po_options)
                 if st.session_state.get("w_pose") not in po_labels:
                     st.session_state.pop("w_pose", None)
-                po_sel = st.selectbox(t("pose"), po_labels, key="w_pose", disabled=attach_pose)
+                po_sel = st.selectbox(t("pose"), po_labels, key="w_pose", disabled=attach_pose,
+                                      format_func=grouped(po_options))
                 po_key = po_options[po_labels.index(po_sel)]
 
             # Fine-tuning: orientation / head / hands / legs are pose-specific;
@@ -2063,6 +2256,7 @@ def main():
                 with col_lc:
                     lcat_labels, _ = make_option(LCAT_KEYS)
                     lcat_sel = st.selectbox(t("location_category"), lcat_labels, key="w_loc_cat",
+                                            format_func=grouped(LCAT_KEYS),
                                             on_change=reset_location_on_category_change)
                     lcat_key = LCAT_KEYS[lcat_labels.index(lcat_sel)]
                 with col_lo:
@@ -2070,7 +2264,8 @@ def main():
                     lo_labels, _ = make_option(lo_options)
                     if st.session_state.get("w_location") not in lo_labels:
                         st.session_state.pop("w_location", None)
-                    lo_sel = st.selectbox(t("location"), lo_labels, index=1, key="w_location")
+                    lo_sel = st.selectbox(t("location"), lo_labels, index=1, key="w_location",
+                                          format_func=grouped(lo_options))
                     lo_key = lo_options[lo_labels.index(lo_sel)]
             elif scene_mode == scene_mode_labels[1]:
                 scene_custom_text = st.text_area(t("scene_custom_input"),
@@ -2095,7 +2290,8 @@ def main():
             col10, col_season, col_bgp = st.columns(3)
             with col10:
                 td_labels, _ = make_option(TD_KEYS)
-                td_sel = st.selectbox(t("time_of_day"), td_labels, index=1, key="w_tod")
+                td_sel = st.selectbox(t("time_of_day"), td_labels, index=TD_DEFAULT, key="w_tod",
+                                      format_func=grouped(TD_KEYS))
                 td_key = TD_KEYS[td_labels.index(td_sel)]
             with col_season:
                 sn_labels, _ = make_option(SN_KEYS)
@@ -2115,7 +2311,8 @@ def main():
             col11, col_ld, col_lc2, col_lq = st.columns(4)
             with col11:
                 lt_labels, _ = make_option(LT_KEYS)
-                lt_sel = st.selectbox(t("lighting"), lt_labels, index=1, key="w_lighting")
+                lt_sel = st.selectbox(t("lighting"), lt_labels, index=1, key="w_lighting",
+                                      format_func=grouped(LT_KEYS))
                 lt_key = LT_KEYS[lt_labels.index(lt_sel)]
             with col_ld:
                 ld_labels, _ = make_option(LD_KEYS)
@@ -2136,7 +2333,8 @@ def main():
             col12, col_ch, col_cd, col_cs = st.columns(4)
             with col12:
                 sf_labels, _ = make_option(SF_KEYS)
-                sf_sel = st.selectbox(t("shot_framing"), sf_labels, index=2, key="w_framing")
+                sf_sel = st.selectbox(t("shot_framing"), sf_labels, index=2, key="w_framing",
+                                      format_func=grouped(SF_KEYS))
                 sf_key = SF_KEYS[sf_labels.index(sf_sel)]
             with col_ch:
                 ch_labels, _ = make_option(CH_KEYS)
@@ -2166,7 +2364,8 @@ def main():
                 cmp_key = CMP_KEYS[cmp_labels.index(cmp_sel)]
             with col_ps:
                 ps_labels, _ = make_option(PS_KEYS)
-                ps_sel = st.selectbox(t("picture_style"), ps_labels, key="w_pstyle")
+                ps_sel = st.selectbox(t("picture_style"), ps_labels, key="w_pstyle",
+                                      format_func=grouped(PS_KEYS))
                 ps_key = PS_KEYS[ps_labels.index(ps_sel)]
 
             # Camera body / film stock only makes sense for photographic models

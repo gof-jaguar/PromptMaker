@@ -37,7 +37,7 @@ check(en == th, f"EN/TH parity: only EN {sorted(en - th)}, only TH {sorted(th - 
 import app  # noqa: E402  (bare mode: Streamlit calls are no-ops)
 
 # Option lists whose keys never reach the prompt through eng()
-NO_PROMPT_TEXT = ("lcat_", "pc_", "oscat_", "rs_", "gg_", "om_", "pl_")
+NO_PROMPT_TEXT = ("lcat_", "pc_", "oscat_", "rs_", "gg_", "om_", "pl_", "soc_", "fsg_")
 for name, keys in vars(app).items():
     if not (name.endswith("_KEYS") and isinstance(keys, list)):
         continue
@@ -50,6 +50,19 @@ for name, keys in vars(app).items():
         labels = [TRANSLATIONS[lang].get(k, k) for k in keys]
         dupes = sorted({l for l in labels if labels.count(l) > 1})
         check(not dupes, f"{name}: duplicate {lang} labels {dupes}")
+
+# Grouped lists: every option carries its group's emoji, and the defaults the
+# UI relies on (index 1 / index 2) still point at the intended option
+for name in ("HR_KEYS", "HC_KEYS", "EX_KEYS", "FS_KEYS", "TD_KEYS", "LT_KEYS",
+             "PS_KEYS", "SF_KEYS", "PO_KEYS", "LO_KEYS"):
+    missing = [k for k in getattr(app, name) if k not in app.OPTION_EMOJI
+               and not k.endswith("_none")]
+    check(not missing, f"{name}: no group emoji for {missing}")
+for name, index, expected in (("HR_KEYS_WOMEN", 1, "hair_long"), ("HR_KEYS_MEN", 1, "hair_short"),
+                              ("HC_KEYS", 1, "hc_black"), ("EX_KEYS", 1, "expr_smile"),
+                              ("LO_KEYS", 1, "loc_studio"), ("LT_KEYS", 1, "lit_natural"),
+                              ("SF_KEYS", 2, "sf_closeup")):
+    check(getattr(app, name)[index] == expected, f"{name}[{index}] should be {expected}")
 
 from prompt_values import COMPACT_VALUES, SHORT_VALUES  # noqa: E402
 
@@ -125,17 +138,43 @@ for lang_index, lang in enumerate(("en", "th")):
     run_ok(at, f"[{lang}] Generate")
     check(bool(at.session_state["prompt_history"]), f"[{lang}] no prompt generated")
     # Simple mode (on by default): each mirror picker must write through to
-    # the real widget, and the outfit picker must switch to a ready-made set
-    for real_key in ("w_hair", "w_location", "w_pose", "w_framing"):
-        mirror = widget(at.selectbox, f"sm_{real_key}")
-        mirror.select(mirror.options[-1]).run()
+    # the real widget, a category picker must narrow its list, and the outfit
+    # picker must switch to a ready-made set
+    for real_key, keys in (("w_hair", app.HR_KEYS_WOMEN), ("w_location", app.LO_KEYS),
+                           ("w_pose", app.PO_KEYS), ("w_framing", app.SF_KEYS)):
+        widget(at.selectbox, f"sm_{real_key}").select(tr[keys[-1]]).run()
         run_ok(at, f"[{lang}] simple picker {real_key}")
-        check(at.session_state[real_key] == mirror.options[-1],
+        check(at.session_state[real_key] == tr[keys[-1]],
               f"[{lang}] simple picker {real_key} did not reach the real widget")
+    for cat_widget, cat, item_widget, pool in (
+            ("w_pose_cat", "pc_daily", "w_pose", app.pose_keys_for_category("pc_daily")),
+            ("w_loc_cat", "lcat_thai", "w_location", app.loc_keys_for_category("lcat_thai"))):
+        widget(at.selectbox, f"sm_{cat_widget}").select(tr[cat]).run()
+        run_ok(at, f"[{lang}] simple category {cat}")
+        check(at.session_state[cat_widget] == tr[cat], f"[{lang}] {cat} did not reach {cat_widget}")
+        shown = widget(at.selectbox, f"sm_{item_widget}")
+        check(len(shown.options) == len(pool), f"[{lang}] {cat}: list not narrowed")
+        check(at.session_state[item_widget] in [tr[k] for k in pool],
+              f"[{lang}] {cat}: {item_widget} is outside the category")
+        shown.select(tr[pool[-1]]).run()
+        check(at.session_state[item_widget] == tr[pool[-1]],
+              f"[{lang}] {cat}: pick did not reach {item_widget}")
+    widget(at.selectbox, "sm_outfit_cat").select(tr["fsg_sport"]).run()
+    run_ok(at, f"[{lang}] simple outfit type")
     outfit = widget(at.selectbox, "sm_outfit")
-    outfit.select(outfit.options[-1]).run()
+    check(len(outfit.options) == len(app.FS_GROUPS["fsg_sport"]) + 1,
+          f"[{lang}] simple outfit type did not narrow the list")
+    outfit.select(tr["fs_tennis"]).run()
+    check(at.session_state["fashion_multi"] == [tr["fs_tennis"]],
+          f"[{lang}] simple outfit did not select the style")
+    widget(at.selectbox, "sm_outfit_cat").select(tr["oscat_men"]).run()
+    run_ok(at, f"[{lang}] simple outfit type change")
+    check(at.session_state["fashion_multi"] == [], f"[{lang}] old outfit kept after type change")
+    last_set = app.OSET_KEYS[-1]
+    widget(at.selectbox, "sm_outfit_cat").select(tr["soc_all"]).run()
+    widget(at.selectbox, "sm_outfit").select(tr[last_set]).run()
     run_ok(at, f"[{lang}] simple outfit")
-    check(at.session_state["w_outfit_set"] == outfit.options[-1],
+    check(at.session_state["w_outfit_set"] == tr[last_set],
           f"[{lang}] simple outfit did not select the set")
     click("reset_all")
     run_ok(at, f"[{lang}] Reset all")
